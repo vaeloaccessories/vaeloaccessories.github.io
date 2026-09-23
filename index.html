@@ -13,20 +13,13 @@
             --heading-font-weight: 400;
             --heading-color: #ffffff;
             --heading-line-height: 1.24;
-            --swiper-theme-color: #8C907E;
             --bs-body-font-family: "Jost", Roboto, sans-serif;
             --bs-body-font-size: 18px;
-            --bs-body-font-weight: 400;
-            --bs-body-line-height: 1.5;
             --bs-body-color: #8f8f8f;
             --bs-primary: #8C907E;
-            --bs-black: #111;
-            --bs-light: #F1F1F0;
-            --bs-dark: #212529;
             background-color: #0d0d0d;
             color: var(--bs-body-color);
             font-family: var(--bs-body-font-family);
-            letter-spacing: 0.03rem;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -40,10 +33,13 @@
             border-bottom: 1px solid #222;
         }
 
-        .logo img {
-            height: 45px;
-            width: auto;
-            display: block;
+        .logo-text {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: bold;
         }
 
         .hero {
@@ -91,9 +87,8 @@
 
         .image-zoom-effect {
             display: flex;
-            flex-wrap: wrap;
             overflow: hidden;
-            height: 350px;
+            height: 380px;
             background-color: #1a1a1a;
         }
 
@@ -101,24 +96,17 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            transform: scale(1);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .image-zoom-effect:hover .image-holder {
-            transform: scale(0.95);
         }
 
         .image-zoom-effect img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: scale(1);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.4s ease;
         }
 
         .image-zoom-effect:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .product-info {
@@ -127,7 +115,7 @@
 
         .product-title {
             font-family: var(--heading-font);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #fff;
             margin-bottom: 8px;
         }
@@ -142,21 +130,22 @@
         .buy-btn {
             display: block;
             width: 100%;
-            padding: 12px;
-            background-color: var(--bs-primary);
-            color: #ffffff;
+            padding: 12px 0;
+            background-color: #ffffff;
+            color: #000000;
             text-align: center;
             text-decoration: none;
             font-weight: 600;
             border-radius: 4px;
             transition: background 0.2s ease;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
+            box-sizing: border-box;
         }
 
         .buy-btn:hover {
-            background-color: #5e624e;
+            background-color: #cccccc;
         }
 
         footer {
@@ -171,9 +160,8 @@
 <body>
 
     <header>
-        <div class="logo">
-            <a href="#"><img src="logo.png" alt="VAELO Logo"></a>
-        </div>
+        <!-- Logo resmi yoksa şık bir metin logosu gösterir -->
+        <a href="#" class="logo-text">VAELO</a>
     </header>
 
     <section class="hero">
@@ -186,13 +174,14 @@
         <div class="product-item">
             <div class="image-zoom-effect">
                 <div class="image-holder">
-                    <img src="tshirt1.jpg" alt="VAELO Oversize Heavyweight Tee">
+                    <!-- BURAYA KENDİ ÜRÜN RESMİNİZİN INTERNET LINKINI YAZIN -->
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600" alt="VAELO Heavyweight Tee">
                 </div>
             </div>
             <div class="product-info">
-                <div class="product-title">VAELO Oversize Heavyweight Tee</div>
+                <div class="product-title">VAELO Heavyweight Black Tee</div>
                 <div class="product-price">499 TL</div>
-                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="#" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
@@ -200,13 +189,13 @@
         <div class="product-item">
             <div class="image-zoom-effect">
                 <div class="image-holder">
-                    <img src="tshirt2.jpg" alt="VAELO Acid Wash Graphic Tee">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600" alt="VAELO Graphic Tee">
                 </div>
             </div>
             <div class="product-info">
-                <div class="product-title">VAELO Acid Wash Graphic Tee</div>
+                <div class="product-title">VAELO Oversize Graphic Tee</div>
                 <div class="product-price">549 TL</div>
-                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="#" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
@@ -214,13 +203,13 @@
         <div class="product-item">
             <div class="image-zoom-effect">
                 <div class="image-holder">
-                    <img src="tshirt3.jpg" alt="VAELO Minimal Logo Tee">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600" alt="VAELO Minimal Tee">
                 </div>
             </div>
             <div class="product-info">
-                <div class="product-title">VAELO Minimal Logo Tee</div>
+                <div class="product-title">VAELO Minimal Signature Tee</div>
                 <div class="product-price">449 TL</div>
-                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="#" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
     </section>
