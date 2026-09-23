@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAELO — Premium Apparel & T-Shirts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
     <style>
-        * {
+        body {
+            --heading-font: "Marcellus", Roboto, sans-serif;
+            --heading-font-weight: 400;
+            --heading-color: #ffffff;
+            --heading-line-height: 1.24;
+            --swiper-theme-color: #8C907E;
+            --bs-body-font-family: "Jost", Roboto, sans-serif;
+            --bs-body-font-size: 18px;
+            --bs-body-font-weight: 400;
+            --bs-body-line-height: 1.5;
+            --bs-body-color: #8f8f8f;
+            --bs-primary: #8C907E;
+            --bs-black: #111;
+            --bs-light: #F1F1F0;
+            --bs-dark: #212529;
+            background-color: #0d0d0d;
+            color: var(--bs-body-color);
+            font-family: var(--bs-body-font-family);
+            letter-spacing: 0.03rem;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
         }
-        body {
-            background-color: #0d0d0d;
-            color: #ffffff;
-            line-height: 1.6;
-        }
+
         header {
             padding: 20px 5%;
             display: flex;
@@ -23,27 +39,34 @@
             align-items: center;
             border-bottom: 1px solid #222;
         }
+
         .logo img {
-            height: 45px; /* Logonun yüksekliğini buradan ayarlayabilirsin */
+            height: 45px;
             width: auto;
             display: block;
         }
+
         .hero {
             text-align: center;
             padding: 80px 20px;
             background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
         }
+
         .hero h1 {
-            font-size: 2.8rem;
+            font-family: var(--heading-font);
+            font-size: 3.5rem;
+            color: var(--heading-color);
             margin-bottom: 15px;
             letter-spacing: 2px;
         }
+
         .hero p {
             color: #888;
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 30px;
         }
+
         .products {
             max-width: 1200px;
             margin: 0 auto;
@@ -52,60 +75,90 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-        .product-card {
+
+        .product-item {
             background-color: #141414;
             border: 1px solid #222;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        .product-card:hover {
+
+        .product-item:hover {
             transform: translateY(-5px);
             border-color: #444;
         }
-        .product-img {
-            width: 100%;
-            height: 340px;
-            background-color: #1a1a1a;
+
+        .image-zoom-effect {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
             overflow: hidden;
+            height: 350px;
+            background-color: #1a1a1a;
         }
-        .product-img img {
+
+        .image-zoom-effect .image-holder {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .image-zoom-effect:hover .image-holder {
+            transform: scale(0.95);
+        }
+
+        .image-zoom-effect img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transform: scale(1);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
+        .image-zoom-effect:hover img {
+            transform: scale(1.1);
+        }
+
         .product-info {
             padding: 20px;
         }
+
         .product-title {
-            font-size: 1.1rem;
+            font-family: var(--heading-font);
+            font-size: 1.3rem;
+            color: #fff;
             margin-bottom: 8px;
-            font-weight: 600;
         }
+
         .product-price {
-            color: #10b981;
+            color: var(--bs-primary);
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 15px;
         }
+
         .buy-btn {
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: var(--bs-primary);
+            color: #ffffff;
             text-align: center;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: background 0.2s;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
+
         .buy-btn:hover {
-            background-color: #ddd;
+            background-color: #5e624e;
         }
+
         footer {
             text-align: center;
             padding: 40px;
@@ -130,38 +183,44 @@
 
     <section class="products">
         <!-- Ürün 1 -->
-        <div class="product-card">
-            <div class="product-img">
-                <img src="tshirt1.jpg" alt="VAELO Oversize Heavyweight Tee">
+        <div class="product-item">
+            <div class="image-zoom-effect">
+                <div class="image-holder">
+                    <img src="tshirt1.jpg" alt="VAELO Oversize Heavyweight Tee">
+                </div>
             </div>
             <div class="product-info">
                 <div class="product-title">VAELO Oversize Heavyweight Tee</div>
                 <div class="product-price">499 TL</div>
-                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
         <!-- Ürün 2 -->
-        <div class="product-card">
-            <div class="product-img">
-                <img src="tshirt2.jpg" alt="VAELO Acid Wash Graphic Tee">
+        <div class="product-item">
+            <div class="image-zoom-effect">
+                <div class="image-holder">
+                    <img src="tshirt2.jpg" alt="VAELO Acid Wash Graphic Tee">
+                </div>
             </div>
             <div class="product-info">
                 <div class="product-title">VAELO Acid Wash Graphic Tee</div>
                 <div class="product-price">549 TL</div>
-                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
         <!-- Ürün 3 -->
-        <div class="product-card">
-            <div class="product-img">
-                <img src="tshirt3.jpg" alt="VAELO Minimal Logo Tee">
+        <div class="product-item">
+            <div class="image-zoom-effect">
+                <div class="image-holder">
+                    <img src="tshirt3.jpg" alt="VAELO Minimal Logo Tee">
+                </div>
             </div>
             <div class="product-info">
                 <div class="product-title">VAELO Minimal Logo Tee</div>
                 <div class="product-price">449 TL</div>
-                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
+                <a href="BURAYA_SHOPIER_LINKI" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
     </section>
