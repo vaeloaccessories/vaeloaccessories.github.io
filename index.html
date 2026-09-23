@@ -17,16 +17,16 @@
             line-height: 1.6;
         }
         header {
-            padding: 25px 5%;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #222;
         }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 4px;
+        .logo img {
+            height: 45px; /* Logonun yüksekliğini buradan ayarlayabilirsin */
+            width: auto;
+            display: block;
         }
         .hero {
             text-align: center;
@@ -65,13 +65,17 @@
         }
         .product-img {
             width: 100%;
-            height: 320px;
-            background-color: #222;
+            height: 340px;
+            background-color: #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 0.9rem;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .product-info {
             padding: 20px;
@@ -114,7 +118,9 @@
 <body>
 
     <header>
-        <div class="logo">VAELO</div>
+        <div class="logo">
+            <a href="#"><img src="logo.png" alt="VAELO Logo"></a>
+        </div>
     </header>
 
     <section class="hero">
@@ -125,31 +131,37 @@
     <section class="products">
         <!-- Ürün 1 -->
         <div class="product-card">
-            <div class="product-img">T-Shirt Görseli 1</div>
+            <div class="product-img">
+                <img src="tshirt1.jpg" alt="VAELO Oversize Heavyweight Tee">
+            </div>
             <div class="product-info">
                 <div class="product-title">VAELO Oversize Heavyweight Tee</div>
                 <div class="product-price">499 TL</div>
-                <a href="#" class="buy-btn">Sipariş Ver</a>
+                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
         <!-- Ürün 2 -->
         <div class="product-card">
-            <div class="product-img">T-Shirt Görseli 2</div>
+            <div class="product-img">
+                <img src="tshirt2.jpg" alt="VAELO Acid Wash Graphic Tee">
+            </div>
             <div class="product-info">
                 <div class="product-title">VAELO Acid Wash Graphic Tee</div>
                 <div class="product-price">549 TL</div>
-                <a href="#" class="buy-btn">Sipariş Ver</a>
+                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
 
         <!-- Ürün 3 -->
         <div class="product-card">
-            <div class="product-img">T-Shirt Görseli 3</div>
+            <div class="product-img">
+                <img src="tshirt3.jpg" alt="VAELO Minimal Logo Tee">
+            </div>
             <div class="product-info">
                 <div class="product-title">VAELO Minimal Logo Tee</div>
                 <div class="product-price">449 TL</div>
-                <a href="#" class="buy-btn">Sipariş Ver</a>
+                <a href="https://www.shopier.com" target="_blank" class="buy-btn">Satın Al</a>
             </div>
         </div>
     </section>
