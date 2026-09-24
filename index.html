@@ -198,14 +198,9 @@
     .gateway .gate:hover { flex: 1.3; }
   }
   @media (max-width: 800px) {
-    .gateway { display: block; height: 100vh; height: 100svh; }
-    .gate { position: absolute; inset: 0; flex: none; align-items: flex-start; }
-    .gate-sig { clip-path: polygon(0 0, 100% 0, 0 78%); }
-    .gate-street { clip-path: polygon(100% 0, 100% 100%, 0 100%, 100% 22%); }
-    .gate-sig .gate-text { padding: 9vh 8vw 0 6vw; align-self: flex-start; }
-    .gate-street .gate-text { padding: 0 6vw 8vh 8vw; align-self: flex-end; margin-top: auto; text-align: right; }
-    .gate-text { max-width: 78vw; }
-    .gate-street .gate-text { margin-left: auto; }
+    .gateway { flex-direction: column; }
+    .gate { min-height: 50vh; min-height: 50svh; align-items: flex-start; }
+    .gate-text { padding: 0 8vw 7vh; }
     .gate h2 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
     .gate-marquee { display: none; }
   }
@@ -249,7 +244,11 @@
   .cursor.on .cursor-in { transform: scale(1); }
   @media (pointer: fine) { .has-cursor .ph, .has-cursor .ph a { cursor: none; } }
 
-  @media (max-width: 700px) { .logo { width: 128px; } .hero-body { padding-bottom: 6vh; } }
+  @media (max-width: 700px) {
+    header { background: var(--black); mix-blend-mode: normal; box-shadow: 0 1px 0 rgba(243,241,236,.12); }
+    header .logo { filter: none; }
+    .logo { width: 128px; } .hero-body { padding-bottom: 6vh; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .intro { display: none !important; }
     .gate-text { opacity: 1; transform: none; animation: none; }
