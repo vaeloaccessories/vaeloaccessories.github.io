@@ -137,14 +137,34 @@ jobs:
             return { id: String(p.id), name: p.title || '', price, images, description: htmlToText(p.description), url, ship: parsePrice(pd.shippingPrice) };
           }
 
+          const API_UAS = [
+            'shopier-go/1.0.0',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+          ];
+
+          export function cleanToken(t) {
+            return String(t || '').trim().replace(/^bearer\s+/i, '').replace(/^["']+|["']+$/g, '').trim();
+          }
+
+          async function apiFetch(token, path) {
+            let last = '';
+            for (const ua of API_UAS) {
+              const r = await fetch('https://api.shopier.com/v1' + path, {
+                headers: { authorization: 'Bearer ' + token, accept: 'application/json', 'user-agent': ua },
+              });
+              const txt = await r.text();
+              console.log('API ' + path + ' -> HTTP ' + r.status + ' | tarayıcı adı: ' + ua.slice(0, 10) + ' | sunucu: ' + (r.headers.get('server') || '-') + ' | tür: ' + (r.headers.get('content-type') || '-'));
+              if (r.ok) return txt;
+              last = 'HTTP ' + r.status + ' ' + txt.slice(0, 300);
+              if (r.status !== 403) break;
+            }
+            throw new Error('Shopier API ' + last);
+          }
+
           export async function fromApi(token) {
             const all = [];
             for (let page = 1; page <= 20; page++) {
-              const r = await fetch('https://api.shopier.com/v1/products?page=' + page + '&limit=50', {
-                headers: { authorization: 'Bearer ' + token, accept: 'application/json', 'user-agent': 'vaelo-site-sync/1.0' },
-              });
-              const txt = await r.text();
-              if (!r.ok) throw new Error('Shopier API HTTP ' + r.status + ' ' + txt.slice(0, 300));
+              const txt = await apiFetch(token, '/products?page=' + page + '&limit=50');
               let body; try { body = JSON.parse(txt); } catch { throw new Error('Shopier API cevabı okunamadı: ' + txt.slice(0, 200)); }
               const items = Array.isArray(body) ? body : (body.data || body.items || body.products || []);
               if (!items.length && page === 1) console.log('Beklenmeyen cevap: ' + txt.slice(0, 400));
@@ -157,8 +177,9 @@ jobs:
           async function main() {
             let products = [];
             if (process.env.SHOPIER_TOKEN) {
-              console.log('Resmi Shopier API kullanılıyor');
-              products = (await fromApi(process.env.SHOPIER_TOKEN)).filter((p) => p.name && p.price && p.images.length);
+              const token = cleanToken(process.env.SHOPIER_TOKEN);
+              console.log('Resmi Shopier API kullanılıyor | anahtar uzunluğu: ' + token.length + ' | içinde boşluk var mı: ' + (/\s/.test(token) ? 'evet' : 'hayır'));
+              products = (await fromApi(token)).filter((p) => p.name && p.price && p.images.length);
             } else {
               console.log('SHOPIER_TOKEN yok, mağaza sayfası okunuyor');
               const storeHtml = await get(STORE);
