@@ -28,10 +28,30 @@ jobs:
           const STORE = 'https://www.shopier.com/VAELOaccessories';
           const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 
-          async function get(url) {
-            const r = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'tr-TR,tr;q=0.9' } });
-            if (!r.ok) throw new Error(url + ' -> HTTP ' + r.status);
+          const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+          let useReader = false;   // Shopier bazen GitHub sunucularını engelliyor; o zaman ücretsiz okuyucu servis üzerinden okunur
+
+          async function fetchText(url, headers) {
+            const r = await fetch(url, { headers });
+            if (!r.ok) throw new Error('HTTP ' + r.status);
             return r.text();
+          }
+
+          export async function get(url) {
+            const base = { 'user-agent': UA, 'accept-language': 'tr-TR,tr;q=0.9' };
+            const errors = [];
+            if (!useReader) {
+              try { return await fetchText(url, base); } catch (e) { errors.push('doğrudan: ' + e.message); useReader = true; console.log('Doğrudan okuma olmadı (' + e.message + '), okuyucu servis deneniyor'); }
+            }
+            for (let i = 0; i < 2; i++) {
+              try {
+                await sleep(1500);
+                const t = await fetchText('https://r.jina.ai/' + url, { ...base, 'x-return-format': 'html' });
+                if (t.length < 500) throw new Error('cevap çok kısa');
+                return t;
+              } catch (e) { errors.push('okuyucu: ' + e.message); }
+            }
+            throw new Error(url + ' okunamadı (' + errors.join('; ') + ')');
           }
 
           const dec = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#0*39;/g, "'")
@@ -93,8 +113,9 @@ jobs:
           }
 
           async function main() {
-            const ids = productIds(await get(STORE));
-            if (!ids.length) throw new Error('Mağaza sayfasında ürün bulunamadı');
+            const storeHtml = await get(STORE);
+            const ids = productIds(storeHtml);
+            if (!ids.length) { console.log('Sayfanın başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
             const products = [];
             for (const id of ids) {
               const p = parseProduct(await get(STORE + '/' + id), id);
