@@ -72,6 +72,37 @@
     padding: 24px 5vw; color: #fff; mix-blend-mode: difference; transition: transform .8s var(--ease); }
   header .logo { filter: drop-shadow(0 0 3px rgba(0,0,0,.85)) drop-shadow(0 3px 8px rgba(0,0,0,.6)) drop-shadow(0 0 1px rgba(0,0,0,.9)); }
   header.hide { transform: translateY(-160%); }
+
+  /* mobile menu: hamburger + full-screen overlay */
+  .menu-btn { display: none; position: relative; z-index: 12; width: 34px; height: 30px; padding: 0; border: 0; background: none; flex-direction: column; justify-content: center; gap: 7px; }
+  .menu-btn span { display: block; width: 100%; height: 1.5px; background: currentColor; transition: transform .45s var(--ease), opacity .3s ease; }
+  .menu-btn.active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+  .menu-btn.active span:nth-child(2) { opacity: 0; }
+  .menu-btn.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+  .mobile-nav { display: none; }
+  html.menu-open, html.menu-open body { overflow: hidden; }
+
+  @media (max-width: 700px) {
+    header nav { display: none; }
+    .menu-btn { display: flex; }
+    .mobile-nav { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 22px;
+      position: fixed; inset: 0; z-index: 9; padding: 0 9vw; background: var(--black);
+      opacity: 0; visibility: hidden; transform: translateY(-10px); pointer-events: none;
+      transition: opacity .5s var(--ease), transform .5s var(--ease), visibility 0s linear .5s; }
+    html.menu-open .mobile-nav { opacity: 1; visibility: visible; transform: none; pointer-events: auto; transition-delay: 0s; }
+    .mobile-nav a { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 8vw, 2.6rem); color: var(--paper);
+      opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .6s var(--ease); }
+    html.menu-open .mobile-nav a { opacity: 1; transform: none; }
+    .mobile-nav a:nth-child(1) { transition-delay: .08s; }
+    .mobile-nav a:nth-child(2) { transition-delay: .13s; }
+    .mobile-nav a:nth-child(3) { transition-delay: .18s; }
+    .mobile-nav a:nth-child(4) { transition-delay: .23s; }
+    .mobile-nav a:nth-child(5) { transition-delay: .28s; }
+    .mobile-nav a:nth-child(6) { transition-delay: .33s; }
+    .mobile-nav a:nth-child(7) { transition-delay: .38s; }
+  }
+
   nav { display: flex; gap: 34px; font-size: 0.98rem; }
   nav a { padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .6s var(--ease); }
   nav a:hover { background-size: 100% 1px; }
@@ -218,7 +249,7 @@
   .cursor.on .cursor-in { transform: scale(1); }
   @media (pointer: fine) { .has-cursor .ph, .has-cursor .ph a { cursor: none; } }
 
-  @media (max-width: 700px) { nav { gap: 16px; font-size: 0.9rem; } header { flex-wrap: wrap; gap: 8px 16px; } .logo { width: 128px; } .hero-body { padding-bottom: 6vh; } }
+  @media (max-width: 700px) { .logo { width: 128px; } .hero-body { padding-bottom: 6vh; } }
   @media (prefers-reduced-motion: reduce) {
     .intro { display: none !important; }
     .gate-text { opacity: 1; transform: none; animation: none; }
@@ -244,8 +275,22 @@
     <a href="#kayit">Kayıt Ol</a>
     <a href="#hikaye">Hikâyemiz</a>
     <a href="#iletisim">İletişim</a>
+    <a href="https://www.shopier.com/b/login?redirect=guest_to_account&shop=VAELOaccessories" target="_blank" rel="noopener">Hesabım</a>
+    <a href="https://www.shopier.com/s/basket/VAELOaccessories" target="_blank" rel="noopener">Sepetim</a>
   </nav>
+  <button class="menu-btn" id="menuBtn" aria-controls="mobileNav" aria-expanded="false" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<nav class="mobile-nav" id="mobileNav">
+  <a id="nav-sig-m" href="#signature" data-view="signature">Signature</a>
+  <a id="nav-street-m" href="#street" data-view="street">Street Division</a>
+  <a href="#kayit">Kayıt Ol</a>
+  <a href="#hikaye">Hikâyemiz</a>
+  <a href="#iletisim">İletişim</a>
+  <a href="https://www.shopier.com/b/login?redirect=guest_to_account&shop=VAELOaccessories" target="_blank" rel="noopener">Hesabım</a>
+  <a href="https://www.shopier.com/s/basket/VAELOaccessories" target="_blank" rel="noopener">Sepetim</a>
+</nav>
 
 <main>
   <div class="gateway" id="gateway">
@@ -532,6 +577,18 @@ function switchView(v, push) {
     setTimeout(function () { busy = false; }, 850);
   }, 850);
 }
+
+function initMobileMenu() {
+  var btn = document.getElementById('menuBtn'), panel = document.getElementById('mobileNav');
+  if (!btn || !panel) return;
+  function setOpen(open) {
+    document.documentElement.classList.toggle('menu-open', open);
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function () { setOpen(!document.documentElement.classList.contains('menu-open')); });
+  panel.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+}
 function initViews() {
   currentView = hashView();
   document.documentElement.setAttribute('data-view', currentView);
@@ -561,12 +618,14 @@ function syncProducts() {            // products.json is refreshed automatically
       document.getElementById('gate-street').hidden = !street.length;
       document.getElementById('nav-sig').hidden = !prem.length;
       document.getElementById('gate-sig').hidden = !prem.length;
+      var nsm = document.getElementById('nav-street-m'); if (nsm) nsm.hidden = !street.length;
+      var npm = document.getElementById('nav-sig-m'); if (npm) npm.hidden = !prem.length;
       var fee = document.getElementById('shipfee');
       if (fee && d.shipping) fee.textContent = String(d.shipping).replace('.', ',');
     })
     .catch(function () { clearTimeout(t); });   // any problem: keep the built-in products
 }
-document.addEventListener('DOMContentLoaded', function () { initViews(); syncProducts().then(setup, setup); });
+document.addEventListener('DOMContentLoaded', function () { initViews(); initMobileMenu(); syncProducts().then(setup, setup); });
 function setup() {
   if (!window.gsap || !window.ScrollTrigger) return;              // no animation library: page still works
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
