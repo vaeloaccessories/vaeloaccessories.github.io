@@ -21,6 +21,8 @@ jobs:
           node-version: 20
 
       - name: Shopier ürünlerini oku
+        env:
+          SHOPIER_TOKEN: ${{ secrets.SHOPIER_TOKEN }}
         run: |
           cat > /tmp/sync.mjs <<'EOF'
           import fs from 'node:fs';
@@ -112,15 +114,61 @@ jobs:
             return ids;
           }
 
+
+          // ---------- Resmi Shopier API (Kişisel Erişim Anahtarı ile) ----------
+          export function parsePrice(x) {
+            let t = String(x == null ? '' : x).trim();
+            if (/,\d{1,2}$/.test(t)) t = t.replace(/\./g, '').replace(',', '.');
+            const n = Number(t);
+            return Number.isFinite(n) ? n : 0;
+          }
+
+          export function htmlToText(h) {
+            return dec(String(h || '').replace(/<(?:br|\/p|\/div|\/li|\/h\d|\/ul)\b[^>]*>/gi, '\n').replace(/<[^>]+>/g, ' '))
+              .replace(/[ \t\u00a0]+/g, ' ').split('\n').map((l) => l.trim()).filter(Boolean).join('\n').slice(0, 1500);
+          }
+
+          export function mapApiProduct(p) {
+            const pd = p.priceData || {};
+            const price = parsePrice(pd.discount && pd.discountedPrice ? pd.discountedPrice : pd.price);
+            const images = (p.media || []).filter((m) => m && m.url && (!m.type || /image/i.test(m.type)))
+              .sort((a, b) => (a.placement || 0) - (b.placement || 0)).map((m) => m.url).slice(0, 2);
+            const url = /^https:\/\/www\.shopier\.com\//.test(p.url || '') ? p.url : STORE + '/' + p.id;
+            return { id: String(p.id), name: p.title || '', price, images, description: htmlToText(p.description), url, ship: parsePrice(pd.shippingPrice) };
+          }
+
+          export async function fromApi(token) {
+            const all = [];
+            for (let page = 1; page <= 20; page++) {
+              const r = await fetch('https://api.shopier.com/v1/products?page=' + page + '&limit=50', {
+                headers: { authorization: 'Bearer ' + token, accept: 'application/json', 'user-agent': 'vaelo-site-sync/1.0' },
+              });
+              const txt = await r.text();
+              if (!r.ok) throw new Error('Shopier API HTTP ' + r.status + ' ' + txt.slice(0, 300));
+              let body; try { body = JSON.parse(txt); } catch { throw new Error('Shopier API cevabı okunamadı: ' + txt.slice(0, 200)); }
+              const items = Array.isArray(body) ? body : (body.data || body.items || body.products || []);
+              if (!items.length && page === 1) console.log('Beklenmeyen cevap: ' + txt.slice(0, 400));
+              all.push(...items);
+              if (items.length < 50) break;
+            }
+            return all.map(mapApiProduct);
+          }
+
           async function main() {
-            const storeHtml = await get(STORE);
-            const ids = productIds(storeHtml);
-            if (!ids.length) { console.log('Sayfanın başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
-            const products = [];
-            for (const id of ids) {
-              const p = parseProduct(await get(STORE + '/' + id), id);
-              if (p.name && p.price && p.images.length) products.push(p);
-              else console.log('Atlandı (eksik bilgi):', id);
+            let products = [];
+            if (process.env.SHOPIER_TOKEN) {
+              console.log('Resmi Shopier API kullanılıyor');
+              products = (await fromApi(process.env.SHOPIER_TOKEN)).filter((p) => p.name && p.price && p.images.length);
+            } else {
+              console.log('SHOPIER_TOKEN yok, mağaza sayfası okunuyor');
+              const storeHtml = await get(STORE);
+              const ids = productIds(storeHtml);
+              if (!ids.length) { console.log('Sayfanın başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
+              for (const id of ids) {
+                const p = parseProduct(await get(STORE + '/' + id), id);
+                if (p.name && p.price && p.images.length) products.push(p);
+                else console.log('Atlandı (eksik bilgi):', id);
+              }
             }
             if (!products.length) throw new Error('Hiçbir ürün okunamadı');
             const shipping = (products.find((p) => p.ship) || {}).ship || 0;
