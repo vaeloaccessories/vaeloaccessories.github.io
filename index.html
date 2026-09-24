@@ -199,9 +199,13 @@
   }
   @media (max-width: 800px) {
     .gateway { flex-direction: column; }
-    .gate { min-height: 50vh; min-height: 50svh; align-items: flex-start; }
-    .gate-text { padding: 0 8vw 7vh; }
-    .gate h2 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+    .gate { min-height: 0; }
+    .gate-sig { flex: 1.35 1 0%; }
+    .gate-street { flex: 0.85 1 0%; }
+    .gate-text { padding: 0 7vw 4.5vh; max-width: 88vw; }
+    .gate h2 { font-size: clamp(1.3rem, 5.6vw, 1.7rem); line-height: 1.08; }
+    .gate p { font-size: 0.86rem; margin-top: 10px; }
+    .gate-cta { margin-top: 16px; font-size: 0.86rem; }
     .gate-marquee { display: none; }
   }
 
@@ -245,9 +249,10 @@
   @media (pointer: fine) { .has-cursor .ph, .has-cursor .ph a { cursor: none; } }
 
   @media (max-width: 700px) {
-    header { background: var(--black); mix-blend-mode: normal; box-shadow: 0 1px 0 rgba(243,241,236,.12); }
+    header { background: var(--black); mix-blend-mode: normal; box-shadow: 0 1px 0 rgba(243,241,236,.12); padding: 12px 6vw; }
     header .logo { filter: none; }
-    .logo { width: 128px; } .hero-body { padding-bottom: 6vh; }
+    .logo { width: 104px; } .hero-body { padding-bottom: 6vh; }
+    .menu-btn { width: 26px; height: 22px; gap: 5px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .intro { display: none !important; }
