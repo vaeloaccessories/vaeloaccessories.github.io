@@ -1,0 +1,123 @@
+name: Shopier ürünlerini güncelle
+
+# Her 30 dakikada bir Shopier mağazasını okur ve products.json dosyasını yeniler.
+# Elle çalıştırmak için: Actions sekmesi > bu iş > Run workflow
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Shopier ürünlerini oku
+        run: |
+          cat > /tmp/sync.mjs <<'EOF'
+          import fs from 'node:fs';
+
+          const STORE = 'https://www.shopier.com/VAELOaccessories';
+          const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+
+          async function get(url) {
+            const r = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'tr-TR,tr;q=0.9' } });
+            if (!r.ok) throw new Error(url + ' -> HTTP ' + r.status);
+            return r.text();
+          }
+
+          const dec = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#0*39;/g, "'")
+            .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ');
+
+          export function metas(html) {
+            const o = {};
+            for (const m of html.matchAll(/<meta\b[^>]*>/gi)) {
+              const k = (m[0].match(/(?:property|name)=["']([^"']+)["']/i) || [])[1];
+              const c = (m[0].match(/content=["']([^"']*)["']/i) || [])[1];
+              if (k && c !== undefined && !(k in o)) o[k] = dec(c);
+            }
+            return o;
+          }
+
+          export function textOf(html) {
+            return dec(html
+              .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+              .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+              .replace(/<(?:br|\/p|\/div|\/li|\/h\d|\/tr|\/ul)\b[^>]*>/gi, '\n')
+              .replace(/<[^>]+>/g, ' '))
+              .replace(/[ \t\u00a0]+/g, ' ')
+              .replace(/\s*\n\s*/g, '\n');
+          }
+
+          export function describe(html) {
+            const t = textOf(html);
+            const mark = 'Teslimat bilgisi';
+            const idxs = [];
+            for (let i = t.indexOf(mark); i >= 0; i = t.indexOf(mark, i + 1)) idxs.push(i);
+            for (const i of idxs.reverse()) {
+              const e = t.indexOf('Kargo ücreti', i);
+              if (e > 0 && e - i < 4000) {
+                const lines = t.slice(i + mark.length, e).split('\n')
+                  .map((l) => l.trim().replace(/^Ürün Açıklaması:?\s*/i, '').trim())
+                  .filter((l) => l && !/^Ürün açıklaması$/i.test(l));
+                const out = lines.join('\n').slice(0, 1500);
+                return out.length >= 10 ? out : '';
+              }
+            }
+            return '';
+          }
+
+          export function parseProduct(html, id) {
+            const m = metas(html);
+            const title = m['og:title'] || m['name'] || ((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '').split('|')[0].trim();
+            let price = Number(m['product:price:amount']);
+            if (!price) price = Number(((textOf(html).match(/(\d[\d.]*)\s*TL/) || [])[1] || '').replace(/\./g, '')) || 0;
+            const images = [...new Set([...html.matchAll(/https:\/\/cdn\.shopier\.app\/pictures_large\/[A-Za-z0-9_\-]+\.(?:jpg|jpeg|png|webp)/g)].map((x) => x[0]))];
+            if (m['og:image'] && !images.includes(m['og:image'])) images.unshift(m['og:image']);
+            const ship = Number((((textOf(html).match(/Kargo ücreti:?\s*([\d.,]+)\s*TL/i) || [])[1]) || '').replace(/\./g, '').replace(',', '.')) || 0;
+            return { id, name: title, price, images: images.slice(0, 2), description: describe(html), url: STORE + '/' + id, ship };
+          }
+
+          export function productIds(html) {
+            const ids = [];
+            for (const m of html.matchAll(/(?:https?:\/\/www\.shopier\.com)?\/VAELOaccessories\/(\d{5,})/gi)) if (!ids.includes(m[1])) ids.push(m[1]);
+            return ids;
+          }
+
+          async function main() {
+            const ids = productIds(await get(STORE));
+            if (!ids.length) throw new Error('Mağaza sayfasında ürün bulunamadı');
+            const products = [];
+            for (const id of ids) {
+              const p = parseProduct(await get(STORE + '/' + id), id);
+              if (p.name && p.price && p.images.length) products.push(p);
+              else console.log('Atlandı (eksik bilgi):', id);
+            }
+            if (!products.length) throw new Error('Hiçbir ürün okunamadı');
+            const shipping = (products.find((p) => p.ship) || {}).ship || 0;
+            const data = { shipping, products: products.map(({ ship, ...p }) => p) };
+            fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
+            console.log(products.length + ' ürün yazıldı');
+          }
+
+          if (!process.env.VAELO_TEST) main().catch((e) => { console.error(e.message); process.exit(1); });
+          EOF
+          node /tmp/sync.mjs
+
+      - name: Değişiklik varsa kaydet
+        run: |
+          if [ -n "$(git status --porcelain products.json)" ]; then
+            git config user.name "vaelo-sync"
+            git config user.email "actions@users.noreply.github.com"
+            git add products.json
+            git commit -m "Shopier ürünleri güncellendi"
+            git push
+          fi
