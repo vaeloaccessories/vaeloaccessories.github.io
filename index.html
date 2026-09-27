@@ -476,7 +476,7 @@
   </section>
 
   <div class="shipbar">
-    <p class="ship rv">Kargo ücreti <span id="shipfee">90</span> TL, 3.000 TL üzeri siparişlerde ücretsizdir. Siparişler 2-3 iş günü içinde kargoya verilir.</p>
+    <p class="ship rv">Kargo ücreti <span id="shipfee">120</span> TL, 3.000 TL üzeri siparişlerde ücretsizdir. Siparişler 2-3 iş günü içinde kargoya verilir.</p>
   </div>
 
   <section id="hikaye" class="story">
@@ -636,7 +636,8 @@ function setup() {
   gsap.registerPlugin(ScrollTrigger);
 
   var lenis = null;
-  if (window.Lenis) {                                              // smooth, inertial scrolling
+  var lowPower = matchMedia('(pointer: coarse)').matches;   // phones/tablets: skip the heaviest effects to avoid jank
+  if (window.Lenis && !lowPower) {                                   // smooth, inertial scrolling (desktop/trackpad only)
     lenis = new Lenis({ lerp: 0.085 });
     window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
@@ -653,6 +654,22 @@ function setup() {
     });
     var hdr = document.querySelector('header');                   // header hides on scroll down, returns on scroll up
     lenis.on('scroll', function (e) { hdr.classList.toggle('hide', e.direction === 1 && e.scroll > 260); });
+  } else {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        if (a.hasAttribute('data-view')) return;
+        var id = a.getAttribute('href'), t = id.length > 1 ? document.querySelector(id) : null;
+        if (id.length > 1 && !t) return;
+        ev.preventDefault();
+        (t || document.body).scrollIntoView ? (t ? t.scrollIntoView({ behavior: 'smooth' }) : window.scrollTo({ top: 0, behavior: 'smooth' })) : window.scrollTo(0, t ? t.offsetTop : 0);
+      });
+    });
+    var hdr2 = document.querySelector('header'), lastY = window.scrollY;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      hdr2.classList.toggle('hide', y > lastY && y > 260);
+      lastY = y;
+    }, { passive: true });
   }
 
   // headings and notes rise in
@@ -665,10 +682,12 @@ function setup() {
   ScrollTrigger.batch('.item', { start: 'top 90%', onEnter: function (b) {
     gsap.fromTo(b, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out', stagger: 0.14, overwrite: true });
   } });
-  gsap.utils.toArray('.ph-inner').forEach(function (el) {
-    gsap.fromTo(el, { yPercent: -7 }, { yPercent: 7, ease: 'none',
-      scrollTrigger: { trigger: el.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
-  });
+  if (!lowPower) {
+    gsap.utils.toArray('.ph-inner').forEach(function (el) {
+      gsap.fromTo(el, { yPercent: -7 }, { yPercent: 7, ease: 'none',
+        scrollTrigger: { trigger: el.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+  }
 
   // story: words light up as you read
   var st = document.querySelector('.story-text');
