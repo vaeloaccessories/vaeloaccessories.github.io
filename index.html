@@ -149,15 +149,40 @@
   .head p { margin-top: 16px; font-size: 1.08rem; }
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 44px 16px; }
   .item:nth-child(even) { margin-top: 36px; }
-  .ph { position: relative; display: block; aspect-ratio: 4 / 5; background: var(--sand); overflow: hidden; }
-  .ph-inner { position: absolute; left: 0; right: 0; top: -10%; height: 120%; will-change: transform; }
-  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1s ease, transform 1.6s var(--ease); }
-  .ph img + img { opacity: 0; }
+  .ph { position: relative; display: block; overflow: hidden; }
+  .ph-inner { position: relative; display: block; }
+  .ph img { display: block; width: 100%; height: auto; transition: opacity 1s ease, transform 1.6s var(--ease); }
+  .ph img + img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
   .item:hover .ph img + img { opacity: 1; }
-  .item:hover .ph img { transform: scale(1.05); }
+  .item:hover .ph img:first-child { transform: scale(1.045); }
   .item .note { margin-top: 18px; font-size: 0.9rem; color: var(--muted); }
+
+  /* toolbar: sort + grid/list view toggle */
+  .grid-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 20px; margin: -30px 0 30px; flex-wrap: wrap; }
+  .sortsel { appearance: none; -webkit-appearance: none; background: transparent; border: 0; border-bottom: 1px solid currentColor; opacity: .75;
+    padding: 4px 20px 5px 2px; font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.03em; color: inherit; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23000' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 2px center; background-size: 9px; }
+  .sortsel:hover, .sortsel:focus { opacity: 1; }
+  .street .sortsel { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23F3F1EC' stroke-width='1.2'/%3E%3C/svg%3E"); }
+  .viewtoggle { display: flex; gap: 6px; }
+  .viewbtn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; color: inherit; opacity: .4; cursor: pointer; transition: opacity .3s ease; }
+  .viewbtn svg { width: 15px; height: 15px; display: block; }
+  .viewbtn.active, .viewbtn:hover { opacity: 1; }
+  .grid.list-view { display: flex; flex-direction: column; gap: 22px; }
+  .grid.list-view .item { display: flex; flex-direction: row; align-items: flex-start; gap: 22px; margin-top: 0 !important; }
+  .grid.list-view .ph { width: 112px; flex: none; }
+  .grid.list-view .item h3 { margin-top: 0; }
+  .grid.list-view .item .desc { -webkit-line-clamp: 2; }
+  @media (min-width: 640px) { .grid.list-view .ph { width: 150px; } }
   .item h3 { font-family: var(--serif); font-weight: 500; font-size: 1.05rem; line-height: 1.25; margin-top: 14px; }
-  .item .price { margin-top: 6px; font-size: 0.92rem; }
+  .item .price { margin-top: 5px; display: flex; align-items: baseline; gap: 9px; font-family: var(--serif); font-weight: 500; font-size: 1.12rem; letter-spacing: 0.01em; }
+  .item .price .cur { font-family: var(--sans); font-weight: 300; font-size: 0.78em; letter-spacing: 0.02em; margin-right: 1px; color: var(--muted); }
+  .item .price .old { font-family: var(--sans); font-weight: 300; font-size: 0.74em; letter-spacing: 0.01em; color: var(--muted); opacity: .62; text-decoration: line-through; text-decoration-thickness: 1px; }
+  .item .price .old .cur { font-size: 1em; margin-right: 1px; }
+  .street .item .price { font-family: var(--sans); font-weight: 300; letter-spacing: 0.03em; }
+  .street .item .price .cur { color: var(--sand); opacity: .65; }
+  .street .item .price .old { color: var(--sand); opacity: .5; }
   .item .desc { margin-top: 8px; font-size: 0.8rem; line-height: 1.5; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .more { display: inline-block; margin-top: 14px; padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: background-size .6s var(--ease); }
   .more:hover { background-size: 0 1px; }
@@ -332,84 +357,96 @@
       <h2>Signature Premium</h2>
       <p>Sınırlı sayıda üretilen, özenle tasarlanmış parçalar.</p>
     </div>
+    <div class="grid-toolbar">
+      <select class="sortsel" id="sort-premium" aria-label="Sırala">
+        <option value="recommended">Önerilen</option>
+        <option value="price-asc">Fiyat: Artan</option>
+        <option value="price-desc">Fiyat: Azalan</option>
+        <option value="bestsellers">En Çok Satanlar</option>
+      </select>
+      <div class="viewtoggle" role="group" aria-label="Görünüm">
+        <button type="button" class="viewbtn active" data-target="grid-premium" data-mode="grid" aria-label="Izgara görünümü"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="1" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.1"/></svg></button>
+        <button type="button" class="viewbtn" data-target="grid-premium" data-mode="list" aria-label="Liste görünümü"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="2" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="3.5" x2="15" y2="3.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="7" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="8.5" x2="15" y2="8.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="12" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="13.5" x2="15" y2="13.5" stroke="currentColor" stroke-width="1.1"/></svg></button>
+      </div>
+    </div>
     <div class="grid" id="grid-premium">
-      <article class="item">
+      <article class="item" data-price="1099" data-sold="0" data-idx="0">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50995025" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_b221a595afd1b870138112e451e46041.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_334816d15fbb967513e2a0b212b75530.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized SweatShirt</h3>
-        <p class="price">₺1.099,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.849</span><span class="cur">₺</span>1.099</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50995025" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1099" data-sold="0" data-idx="1">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50995013" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_22923a2c439923e0f00352b8da6b09a4.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_72327cca94d56f4428a8f5be4b564150.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized SweatShirt</h3>
-        <p class="price">₺1.099,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.849</span><span class="cur">₺</span>1.099</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50995013" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1099" data-sold="0" data-idx="2">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50994943" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_403d6abbc9330735435bddfd868fa7ca.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_dfcb5019f932ac5c0f239b7d644d1fff.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized SweatShirt</h3>
-        <p class="price">₺1.099,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.849</span><span class="cur">₺</span>1.099</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50994943" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="799" data-sold="0" data-idx="3">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50994670" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_9d336cb4e6a668456a0d62e2d2f955b2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_e3591fa2e85f42e581cefeb0fcb23c7b.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized T-Shirt</h3>
-        <p class="price">₺799,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.549</span><span class="cur">₺</span>799</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50994670" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="799" data-sold="0" data-idx="4">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50994608" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_fb74ff1e74642ee4436c35c255a45a89.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_1f77ee5a0ece652dc92db612ea40d1d9.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized T-Shirt</h3>
-        <p class="price">₺799,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.549</span><span class="cur">₺</span>799</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50994608" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1199" data-sold="0" data-idx="5">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50979137" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_c2f1820729e7d545d14dcace49f32b29.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_4be4b6c4f11f09781efa1374376dbb2d.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.199,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.949</span><span class="cur">₺</span>1.199</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50979137" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1099" data-sold="0" data-idx="6">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50979120" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_1534bd893e194420531ad697a5e3fb5b.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_4a8dd8e5f3b698c0e16a3a7aaad133fd.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.099,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.849</span><span class="cur">₺</span>1.099</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50979120" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1099" data-sold="0" data-idx="7">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/50979076" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_eece1812c7ae8f9253d769f0d1f2558e.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_6d39fee12d1e07f1f774d251378e4003.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.099,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.849</span><span class="cur">₺</span>1.099</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/50979076" target="_blank" rel="noopener">İncele</a>
       </article>
@@ -421,66 +458,98 @@
       <h2>VAELO // STREET DİVİSİON</h2>
       <p>Şehrin ritmini VAĖLO kalitesiyle buluşturan ayrı bir seri.</p>
     </div>
+    <div class="grid-toolbar">
+      <select class="sortsel" id="sort-street" aria-label="Sırala">
+        <option value="recommended">Önerilen</option>
+        <option value="price-asc">Fiyat: Artan</option>
+        <option value="price-desc">Fiyat: Azalan</option>
+        <option value="bestsellers">En Çok Satanlar</option>
+      </select>
+      <div class="viewtoggle" role="group" aria-label="Görünüm">
+        <button type="button" class="viewbtn active" data-target="grid-street" data-mode="grid" aria-label="Izgara görünümü"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="1" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.1"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.1"/></svg></button>
+        <button type="button" class="viewbtn" data-target="grid-street" data-mode="list" aria-label="Liste görünümü"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="2" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="3.5" x2="15" y2="3.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="7" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="8.5" x2="15" y2="8.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="12" width="3" height="3" stroke="currentColor" stroke-width="1.1"/><line x1="7" y1="13.5" x2="15" y2="13.5" stroke="currentColor" stroke-width="1.1"/></svg></button>
+      </div>
+    </div>
     <div class="grid" id="grid-street">
-      <article class="item">
+      <article class="item" data-price="1299" data-sold="0" data-idx="0">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51195056" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_583bf8403f202336180d68623da5ab53.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_a6f227548bb3f29b19e9c47da0806e61.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.299,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>2.049</span><span class="cur">₺</span>1.299</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51195056" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="799" data-sold="0" data-idx="1">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51194906" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_df98479b60edff14aeeb6b6865056158.png" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_ebbfc7fc684859a558f747cfdc723a82.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized T-Shirt</h3>
-        <p class="price">₺799,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.549</span><span class="cur">₺</span>799</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı. Hem günlük kombinlerinizde hem de seçkin gardırobunuzda zahmetsiz bir zarafet sunar. Kesim / Kalıp: Unisex Oversize Fit (Rahat & Dökümlü Kesim)</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51194906" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1299" data-sold="0" data-idx="2">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51194901" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_790d2db627bb039f02c1c390b6d496ed.png" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_43a7e88a2c5acf911781ca4cff852fa7.png" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.299,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>2.049</span><span class="cur">₺</span>1.299</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51194901" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1299" data-sold="0" data-idx="3">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51194726" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_50f6ee0fd4d6fc5f892898525a7a5e83.png" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_2f5432b822309fcd14761486b9af381f.png" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.299,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>2.049</span><span class="cur">₺</span>1.299</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51194726" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="799" data-sold="0" data-idx="4">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51194538" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_791c1752c7bddf9b81fe7ebe93da54ad.png" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_aaa2733c74123819eff084e60811ea12.png" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized T-Shirt</h3>
-        <p class="price">₺799,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.549</span><span class="cur">₺</span>799</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı. Hem günlük kombinlerinizde hem de seçkin gardırobunuzda zahmetsiz bir zarafet sunar. Kesim / Kalıp: Unisex Oversize Fit (Rahat & Dökümlü Kesim)</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51194538" target="_blank" rel="noopener">İncele</a>
       </article>
-      <article class="item">
+      <article class="item" data-price="1299" data-sold="0" data-idx="5">
         <a class="ph" href="https://www.shopier.com/VAELOaccessories/51195135" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_845774d1e634192d81cc7005098d05bb.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
           <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_259947dff3f7aa8e868e1099f496a500.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
         </div></a>
         <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
-        <p class="price">₺1.299,00</p>
+        <p class="price"><span class="old"><span class="cur">₺</span>2.049</span><span class="cur">₺</span>1.299</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
         <a class="more" href="https://www.shopier.com/VAELOaccessories/51195135" target="_blank" rel="noopener">İncele</a>
+      </article>
+      <article class="item" data-price="1299" data-sold="0" data-idx="6">
+        <a class="ph" href="https://www.shopier.com/VAELOaccessories/51281543" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
+          <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_c6af483e20ee4fd5e1a2cc8aae0ee3d8.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_15cbfcd0c79aec0cd166fc387bf24881.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        </div></a>
+        <h3>Signature Series – Heavyweight Oversized Hoodie</h3>
+        <p class="price"><span class="old"><span class="cur">₺</span>2.049</span><span class="cur">₺</span>1.299</p>
+        <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight). Old money ve streetwear estetiğinde düşük omuzlu oversize kesim, çift katlı kapüşon, metal uçlu lüks bağcıklar ve güçlendirilmiş fitilli kol ağızları.</p>
+        <a class="more" href="https://www.shopier.com/VAELOaccessories/51281543" target="_blank" rel="noopener">İncele</a>
+      </article>
+      <article class="item" data-price="799" data-sold="0" data-idx="7">
+        <a class="ph" href="https://www.shopier.com/VAELOaccessories/51196509" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">
+          <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_edc6b982a66547534b06c4c9d70ad8b9.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://cdn.shopier.app/pictures_large/VAELOaccessories_fcafbe316be4c1b3630b4e56e3d05878.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        </div></a>
+        <h3>Signature Series – Heavyweight Oversized T-Shirt</h3>
+        <p class="price"><span class="old"><span class="cur">₺</span>1.549</span><span class="cur">₺</span>799</p>
+        <p class="desc">Yüksek kaliteli, %100 premium pamuktan üretilen oversize tişört. Günlük ve sokak stiline uygun unisex kesim, göğüste minimalist lüks detay ve dayanıklı fitilli yaka.</p>
+        <a class="more" href="https://www.shopier.com/VAELOaccessories/51196509" target="_blank" rel="noopener">İncele</a>
       </article>
     </div>
   </section>
@@ -544,17 +613,20 @@
 
 function esc(x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 function shopierUrl(u) { return /^https:\/\/www\.shopier\.com\//.test(u || '') ? u : 'https://www.shopier.com/VAELOaccessories'; }
-function productCard(p) {
+function fmtPrice(n) {
+  return n % 1 === 0 ? n.toLocaleString('tr-TR') : n.toLocaleString('tr-TR', { minimumFractionDigits: 2 });
+}
+function productCard(p, idx) {
   var imgs = (p.images || []).filter(function (u) { return /^https:\/\//.test(u); });
   if (!imgs.length) return '';
-  var url = shopierUrl(p.url), price = Number(p.price);
+  var url = shopierUrl(p.url), price = Number(p.price) || 0, sold = Number(p.sold) || 0;
   var name = String(p.name || '').replace(/^vaelo\s+/i, '');
   var desc = String(p.description || '').split('\n').map(function (l) { return l.trim(); })
     .filter(function (l) { return l.length >= 32; }).slice(0, 2).join(' ');
-  return '<article class="item"><a class="ph" href="' + esc(url) + '" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">' +
+  return '<article class="item" data-price="' + price + '" data-sold="' + sold + '" data-idx="' + (idx || 0) + '"><a class="ph" href="' + esc(url) + '" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><div class="ph-inner">' +
     imgs.slice(0, 2).map(function (u) { return '<img src="' + esc(u) + '" alt="" loading="lazy" referrerpolicy="no-referrer">'; }).join('') +
     '</div></a><h3>' + esc(name) + '</h3>' +
-    (price ? '<p class="price">₺' + price.toLocaleString('tr-TR', { minimumFractionDigits: 2 }) + '</p>' : '') +
+    (price ? '<p class="price"><span class="old"><span class="cur">₺</span>' + fmtPrice(price + 750) + '</span><span class="cur">₺</span>' + fmtPrice(price) + '</p>' : '') +
     (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
     '<a class="more" href="' + esc(url) + '" target="_blank" rel="noopener">İncele</a></article>';
 }
@@ -626,6 +698,7 @@ function syncProducts() {            // products.json is refreshed automatically
       if (!prem.length && !street.length) return;
       document.getElementById('grid-premium').innerHTML = prem.join('');
       document.getElementById('grid-street').innerHTML = street.join('');
+      applyGridState('grid-premium'); applyGridState('grid-street');
       document.getElementById('koleksiyon').hidden = !prem.length;
       document.getElementById('street').hidden = !street.length;
       document.getElementById('nav-street').hidden = !street.length;
@@ -639,11 +712,44 @@ function syncProducts() {            // products.json is refreshed automatically
     })
     .catch(function () { clearTimeout(t); });   // any problem: keep the built-in products
 }
-document.addEventListener('DOMContentLoaded', function () { initViews(); initMobileMenu(); syncProducts().then(setup, setup); });
+var gridState = { 'grid-premium': { sort: 'recommended', view: 'grid' }, 'grid-street': { sort: 'recommended', view: 'grid' } };
+function sortGrid(gridEl, sortKey) {
+  var items = Array.prototype.slice.call(gridEl.children);
+  var cmp;
+  if (sortKey === 'price-asc') cmp = function (a, b) { return (+a.dataset.price || 0) - (+b.dataset.price || 0); };
+  else if (sortKey === 'price-desc') cmp = function (a, b) { return (+b.dataset.price || 0) - (+a.dataset.price || 0); };
+  else if (sortKey === 'bestsellers') cmp = function (a, b) { return (+b.dataset.sold || 0) - (+a.dataset.sold || 0) || (+a.dataset.idx || 0) - (+b.dataset.idx || 0); };
+  else cmp = function (a, b) { return (+a.dataset.idx || 0) - (+b.dataset.idx || 0); };
+  items.sort(cmp);
+  items.forEach(function (it) { gridEl.appendChild(it); });
+}
+function applyGridState(gridId) {                 // re-apply the person's chosen sort/view after the grid's content is (re)rendered
+  var g = document.getElementById(gridId); if (!g) return;
+  var st = gridState[gridId];
+  g.classList.toggle('list-view', st.view === 'list');
+  sortGrid(g, st.sort);
+}
+function initGridControls() {
+  document.querySelectorAll('.sortsel').forEach(function (sel) {
+    var gridId = sel.id === 'sort-premium' ? 'grid-premium' : 'grid-street';
+    sel.addEventListener('change', function () { gridState[gridId].sort = sel.value; applyGridState(gridId); });
+  });
+  document.querySelectorAll('.viewbtn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var gridId = btn.getAttribute('data-target'), mode = btn.getAttribute('data-mode');
+      gridState[gridId].view = mode;
+      btn.parentNode.querySelectorAll('.viewbtn').forEach(function (b) { b.classList.toggle('active', b === btn); });
+      applyGridState(gridId);
+    });
+  });
+  applyGridState('grid-premium'); applyGridState('grid-street');   // apply default order to the built-in fallback cards too
+}
+document.addEventListener('DOMContentLoaded', function () { initViews(); initMobileMenu(); initGridControls(); syncProducts().then(setup, setup); });
 function setup() {
   if (!window.gsap || !window.ScrollTrigger) return;              // no animation library: page still works
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });   // mobile address-bar show/hide shouldn't retrigger layout calc (avoids jank)
 
   var lenis = null;
   var lowPower = matchMedia('(pointer: coarse)').matches;   // phones/tablets: skip the heaviest effects to avoid jank
@@ -692,12 +798,16 @@ function setup() {
   ScrollTrigger.batch('.item', { start: 'top 90%', onEnter: function (b) {
     gsap.fromTo(b, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out', stagger: 0.14, overwrite: true });
   } });
-  if (!lowPower) {
-    gsap.utils.toArray('.ph-inner').forEach(function (el) {
-      gsap.fromTo(el, { yPercent: -7 }, { yPercent: 7, ease: 'none',
-        scrollTrigger: { trigger: el.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+  // images/fonts can finish loading after ScrollTrigger measured the page, leaving trigger points stale
+  // (cards stuck invisible). Recalculate once everything has actually settled.
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(function () { ScrollTrigger.refresh(); }); }
+  // safety net: if a card is somehow still hidden a few seconds in, just show it rather than leave it blank
+  setTimeout(function () {
+    gsap.utils.toArray('.item').forEach(function (el) {
+      if (gsap.getProperty(el, 'opacity') < 1) gsap.to(el, { opacity: 1, y: 0, duration: .6 });
     });
-  }
+  }, 4000);
 
   // story: words light up as you read
   var st = document.querySelector('.story-text');
