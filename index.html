@@ -129,7 +129,7 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
   .hero-body { padding: 0 5vw 9vh; will-change: transform; position: relative; z-index: 1; }
   h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.5rem, 5.6vw, 5.2rem); line-height: 1; letter-spacing: -0.02em; }
   h1 .line { display: block; overflow: hidden; padding-bottom: 0.1em; }
-  h1 .line span { display: block; transform: translateY(112%) rotate(3deg); transform-origin: 0 100%; animation: rise 1.7s var(--ease) var(--t0) forwards; }
+  h1 .line span { display: block; transform: translateY(112%) rotate(3deg) scale(.92); transform-origin: 0 100%; animation: rise 1.7s var(--ease) var(--t0) forwards; }
   h1 .line:nth-child(2) span { animation-delay: calc(var(--t0) + .16s); }
   .hero-foot { margin-top: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px 48px; opacity: 0; transform: translateY(16px); animation: fadeup 1.4s var(--ease) calc(var(--t0) + .7s) forwards; }
   .hero-foot p { font-size: 1.02rem; max-width: 26em; }
@@ -142,7 +142,7 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
   .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
   .hero-bg img { position: absolute; inset: -6%; width: 112%; max-width: none; height: 112%; object-fit: cover; object-position: 50% 58%; opacity: 0;
     filter: grayscale(.4) brightness(.62) contrast(1.05);
-    animation: fadein 2.6s ease calc(var(--t0) - .8s) forwards, drift 26s ease-in-out infinite alternate; }
+    animation: fadein 2.6s ease calc(var(--t0) - .8s) forwards; }
   .hero-bg::after { content: ""; position: absolute; inset: 0;
     background: radial-gradient(ellipse at 28% 45%, rgba(243,241,236,.10), transparent 62%),
                 linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.28) 42%, rgba(10,10,10,.92) 100%); }
@@ -239,7 +239,7 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
   .gate-street { background: var(--black); color: var(--paper); }
   .gate-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
   .gate-bg img { position: absolute; inset: -5%; width: 110%; max-width: none; height: 110%; object-fit: cover; opacity: 0;
-    animation: fadein 2.4s ease calc(var(--t0) - .6s) forwards, drift 26s ease-in-out infinite alternate; }
+    animation: fadein 2.4s ease calc(var(--t0) - .6s) forwards; }
   .gate-sig .gate-bg img { object-position: 50% 0%; filter: saturate(.55) brightness(1.06); }
   .gate-sig .gate-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(243,241,236,.35) 0%, rgba(243,241,236,.18) 22%, rgba(243,241,236,.62) 42%, rgba(243,241,236,.88) 62%, rgba(243,241,236,.96) 100%); }
   .gate-street .gate-bg img { filter: grayscale(.25) brightness(.62) contrast(1.08) blur(1.5px); }
@@ -247,9 +247,10 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
   .gate-text { position: relative; z-index: 2; padding: 0 5vw 16vh; opacity: 0; transform: translateY(20px); animation: fadeup 1.4s var(--ease) calc(var(--t0) + .5s) forwards; }
   .gate h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 4.4vw, 4.2rem); line-height: 1.02; letter-spacing: -0.01em; }
   .gate-street h2 { font-family: var(--sans); font-weight: 300; letter-spacing: 0.05em; font-size: clamp(1.5rem, 3vw, 2.7rem); line-height: 1.15; }
-  .gate-logo { display: block; width: auto; }
+  .gate-logo { display: block; width: auto; opacity: 0; transform: scale(.82); animation: logoin 1.5s var(--ease) calc(var(--t0) + .45s) forwards; }
   .gate-logo-sig { max-width: min(34vw, 280px); max-height: 24svh; filter: drop-shadow(0 10px 26px rgba(10,10,10,.22)); }
   .gate-logo-street { max-width: min(48vw, 420px); max-height: 28svh; filter: drop-shadow(0 0 34px rgba(0,0,0,.55)); }
+  @keyframes logoin { to { opacity: 1; transform: scale(1); } }
   .gate h2.gate-sub { font-family: var(--sans); font-weight: 400; letter-spacing: 0.14em; margin-top: 16px;
     font-size: clamp(0.8rem, 1.15vw, 0.95rem); line-height: 1.3; }
   .gate p { margin-top: 18px; font-size: 1.02rem; max-width: 24em; }
