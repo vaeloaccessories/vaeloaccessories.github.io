@@ -147,7 +147,6 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
     background: radial-gradient(ellipse at 28% 45%, rgba(243,241,236,.10), transparent 62%),
                 linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.28) 42%, rgba(10,10,10,.92) 100%); }
   @keyframes fadein { to { opacity: 1; } }
-  @keyframes drift { from { transform: scale(1) translate3d(0,0,0); } to { transform: scale(1.09) translate3d(-1.5%, -1%, 0); } }
 
   .marquee { position: relative; z-index: 1; border-top: 1px solid rgba(243,241,236,.22); overflow: hidden; padding: 20px 0; }
   .track { display: flex; width: max-content; animation: slide 45s linear infinite; }
@@ -244,7 +243,7 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
   .gate-sig .gate-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(243,241,236,.35) 0%, rgba(243,241,236,.18) 22%, rgba(243,241,236,.62) 42%, rgba(243,241,236,.88) 62%, rgba(243,241,236,.96) 100%); }
   .gate-street .gate-bg img { filter: grayscale(.25) brightness(.62) contrast(1.08) blur(1.5px); }
   .gate-street .gate-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.35) 0%, rgba(10,10,10,.18) 45%, rgba(10,10,10,.9) 100%); }
-  .gate-text { position: relative; z-index: 2; padding: 0 5vw 16vh; opacity: 0; transform: translateY(20px); animation: fadeup 1.4s var(--ease) calc(var(--t0) + .5s) forwards; }
+  .gate-text { position: relative; z-index: 2; padding: 0 5vw 16vh; opacity: 0; transform: translateY(20px) scale(.96); animation: fadeup 1.4s var(--ease) calc(var(--t0) + .5s) forwards; }
   .gate h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 4.4vw, 4.2rem); line-height: 1.02; letter-spacing: -0.01em; }
   .gate-street h2 { font-family: var(--sans); font-weight: 300; letter-spacing: 0.05em; font-size: clamp(1.5rem, 3vw, 2.7rem); line-height: 1.15; }
   .gate-logo { display: block; width: auto; opacity: 0; transform: scale(.82); animation: logoin 1.5s var(--ease) calc(var(--t0) + .45s) forwards; }
