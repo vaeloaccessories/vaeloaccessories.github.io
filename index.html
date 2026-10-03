@@ -908,5 +908,87 @@ function setup() {
   }
 }
 </script>
+<!-- ===== VAELO ASISTAN (baslangic) ===== -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  #va-btn{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:#000;border:1px solid #fff;color:#fff;cursor:pointer;z-index:99998;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .2s}
+  #va-btn:hover{transform:scale(1.06)}
+  #va-btn span{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;line-height:1;position:relative}
+  #va-btn span:before{content:"";position:absolute;top:-1px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#fff}
+  #va-box{position:fixed;right:22px;bottom:96px;width:360px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 130px);background:#000;border:1px solid #2b2b2b;border-radius:14px;z-index:99999;display:none;flex-direction:column;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55);font-family:'Inter',sans-serif;text-align:left}
+  #va-box.open{display:flex;animation:vaUp .25s ease}
+  @keyframes vaUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  #va-head{padding:16px 18px;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between}
+  #va-head b{font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:4px;color:#fff;font-weight:600}
+  .va-e{font-style:normal;position:relative}
+  .va-e:before{content:"";position:absolute;top:-2px;left:calc(50% - 3.5px);width:3px;height:3px;border-radius:50%;background:#fff}
+  #va-head small{display:block;font-size:10px;letter-spacing:2px;color:#9a9a9a;margin-top:2px;text-transform:uppercase}
+  #va-close{background:none;border:0;color:#9a9a9a;font-size:22px;cursor:pointer;line-height:1}
+  #va-close:hover{color:#fff}
+  #va-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .va-m{max-width:88%;padding:11px 14px;border-radius:12px;font-size:13px;line-height:1.6;white-space:pre-line}
+  .va-bot{background:#141414;color:#f2f2f2;align-self:flex-start;border:1px solid #222;border-top-left-radius:3px}
+  .va-me{background:#fff;color:#000;align-self:flex-end;border-top-right-radius:3px}
+  #va-q{padding:12px 14px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px}
+  #va-q button{background:transparent;border:1px solid #3a3a3a;color:#e6e6e6;border-radius:20px;padding:7px 12px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+  #va-q button:hover{border-color:#fff;color:#fff}
+  #va-wa{display:block;margin:0 14px 14px;text-align:center;background:#fff;color:#000;text-decoration:none;padding:11px;border-radius:8px;font-size:13px;font-weight:500;letter-spacing:.5px}
+  #va-wa:hover{background:#e6e6e6}
+</style>
+
+<button id="va-btn" aria-label="VAELO Asistan"><span>V</span></button>
+<div id="va-box">
+  <div id="va-head"><div><b>VA<i class="va-e">E</i>LO</b><small>Müşteri Asistanı</small></div><button id="va-close" aria-label="Kapat">&times;</button></div>
+  <div id="va-msgs"></div>
+  <div id="va-q"></div>
+  <a id="va-wa" target="_blank" rel="noopener">WhatsApp'tan Bize Yazın</a>
+</div>
+
+<script>
+(function(){
+  var WHATSAPP = "905513708320";
+
+  var SORULAR = [
+    ["Kargo ne zaman gelir?",
+     "VAELO'da hazır stoktan gönderim yapılmaz. Her ürün, siparişiniz onaylandıktan sonra yalnızca sizin için üretime alınır.\n\nÜretim tamamlandıktan sonra ürününüz kalite kontrolünden geçirilir, özenle paketlenir ve kargoya teslim edilir. Bu sürecin tamamı ortalama 3–7 iş günü sürmektedir.\n\nResmî tatiller ve yoğun kampanya dönemlerinde bu süre kısa bir uzama gösterebilir. Siparişinizin güncel durumunu dilediğiniz zaman WhatsApp hattımız üzerinden öğrenebilirsiniz."],
+
+    ["Kargo ücretli mi?",
+     "3.000 TL ve üzeri tüm siparişlerinizde kargo VAELO tarafından karşılanır; sizden herhangi bir kargo ücreti talep edilmez.\n\n3.000 TL altındaki siparişlerde ise kargo ücreti, ödeme adımında açıkça gösterilir ve siparişinizi tamamlamadan önce toplam tutarı görebilirsiniz."],
+
+    ["İade yapabilir miyim?",
+     "VAELO ürünleri seri üretim değildir; her sipariş, müşterimiz için ayrı olarak üretilmektedir. Bu nedenle ürünlerimizde iade kabul edilmemektedir.\n\nBununla birlikte, belirli şartlar dahilinde değişim talebinde bulunabilirsiniz. Değişim koşullarını \"Değişim nasıl yapılır?\" bölümünden detaylı olarak inceleyebilirsiniz.\n\nOlası bir değişim sürecine gerek kalmaması için sipariş öncesinde ürün açıklamalarını ve beden bilgilerini dikkatle incelemenizi önemle rica ederiz."],
+
+    ["Değişim nasıl yapılır?",
+     "Ürünlerimiz size özel üretildiği için değişim talepleri, ekibimiz tarafından tek tek ve titizlikle değerlendirilmektedir. Süreç şu şekilde işler:\n\n1. Değişim talebinizi, ürünü teslim aldığınız tarihten itibaren en geç 3 iş günü içinde WhatsApp hattımız üzerinden oluşturmanız gerekmektedir. Bu süre sonrasında iletilen talepler değerlendirmeye alınamaz.\n\n2. Talebinizde sipariş numaranızı, adınızı ve soyadınızı, değişim nedeninizi açık bir şekilde belirtmeniz ve ürünün tüm açılardan net fotoğraflarını paylaşmanız gerekmektedir. Eksik bilgi içeren talepler işleme alınamaz.\n\n3. Ürünün kullanılmamış, yıkanmamış, etiketleri sökülmemiş ve orijinal ambalajıyla eksiksiz olması gerekmektedir.\n\n4. Talebiniz ekibimiz tarafından incelenir. Uygun görülmesi halinde ürünün tarafımıza gönderimi ile ilgili bilgilendirme yapılır.\n\n5. Ürün tarafımıza ulaştıktan sonra ayrıca kalite kontrol incelemesinden geçirilir. Şartları karşılamayan ürünlerde değişim yapılamaz ve ürün tarafınıza geri gönderilir.\n\n6. Onaylanan değişimlerde yeni ürününüz sıfırdan yeniden üretime alınır. Bu nedenle değişim süreci, standart teslim süresinden daha uzun sürebilir."],
+
+    ["Ödeme nasıl yapılır?",
+     "Tüm ödemeleriniz, Türkiye'nin güvenilir ödeme altyapılarından Shopier üzerinden kredi kartı veya banka kartı ile gerçekleştirilir.\n\nKart bilgileriniz doğrudan ödeme altyapısı tarafından işlenir; VAELO tarafından görüntülenmez ve saklanmaz.\n\nÖdemeniz onaylandığı anda siparişiniz üretim sırasına alınır."],
+
+    ["Beden seçimi",
+     "Ürünlerimiz size özel üretildiği için doğru beden seçimi büyük önem taşır. Sipariş vermeden önce şunları yapmanızı öneririz:\n\n• Ürün sayfasındaki ölçü bilgilerini dikkatle inceleyin.\n• Size iyi oturan bir kıyafetinizin ölçüleriyle karşılaştırın.\n• Bol mu yoksa vücuda oturan bir kesim mi tercih ettiğinizi göz önünde bulundurun.\n\nHâlâ emin değilseniz, WhatsApp hattımıza boyunuzu ve kilonuzu yazmanız yeterlidir. Ekibimiz size en uygun bedeni önermekten memnuniyet duyacaktır."]
+  ];
+
+  var btn=document.getElementById('va-btn'), box=document.getElementById('va-box'),
+      msgs=document.getElementById('va-msgs'), q=document.getElementById('va-q'),
+      wa=document.getElementById('va-wa'), started=false;
+
+  wa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Merhaba VAELO, bir sorum var.");
+
+  function yaz(t,kim){var d=document.createElement('div');d.className='va-m '+(kim?'va-me':'va-bot');d.textContent=t;msgs.appendChild(d);if(kim){msgs.scrollTop=msgs.scrollHeight;}else{msgs.scrollTop=d.offsetTop-msgs.offsetTop-12;}}
+
+  SORULAR.forEach(function(s){
+    var b=document.createElement('button');b.textContent=s[0];
+    b.onclick=function(){yaz(s[0],1);setTimeout(function(){yaz(s[1])},400);};
+    q.appendChild(b);
+  });
+
+  btn.onclick=function(){
+    box.classList.toggle('open');
+    if(!started){started=true;yaz("VAELO'ya hoş geldiniz.\n\nSize nasıl yardımcı olabiliriz? Aşağıdaki konulardan birini seçebilir ya da dilerseniz WhatsApp üzerinden ekibimize doğrudan ulaşabilirsiniz.");}
+  };
+  document.getElementById('va-close').onclick=function(){box.classList.remove('open');};
+})();
+</script>
+<!-- ===== VAELO ASISTAN (bitis) ===== -->
 </body>
 </html>
