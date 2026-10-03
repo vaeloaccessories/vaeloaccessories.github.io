@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VAELO WAS HERE</title>
+<meta name="description" content="Bizi buldun. VAELO'yu keşfet, sana özel indirimini al.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#000;color:#fff;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:460px;padding:56px 24px 40px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .fade{opacity:0;transform:translateY(14px);animation:in .9s ease forwards}
+  @keyframes in{to{opacity:1;transform:none}}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:7px;padding-left:7px}
+  .logo i{font-style:normal;position:relative}
+  .logo i:before{content:"";position:absolute;top:-2px;left:calc(50% - 5px);width:3px;height:3px;border-radius:50%;background:#fff}
+  .sub{font-size:9px;letter-spacing:3px;color:#8a8a8a;text-transform:uppercase;margin-top:4px}
+  .tag{margin-top:64px;font-size:10px;letter-spacing:4px;color:#8a8a8a;text-transform:uppercase}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:54px;line-height:1.05;margin-top:14px}
+  .lead{margin-top:22px;font-size:14.5px;line-height:1.75;color:#cfcfcf;font-weight:300}
+  .line{width:40px;height:1px;background:#3a3a3a;margin:44px auto}
+  .story{font-size:13.5px;line-height:1.8;color:#a8a8a8;font-weight:300}
+  .card{margin-top:44px;width:100%;border:1px solid #2e2e2e;border-radius:14px;padding:28px 22px;background:#0a0a0a}
+  .card small{display:block;font-size:10px;letter-spacing:3px;color:#8a8a8a;text-transform:uppercase}
+  .pct{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:500;line-height:1;margin-top:12px}
+  .card p{font-size:12.5px;color:#a8a8a8;margin-top:6px;line-height:1.6}
+  .code{margin-top:20px;display:flex;border:1px dashed #555;border-radius:10px;overflow:hidden}
+  .code span{flex:1;padding:14px;font-size:17px;letter-spacing:4px;font-weight:500}
+  .code button{background:#fff;color:#000;border:0;padding:0 18px;font-size:12px;font-weight:500;letter-spacing:1px;cursor:pointer;font-family:'Inter',sans-serif}
+  .btns{margin-top:32px;width:100%;display:flex;flex-direction:column;gap:10px}
+  .btn{display:block;padding:15px;border-radius:10px;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+  .b1{background:#fff;color:#000}
+  .b2{border:1px solid #3a3a3a;color:#fff}
+  .b2:hover{border-color:#fff}
+  .hunt{margin-top:40px;font-size:12px;line-height:1.7;color:#7a7a7a}
+  .hunt b{color:#fff;font-weight:500}
+  footer{margin-top:48px;font-size:10px;letter-spacing:3px;color:#555;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="fade" style="animation-delay:.1s">
+    <div class="logo">VA<i>E</i>LO</div>
+    <div class="sub">Accessories &amp; Apparel</div>
+  </div>
+
+  <div class="tag fade" style="animation-delay:.4s">VAELO WAS HERE</div>
+  <h1 class="fade" style="animation-delay:.6s">Bizi buldun.</h1>
+  <p class="lead fade" style="animation-delay:.9s">Bu sticker'ı görmen tesadüf değildi. VAELO, Ankara'nın dört bir yanında iz bırakıyor ve sen onu fark edenlerden birisin.</p>
+
+  <div class="line fade" style="animation-delay:1.1s"></div>
+
+  <p class="story fade" style="animation-delay:1.2s">VAELO; modern çizgileri, özgün tasarımı ve yüksek kaliteli kumaşı bir araya getiren premium bir giyim markasıdır. Hazır stok yoktur; her parça, sipariş üzerine yalnızca sahibi için üretilir.</p>
+
+  <div class="card fade" style="animation-delay:1.4s">
+    <small>Bulana Özel</small>
+    <div class="pct">%10</div>
+    <p>İlk siparişinde kullanabileceğin indirim kodun:</p>
+    <div class="code"><span id="kod">VAELOHERE</span><button id="kopyala">KOPYALA</button></div>
+  </div>
+
+  <div class="btns fade" style="animation-delay:1.6s">
+    <a class="btn b1" href="https://www.shopier.com/VAELOaccessories" target="_blank" rel="noopener">Koleksiyonu Keşfet</a>
+    <a class="btn b2" id="insta" href="https://www.instagram.com/vaeloaccessories/" target="_blank" rel="noopener">Instagram'da Takip Et</a>
+    <a class="btn b2" href="https://www.vaelo.com.tr/">VAELO'yu Tanı</a>
+  </div>
+
+  <p class="hunt fade" style="animation-delay:1.8s">Bulduğun sticker'ın fotoğrafını çek, Instagram'da <b>@vaeloaccessories</b> hesabını etiketleyerek paylaş.<br>Seni hikâyemizde paylaşalım.</p>
+
+  <footer>VAELO · Ankara</footer>
+</div>
+
+<script>
+  document.getElementById('kopyala').onclick=function(){
+    var b=this, k=document.getElementById('kod').textContent;
+    function ok(){b.textContent='KOPYALANDI';setTimeout(function(){b.textContent='KOPYALA'},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(k).then(ok,ok);}else{ok();}
+  };
+</script>
+</body>
+</html>
