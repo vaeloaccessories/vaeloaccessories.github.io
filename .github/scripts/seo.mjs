@@ -83,6 +83,9 @@ const llms = `# VAELO
 - Kargo: ${data.shipping || 120} TL; 3.000 TL üzeri siparişlerde ücretsiz; siparişler 2–3 iş günü içinde kargoya verilir
 - İade yok; teslimattan itibaren 7 gün içinde değişim yapılır
 
+## Rehber
+- Kaliteli kapşonlu sweatshirt nasıl seçilir? (GSM, şardon, kalıp): ${SITE}rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html
+
 ## Signature Premium
 ${prem.map(line).join('\n')}
 
