@@ -202,12 +202,16 @@ jobs:
           EOF
           node /tmp/sync.mjs
 
+      - name: Google ve yapay zekâ için ürün bilgisini yenile
+        continue-on-error: true
+        run: node .github/scripts/seo.mjs
+
       - name: Değişiklik varsa kaydet
         run: |
-          if [ -n "$(git status --porcelain products.json)" ]; then
+          if [ -n "$(git status --porcelain products.json index.html llms.txt)" ]; then
             git config user.name "vaelo-sync"
             git config user.email "actions@users.noreply.github.com"
-            git add products.json
+            git add products.json index.html llms.txt
             git commit -m "Shopier ürünleri güncellendi"
             git push
           fi
