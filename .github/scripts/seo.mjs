@@ -70,7 +70,7 @@ const prem = list.filter((p) => !/street/i.test(p.category || ''));
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
 
-> VAELO (VAĖLO), Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Yakında saat, çanta ve parfüm koleksiyonları gelecek.
+> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Yakında saat, çanta ve parfüm koleksiyonları gelecek.
 
 ## Marka hakkında
 - Resmî site: ${SITE}
