@@ -204,14 +204,14 @@ jobs:
 
       - name: Google ve yapay zekâ için ürün bilgisini yenile
         continue-on-error: true
-        run: node .github/scripts/seo.mjs
+        run: node .github/scripts/seo.mjs && node .github/scripts/pages.mjs
 
       - name: Değişiklik varsa kaydet
         run: |
-          if [ -n "$(git status --porcelain products.json index.html llms.txt)" ]; then
+          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml)" ]; then
             git config user.name "vaelo-sync"
             git config user.email "actions@users.noreply.github.com"
-            git add products.json index.html llms.txt
+            git add -A products.json index.html llms.txt urun sitemap.xml
             git commit -m "Shopier ürünleri güncellendi"
             git push
           fi

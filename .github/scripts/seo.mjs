@@ -9,11 +9,15 @@ const list = (data.products || []).filter((p) => p.name && p.price);
 const isHoodie = (n) => /hoodie|kap[sşü]+on/i.test(n);
 const kind = (n) => isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
 const clean = (n) => String(n).replace(/^vaelo\s+/i, '').trim();
+const TR = { ç: 'c', ğ: 'g', ı: 'i', İ: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', Ö: 'o', Ş: 's', Ü: 'u', Ė: 'e', ė: 'e' };
+const page = (p) => SITE + 'urun/' + clean(p.name).replace(/[^\x00-\x7F]/g, (c) => TR[c] ?? '').toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + p.id + '.html';
 const short = (s) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, 300);
 
 const products = list.map((p) => ({
   '@type': 'Product',
   name: 'VAELO ' + clean(p.name),
+  url: page(p),
   category: kind(p.name),
   image: (p.images || []).slice(0, 3),
   description: short(p.description) || ('VAELO ' + kind(p.name).toLowerCase()),
@@ -21,7 +25,7 @@ const products = list.map((p) => ({
   brand: { '@type': 'Brand', name: 'VAELO' },
   offers: {
     '@type': 'Offer',
-    url: p.url || SITE,
+    url: page(p),
     priceCurrency: 'TRY',
     price: String(p.price),
     availability: 'https://schema.org/InStock',
@@ -61,7 +65,7 @@ if (!re.test(html)) throw new Error('index.html içinde SEO-URUNLER bloğu yok')
 html = html.replace(re, () => block);
 fs.writeFileSync('index.html', html);
 
-const line = (p) => `- ${clean(p.name)} (${kind(p.name)}) — ${p.price} TL — ${p.url || SITE}`;
+const line = (p) => `- ${clean(p.name)} (${kind(p.name)}) — ${p.price} TL — ${page(p)}`;
 const prem = list.filter((p) => !/street/i.test(p.category || ''));
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
