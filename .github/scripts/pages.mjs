@@ -19,6 +19,15 @@ const fmt = (n) => Number(n).toLocaleString('tr-TR');
 // ürünlerdeki logo ve desenler baskıdır, nakış değil
 const fixText = (s) => String(s || '').replace(/Baskı ve nakış detaylarını/gi, 'Baskı detaylarını')
   .replace(/nakış/gi, 'baskı').replace(/Nakış/g, 'Baskı');
+const SIZES = {
+  hoodie: { note: '%100 pamuk · 3 iplik şardonlu kumaş', rows: [['S', 57, 71], ['M', 60, 73], ['L', 63, 75], ['XL', 66, 76], ['XXL', 69, 78]] },
+  tee: { note: '%100 pamuk · 24/1 kumaş', rows: [['S', 55, 71], ['M', 56, 73], ['L', 59, 75], ['XL', 61, 76], ['XXL', 63, 78]] },
+};
+const sizeTable = (n) => {
+  const t = isHoodie(n) ? SIZES.hoodie : /ti[sş][oö]rt/i.test(n) ? SIZES.tee : null;
+  if (!t) return '';
+  return `<details class="st"><summary>Beden tablosu</summary><p class="stn">${t.note}</p><table><thead><tr><th>Beden</th><th>Göğüs</th><th>Boy</th></tr></thead><tbody>${t.rows.map(([a, g, b]) => `<tr><td>${a}</td><td>${g} cm</td><td>${b} cm</td></tr>`).join('')}</tbody></table><p class="stn">Ürün düz zemine serilerek ölçülmüştür. Göğüs: koltuk altından koltuk altına, boy: omuzdan etek ucuna. Daha bol görünüm için bir beden büyük seçebilirsiniz. ±1–2 cm farklılık olabilir.</p></details>`;
+};
 const shopier = (u) => /^https:\/\/www\.shopier\.com\//.test(u || '') ? u : 'https://www.shopier.com/VAELOaccessories';
 
 function descHtml(d) {
@@ -88,6 +97,12 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .price{font-size:1.4rem;margin-bottom:24px}
   .sizes{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 26px}
   .sizes span{border:1px solid var(--sand);padding:8px 14px;font-size:13px}
+  .st{margin:-10px 0 24px;font-size:13px}
+  .st summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:var(--muted)}
+  .st table{width:100%;border-collapse:collapse;margin-top:10px}
+  .st th,.st td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--sand)}
+  .st th{font-weight:400;color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+  .stn{color:var(--muted);font-size:12px;line-height:1.6;margin-top:8px}
   .label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
   .buy{display:block;text-align:center;background:var(--black);color:var(--paper);text-decoration:none;padding:17px;font-size:14px;letter-spacing:3px;text-transform:uppercase}
   .buy:hover{opacity:.88}
@@ -123,6 +138,7 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
     <p class="price">₺${fmt(p.price)}</p>
     <p class="label">Bedenler</p>
     <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
+    ${sizeTable(p.name)}
     <a class="buy" href="${esc(shopier(p.url))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
     <p class="note">Ödeme Shopier güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. İade yoktur; teslimattan sonra 7 gün içinde değişim yapılır.</p>
