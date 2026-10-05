@@ -24,7 +24,7 @@ const SIZES = {
   tee: { note: '%100 pamuk · 24/1 kumaş', rows: [['S', 55, 71], ['M', 56, 73], ['L', 59, 75], ['XL', 61, 76], ['XXL', 63, 78]] },
 };
 const sizeTable = (n) => {
-  const t = isHoodie(n) ? SIZES.hoodie : /ti[sş][oö]rt/i.test(n) ? SIZES.tee : null;
+  const t = (isHoodie(n) || /sweat/i.test(n)) ? SIZES.hoodie : /ti[sş][oö]rt/i.test(n) ? SIZES.tee : null;
   if (!t) return '';
   return `<details class="st"><summary>Beden tablosu</summary><p class="stn">${t.note}</p><table><thead><tr><th>Beden</th><th>Göğüs</th><th>Boy</th></tr></thead><tbody>${t.rows.map(([a, g, b]) => `<tr><td>${a}</td><td>${g} cm</td><td>${b} cm</td></tr>`).join('')}</tbody></table><p class="stn">Ürün düz zemine serilerek ölçülmüştür. Göğüs: koltuk altından koltuk altına, boy: omuzdan etek ucuna. Daha bol görünüm için bir beden büyük seçebilirsiniz. ±1–2 cm farklılık olabilir.</p></details>`;
 };
