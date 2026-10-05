@@ -208,10 +208,10 @@ jobs:
 
       - name: Değişiklik varsa kaydet
         run: |
-          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml)" ]; then
+          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml google-urunler.xml)" ]; then
             git config user.name "vaelo-sync"
             git config user.email "actions@users.noreply.github.com"
-            git add -A products.json index.html llms.txt urun sitemap.xml
+            git add -A products.json index.html llms.txt urun sitemap.xml google-urunler.xml
             git commit -m "Shopier ürünleri güncellendi"
             git push
           fi

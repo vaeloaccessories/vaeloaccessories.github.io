@@ -147,3 +147,49 @@ const urls = [SITE, ...list.map((p) => SITE + 'urun/' + slug(p) + '.html')];
 fs.writeFileSync('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n') + '\n</urlset>\n');
 console.log(list.length + ' ürün sayfası yazıldı');
+
+// Google Merchant Center ürün listesi (Google Alışveriş). Her beden ayrı satır.
+const COLORS = ['Beyaz', 'Siyah', 'Lacivert', 'Gri', 'Bej', 'Kahverengi', 'Yeşil', 'Kırmızı', 'Mavi', 'Pembe'];
+const colorOf = (n) => COLORS.find((c) => new RegExp(c, 'i').test(n)) || '';
+const x = (s) => esc(String(s || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''));
+const items = [];
+for (const p of list) {
+  const name = clean(p.name), imgs = (p.images || []).filter((u) => /^https:\/\//.test(u));
+  if (!imgs.length) continue;
+  const desc = fixText(p.description).replace(/\s+/g, ' ').trim().slice(0, 4900) || `VAELO lüks ${kindLow(p.name)}`;
+  const title = `VAELO ${name.replace(/\bHoodie\b/i, 'Kapşonlu Sweatshirt Hoodie')} | Oversize Unisex`.slice(0, 150);
+  for (const size of ['S', 'M', 'L', 'XL', 'XXL']) {
+    items.push(`<item>
+<g:id>${p.id}-${size}</g:id>
+<g:item_group_id>${p.id}</g:item_group_id>
+<g:title>${x(title)}</g:title>
+<g:description>${x(desc)}</g:description>
+<g:link>${SITE}urun/${slug(p)}.html</g:link>
+<g:image_link>${x(imgs[0])}</g:image_link>
+${imgs.slice(1, 10).map((u) => `<g:additional_image_link>${x(u)}</g:additional_image_link>`).join('\n')}
+<g:availability>in_stock</g:availability>
+<g:price>${Number(p.price).toFixed(2)} TRY</g:price>
+<g:brand>VAELO</g:brand>
+<g:condition>new</g:condition>
+<g:identifier_exists>no</g:identifier_exists>
+<g:google_product_category>1604</g:google_product_category>
+<g:product_type>${x(kind(p.name))}</g:product_type>
+<g:gender>unisex</g:gender>
+<g:age_group>adult</g:age_group>
+<g:size>${size}</g:size>
+${colorOf(name) ? `<g:color>${colorOf(name)}</g:color>` : ''}
+<g:shipping><g:country>TR</g:country><g:price>${Number(ship).toFixed(2)} TRY</g:price></g:shipping>
+</item>`);
+  }
+}
+fs.writeFileSync('google-urunler.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+<title>VAELO</title>
+<link>${SITE}</link>
+<description>VAELO lüks kapşonlu sweatshirt, sweatshirt ve tişört</description>
+${items.join('\n')}
+</channel>
+</rss>
+`);
+console.log(items.length + ' satırlık Google ürün listesi yazıldı');
