@@ -122,6 +122,9 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .more img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--sand);margin-bottom:10px}
   footer{text-align:center;font-size:12px;color:var(--muted);padding:32px 16px;border-top:1px solid var(--sand)}
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
 <body>
 <header>
