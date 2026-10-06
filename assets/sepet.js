@@ -4,7 +4,7 @@
  */
 (function () {
   'use strict';
-  var CANLI = false;
+  var CANLI = true;
   var KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev/odeme';
   var UCRETSIZ_KARGO = 3000, KARGO = 120;
   var BEDENLER = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -80,7 +80,7 @@
   kok.innerHTML =
     '<button class="vs-btn" type="button" aria-label="Sepeti aç">Sepet <b>0</b></button>' +
     '<div class="vs-bg"></div>' +
-    '<aside class="vs-panel" role="dialog" aria-label="Sepet"><div class="vs-test">DENEME MODU · gerçek ödeme alınmaz</div>' +
+    '<aside class="vs-panel" role="dialog" aria-label="Sepet">' +
     '<div class="vs-head"><h2>Sepetiniz</h2><button class="vs-x" type="button" aria-label="Kapat">×</button></div>' +
     '<div class="vs-body"></div><div class="vs-sum"></div></aside>' +
     '<div class="vs-pay" role="dialog" aria-label="Güvenli ödeme"><div class="vs-head"><h2>Güvenli Ödeme</h2><button class="vs-x" type="button" aria-label="Ödemeyi kapat">×</button></div><iframe id="paytriframe" title="PayTR güvenli ödeme" scrolling="yes"></iframe></div>';
