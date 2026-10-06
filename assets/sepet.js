@@ -33,6 +33,7 @@
     var kargo = ara === 0 || ara >= UCRETSIZ_KARGO ? 0 : KARGO;
     return { ara: ara, kargo: kargo, toplam: ara + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
   }
+  var GUVEN = '<p class="vs-safe"><img src="/assets/paytr-logo.svg" alt="PayTR">ile 256-bit SSL güvenli ödeme</p>';
   var tl = function (n) { return '₺' + Number(n).toLocaleString('tr-TR'); };
   var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 
@@ -58,6 +59,7 @@
     '.vs-row{display:flex;justify-content:space-between;margin:4px 0}.vs-row.t{font-size:1.05rem;font-weight:400;margin-top:10px}' +
     '.vs-go{display:block;width:100%;margin-top:14px;padding:16px;background:#0A0A0A;color:#F3F1EC;border:0;font:400 13px Jost,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}' +
     '.vs-go[disabled]{opacity:.5;cursor:default}' +
+    '.vs-safe{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.75rem;color:#6B6861}.vs-safe img{height:13px;width:auto}' +
     '.vs-empty{text-align:center;color:#6B6861;padding:60px 0;font-size:.95rem}' +
     '.vs-f label{display:block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#6B6861;margin:16px 0 6px}' +
     '.vs-f input,.vs-f textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #DFDBD2;background:#fff;font:300 16px Jost,Helvetica,Arial,sans-serif;color:#0A0A0A;border-radius:0}' +
@@ -105,7 +107,7 @@
         '<div class="vs-qty"><button type="button" data-a="-" data-i="' + i + '" aria-label="Azalt">−</button><span>' + x.qty + '</span><button type="button" data-a="+" data-i="' + i + '" aria-label="Artır">+</button></div></div>' +
         '<button class="vs-del" type="button" data-a="x" data-i="' + i + '">Kaldır</button></div>';
     }).join('');
-    sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Ödemeye Geç</button>';
+    sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Ödemeye Geç</button>' + GUVEN;
     sum.querySelector('.vs-go').onclick = function () { adim = 'form'; ciz(); };
   }
   function ozet(t) {
@@ -136,7 +138,7 @@
     var f = body.querySelector('form');
     ['name', 'email', 'phone', 'address'].forEach(function (k) { if (form[k]) f.elements[k].value = form[k]; f.elements[k].oninput = function () { form[k] = this.value; }; });
     f.querySelector('.vs-back').onclick = function () { adim = 'sepet'; ciz(); };
-    sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Güvenli Öde · ' + tl(t.toplam) + '</button>';
+    sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Güvenli Öde · ' + tl(t.toplam) + '</button>' + GUVEN;
     var go = sum.querySelector('.vs-go'), err = f.querySelector('.vs-err');
     go.onclick = function () {
       err.textContent = '';
