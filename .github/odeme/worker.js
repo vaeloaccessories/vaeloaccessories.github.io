@@ -40,7 +40,7 @@ function ayarlar(env) {
 // Şifreleri göstermeden kontrol eder: uzunluk ve boşluk var mı.
 function kontrol(env) {
   const bilgi = (v) => ({ uzunluk: String(v ?? '').length, bosluk: /\s/.test(String(v ?? '')), dolu: !!v });
-  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? '') });
+  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), SIPARISLER: !!env.SIPARISLER });
 }
 
 async function startPayment(request, env) {
@@ -55,8 +55,10 @@ async function startPayment(request, env) {
   const email = clean(body.email, 100);
   const phone = clean(body.phone, 20).replace(/[^\d+]/g, '');
   const address = clean(body.address, 400);
-  if (name.length < 3 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || phone.replace(/\D/g, '').length < 10 || address.length < 10) {
-    return json({ ok: false, error: 'Lütfen ad soyad, e-posta, telefon ve adres bilgilerini eksiksiz yazın.' }, 400);
+  const city = clean(body.city, 40);
+  const district = clean(body.district, 40);
+  if (name.length < 3 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || phone.replace(/\D/g, '').length < 10 || address.length < 10 || city.length < 2 || district.length < 2) {
+    return json({ ok: false, error: 'Lütfen ad soyad, e-posta, telefon, il, ilçe ve adres bilgilerini eksiksiz yazın.' }, 400);
   }
   if (!Array.isArray(body.items) || body.items.length === 0 || body.items.length > 20) {
     return json({ ok: false, error: 'Sepetiniz boş.' }, 400);
@@ -69,6 +71,7 @@ async function startPayment(request, env) {
   const byId = new Map(catalog.products.map((p) => [String(p.id), p]));
 
   const basket = [];
+  const urunler = [];
   let total = 0;
   for (const it of body.items) {
     const p = byId.get(String(it.id));
@@ -79,6 +82,7 @@ async function startPayment(request, env) {
     }
     basket.push([`${p.name.replace(/^Vaelo\s+/i, 'VAELO ')} (Beden: ${size})`, Number(p.price).toFixed(2), qty]);
     total += Number(p.price) * qty;
+    urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name) });
   }
   const shipping = total >= FREE_SHIPPING_FROM ? 0 : Number(catalog.shipping || 120);
   if (shipping > 0) basket.push(['Kargo', shipping.toFixed(2), 1]);
@@ -100,7 +104,7 @@ async function startPayment(request, env) {
   const form = new URLSearchParams({
     merchant_id, user_ip, merchant_oid, email, payment_amount, paytr_token, user_basket,
     debug_on: test_mode, no_installment, max_installment,
-    user_name: name, user_address: address, user_phone: phone,
+    user_name: name, user_address: `${address}, ${district} / ${city}`, user_phone: phone,
     merchant_ok_url: SITE + '/odeme-basarili.html',
     merchant_fail_url: SITE + '/odeme-hata.html',
     timeout_limit: '30', currency, test_mode, lang: 'tr',
@@ -111,7 +115,48 @@ async function startPayment(request, env) {
     console.log('PayTR hata:', JSON.stringify(out));
     return json({ ok: false, error: 'Ödeme ekranı açılamadı. Lütfen birazdan tekrar deneyin veya WhatsApp\'tan bize yazın.' }, 502);
   }
+  // Sipariş bilgisi, ödeme onaylanınca Printitürk'e gönderilmek üzere saklanır (30 gün).
+  if (env.SIPARISLER) {
+    await env.SIPARISLER.put(merchant_oid, JSON.stringify({ name, email, phone, address, city, district, urunler, total, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
+  }
   return json({ ok: true, iframe: 'https://www.paytr.com/odeme/guvenli/' + out.token, total, shipping, order: merchant_oid });
+}
+
+// Ürün adından Printitürk renk adını çıkarır (ör. "Signature Hoodie – Siyah" → "Siyah").
+function renk(n) {
+  if (/lacivert/i.test(n)) return 'Lacivert';
+  if (/beyaz/i.test(n)) return 'Beyaz';
+  return 'Siyah';
+}
+
+// Ödemesi onaylanan siparişi Printitürk'e üretim için gönderir. Aynı sipariş iki kez gönderilmez.
+async function printiturkeGonder(env, oid) {
+  if (!env.SIPARISLER || !env.PRINTITURK_TOKEN) { console.log('Printitürk ayarı eksik, sipariş elle girilmeli:', oid); return; }
+  const raw = await env.SIPARISLER.get(oid);
+  if (!raw) { console.log('Sipariş kaydı bulunamadı:', oid); return; }
+  const o = JSON.parse(raw);
+  if (o.printiturk) return;
+  const parts = o.name.split(' ');
+  const last = parts.length > 1 ? parts.pop() : '-';
+  const payload = {
+    external_order_id: oid,
+    customer: { first_name: parts.join(' '), last_name: last, email: o.email, phone: o.phone.replace(/\D/g, '').replace(/^90/, '').replace(/^0/, ''),
+      address: o.address, city: o.city, district: o.district },
+    items: o.urunler.map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
+    order_note: 'vaelo.com.tr sipariş no: ' + oid,
+  };
+  const r = await fetch('https://printiturk.com/api/v1/orders.php', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + String(env.PRINTITURK_TOKEN).trim(), 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  const text = await r.text();
+  console.log('Printitürk cevap:', oid, r.status, text.slice(0, 300));
+  let d = {}; try { d = JSON.parse(text); } catch {}
+  o.printiturk = d.success ? (d.order_numbers || true) : null;
+  o.printiturkHata = d.success ? null : text.slice(0, 300);
+  o.odendi = new Date().toISOString();
+  await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
 }
 
 // PayTR, ödeme sonucunu buraya bildirir (PayTR panelinde "Bildirim URL" olarak bu adresin sonuna /paytr-bildirim eklenir).
@@ -124,7 +169,11 @@ async function paytrCallback(request, env) {
   const expected = await hmacBase64(A.key, merchant_oid + A.salt + status + total_amount);
   if (expected !== f.get('hash')) return new Response('PAYTR notification failed: bad hash', { status: 400 });
   console.log('Sipariş', merchant_oid, status, total_amount);
-  // Sipariş ayrıntıları (ürün, beden, adres, telefon) PayTR panelinde "İşlemler" bölümünde görünür.
+  if (status === 'success' && A.test === '1') console.log('Deneme modu: sipariş Printitürk\'e gönderilmedi', merchant_oid);
+  if (status === 'success' && A.test !== '1') {
+    try { await printiturkeGonder(env, merchant_oid); } catch (e) { console.log('Printitürk hata:', merchant_oid, e.message); }
+  }
+  // PayTR her durumda OK bekler; aksi halde bildirimi tekrar tekrar gönderir.
   return new Response('OK');
 }
 

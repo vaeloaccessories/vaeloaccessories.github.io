@@ -131,19 +131,20 @@
       '<label for="vs-ad">Ad soyad</label><input id="vs-ad" name="name" autocomplete="name" required>' +
       '<label for="vs-ep">E-posta</label><input id="vs-ep" name="email" type="email" autocomplete="email" required>' +
       '<label for="vs-tel">Telefon</label><input id="vs-tel" name="phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required>' +
-      '<label for="vs-adr">Teslimat adresi</label><textarea id="vs-adr" name="address" autocomplete="street-address" placeholder="Mahalle, sokak, bina/daire no, ilçe / il" required></textarea>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label for="vs-il">İl</label><input id="vs-il" name="city" autocomplete="address-level1" required></div><div><label for="vs-ilce">İlçe</label><input id="vs-ilce" name="district" autocomplete="address-level2" required></div></div>' +
+      '<label for="vs-adr">Açık adres</label><textarea id="vs-adr" name="address" autocomplete="street-address" placeholder="Mahalle, sokak, bina ve daire no" required></textarea>' +
       '<div class="vs-ok"><input id="vs-onay" type="checkbox"><label for="vs-onay" style="all:unset"><a href="/on-bilgilendirme-formu.html" target="_blank">Ön Bilgilendirme Formu</a>’nu ve <a href="/mesafeli-satis-sozlesmesi.html" target="_blank">Mesafeli Satış Sözleşmesi</a>’ni okudum, kabul ediyorum.</label></div>' +
       '<p class="vs-err" aria-live="polite"></p>' +
       '<button class="vs-back" type="button">← Sepete dön</button></form>';
     var f = body.querySelector('form');
-    ['name', 'email', 'phone', 'address'].forEach(function (k) { if (form[k]) f.elements[k].value = form[k]; f.elements[k].oninput = function () { form[k] = this.value; }; });
+    ['name', 'email', 'phone', 'city', 'district', 'address'].forEach(function (k) { if (form[k]) f.elements[k].value = form[k]; f.elements[k].oninput = function () { form[k] = this.value; }; });
     f.querySelector('.vs-back').onclick = function () { adim = 'sepet'; ciz(); };
     sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Güvenli Öde · ' + tl(t.toplam) + '</button>' + GUVEN;
     var go = sum.querySelector('.vs-go'), err = f.querySelector('.vs-err');
     go.onclick = function () {
       err.textContent = '';
       if (!f.querySelector('#vs-onay').checked) { err.textContent = 'Devam etmek için sözleşmeleri onaylamanız gerekiyor.'; return; }
-      var veri = { name: f.elements.name.value, email: f.elements.email.value, phone: f.elements.phone.value, address: f.elements.address.value,
+      var veri = { name: f.elements.name.value, email: f.elements.email.value, phone: f.elements.phone.value, city: f.elements.city.value, district: f.elements.district.value, address: f.elements.address.value,
         items: oku().map(function (x) { return { id: x.id, size: x.size, qty: x.qty }; }) };
       go.disabled = true; go.textContent = 'Ödeme ekranı açılıyor…';
       fetch(KASA, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(veri) })
