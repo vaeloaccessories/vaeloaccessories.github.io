@@ -65,7 +65,7 @@ if (!re.test(html)) throw new Error('index.html içinde SEO-URUNLER bloğu yok')
 html = html.replace(re, () => block);
 fs.writeFileSync('index.html', html);
 
-const line = (p) => `- ${clean(p.name)} (${kind(p.name)}) — ${p.price} TL — ${page(p)}`;
+const line = (p) => `- [${clean(p.name)}](${page(p)}): ${kind(p.name)}, ${p.price} TL`;
 const prem = list.filter((p) => !/street/i.test(p.category || ''));
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
@@ -73,10 +73,11 @@ const llms = `# VAELO
 > VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Yakında saat, çanta ve parfüm koleksiyonları gelecek.
 
 ## Marka hakkında
-- Resmî site: ${SITE}
-- Mağaza ve ödeme: https://www.shopier.com/VAELOaccessories (Shopier güvencesiyle)
-- Instagram: https://www.instagram.com/vaeloaccessories
-- İletişim: vaeloaccessories@gmail.com, WhatsApp +90 551 370 83 20
+- [Resmî site](${SITE}): VAELO ana sayfası
+- [Mağaza ve ödeme](https://www.shopier.com/VAELOaccessories): Shopier güvencesiyle güvenli ödeme
+- [Instagram](https://www.instagram.com/vaeloaccessories): @vaeloaccessories
+- [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [vaeloaccessories@gmail.com](mailto:vaeloaccessories@gmail.com)
+- [İade ve değişim](${SITE}iade-degisim.html): kargo ve değişim koşulları
 - İki seri: Signature Premium (sade, zamansız, V monogramlı) ve VAELO // Street Division (şehir stili, grafik baskılı)
 - Kapşonlu sweatshirtler: %100 şardonlu pamuk, 380 GSM yüksek gramaj (heavyweight), oversize kesim
 - Bedenler: S, M, L, XL, XXL (unisex oversize)
@@ -84,7 +85,7 @@ const llms = `# VAELO
 - İade yok; teslimattan itibaren 7 gün içinde değişim yapılır
 
 ## Rehber
-- Kaliteli kapşonlu sweatshirt nasıl seçilir? (GSM, şardon, kalıp): ${SITE}rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html
+- [Kaliteli kapşonlu sweatshirt nasıl seçilir?](${SITE}rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html): GSM, şardon ve kalıp rehberi
 
 ## Signature Premium
 ${prem.map(line).join('\n')}
