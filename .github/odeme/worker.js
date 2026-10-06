@@ -32,8 +32,20 @@ function b64utf8(text) {
 
 const clean = (v, max) => String(v ?? '').replace(/[\u0000-\u001f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
 
+function ayarlar(env) {
+  const t = (v) => String(v ?? '').trim();
+  return { id: t(env.PAYTR_MERCHANT_ID), key: t(env.PAYTR_MERCHANT_KEY), salt: t(env.PAYTR_MERCHANT_SALT), test: t(env.PAYTR_TEST_MODE) };
+}
+
+// Şifreleri göstermeden kontrol eder: uzunluk ve boşluk var mı.
+function kontrol(env) {
+  const bilgi = (v) => ({ uzunluk: String(v ?? '').length, bosluk: /\s/.test(String(v ?? '')), dolu: !!v });
+  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? '') });
+}
+
 async function startPayment(request, env) {
-  if (!env.PAYTR_MERCHANT_ID || !env.PAYTR_MERCHANT_KEY || !env.PAYTR_MERCHANT_SALT) {
+  const A = ayarlar(env);
+  if (!A.id || !A.key || !A.salt) {
     return json({ ok: false, error: 'Ödeme sistemi henüz ayarlanmadı.' }, 503);
   }
   let body;
@@ -72,7 +84,7 @@ async function startPayment(request, env) {
   if (shipping > 0) basket.push(['Kargo', shipping.toFixed(2), 1]);
   total += shipping;
 
-  const merchant_id = env.PAYTR_MERCHANT_ID;
+  const merchant_id = A.id;
   const user_ip = request.headers.get('CF-Connecting-IP') || '127.0.0.1';
   const merchant_oid = 'VAELO' + Date.now() + Math.floor(Math.random() * 1000);
   const payment_amount = String(Math.round(total * 100));
@@ -80,10 +92,10 @@ async function startPayment(request, env) {
   const no_installment = '0';
   const max_installment = '0';
   const currency = 'TL';
-  const test_mode = env.PAYTR_TEST_MODE === '1' ? '1' : '0';
+  const test_mode = A.test === '1' ? '1' : '0';
 
   const hashStr = merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode;
-  const paytr_token = await hmacBase64(env.PAYTR_MERCHANT_KEY, hashStr + env.PAYTR_MERCHANT_SALT);
+  const paytr_token = await hmacBase64(A.key, hashStr + A.salt);
 
   const form = new URLSearchParams({
     merchant_id, user_ip, merchant_oid, email, payment_amount, paytr_token, user_basket,
@@ -104,11 +116,12 @@ async function startPayment(request, env) {
 
 // PayTR, ödeme sonucunu buraya bildirir (PayTR panelinde "Bildirim URL" olarak bu adresin sonuna /paytr-bildirim eklenir).
 async function paytrCallback(request, env) {
+  const A = ayarlar(env);
   const f = await request.formData();
   const merchant_oid = f.get('merchant_oid') || '';
   const status = f.get('status') || '';
   const total_amount = f.get('total_amount') || '';
-  const expected = await hmacBase64(env.PAYTR_MERCHANT_KEY, merchant_oid + env.PAYTR_MERCHANT_SALT + status + total_amount);
+  const expected = await hmacBase64(A.key, merchant_oid + A.salt + status + total_amount);
   if (expected !== f.get('hash')) return new Response('PAYTR notification failed: bad hash', { status: 400 });
   console.log('Sipariş', merchant_oid, status, total_amount);
   // Sipariş ayrıntıları (ürün, beden, adres, telefon) PayTR panelinde "İşlemler" bölümünde görünür.
@@ -121,6 +134,7 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
     if (request.method === 'POST' && url.pathname === '/odeme') return startPayment(request, env);
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
+    if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },
 };
