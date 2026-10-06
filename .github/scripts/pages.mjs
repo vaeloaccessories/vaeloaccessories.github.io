@@ -162,7 +162,7 @@ const keep = new Set();
 for (const p of list) { const f = slug(p) + '.html'; keep.add(f); fs.writeFileSync('urun/' + f, page(p)); }
 for (const f of fs.readdirSync('urun')) if (f.endsWith('.html') && !keep.has(f)) fs.unlinkSync('urun/' + f);   // satıştan kalkan ürünler
 
-const urls = [SITE, SITE + 'iade-degisim.html', SITE + 'rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html', ...list.map((p) => SITE + 'urun/' + slug(p) + '.html')];
+const urls = [SITE, SITE + 'iade-degisim.html', SITE + 'mesafeli-satis-sozlesmesi.html', SITE + 'on-bilgilendirme-formu.html', SITE + 'kvkk-aydinlatma-metni.html', SITE + 'gizlilik-politikasi.html', SITE + 'rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html', ...list.map((p) => SITE + 'urun/' + slug(p) + '.html')];
 fs.writeFileSync('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n') + '\n</urlset>\n');
 console.log(list.length + ' ürün sayfası yazıldı');
