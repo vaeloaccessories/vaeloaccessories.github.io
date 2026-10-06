@@ -135,7 +135,7 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   <div class="gallery">
     ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – lüks ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">`).join('\n    ')}
   </div>
-  <div class="info">
+  <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
     <p class="cat" lang="en">${esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium')} · ${kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}</p>
@@ -144,14 +144,15 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
     ${sizeTable(p.name)}
     <a class="buy" href="${esc(shopier(p.url))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
-    <p class="note">Ödeme Shopier güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. İade yoktur; teslimattan sonra 7 gün içinde değişim yapılır.</p>
+    <p class="note">Ödeme Shopier güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretildiği için cayma hakkı uygulanmaz; teslimattan sonra 7 gün içinde beden değişimi yapılır. <a href="/iade-degisim.html">İade ve Değişim</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
     <div class="desc">${descHtml(p.description)}</div>
   </div>
 </main>
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
 ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – lüks ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
 </div></section>` : ''}
-<footer>© ${new Date().getFullYear()} VAĖLO · <a href="/">vaelo.com.tr</a> · <a href="mailto:vaeloaccessories@gmail.com">vaeloaccessories@gmail.com</a></footer>
+<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a> · <a href="mailto:vaeloaccessories@gmail.com">vaeloaccessories@gmail.com</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
+<script src="/assets/sepet.js" defer></script>
 </body>
 </html>
 `;
