@@ -41,7 +41,7 @@ function ayarlar(env) {
 // Şifreleri göstermeden kontrol eder: uzunluk ve boşluk var mı.
 function kontrol(env) {
   const bilgi = (v) => ({ uzunluk: String(v ?? '').length, bosluk: /\s/.test(String(v ?? '')), dolu: !!v });
-  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), SIPARISLER: !!env.SIPARISLER });
+  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), RESEND_API_KEY: bilgi(env.RESEND_API_KEY), SIPARISLER: !!env.SIPARISLER });
 }
 
 async function startPayment(request, env) {
@@ -163,6 +163,68 @@ async function printiturkeGonder(env, oid) {
   await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
 }
 
+// ---- Sipariş mailleri (Resend) ----
+// Ayarlar: RESEND_API_KEY (gizli), isteğe bağlı MAIL_FROM (varsayılan: VAELO <siparis@vaelo.com.tr>), MAIL_SAHIBI (varsayılan: vaeloaccessories@gmail.com)
+const e = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const tl = (n) => '₺' + Number(n).toLocaleString('tr-TR');
+
+function mailSablon(baslik, icerik) {
+  return `<!doctype html><html lang="tr"><body style="margin:0;background:#F3F1EC;font-family:Helvetica,Arial,sans-serif;color:#0A0A0A">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3F1EC;padding:32px 12px"><tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff">
+<tr><td style="background:#0A0A0A;padding:28px;text-align:center;font-family:Georgia,serif;font-size:28px;letter-spacing:8px;color:#F3F1EC">VAĖLO</td></tr>
+<tr><td style="padding:32px 28px 8px;font-family:Georgia,serif;font-size:24px">${baslik}</td></tr>
+<tr><td style="padding:8px 28px 28px;font-size:14px;line-height:1.7;color:#3a3833">${icerik}</td></tr>
+<tr><td style="border-top:1px solid #DFDBD2;padding:20px 28px;font-size:12px;color:#6B6861;text-align:center">VAELO · <a href="https://www.vaelo.com.tr" style="color:#6B6861">vaelo.com.tr</a> · WhatsApp +90 551 370 83 20</td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+function urunTablosu(o) {
+  const satir = (a, b) => `<tr><td style="padding:8px 0;border-bottom:1px solid #eee">${a}</td><td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${b}</td></tr>`;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">` +
+    o.urunler.map((u) => satir(`${e(u.name.replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">Beden: ${e(u.size)} · ${u.qty} adet</span>`, '')).join('') +
+    (o.gift ? satir('Hediye paketi', tl(HEDIYE_PAKETI)) : '') +
+    satir('<strong>Toplam</strong>', `<strong>${tl(o.total)}</strong>`) + `</table>`;
+}
+
+async function mailAt(env, to, subject, html, replyTo) {
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + String(env.RESEND_API_KEY).trim(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: env.MAIL_FROM || 'VAELO <siparis@vaelo.com.tr>', to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+  });
+  if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
+}
+
+async function siparisMailleri(env, oid, deneme) {
+  if (!env.SIPARISLER || !env.RESEND_API_KEY) return;
+  const raw = await env.SIPARISLER.get(oid);
+  if (!raw) return;
+  const o = JSON.parse(raw);
+  if (o.mail) return;
+  const sahip = env.MAIL_SAHIBI || 'vaeloaccessories@gmail.com';
+  const sonuc = [];
+  if (!deneme) {
+    try {
+      await mailAt(env, o.email, 'Siparişiniz alındı · VAELO', mailSablon('Teşekkürler, siparişiniz alındı.',
+        `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. Ürününüz sizin için özel olarak üretilecek ve <strong>2–3 iş günü</strong> içinde kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
+        urunTablosu(o) +
+        `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da WhatsApp'tan bize yazabilirsiniz.`), sahip);
+      sonuc.push('musteri');
+    } catch (err) { console.log('Müşteri maili gitmedi:', oid, err.message); }
+  }
+  try {
+    await mailAt(env, sahip, `${deneme ? '[DENEME] ' : ''}Yeni sipariş · ${tl(o.total)} · ${o.name}`, mailSablon('Yeni sipariş geldi',
+      `<strong>${e(o.name)}</strong><br>${e(o.phone)} · ${e(o.email)}<br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}` +
+      urunTablosu(o) +
+      `Printitürk: ${o.printiturk ? 'gönderildi (' + e([].concat(o.printiturk).join(', ')) + ') — Ödeme Bekliyor sekmesinden ödemeyi unutma.' : '<strong style="color:#9b2c2c">gönderilemedi, elle gir.</strong> ' + e(o.printiturkHata || '')}` +
+      `<br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span>`), o.email);
+    sonuc.push('sahip');
+  } catch (err) { console.log('Sahip maili gitmedi:', oid, err.message); }
+  o.mail = sonuc;
+  await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
+}
+
 // PayTR, ödeme sonucunu buraya bildirir (PayTR panelinde "Bildirim URL" olarak bu adresin sonuna /paytr-bildirim eklenir).
 async function paytrCallback(request, env) {
   const A = ayarlar(env);
@@ -176,6 +238,9 @@ async function paytrCallback(request, env) {
   if (status === 'success' && A.test === '1') console.log('Deneme modu: sipariş Printitürk\'e gönderilmedi', merchant_oid);
   if (status === 'success' && A.test !== '1') {
     try { await printiturkeGonder(env, merchant_oid); } catch (e) { console.log('Printitürk hata:', merchant_oid, e.message); }
+  }
+  if (status === 'success') {
+    try { await siparisMailleri(env, merchant_oid, A.test === '1'); } catch (e2) { console.log('Mail hata:', merchant_oid, e2.message); }
   }
   // PayTR her durumda OK bekler; aksi halde bildirimi tekrar tekrar gönderir.
   return new Response('OK');
