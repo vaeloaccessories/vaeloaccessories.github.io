@@ -123,6 +123,7 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   footer{text-align:center;font-size:12px;color:var(--muted);padding:32px 16px;border-top:1px solid var(--sand)}
 </style>
 <!-- Google Analytics -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
@@ -153,6 +154,7 @@ ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<i
 </div></section>` : ''}
 <footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a> · <a href="mailto:vaeloaccessories@gmail.com">vaeloaccessories@gmail.com</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
 <script src="/assets/sepet.js" defer></script>
+<script src="/assets/cerez.js" defer></script>
 </body>
 </html>
 `;

@@ -14,12 +14,10 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <meta name="description" content="VAELO lüks kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört koleksiyonu. 380 GSM şardonlu pamuk, S–XXL beden, 3.000 TL üzeri ücretsiz kargo.">
 <meta name="google-site-verification" content="VWnnhGf0O5BwmTyml-eximGFDp-_V95lVQpnFCZOW7o">
@@ -361,6 +359,7 @@ src="https://www.facebook.com/tr?id=1784645619627330&ev=PageView&noscript=1"
 </style>
 <style>.seo-h1{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 <!-- Google Analytics -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
@@ -1099,5 +1098,6 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
 });
 </script>
 <script src="/assets/sepet.js" defer></script>
+<script src="/assets/cerez.js" defer></script>
 </body>
 </html>
