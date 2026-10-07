@@ -74,7 +74,7 @@ const llms = `# VAELO
 
 ## Marka hakkında
 - [Resmî site](${SITE}): VAELO ana sayfası
-- [Mağaza ve ödeme](https://www.shopier.com/VAELOaccessories): Shopier güvencesiyle güvenli ödeme
+- [Online mağaza](${SITE}): sepet ve PayTR güvencesiyle kredi/banka kartı ile güvenli ödeme
 - [Instagram](https://www.instagram.com/vaeloaccessories): @vaeloaccessories
 - [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [vaeloaccessories@gmail.com](mailto:vaeloaccessories@gmail.com)
 - [İade ve değişim](${SITE}iade-degisim.html): kargo ve değişim koşulları

@@ -196,5 +196,8 @@
       adim = 'sepet'; ciz(); ac();
     };
   }
+  // Menüdeki "Sepetim" bağlantısı sepeti açar.
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#sepet"]'); if (!a) return; e.preventDefault(); e.stopPropagation(); adim = 'sepet'; ciz(); ac(); }, true);
+  if (location.hash === '#sepet') { ciz(); ac(); }
   ciz();
 })();
