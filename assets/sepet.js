@@ -160,6 +160,8 @@
         .then(function (d) {
           if (!d.ok) throw new Error(d.error || 'Bir sorun oluştu.');
           if (window.gtag) gtag('event', 'begin_checkout', { currency: 'TRY', value: d.total });
+          if (window.fbq) fbq('track', 'InitiateCheckout', { value: d.total, currency: 'TRY' });
+          try { sessionStorage.setItem('vaelo-tutar', String(d.total)); } catch (e3) {}
           var fr = pay.querySelector('iframe'); fr.src = d.iframe; pay.classList.add('on');
           go.disabled = false; go.textContent = 'Güvenli Öde · ' + tl(t.toplam);
         })
@@ -193,6 +195,7 @@
       if (!secili) { ipucu.textContent = 'Lütfen bir beden seçin.'; return; }
       ekle({ id: info.dataset.id, name: info.dataset.name, price: +info.dataset.price, img: info.dataset.img, size: secili });
       if (window.gtag) gtag('event', 'add_to_cart', { currency: 'TRY', value: +info.dataset.price });
+      if (window.fbq) fbq('track', 'AddToCart', { content_ids: [info.dataset.id], content_type: 'product', value: +info.dataset.price, currency: 'TRY' });
       adim = 'sepet'; ciz(); ac();
     };
   }
