@@ -8,6 +8,7 @@
 const SITE = 'https://www.vaelo.com.tr';
 const FREE_SHIPPING_FROM = 3000;
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+const HEDIYE_PAKETI = 100;
 
 const cors = {
   'Access-Control-Allow-Origin': SITE,
@@ -87,6 +88,8 @@ async function startPayment(request, env) {
   const shipping = total >= FREE_SHIPPING_FROM ? 0 : Number(catalog.shipping || 120);
   if (shipping > 0) basket.push(['Kargo', shipping.toFixed(2), 1]);
   total += shipping;
+  const gift = body.gift === true;
+  if (gift) { basket.push(['Hediye Paketi', HEDIYE_PAKETI.toFixed(2), 1]); total += HEDIYE_PAKETI; }
 
   const merchant_id = A.id;
   const user_ip = request.headers.get('CF-Connecting-IP') || '127.0.0.1';
@@ -117,7 +120,7 @@ async function startPayment(request, env) {
   }
   // Sipariş bilgisi, ödeme onaylanınca Printitürk'e gönderilmek üzere saklanır (30 gün).
   if (env.SIPARISLER) {
-    await env.SIPARISLER.put(merchant_oid, JSON.stringify({ name, email, phone, address, city, district, urunler, total, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
+    await env.SIPARISLER.put(merchant_oid, JSON.stringify({ name, email, phone, address, city, district, urunler, total, gift, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
   }
   return json({ ok: true, iframe: 'https://www.paytr.com/odeme/guvenli/' + out.token, total, shipping, order: merchant_oid });
 }
@@ -143,7 +146,8 @@ async function printiturkeGonder(env, oid) {
     customer: { first_name: parts.join(' '), last_name: last, email: o.email, phone: o.phone.replace(/\D/g, '').replace(/^90/, '').replace(/^0/, ''),
       address: o.address, city: o.city, district: o.district },
     items: o.urunler.map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
-    order_note: 'vaelo.com.tr sipariş no: ' + oid,
+    gift_package: !!o.gift,
+    order_note: 'vaelo.com.tr sipariş no: ' + oid + (o.gift ? ' · HEDİYE PAKETİ' : ''),
   };
   const r = await fetch('https://printiturk.com/api/v1/orders.php', {
     method: 'POST',
@@ -184,6 +188,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/odeme') return startPayment(request, env);
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 2, hediye: HEDIYE_PAKETI });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },
 };

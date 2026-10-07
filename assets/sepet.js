@@ -114,6 +114,7 @@
     return '<div class="vs-row"><span>Ara toplam</span><span>' + tl(t.ara) + '</span></div>' +
       '<div class="vs-row"><span>Kargo</span><span>' + (t.kargo ? tl(t.kargo) : 'Ücretsiz') + '</span></div>' +
       (t.kargo ? '<div class="vs-row" style="font-size:.78rem;color:#6B6861"><span>' + tl(UCRETSIZ_KARGO) + ' üzeri kargo ücretsiz</span></div>' : '') +
+      (t.hediye ? '<div class="vs-row"><span>Hediye paketi</span><span>' + tl(t.hediye) + '</span></div>' : '') +
       '<div class="vs-row t"><span>Toplam</span><span>' + tl(t.toplam) + '</span></div>';
   }
   body.addEventListener('click', function (e) {
@@ -125,26 +126,33 @@
     yaz(s);
   });
 
-  var form = {};
+  var form = {}, HEDIYE = 0;
+  // Hediye paketi seçeneği yalnızca kasa destekliyorsa görünür (fiyat kasada hesaplanır).
+  fetch(KASA.replace(/\/odeme$/, '/surum')).then(function (r) { return r.json(); }).then(function (d) { HEDIYE = Number(d.hediye) || 0; if (adim === 'form') ciz(); }).catch(function () {});
   function formCiz(t) {
+    var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
     body.innerHTML = '<form class="vs-f" novalidate>' +
       '<label for="vs-ad">Ad soyad</label><input id="vs-ad" name="name" autocomplete="name" required>' +
       '<label for="vs-ep">E-posta</label><input id="vs-ep" name="email" type="email" autocomplete="email" required>' +
       '<label for="vs-tel">Telefon</label><input id="vs-tel" name="phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label for="vs-il">İl</label><input id="vs-il" name="city" autocomplete="address-level1" required></div><div><label for="vs-ilce">İlçe</label><input id="vs-ilce" name="district" autocomplete="address-level2" required></div></div>' +
       '<label for="vs-adr">Açık adres</label><textarea id="vs-adr" name="address" autocomplete="street-address" placeholder="Mahalle, sokak, bina ve daire no" required></textarea>' +
-      '<div class="vs-ok"><input id="vs-onay" type="checkbox"><label for="vs-onay" style="all:unset"><a href="/on-bilgilendirme-formu.html" target="_blank">Ön Bilgilendirme Formu</a>’nu ve <a href="/mesafeli-satis-sozlesmesi.html" target="_blank">Mesafeli Satış Sözleşmesi</a>’ni okudum, kabul ediyorum.</label></div>' +
+      (HEDIYE ? '<div class="vs-ok"><input id="vs-hediye" type="checkbox"' + (form.gift ? ' checked' : '') + '><label for="vs-hediye" style="all:unset"><strong style="font-weight:500">Hediye paketi</strong> (+' + tl(HEDIYE) + ') — özel kutu ve paketleme ile gönderilsin</label></div>' : '') +
+      '<div class="vs-ok"><input id="vs-onay" type="checkbox"' + (form.onay ? ' checked' : '') + '><label for="vs-onay" style="all:unset"><a href="/on-bilgilendirme-formu.html" target="_blank">Ön Bilgilendirme Formu</a>’nu ve <a href="/mesafeli-satis-sozlesmesi.html" target="_blank">Mesafeli Satış Sözleşmesi</a>’ni okudum, kabul ediyorum.</label></div>' +
       '<p class="vs-err" aria-live="polite"></p>' +
       '<button class="vs-back" type="button">← Sepete dön</button></form>';
     var f = body.querySelector('form');
     ['name', 'email', 'phone', 'city', 'district', 'address'].forEach(function (k) { if (form[k]) f.elements[k].value = form[k]; f.elements[k].oninput = function () { form[k] = this.value; }; });
     f.querySelector('.vs-back').onclick = function () { adim = 'sepet'; ciz(); };
+    f.querySelector('#vs-onay').onchange = function () { form.onay = this.checked; };
+    var hk = f.querySelector('#vs-hediye'); if (hk) hk.onchange = function () { form.gift = hk.checked; ciz(); };
     sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Güvenli Öde · ' + tl(t.toplam) + '</button>' + GUVEN;
     var go = sum.querySelector('.vs-go'), err = f.querySelector('.vs-err');
     go.onclick = function () {
       err.textContent = '';
       if (!f.querySelector('#vs-onay').checked) { err.textContent = 'Devam etmek için sözleşmeleri onaylamanız gerekiyor.'; return; }
       var veri = { name: f.elements.name.value, email: f.elements.email.value, phone: f.elements.phone.value, city: f.elements.city.value, district: f.elements.district.value, address: f.elements.address.value,
+        gift: !!(HEDIYE && form.gift),
         items: oku().map(function (x) { return { id: x.id, size: x.size, qty: x.qty }; }) };
       go.disabled = true; go.textContent = 'Ödeme ekranı açılıyor…';
       fetch(KASA, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(veri) })
