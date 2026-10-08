@@ -28,6 +28,13 @@ const sizeTable = (n) => {
   if (!t) return '';
   return `<details class="st"><summary>Beden tablosu</summary><p class="stn">${t.note}</p><table><thead><tr><th>Beden</th><th>Göğüs</th><th>Boy</th></tr></thead><tbody>${t.rows.map(([a, g, b]) => `<tr><td>${a}</td><td>${g} cm</td><td>${b} cm</td></tr>`).join('')}</tbody></table><p class="stn">Ürün düz zemine serilerek ölçülmüştür. Göğüs: koltuk altından koltuk altına, boy: omuzdan etek ucuna. Daha bol görünüm için bir beden büyük seçebilirsiniz. ±1–2 cm farklılık olabilir.</p></details>`;
 };
+// "Signature Hoodie – Beyaz" / "Street Division Hoodie – Lacivert / Etiket Logo" → model + renk
+const parts = (n) => { const m = clean(n).match(/^(.*?)\s*[–-]\s*([^/]+?)\s*(?:\/\s*(.+))?$/); return m ? { model: m[1] + '|' + (m[3] || ''), color: m[2] } : { model: clean(n), color: '' }; };
+const SW = { siyah: '#0A0A0A', lacivert: '#1F2740', beyaz: '#FFFFFF', gri: '#8A8A8A', bej: '#D8CBB5', kahverengi: '#5A3E2B', yeşil: '#2F4A36', kırmızı: '#8B1E1E' };
+const swatch = (c) => SW[String(c).toLocaleLowerCase('tr-TR')] || '#CCCCCC';
+// Grafik Baskı tişörtlerin siyah ve beyazı farklı desen, renk seçeneği sayılmaz
+const colorsOf = (p) => { const me = parts(p.name); if (!me.color || /grafik bask/i.test(me.model)) return []; const order = ['Siyah', 'Lacivert', 'Beyaz'];
+  return list.filter((o) => parts(o.name).model === me.model).sort((a, b) => (order.indexOf(parts(a.name).color) + 9) % 9 - (order.indexOf(parts(b.name).color) + 9) % 9); };
 const shopier = (u) => /^https:\/\/www\.shopier\.com\//.test(u || '') ? u : 'https://www.shopier.com/VAELOaccessories';
 
 function descHtml(d) {
@@ -56,7 +63,13 @@ function page(p) {
       shippingDetails: { '@type': 'OfferShippingDetails', shippingRate: { '@type': 'MonetaryAmount', value: String(ship), currency: 'TRY' },
         shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TR' } } },
   };
-  const others = list.filter((o) => o.id !== p.id && (o.category || '') === (p.category || '')).slice(0, 4);
+  const variants = colorsOf(p);
+  const vIds = new Set(variants.map((v) => v.id));
+  const others = list.filter((o) => o.id !== p.id && !vIds.has(o.id) && (o.category || '') === (p.category || '')).slice(0, 4);
+  const colorHtml = variants.length > 1 ? `<p class="label">Renk: <span class="cname">${esc(parts(p.name).color)}</span></p>
+    <div class="colors">${variants.map((v) => { const c = parts(v.name).color; return v.id === p.id
+      ? `<span class="sw on" title="${esc(c)}" aria-current="true"><i style="background:${swatch(c)}"></i></span>`
+      : `<a class="sw" href="${slug(v)}.html" title="${esc(c)}" aria-label="${esc(c)} rengi"><i style="background:${swatch(c)}"></i></a>`; }).join('')}</div>` : '';
   return `<!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -95,6 +108,12 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;margin:10px 0 14px}
   .price{font-size:1.4rem;margin-bottom:24px}
+  .colors{display:flex;gap:10px;margin:10px 0 24px}
+  .sw{display:inline-flex;width:34px;height:34px;border-radius:50%;border:1px solid transparent;padding:3px;transition:border-color .2s}
+  .sw i{display:block;width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+  .sw:hover{border-color:var(--muted)}
+  .sw.on{border-color:var(--black)}
+  .cname{color:var(--black)}
   .sizes{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 26px}
   .sizes span{border:1px solid var(--sand);padding:8px 14px;font-size:13px}
   .st{margin:-10px 0 24px;font-size:13px}
@@ -156,6 +175,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     <p class="cat" lang="en">${esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium')} · ${kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}</p>
+    ${colorHtml}
     <p class="label">Bedenler</p>
     <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
     ${sizeTable(p.name)}
