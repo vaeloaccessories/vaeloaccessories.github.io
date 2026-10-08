@@ -193,6 +193,8 @@ jobs:
             }
             if (!products.length) throw new Error('Hiçbir ürün okunamadı');
             const shipping = (products.find((p) => p.ship) || {}).ship || 0;
+            // Düzeltilmiş görseller (assets/urun/<id>_<sıra>.jpg) varsa Shopier'deki yerine onlar kullanılır.
+            for (const p of products) p.images = p.images.map((u, i) => fs.existsSync(`assets/urun/${p.id}_${i}.jpg`) ? `https://www.vaelo.com.tr/assets/urun/${p.id}_${i}.jpg` : u);
             const data = { shipping, products: products.map(({ ship, ...p }) => p) };
             fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
             console.log(products.length + ' ürün yazıldı');
