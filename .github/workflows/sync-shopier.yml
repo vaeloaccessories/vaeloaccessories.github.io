@@ -194,6 +194,9 @@ jobs:
             if (!products.length) throw new Error('Hiçbir ürün okunamadı');
             const shipping = (products.find((p) => p.ship) || {}).ship || 0;
             // Düzeltilmiş görseller (assets/urun/<id>_<sıra>.jpg veya .png) varsa Shopier'deki yerine onlar kullanılır.
+            // Sitedeki fiyat = Shopier fiyatı + %15, sonu 9 ile biten sayıya yuvarlanır (799 → 919, 1099 → 1269, 1299 → 1499).
+            const ZAM = 1.15;
+            for (const p of products) p.price = Math.ceil((p.price * ZAM + 1) / 10) * 10 - 1;
             for (const p of products) p.images = p.images.map((u, i) => { const f = ['jpg', 'png'].map((e) => `assets/urun/${p.id}_${i}.${e}`).find((f) => fs.existsSync(f)); return f ? 'https://www.vaelo.com.tr/' + f : u; });
             const data = { shipping, products: products.map(({ ship, ...p }) => p) };
             fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
