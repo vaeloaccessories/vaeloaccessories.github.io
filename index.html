@@ -371,8 +371,8 @@ fbq('track', 'PageView');
 
   /* ===== VAELO Vitrin: kaydırdıkça dönen 3D ürün vitrini (Signature / Street sayfalarının başında) ===== */
   .vitrin { display: none; }
-  html[data-view="signature"] .vitrin-sig, html[data-view="street"] .vitrin-street { display: block; }
-  html[data-view="signature"] #koleksiyon, html[data-view="street"] #street { padding-top: 14vh; }
+  html.vt-on[data-view="signature"] .vitrin-sig, html.vt-on[data-view="street"] .vitrin-street { display: block; }
+  html.vt-on[data-view="signature"] #koleksiyon, html.vt-on[data-view="street"] #street { padding-top: 14vh; }
   .vitrin { position: relative; height: 700vh; background: var(--black); color: var(--paper); }
   .vt-stage { --glow: 138,118,96; --w: min(50vh, 36vw); --bgc: 10,10,10; position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
     background: radial-gradient(ellipse 55% 60% at 58% 55%, rgba(var(--glow),.55) 0%, rgba(var(--glow),.16) 45%, rgba(var(--bgc),0) 75%), rgb(var(--bgc)); }
@@ -417,7 +417,7 @@ fbq('track', 'PageView');
   @media (max-width: 759px) {
     .vt-stage { --w: min(78vw, 46vh); background: radial-gradient(ellipse 85% 50% at 50% 40%, rgba(var(--glow),.55) 0%, rgba(var(--glow),.15) 50%, rgba(var(--bgc),0) 80%), rgb(var(--bgc)); }
     .vt-light .vt-stage { background: radial-gradient(ellipse 85% 50% at 50% 40%, rgba(var(--glow),.75) 0%, rgba(var(--glow),.3) 50%, rgba(var(--bgc),0) 80%), rgb(var(--bgc)); }
-    .vt-shadow { left: 50%; top: calc(39% + var(--w) * .6); }
+    .vt-shadow { left: 50%; top: calc(43% + var(--w) * .6); }
     .vt-intro { top: 17vh; }
     .vt-info { left: 6vw; right: 6vw; width: auto; top: auto; bottom: 11vh; margin: 0; text-align: center; }
     .vt-info h3 { font-size: 1.9rem; margin-top: 8px; }
@@ -427,7 +427,7 @@ fbq('track', 'PageView');
     .vt-btn { margin-top: 14px; padding: 12px 24px; }
     .vt-dots { right: 3.5vw; gap: 11px; }
     .vt-outro { bottom: 12vh; }
-    html[data-view="signature"] #koleksiyon, html[data-view="street"] #street { padding-top: 10vh; }
+    html.vt-on[data-view="signature"] #koleksiyon, html.vt-on[data-view="street"] #street { padding-top: 10vh; }
   }
   @media (prefers-reduced-motion: reduce) { .vt-card, .vt-hint::after { animation: none; } }
 </style>
@@ -1288,6 +1288,6 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
 </script>
 <script src="/assets/sepet.js" defer></script>
 <script src="/assets/cerez.js" defer></script>
-<script src="/assets/vitrin.js" defer></script>
+<script src="/assets/vitrin.js?v=3" defer></script>
 </body>
 </html>

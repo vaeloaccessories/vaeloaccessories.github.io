@@ -38,7 +38,7 @@
       var a = clamp(Math.abs(c), 0, 1), s = smooth(0.28, 0.72, a), dir = c > 0 ? -1 : 1;
       var ry = c * 50;
       if (flips[i]) ry += 180 * smooth(-0.05, 0.09, c);   // arkasını göstermek için hızlı dönüş
-      return { x: mobile ? 0 : 8, y: (mobile ? -11 : 0) + dir * s * 115, s: 1 - s * 0.15, rz: -7 + c * 18, ry: ry, o: 1 - smooth(0.45, 0.8, a) };
+      return { x: mobile ? 0 : 8, y: (mobile ? -7 : 0) + dir * s * 115, s: 1 - s * 0.15, rz: -7 + c * 18, ry: ry, o: 1 - smooth(0.45, 0.8, a) };
     }
     function measure() {
       mobile = window.innerWidth < 760;
@@ -119,5 +119,7 @@
     refresh();
   }
 
+  // vitrin yalnızca bu dosya gerçekten çalışınca görünür (eski/bozuk dosyada sayfa takılmasın)
+  document.documentElement.classList.add('vt-on');
   document.querySelectorAll('.vitrin').forEach(function (s) { Vitrin(s); });
 })();
