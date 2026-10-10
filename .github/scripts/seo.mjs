@@ -43,7 +43,7 @@ const graph = {
       name: 'VAELO',
       alternateName: ['VAĖLO', 'VAELO Accessories & Apparel', 'Vaelo'],
       url: SITE,
-      email: 'vaeloaccessories@gmail.com',
+      email: 'info@vaelo.com.tr',
       telephone: '+905513708320',
       description: 'VAELO; lüks kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört üreten Türk premium giyim markasıdır.',
       sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.shopier.com/VAELOaccessories'],
@@ -76,7 +76,7 @@ const llms = `# VAELO
 - [Resmî site](${SITE}): VAELO ana sayfası
 - [Online mağaza](${SITE}): sepet ve PayTR güvencesiyle kredi/banka kartı ile güvenli ödeme
 - [Instagram](https://www.instagram.com/vaeloaccessories): @vaeloaccessories
-- [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [vaeloaccessories@gmail.com](mailto:vaeloaccessories@gmail.com)
+- [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [info@vaelo.com.tr](mailto:info@vaelo.com.tr)
 - [İade ve değişim](${SITE}iade-degisim.html): kargo ve değişim koşulları
 - İki seri: Signature Premium (sade, zamansız, V monogramlı) ve VAELO // Street Division (şehir stili, grafik baskılı)
 - Kapşonlu sweatshirtler: %100 şardonlu pamuk, 380 GSM yüksek gramaj (heavyweight), oversize kesim
