@@ -218,6 +218,15 @@ fbq('track', 'PageView');
   .item .desc { margin-top: 8px; font-size: 0.8rem; line-height: 1.5; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .more { display: inline-block; margin-top: 14px; padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: background-size .6s var(--ease); }
   .more:hover { background-size: 0 1px; }
+  .shop-btn { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 46px; margin-top: 14px; border: 1px solid currentColor; color: inherit; text-decoration: none; font-family: var(--sans); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; transition: color .5s var(--ease); }
+  .shop-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--black); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease); }
+  .street .shop-btn::before { background: var(--paper); }
+  .shop-btn .ar { display: inline-block; transition: transform .5s var(--ease); }
+  .item:hover .shop-btn, .shop-btn:focus-visible, .shop-btn:active { color: var(--paper); }
+  .street .item:hover .shop-btn, .street .shop-btn:focus-visible, .street .shop-btn:active { color: var(--black); }
+  .item:hover .shop-btn::before, .shop-btn:focus-visible::before, .shop-btn:active::before { transform: scaleY(1); }
+  .item:hover .shop-btn .ar { transform: translateX(5px); }
+  .grid.list-view .shop-btn { max-width: 240px; }
   .ship { margin-top: 64px; font-size: 0.95rem; color: var(--muted); }
   @media (min-width: 900px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 56px 26px; } }
   @media (min-width: 1100px) { .grid { grid-template-columns: repeat(5, 1fr); gap: 56px 24px; } .item:nth-child(even) { margin-top: 40px; } }
@@ -440,7 +449,7 @@ fbq('track', 'PageView');
         <h3>Signature Sweatshirt – Beyaz</h3>
         <p class="price"><span class="cur">₺</span>1.269</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
-        <a class="more" href="urun/signature-sweatshirt-beyaz-50995025.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-sweatshirt-beyaz-50995025.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1269" data-sold="0" data-idx="1">
         <a class="ph" href="urun/signature-sweatshirt-lacivert-50995013.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -450,7 +459,7 @@ fbq('track', 'PageView');
         <h3>Signature Sweatshirt – Lacivert</h3>
         <p class="price"><span class="cur">₺</span>1.269</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
-        <a class="more" href="urun/signature-sweatshirt-lacivert-50995013.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-sweatshirt-lacivert-50995013.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1269" data-sold="0" data-idx="2">
         <a class="ph" href="urun/signature-sweatshirt-siyah-50994943.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -460,7 +469,7 @@ fbq('track', 'PageView');
         <h3>Signature Sweatshirt – Siyah</h3>
         <p class="price"><span class="cur">₺</span>1.269</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu sweatshirt, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
-        <a class="more" href="urun/signature-sweatshirt-siyah-50994943.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-sweatshirt-siyah-50994943.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="919" data-sold="0" data-idx="3">
         <a class="ph" href="urun/signature-tisort-beyaz-50994670.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -470,7 +479,7 @@ fbq('track', 'PageView');
         <h3>Signature Tişört – Beyaz</h3>
         <p class="price"><span class="cur">₺</span>919</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
-        <a class="more" href="urun/signature-tisort-beyaz-50994670.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-tisort-beyaz-50994670.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="919" data-sold="0" data-idx="4">
         <a class="ph" href="urun/signature-tisort-siyah-50994608.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -480,7 +489,7 @@ fbq('track', 'PageView');
         <h3>Signature Tişört – Siyah</h3>
         <p class="price"><span class="cur">₺</span>919</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı.</p>
-        <a class="more" href="urun/signature-tisort-siyah-50994608.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-tisort-siyah-50994608.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1379" data-sold="0" data-idx="5">
         <a class="ph" href="urun/signature-hoodie-lacivert-50979137.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -490,7 +499,7 @@ fbq('track', 'PageView');
         <h3>Signature Hoodie – Lacivert</h3>
         <p class="price"><span class="cur">₺</span>1.379</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
-        <a class="more" href="urun/signature-hoodie-lacivert-50979137.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-hoodie-lacivert-50979137.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1269" data-sold="0" data-idx="6">
         <a class="ph" href="urun/signature-hoodie-beyaz-50979120.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -500,7 +509,7 @@ fbq('track', 'PageView');
         <h3>Signature Hoodie – Beyaz</h3>
         <p class="price"><span class="cur">₺</span>1.269</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
-        <a class="more" href="urun/signature-hoodie-beyaz-50979120.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-hoodie-beyaz-50979120.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1269" data-sold="0" data-idx="7">
         <a class="ph" href="urun/signature-hoodie-siyah-50979076.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -510,7 +519,7 @@ fbq('track', 'PageView');
         <h3>Signature Hoodie – Siyah</h3>
         <p class="price"><span class="cur">₺</span>1.269</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış doku</p>
-        <a class="more" href="urun/signature-hoodie-siyah-50979076.html">İncele</a>
+        <a class="shop-btn" href="urun/signature-hoodie-siyah-50979076.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
     </div>
   </section>
@@ -541,7 +550,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Lacivert / Etiket Logo</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
-        <a class="more" href="urun/street-division-hoodie-lacivert-etiket-logo-51195056.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-lacivert-etiket-logo-51195056.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="919" data-sold="0" data-idx="1">
         <a class="ph" href="urun/street-division-tisort-beyaz-grafik-baski-51194906.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -551,7 +560,7 @@ fbq('track', 'PageView');
         <h3>Street Division Tişört – Beyaz / Grafik Baskı</h3>
         <p class="price"><span class="cur">₺</span>919</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı. Hem günlük kombinlerinizde hem de seçkin gardırobunuzda zahmetsiz bir zarafet sunar. Kesim / Kalıp: Unisex Oversize Fit (Rahat & Dökümlü Kesim)</p>
-        <a class="more" href="urun/street-division-tisort-beyaz-grafik-baski-51194906.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-tisort-beyaz-grafik-baski-51194906.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1499" data-sold="0" data-idx="2">
         <a class="ph" href="urun/street-division-hoodie-lacivert-oval-logo-51194901.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -561,7 +570,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Lacivert / Oval Logo</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
-        <a class="more" href="urun/street-division-hoodie-lacivert-oval-logo-51194901.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-lacivert-oval-logo-51194901.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1499" data-sold="0" data-idx="3">
         <a class="ph" href="urun/street-division-hoodie-siyah-oval-logo-51194726.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -571,7 +580,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Siyah / Oval Logo</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
-        <a class="more" href="urun/street-division-hoodie-siyah-oval-logo-51194726.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-siyah-oval-logo-51194726.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="919" data-sold="0" data-idx="4">
         <a class="ph" href="urun/street-division-tisort-siyah-v-logo-51194538.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -581,7 +590,7 @@ fbq('track', 'PageView');
         <h3>Street Division Tişört – Siyah / V Logo</h3>
         <p class="price"><span class="cur">₺</span>919</p>
         <p class="desc">Gardırobunuzun en temel ve vazgeçilmez parçası olmaya aday! Yüksek kaliteli kumaş yapısı ve rahat oversize kesimiyle öne çıkan bu düz siyah tişört, minimalist tarzı benimseyenler için özel olarak tasarlandı. Hem günlük kombinlerinizde hem de seçkin gardırobunuzda zahmetsiz bir zarafet sunar. Kesim / Kalıp: Unisex Oversize Fit (Rahat & Dökümlü Kesim)</p>
-        <a class="more" href="urun/street-division-tisort-siyah-v-logo-51194538.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-tisort-siyah-v-logo-51194538.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1499" data-sold="0" data-idx="5">
         <a class="ph" href="urun/street-division-hoodie-siyah-etiket-logo-51195135.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -591,7 +600,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Siyah / Etiket Logo</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight) Doku: Dış yüzeyi pürüzsüz ve yumuşak touch, iç yüzeyi ekstra sıcak tutan fırçalanmış (şardonlu) doku</p>
-        <a class="more" href="urun/street-division-hoodie-siyah-etiket-logo-51195135.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-siyah-etiket-logo-51195135.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1499" data-sold="0" data-idx="6">
         <a class="ph" href="urun/street-division-hoodie-lacivert-altin-grafik-51281543.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -601,7 +610,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Lacivert / Altın Grafik</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight). Old money ve streetwear estetiğinde düşük omuzlu oversize kesim, çift katlı kapüşon, metal uçlu lüks bağcıklar ve güçlendirilmiş fitilli kol ağızları.</p>
-        <a class="more" href="urun/street-division-hoodie-lacivert-altin-grafik-51281543.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-lacivert-altin-grafik-51281543.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="919" data-sold="0" data-idx="7">
         <a class="ph" href="urun/street-division-tisort-siyah-grafik-baski-51196509.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -611,7 +620,7 @@ fbq('track', 'PageView');
         <h3>Street Division Tişört – Siyah / Grafik Baskı</h3>
         <p class="price"><span class="cur">₺</span>919</p>
         <p class="desc">Yüksek kaliteli, %100 premium pamuktan üretilen oversize tişört. Günlük ve sokak stiline uygun unisex kesim, göğüste minimalist lüks detay ve dayanıklı fitilli yaka.</p>
-        <a class="more" href="urun/street-division-tisort-siyah-grafik-baski-51196509.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-tisort-siyah-grafik-baski-51196509.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
       <article class="item" data-price="1499" data-sold="0" data-idx="8">
         <a class="ph" href="urun/street-division-hoodie-siyah-altin-grafik-51315446.html" tabindex="-1" aria-hidden="true"><div class="ph-inner">
@@ -621,7 +630,7 @@ fbq('track', 'PageView');
         <h3>Street Division Hoodie – Siyah / Altın Grafik</h3>
         <p class="price"><span class="cur">₺</span>1.499</p>
         <p class="desc">Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight). Old money ve streetwear estetiğinde düşük omuzlu oversize kesim, çift katlı yapılandırılmış kapüşon, mat metal uçlu lüks bağcıklar ve güçlendirilmiş fitilli kol ağızları.</p>
-        <a class="more" href="urun/street-division-hoodie-siyah-altin-grafik-51315446.html">İncele</a>
+        <a class="shop-btn" href="urun/street-division-hoodie-siyah-altin-grafik-51315446.html">Satın Al <span class="ar" aria-hidden="true">→</span></a>
       </article>
     </div>
   </section>
@@ -803,7 +812,7 @@ function productCard(p, idx) {
     '</div></a><h3>' + esc(name) + '</h3>' +
     (price ? '<p class="price"><span class="cur">₺</span>' + fmtPrice(price) + '</p>' : '') +
     (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
-    '<a class="more" href="' + esc(url) + '">İncele</a></article>';
+    '<a class="shop-btn" href="' + esc(url) + '">Satın Al <span class="ar" aria-hidden="true">→</span></a></article>';
 }
 
 // ---- pages: gateway (home) / Signature / Street Division ----
