@@ -368,6 +368,59 @@ fbq('track', 'PageView');
     .hero-bg img:first-child { opacity: 1; }
     .ph img, header, .btn::before { transition: none; }
   }
+
+  /* ===== VAELO Vitrin: kaydırdıkça dönen 3D ürün vitrini ===== */
+  html[data-view="signature"] #vitrin, html[data-view="street"] #vitrin { display: none; }
+  #vitrin { position: relative; height: 600vh; background: var(--black); color: var(--paper); }
+  .vt-stage { --glow: 138,118,96; --w: min(50vh, 36vw); position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; perspective: 1400px;
+    background: radial-gradient(ellipse 55% 60% at 58% 55%, rgba(var(--glow),.55) 0%, rgba(var(--glow),.16) 45%, rgba(10,10,10,0) 75%), #0A0A0A; }
+  .vt-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .vt-item { perspective: 1600px; position: absolute; left: 50%; top: 50%; width: var(--w); height: calc(var(--w) * 1.14); margin: calc(var(--w) * -0.57) 0 0 calc(var(--w) * -0.5); will-change: transform, opacity; }
+  .vt-card { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: vtFloat 6s ease-in-out infinite; }
+  .vt-item:nth-child(2n) .vt-card { animation-delay: -3s; }
+  .vt-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)) drop-shadow(0 0 1px rgba(255,255,255,.25)); user-select: none; -webkit-user-drag: none; }
+  .vt-card .vt-back { transform: rotateY(180deg); }
+  @keyframes vtFloat { 0%,100% { translate: 0 -1.2%; } 50% { translate: 0 1.2%; } }
+  .vt-shadow { position: absolute; left: calc(50% + 8vw); top: calc(50% + var(--w) * .6); width: calc(var(--w) * .7); height: 26px; margin-left: calc(var(--w) * -.35);
+    background: radial-gradient(ellipse at center, rgba(0,0,0,.6), rgba(0,0,0,0) 70%); transition: opacity .6s; opacity: 0; pointer-events: none; }
+  .vt-intro, .vt-outro { position: absolute; left: 0; right: 0; text-align: center; padding: 0 6vw; z-index: 200; }
+  .vt-intro { top: 17vh; }
+  .vt-outro { bottom: 12vh; opacity: 0; }
+  .vt-kicker { font-family: var(--sans); font-size: .72rem; letter-spacing: .38em; text-transform: uppercase; color: rgba(243,241,236,.6); }
+  .vt-intro h2, .vt-outro h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1.02; margin-top: 14px; letter-spacing: .02em; }
+  .vt-hint { margin-top: 18px; font-family: var(--sans); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(243,241,236,.55); }
+  .vt-hint::after { content: ""; display: block; width: 1px; height: 46px; margin: 14px auto 0; background: linear-gradient(rgba(243,241,236,.7), rgba(243,241,236,0)); animation: vtLine 2s ease-in-out infinite; transform-origin: top; }
+  @keyframes vtLine { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+  .vt-info { position: absolute; left: 7vw; top: 50%; width: min(30vw, 420px); margin-top: -120px; z-index: 200; opacity: 0; }
+  .vt-info .vt-no { font-family: var(--sans); font-size: .72rem; letter-spacing: .32em; color: rgba(243,241,236,.55); }
+  .vt-info h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.6vw, 3.4rem); line-height: 1; margin: 14px 0 0; }
+  .vt-info .vt-tag { font-family: var(--serif); font-style: italic; font-size: 1.25rem; margin-top: 14px; color: rgba(243,241,236,.85); }
+  .vt-info .vt-spec { font-family: var(--sans); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; margin-top: 18px; color: rgba(243,241,236,.55); }
+  .vt-info .vt-price { display: block; font-family: var(--sans); font-size: 1.05rem; letter-spacing: .08em; margin-top: 22px; }
+  .vt-btn { display: inline-block; margin-top: 22px; padding: 14px 30px; border: 1px solid rgba(243,241,236,.55); color: var(--paper); text-decoration: none;
+    font-family: var(--sans); font-size: .74rem; letter-spacing: .26em; text-transform: uppercase; transition: background .4s, color .4s; }
+  .vt-btn:hover { background: var(--paper); color: var(--black); }
+  .vt-outro .vt-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .vt-dots { position: absolute; right: 4vw; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 200; }
+  .vt-dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 1px solid rgba(243,241,236,.6); background: transparent; cursor: pointer; transition: background .4s, transform .4s; }
+  .vt-dots button.on { background: var(--paper); transform: scale(1.35); }
+  @media (max-width: 759px) {
+    #vitrin { height: 560vh; }
+    .vt-stage { --w: min(78vw, 46vh); background: radial-gradient(ellipse 85% 50% at 50% 40%, rgba(var(--glow),.55) 0%, rgba(var(--glow),.15) 50%, rgba(10,10,10,0) 80%), #0A0A0A; }
+    .vt-shadow { left: 50%; top: calc(39% + var(--w) * .6); }
+    .vt-intro { top: 15vh; }
+    .vt-info { left: 6vw; right: 6vw; width: auto; top: auto; bottom: 11vh; margin: 0; text-align: center; }
+    .vt-info h3 { font-size: 1.9rem; margin-top: 8px; }
+    .vt-info .vt-tag { font-size: 1.05rem; margin-top: 8px; }
+    .vt-info .vt-spec { font-size: .66rem; margin-top: 10px; }
+    .vt-info .vt-price { margin-top: 10px; }
+    .vt-btn { margin-top: 14px; padding: 12px 24px; }
+    .vt-dots { right: 3.5vw; gap: 11px; }
+    .vt-outro { bottom: 9vh; }
+  }
+  @media (prefers-reduced-motion: reduce) { .vt-card, .vt-hint::after { animation: none; } }
 </style>
 <style>.seo-h1{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 <!-- Google Analytics -->
@@ -425,6 +478,68 @@ fbq('track', 'PageView');
     </a>
     <div class="marquee gate-marquee" aria-hidden="true"><div class="track"><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i></div></div>
   </div>
+
+  <section id="vitrin" aria-label="VAELO Vitrin">
+    <div class="vt-stage">
+      <div class="vt-intro">
+        <div class="vt-kicker">VAĖLO Vitrin</div>
+        <h2>Her detayı yakından keşfedin.</h2>
+        <div class="vt-hint">Kaydırın</div>
+      </div>
+      <div class="vt-shadow" aria-hidden="true"></div>
+      <div class="vt-item" data-glow="#b08a52"><div class="vt-card"><img class="vt-front" src="assets/vitrin/50979076_0.webp" alt="VAELO Signature Hoodie Siyah" width="640" height="720" decoding="async"></div></div>
+      <div class="vt-item" data-glow="#2e4f93"><div class="vt-card"><img class="vt-front" src="assets/vitrin/50979137_0.webp" alt="VAELO Signature Hoodie Lacivert" width="640" height="720" decoding="async"></div></div>
+      <div class="vt-item" data-glow="#9aa3ad"><div class="vt-card"><img class="vt-front" src="assets/vitrin/51195135_0.webp" alt="VAELO Street Division Hoodie Siyah · Etiket Logo" width="640" height="720" decoding="async"><img class="vt-back" src="assets/vitrin/51195135_1.webp" alt="VAELO Street Division Hoodie Siyah · Etiket Logo – arka" width="618" height="720" decoding="async"></div></div>
+      <div class="vt-item" data-glow="#3f6f9e"><div class="vt-card"><img class="vt-front" src="assets/vitrin/51195056_0.webp" alt="VAELO Street Division Hoodie Lacivert · Etiket Logo" width="640" height="720" decoding="async"><img class="vt-back" src="assets/vitrin/51195056_1.webp" alt="VAELO Street Division Hoodie Lacivert · Etiket Logo – arka" width="618" height="720" decoding="async"></div></div>
+      <div class="vt-item" data-glow="#a0815c"><div class="vt-card"><img class="vt-front" src="assets/vitrin/51194538_0.webp" alt="VAELO Street Division Tişört Siyah · V Logo" width="640" height="720" decoding="async"><img class="vt-back" src="assets/vitrin/51194538_1.webp" alt="VAELO Street Division Tişört Siyah · V Logo – arka" width="618" height="720" decoding="async"></div></div>
+      <div class="vt-info" data-id="50979076">
+        <div class="vt-no">01 / 05</div>
+        <h3>Signature Hoodie</h3>
+        <p class="vt-tag">Siyah — Sessiz lüksün en saf hâli.</p>
+        <p class="vt-spec">380 GSM şardonlu pamuk · Oversize</p>
+        <span class="vt-price">1.269 TL</span>
+        <a class="vt-btn" href="urun/signature-hoodie-siyah-50979076.html">İncele</a>
+      </div>
+      <div class="vt-info" data-id="50979137">
+        <div class="vt-no">02 / 05</div>
+        <h3>Signature Hoodie</h3>
+        <p class="vt-tag">Lacivert — Gece mavisinde zamansız zarafet.</p>
+        <p class="vt-spec">380 GSM şardonlu pamuk · Oversize</p>
+        <span class="vt-price">1.379 TL</span>
+        <a class="vt-btn" href="urun/signature-hoodie-lacivert-50979137.html">İncele</a>
+      </div>
+      <div class="vt-info" data-id="51195135">
+        <div class="vt-no">03 / 05</div>
+        <h3>Street Division Hoodie</h3>
+        <p class="vt-tag">Siyah · Etiket Logo — Önde sade imza, arkada şehrin manifestosu.</p>
+        <p class="vt-spec">380 GSM şardonlu pamuk · Oversize</p>
+        <span class="vt-price">1.499 TL</span>
+        <a class="vt-btn" href="urun/street-division-hoodie-siyah-etiket-logo-51195135.html">İncele</a>
+      </div>
+      <div class="vt-info" data-id="51195056">
+        <div class="vt-no">04 / 05</div>
+        <h3>Street Division Hoodie</h3>
+        <p class="vt-tag">Lacivert · Etiket Logo — Şehrin ritmi, VAĖLO kalitesi.</p>
+        <p class="vt-spec">380 GSM şardonlu pamuk · Oversize</p>
+        <span class="vt-price">1.499 TL</span>
+        <a class="vt-btn" href="urun/street-division-hoodie-lacivert-etiket-logo-51195056.html">İncele</a>
+      </div>
+      <div class="vt-info" data-id="51194538">
+        <div class="vt-no">05 / 05</div>
+        <h3>Street Division Tişört</h3>
+        <p class="vt-tag">Siyah · V Logo — Önünde sadelik, arkasında imza.</p>
+        <p class="vt-spec">%100 pamuk · Oversize</p>
+        <span class="vt-price">919 TL</span>
+        <a class="vt-btn" href="urun/street-division-tisort-siyah-v-logo-51194538.html">İncele</a>
+      </div>
+      <div class="vt-dots"><button aria-label="Signature Hoodie Siyah"></button><button aria-label="Signature Hoodie Lacivert"></button><button aria-label="Street Division Hoodie Siyah · Etiket Logo"></button><button aria-label="Street Division Hoodie Lacivert · Etiket Logo"></button><button aria-label="Street Division Tişört Siyah · V Logo"></button></div>
+      <div class="vt-outro">
+        <div class="vt-kicker">Koleksiyonun tamamı</div>
+        <h2>Size ait olanı seçin.</h2>
+        <div class="vt-btns"><a class="vt-btn" href="#signature" data-view="signature">Signature Premium</a><a class="vt-btn" href="#street" data-view="street">Street Division</a></div>
+      </div>
+    </div>
+  </section>
 
   <section id="koleksiyon">
     <div class="head rv">
@@ -1111,5 +1226,6 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
 </script>
 <script src="/assets/sepet.js" defer></script>
 <script src="/assets/cerez.js" defer></script>
+<script src="/assets/vitrin.js" defer></script>
 </body>
 </html>
