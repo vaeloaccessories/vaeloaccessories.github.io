@@ -31,8 +31,8 @@
   var lerp = function (a, b, k) { return a + (b - a) * k; };
 
   function lineup(i, mobile) {
-    var sp = mobile ? 15 : 13;                       // aralık (vw)
-    return { x: (i - (N - 1) / 2) * sp, y: mobile ? -4 : 2, s: mobile ? 0.3 : 0.4, rz: (i % 2 ? 9 : -9), ry: 0, o: 1 };
+    var sp = mobile ? 12.5 : 10.5;                       // aralık (vw)
+    return { x: (i - (N - 1) / 2) * sp, y: mobile ? -4 : 2, s: mobile ? 0.26 : 0.34, rz: (i % 2 ? 9 : -9), ry: 0, o: 1 };
   }
   function hero(i, c, mobile) {
     var a = clamp(Math.abs(c), 0, 1), s = smooth(0.28, 0.72, a), dir = c > 0 ? -1 : 1;
