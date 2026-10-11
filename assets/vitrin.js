@@ -1,122 +1,127 @@
-/* VAELO Vitrin — kaydırdıkça dönen 3D ürün vitrini (Signature ve Street sayfalarında ayrı ayrı) */
+/* VAELO Vitrin — kaydırdıkça yana kayan ürün vitrini (Signature ve Street sayfalarında ayrı ayrı)
+   Ortadaki ürün net, yanlardaki ürünler soluk ve bulanık. "İncele"ye basınca ekran karelere bölünüp ürün sayfası açılır. */
 (function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
-  var smooth = function (a, b, v) { var x = clamp((v - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
-  var lerp = function (a, b, k) { return a + (b - a) * k; };
-  var hexToRgb = function (h) { h = h.replace('#', ''); return [parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)]; };
+  var ease = function (t) { return t * t * (3 - 2 * t); };
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
 
   // fiyatları güncel ürün listesinden al (Shopier'den güncellenen dosya)
+  var prices = {};
   fetch('products.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
-    var map = {};
-    (d.products || []).forEach(function (p) { map[p.id] = p; });
-    document.querySelectorAll('.vt-info').forEach(function (el) {
-      var p = map[el.getAttribute('data-id')], pr = el.querySelector('.vt-price');
-      if (p && pr && p.price) pr.textContent = Number(p.price).toLocaleString('tr-TR') + ' TL';
+    (d.products || []).forEach(function (p) { if (p.price) prices[p.id] = Number(p.price).toLocaleString('tr-TR') + ' TL'; });
+    document.querySelectorAll('.vv-item').forEach(function (el) {
+      var p = prices[el.getAttribute('data-id')]; if (p) el.setAttribute('data-price', p);
     });
+    document.querySelectorAll('.vitrin').forEach(function (s) { if (s._vs) s._vs.info(true); });
   }).catch(function () {});
 
   function Vitrin(sec) {
-    var stage = sec.querySelector('.vt-stage');
-    var cards = [].slice.call(sec.querySelectorAll('.vt-item'));
-    var infos = [].slice.call(sec.querySelectorAll('.vt-info'));
-    var dots = [].slice.call(sec.querySelectorAll('.vt-dots button'));
-    var intro = sec.querySelector('.vt-intro');
-    var outro = sec.querySelector('.vt-outro');
-    var shadow = sec.querySelector('.vt-shadow');
-    var N = cards.length;
-    var glow = cards.map(function (c) { return hexToRgb(c.getAttribute('data-glow')); });
-    var baseGlow = hexToRgb(sec.getAttribute('data-glow') || '#8a7660');
-    var flips = cards.map(function (c) { return !!c.querySelector('.vt-back'); });
-    var mobile = false, H = 1, raf = 0, active = false, last = -1;
+    var stage = sec.querySelector('.vv-stage');
+    var items = [].slice.call(sec.querySelectorAll('.vv-item'));
+    var info = sec.querySelector('.vv-info');
+    var nameEl = info.querySelector('.vv-name'), tagEl = info.querySelector('.vv-tag'), specEl = info.querySelector('.vv-spec');
+    var priceEl = info.querySelector('.vv-price'), btn = info.querySelector('.vv-btn');
+    var nowEl = sec.querySelector('.vv-now'), barEl = sec.querySelector('.vv-bar i'), hint = sec.querySelector('.vv-hint');
+    var pix = sec.querySelector('.vv-pix');
+    var N = items.length, pos = 0, target = 0, cur = -1, raf = 0, active = false, mobile = false, H = 1, busy = false, swapT = 0;
 
-    function lineup(i) {
-      var sp = mobile ? Math.min(15, 78 / N) : Math.min(13, 70 / N);   // aralık (vw)
-      var sc = mobile ? (N > 4 ? 0.26 : 0.32) : (N > 4 ? 0.34 : 0.42);
-      return { x: (i - (N - 1) / 2) * sp, y: mobile ? -4 : 2, s: sc, rz: (i % 2 ? 9 : -9), ry: 0, o: 1 };
-    }
-    function hero(i, c) {
-      var a = clamp(Math.abs(c), 0, 1), s = smooth(0.28, 0.72, a), dir = c > 0 ? -1 : 1;
-      var ry = c * 50;
-      if (flips[i]) ry += 180 * smooth(-0.05, 0.09, c);   // arkasını göstermek için hızlı dönüş
-      return { x: mobile ? 0 : 8, y: (mobile ? -7 : 0) + dir * s * 115, s: 1 - s * 0.15, rz: -7 + c * 18, ry: ry, o: 1 - smooth(0.45, 0.8, a) };
-    }
     function measure() {
       mobile = window.innerWidth < 760;
-      sec.style.height = ((N + 1.6) * (mobile ? 92 : 100)) + 'vh';
-      H = sec.offsetHeight - window.innerHeight;
+      sec.style.height = (100 + N * (mobile ? 60 : 70)) + 'vh';
+      H = Math.max(1, sec.offsetHeight - window.innerHeight);
     }
-    function frame() {
+    function layout() {
+      var step = mobile ? 46 : 27;
+      for (var i = 0; i < N; i++) {
+        var d = i - pos, a = Math.abs(d), c = Math.min(a, 1), el = items[i];
+        var o = a <= 1 ? 1 - c * 0.55 : Math.max(0, 0.45 - (a - 1) * 0.9);
+        el.style.transform = 'translateX(' + (d * step).toFixed(3) + 'vw) scale(' + (1 - c * 0.22).toFixed(4) + ')';
+        el.style.opacity = o.toFixed(3);
+        el.style.filter = c < 0.02 ? 'none' : 'blur(' + (c * 3).toFixed(2) + 'px)';
+        el.style.zIndex = 10 - Math.round(a);
+        el.classList.toggle('on', a < 0.5);
+        el.tabIndex = a < 1.5 ? 0 : -1;
+        el.style.pointerEvents = a < 1.5 ? 'auto' : 'none';
+      }
+    }
+    function info2(now) {
+      var el = items[cur]; if (!el) return;
+      var fill = function () {
+        nameEl.textContent = el.getAttribute('data-name');
+        tagEl.textContent = el.getAttribute('data-tag');
+        specEl.textContent = el.getAttribute('data-spec');
+        priceEl.textContent = el.getAttribute('data-price');
+        btn.setAttribute('href', el.getAttribute('data-href'));
+        info.classList.remove('swap');
+      };
+      clearTimeout(swapT);
+      if (now || reduce) return fill();
+      info.classList.add('swap'); swapT = setTimeout(fill, 260);
+    }
+    function tick() {
       raf = 0;
+      var diff = target - pos;
+      pos = (Math.abs(diff) < 0.0005 || reduce) ? target : pos + diff * 0.075;
+      layout();
+      if (Math.abs(target - pos) > 0.0005) raf = requestAnimationFrame(tick);
+    }
+    function update() {
       var r = sec.getBoundingClientRect();
       if (!r.height) return;                          // bölüm gizliyse (başka sayfa açık) hiçbir şey yapma
-      var t = clamp(-r.top / Math.max(H, 1), 0, 1) * (N + 1);
-      if (Math.abs(t - last) < 0.0005) return;
-      last = t;
-      var a0 = smooth(0, 1, t), a2 = smooth(N + 0.3, N + 1, t);
-
-      for (var i = 0; i < N; i++) {
-        var L = lineup(i), P;
-        if (t < 1) {
-          var T = i === 0 ? hero(0, -0.3) : { x: L.x * 3.2, y: L.y + 30, s: 0.3, rz: L.rz * 3, ry: 0, o: 0 };
-          P = { x: lerp(L.x, T.x, a0), y: lerp(L.y, T.y, a0), s: lerp(L.s, T.s, a0), rz: lerp(L.rz, T.rz, a0), ry: lerp(L.ry, T.ry, a0), o: lerp(1, T.o, a0) };
-        } else {
-          P = hero(i, t - (i + 1));
-          if (a2 > 0) {
-            var ry = P.ry % 360;
-            P = { x: lerp(P.x, L.x, a2), y: lerp(P.y, L.y, a2), s: lerp(P.s, L.s, a2), rz: lerp(P.rz, L.rz, a2), ry: lerp(ry, ry > 90 ? 360 : 0, a2), o: lerp(P.o, 1, a2) };
-          }
-        }
-        var el = cards[i];
-        el.style.transform = 'translate3d(' + P.x.toFixed(2) + 'vw,' + P.y.toFixed(2) + 'vh,0) scale(' + P.s.toFixed(4) + ') rotateZ(' + P.rz.toFixed(2) + 'deg)';
-        el.firstElementChild.style.transform = 'rotateY(' + P.ry.toFixed(2) + 'deg)';
-        el.style.opacity = P.o.toFixed(3);
-        el.style.zIndex = Math.round(P.s * 100);
+      var p = clamp(-r.top / H, 0, 1);
+      var t = p * (N - 1), f = Math.min(N - 2, Math.floor(t)), fr = t - Math.max(0, f);
+      // her ürün ortada biraz bekler, aradaki geçiş yumuşakça olur
+      target = N < 2 ? 0 : Math.max(0, f) + ease(clamp((fr - 0.15) / 0.7, 0, 1));
+      if (!raf) raf = requestAnimationFrame(tick);
+      hint.style.opacity = p > 0.02 ? 0 : 1;
+      var i = Math.round(target);
+      if (i !== cur) {
+        var first = cur < 0; cur = i; info2(first);
+        nowEl.textContent = pad(i + 1);
+        barEl.style.transform = 'scaleX(' + ((i + 1) / N) + ')';
       }
-
-      // arka plan ışığının rengi
-      var idx = clamp(Math.round(t - 1), 0, N - 1), g;
-      if (t < 1) g = [lerp(baseGlow[0], glow[0][0], a0), lerp(baseGlow[1], glow[0][1], a0), lerp(baseGlow[2], glow[0][2], a0)];
-      else {
-        var f = clamp(t - 1, 0, N - 1), lo = Math.floor(f), hi = Math.min(lo + 1, N - 1), k = smooth(0.35, 0.65, f - lo);
-        g = [lerp(glow[lo][0], glow[hi][0], k), lerp(glow[lo][1], glow[hi][1], k), lerp(glow[lo][2], glow[hi][2], k)];
-        if (a2 > 0) g = [lerp(g[0], baseGlow[0], a2), lerp(g[1], baseGlow[1], a2), lerp(g[2], baseGlow[2], a2)];
-      }
-      stage.style.setProperty('--glow', Math.round(g[0]) + ',' + Math.round(g[1]) + ',' + Math.round(g[2]));
-
-      // yazılar
-      var heroOn = (t > 0.6 && t < N + 0.45);
-      infos.forEach(function (el, j) {
-        var c = t - (j + 1), o = 1 - smooth(0.18, 0.38, Math.abs(c));
-        if (j === 0) o = Math.min(o, smooth(0.55, 0.9, t));
-        el.style.opacity = o.toFixed(3);
-        el.style.transform = 'translateY(' + (c * -40).toFixed(1) + 'px)';
-        el.style.pointerEvents = o > 0.5 ? 'auto' : 'none';
-      });
-      intro.style.opacity = (1 - smooth(0.05, 0.4, t)).toFixed(3);
-      outro.style.opacity = smooth(N + 0.55, N + 0.95, t).toFixed(3);
-      shadow.style.opacity = heroOn ? '1' : '0';
-      dots.forEach(function (d, j) { d.classList.toggle('on', heroOn && j === idx); });
     }
-    function req() { if (!raf) raf = requestAnimationFrame(frame); }
-    function refresh() { measure(); last = -1; req(); }
-
-    // noktalara tıklayınca o ürüne kaydır
-    dots.forEach(function (d, j) {
-      d.addEventListener('click', function () {
-        var y = window.scrollY + sec.getBoundingClientRect().top + (j + 1) / (N + 1) * H + 2;
-        if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.4 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+    function goTo(i) {
+      var y = window.scrollY + sec.getBoundingClientRect().top + (N < 2 ? 0 : i / (N - 1)) * H + 2;
+      if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.2 }); else window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    // ekran küçük karelere bölünür, kareler rastgele dolar, sonra ürün sayfası açılır
+    function pixelGo(href) {
+      if (reduce || busy) { location.href = href; return; }
+      busy = true;
+      var cols = mobile ? 8 : 16, rows = mobile ? 14 : 9, cells = [], T = 600;
+      pix.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+      pix.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+      pix.innerHTML = '';
+      for (var k = 0; k < cols * rows; k++) { var s = document.createElement('span'); pix.appendChild(s); cells.push(s); }
+      cells.slice().sort(function () { return Math.random() - 0.5; }).forEach(function (c, j, arr) {
+        setTimeout(function () { c.classList.add('in'); }, (j / arr.length) * T);
       });
-    });
+      setTimeout(function () { location.href = href; }, T + 380);
+    }
 
+    items.forEach(function (el, i) {
+      el.addEventListener('click', function () { if (i === cur) pixelGo(el.getAttribute('data-href')); else goTo(i); });
+    });
+    btn.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault(); pixelGo(btn.getAttribute('href'));
+    });
+    // geri tuşuyla dönülünce kareleri temizle
+    window.addEventListener('pageshow', function () { pix.innerHTML = ''; busy = false; });
+
+    function refresh() { measure(); update(); }
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { active = e[0].isIntersecting; if (active) { last = -1; req(); } }).observe(sec);
+      new IntersectionObserver(function (e) { active = e[0].isIntersecting; if (active) update(); }).observe(sec);
     } else active = true;
-    window.addEventListener('scroll', function () { if (active) req(); }, { passive: true });
-    window.addEventListener('resize', refresh);
+    window.addEventListener('scroll', function () { if (active) update(); }, { passive: true });
+    window.addEventListener('resize', function () { refresh(); layout(); });
     // sayfa (Ana sayfa / Signature / Street) değişince yeniden ölç
     new MutationObserver(function () { setTimeout(refresh, 30); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-view'] });
     window.addEventListener('load', refresh);
-    refresh();
+    measure(); layout(); update();
+    sec._vs = { info: function () { info2(true); } };
   }
 
   // vitrin yalnızca bu dosya gerçekten çalışınca görünür (eski/bozuk dosyada sayfa takılmasın)
