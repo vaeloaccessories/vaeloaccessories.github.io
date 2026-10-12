@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>VAELO Yönetim Paneli</title>
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root{--bg:#0A0A0A;--card:#141414;--line:#262626;--txt:#F3F1EC;--muted:#8F8B83;--gold:#C8B79E;--ok:#7FB08A;--warn:#D9B36C;--bad:#D27D7D}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--txt);font:300 15px/1.55 Jost,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold)}
+  button,select,input{font:inherit;color:inherit}
+  .logo{font:600 1.5rem/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.32em}
+  .logo small{display:block;font:400 .62rem/1 Jost,sans-serif;letter-spacing:.3em;color:var(--muted);margin-top:6px;text-transform:uppercase}
+  .hidden{display:none!important}
+
+  /* giriş */
+  .login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .login-box{width:100%;max-width:380px}
+  .login-box .logo{text-align:center;margin-bottom:40px}
+  .login-box label{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+  .login-box input{width:100%;padding:13px 14px;background:var(--card);border:1px solid var(--line);border-radius:0;font-size:16px}
+  .login-box input:focus{outline:none;border-color:var(--gold)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;background:var(--txt);color:var(--bg);border:0;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-decoration:none;font-weight:400}
+  .btn.full{width:100%;margin-top:22px;padding:15px}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  .btn.sm{padding:8px 12px;font-size:.68rem}
+  .btn[disabled]{opacity:.5;cursor:default}
+  .link{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.85rem;margin-top:16px;display:block}
+  .msg{font-size:.88rem;margin-top:14px;min-height:1.2em;color:var(--bad)}
+  .msg.ok{color:var(--ok)}
+  .note{font-size:.85rem;color:var(--muted);margin-top:14px;line-height:1.6}
+
+  /* panel */
+  header.top{position:sticky;top:0;z-index:10;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:1200px;margin:0 auto;padding:16px 18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .who{font-size:.78rem;color:var(--muted);text-align:right}
+  .who button{margin-top:4px}
+  nav.tabs{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs button{flex:none;background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px 12px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer}
+  nav.tabs button.on{color:var(--txt);border-color:var(--gold)}
+  nav.tabs button .dot{display:inline-block;min-width:18px;padding:0 5px;height:18px;line-height:18px;border-radius:9px;background:var(--gold);color:var(--bg);font-size:.66rem;letter-spacing:0;margin-left:6px;text-align:center}
+  main{max-width:1200px;margin:0 auto;padding:22px 18px 80px}
+  h2{font:500 1.9rem/1.1 "Cormorant Garamond",Georgia,serif;margin-bottom:6px}
+  h3{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:28px 0 12px}
+  .sub{color:var(--muted);font-size:.88rem;margin-bottom:18px}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px}
+  .seg{display:inline-flex;border:1px solid var(--line)}
+  .seg button{background:none;border:0;padding:8px 14px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--txt);color:var(--bg)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+  .kpi{background:var(--card);border:1px solid var(--line);padding:16px}
+  .kpi b{display:block;font:500 2rem/1.1 "Cormorant Garamond",Georgia,serif;margin-top:6px}
+  .kpi span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .kpi em{display:block;font-style:normal;font-size:.75rem;color:var(--muted);margin-top:2px}
+  .kpi.live b{color:var(--ok)}
+  .card{background:var(--card);border:1px solid var(--line);padding:16px;margin-bottom:10px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:820px){.grid2{grid-template-columns:1fr}}
+  .bar-row{display:grid;grid-template-columns:1fr 56px;gap:10px;align-items:center;font-size:.86rem;padding:7px 0;border-bottom:1px solid var(--line)}
+  .bar-row:last-child{border:0}
+  .bar-row .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar-row .track{height:4px;background:#222;margin-top:5px}
+  .bar-row .fill{height:4px;background:var(--gold)}
+  .bar-row .n{text-align:right;font-variant-numeric:tabular-nums}
+  .chart{width:100%;height:180px;display:block}
+  .chart text{fill:var(--muted);font-size:10px;font-family:Jost,sans-serif}
+  .empty{color:var(--muted);font-size:.9rem;padding:18px 0}
+  .feed .ev{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+  .feed .ev time{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;padding-top:1px}
+  .feed .ev small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px}
+  .tag{display:inline-block;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--line);color:var(--muted);margin-right:6px;vertical-align:1px}
+  .tag.urun{border-color:#3d362b;color:var(--gold)}
+  .tag.sepet{border-color:#2d4233;color:var(--ok)}
+  .tag.odeme{border-color:#4a3d22;color:var(--warn)}
+  .tag.uye{border-color:#2b3a4a;color:#8fb3d9}
+  .items{margin-top:10px}
+  .item{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:.86rem}
+  .item img{width:44px;height:55px;object-fit:cover;background:#222}
+  .item small{color:var(--muted)}
+  .head-line{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .head-line b{font-weight:400}
+  .muted{color:var(--muted);font-size:.82rem}
+  .total{font:500 1.3rem/1 "Cormorant Garamond",Georgia,serif}
+  select{background:var(--bg);border:1px solid var(--line);padding:7px 10px;font-size:.82rem}
+  .st-odeme-ekrani{color:var(--warn)}.st-musteri-dondu,.st-odendi{color:var(--ok)}.st-kargoda,.st-teslim{color:#8fb3d9}.st-iptal{color:var(--bad)}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th{text-align:left;font-weight:400;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--line)}
+  td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl{overflow-x:auto}
+  .prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .prod{background:var(--card);border:1px solid var(--line)}
+  .prod img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#222}
+  .prod div{padding:12px 14px 14px;font-size:.86rem}
+  .prod .st{display:flex;gap:14px;color:var(--muted);font-size:.78rem;margin-top:6px}
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+  .links a{display:block;background:var(--card);border:1px solid var(--line);padding:16px;text-decoration:none;color:var(--txt)}
+  .links a span{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
+  .links a:hover{border-color:var(--gold)}
+  .filters input{background:var(--card);border:1px solid var(--line);padding:9px 12px;min-width:220px;font-size:16px}
+  .loading{color:var(--muted);padding:30px 0}
+</style>
+</head>
+<body>
+
+<!-- GİRİŞ -->
+<section class="login" id="girisEkrani">
+  <div class="login-box">
+    <div class="logo">VAĖLO<small>Yönetim Paneli</small></div>
+    <form id="girisForm" novalidate>
+      <label for="gEmail">E-posta</label>
+      <input id="gEmail" type="email" autocomplete="username" required>
+      <label for="gSifre">Şifre</label>
+      <input id="gSifre" type="password" autocomplete="current-password" required>
+      <button class="btn full" type="submit">Giriş Yap</button>
+      <p class="msg" id="gMsg" aria-live="polite"></p>
+      <button class="link" type="button" id="ilkKez">İlk kez mi giriyorsun? Şifre belirle</button>
+      <button class="link" type="button" id="unuttum">Şifremi unuttum</button>
+    </form>
+  </div>
+</section>
+
+<!-- E-POSTA DOĞRULAMA -->
+<section class="login hidden" id="dogrulaEkrani">
+  <div class="login-box">
+    <div class="logo">VAĖLO<small>Güvenlik Adımı</small></div>
+    <p class="note" style="color:var(--txt)">Paneli sadece senin açabilmen için e-posta adresini doğrulaman gerekiyor.</p>
+    <p class="note"><b id="dEmail"></b> adresine bir doğrulama maili gönderdik. Maildeki bağlantıya tıkla, sonra aşağıdaki düğmeye bas. (Mail gelmediyse Gereksiz/Spam klasörüne bak.)</p>
+    <button class="btn full" id="dogruladim" type="button">Doğruladım, Devam Et</button>
+    <button class="btn full ghost" id="tekrarGonder" type="button">Maili Tekrar Gönder</button>
+    <p class="msg" id="dMsg" aria-live="polite"></p>
+    <button class="link" type="button" data-cikis>Çıkış yap</button>
+  </div>
+</section>
+
+<!-- PANEL -->
+<div id="panel" class="hidden">
+  <header class="top">
+    <div class="top-in">
+      <div class="logo">VAĖLO<small>Yönetim Paneli</small></div>
+      <div class="who"><div id="kim"></div><button class="btn ghost sm" type="button" data-cikis>Çıkış</button></div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button type="button" data-t="genel" class="on">Genel Bakış</button>
+      <button type="button" data-t="canli">Canlı</button>
+      <button type="button" data-t="sepetler">Sepetler</button>
+      <button type="button" data-t="siparisler">Siparişler</button>
+      <button type="button" data-t="uyeler">Üyeler</button>
+      <button type="button" data-t="urunler">Ürünler</button>
+      <button type="button" data-t="baglantilar">Bağlantılar</button>
+    </nav>
+  </header>
+  <main id="icerik"></main>
+</div>
+
+<script type="module">
+import { auth, db, gun, hataMetni, ADMIN_EMAIL } from '/assets/fb.js';
+import {
+  onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  sendEmailVerification, sendPasswordResetEmail, signOut
+} from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+import {
+  collection, query, where, orderBy, limit, getDocs, onSnapshot, doc, updateDoc,
+  documentId, Timestamp
+} from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js';
+
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const tl = (n) => '₺' + Number(n || 0).toLocaleString('tr-TR');
+const sayi = (n) => Number(n || 0).toLocaleString('tr-TR');
+const tarihSaat = (ts) => ts ? new Date(ts.seconds * 1000).toLocaleString('tr-TR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—';
+const saat = (ts) => ts ? new Date(ts.seconds * 1000).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }) : '';
+function once(ts) {
+  if (!ts) return '';
+  const s = Math.max(0, (Date.now() - ts.seconds * 1000) / 1000);
+  if (s < 60) return 'az önce';
+  if (s < 3600) return Math.floor(s / 60) + ' dk önce';
+  if (s < 86400) return Math.floor(s / 3600) + ' saat önce';
+  return Math.floor(s / 86400) + ' gün önce';
+}
+const ekranlar = ['girisEkrani', 'dogrulaEkrani', 'panel'];
+function goster(id) { ekranlar.forEach((e) => document.getElementById(e).classList.toggle('hidden', e !== id)); }
+document.querySelectorAll('[data-cikis]').forEach((b) => b.onclick = () => signOut(auth));
+
+// ---------------- GİRİŞ ----------------
+$('#gEmail').value = ADMIN_EMAIL;
+const gMsg = $('#gMsg');
+$('#girisForm').onsubmit = async (e) => {
+  e.preventDefault(); gMsg.className = 'msg'; gMsg.textContent = '';
+  try { await signInWithEmailAndPassword(auth, $('#gEmail').value.trim(), $('#gSifre').value); }
+  catch (x) { gMsg.textContent = hataMetni(x) + (x.code === 'auth/invalid-credential' ? ' İlk kez giriyorsan aşağıdan şifre belirle.' : ''); }
+};
+$('#ilkKez').onclick = async () => {
+  gMsg.className = 'msg'; gMsg.textContent = '';
+  const email = $('#gEmail').value.trim(), sifre = $('#gSifre').value;
+  if (email.toLowerCase() !== ADMIN_EMAIL) { gMsg.textContent = 'Yönetici hesabı yalnızca ' + ADMIN_EMAIL + ' ile açılabilir.'; return; }
+  if (sifre.length < 8) { gMsg.textContent = 'Şifre kutusuna en az 8 karakterli yeni bir şifre yaz, sonra bu bağlantıya tekrar bas.'; return; }
+  try {
+    const k = await createUserWithEmailAndPassword(auth, email, sifre);
+    await sendEmailVerification(k.user);
+  } catch (x) {
+    gMsg.textContent = x.code === 'auth/email-already-in-use' ? 'Bu hesap zaten var. Şifreni hatırlamıyorsan "Şifremi unuttum"a bas.' : hataMetni(x);
+  }
+};
+$('#unuttum').onclick = async () => {
+  try { await sendPasswordResetEmail(auth, $('#gEmail').value.trim()); gMsg.className = 'msg ok'; gMsg.textContent = 'Şifre yenileme bağlantısı mailine gönderildi.'; }
+  catch (x) { gMsg.className = 'msg'; gMsg.textContent = hataMetni(x); }
+};
+$('#tekrarGonder').onclick = async () => {
+  try { await sendEmailVerification(auth.currentUser); $('#dMsg').className = 'msg ok'; $('#dMsg').textContent = 'Mail tekrar gönderildi.'; }
+  catch (x) { $('#dMsg').className = 'msg'; $('#dMsg').textContent = hataMetni(x); }
+};
+$('#dogruladim').onclick = async () => {
+  await auth.currentUser.reload();
+  if (auth.currentUser.emailVerified) { await auth.currentUser.getIdToken(true); paneliAc(); }
+  else { $('#dMsg').className = 'msg'; $('#dMsg').textContent = 'Henüz doğrulanmamış görünüyor. Maildeki bağlantıya tıkladığından emin ol.'; }
+};
+
+onAuthStateChanged(auth, (u) => {
+  if (!u) { goster('girisEkrani'); return; }
+  if ((u.email || '').toLowerCase() !== ADMIN_EMAIL) {
+    signOut(auth); goster('girisEkrani'); gMsg.className = 'msg'; gMsg.textContent = 'Bu hesabın yönetim paneline erişim yetkisi yok.'; return;
+  }
+  if (!u.emailVerified) { $('#dEmail').textContent = u.email; goster('dogrulaEkrani'); return; }
+  paneliAc();
+});
+
+// ---------------- PANEL ----------------
+let acik = false, sekme = 'genel', urunler = [], urunAd = {}, canliDinle = null;
+async function paneliAc() {
+  try { localStorage.setItem('vaelo-admin', '1'); } catch (e) {}
+  goster('panel'); $('#kim').textContent = auth.currentUser.email;
+  if (acik) return; acik = true;
+  try {
+    const d = await fetch('/products.json?' + Date.now()).then((r) => r.json());
+    urunler = d.products || [];
+    urunler.forEach((p) => { urunAd[p.id] = p.name.replace(/^vaelo\s*/i, ''); });
+  } catch (e) {}
+  sekmeAc(location.hash.slice(1) || 'genel');
+}
+$('#tabs').onclick = (e) => { const b = e.target.closest('[data-t]'); if (b) sekmeAc(b.dataset.t); };
+function sekmeAc(t) {
+  if (!SEKMELER[t]) t = 'genel';
+  sekme = t; history.replaceState(null, '', '#' + t);
+  document.querySelectorAll('#tabs [data-t]').forEach((b) => b.classList.toggle('on', b.dataset.t === t));
+  if (canliDinle) { canliDinle(); canliDinle = null; }
+  $('#icerik').innerHTML = '<p class="loading">Yükleniyor…</p>';
+  SEKMELER[t]().catch((e) => {
+    console.error(e);
+    $('#icerik').innerHTML = '<div class="card"><p>Veriler okunamadı.</p><p class="note">' + esc(e.code === 'permission-denied' ? 'Yetki hatası: veritabanı güvenlik kuralları henüz yüklenmemiş olabilir veya e-posta doğrulanmamış.' : (e.message || e)) + '</p></div>';
+  });
+}
+function gunlerArasi(n) {
+  const l = []; const d = new Date();
+  for (let i = n - 1; i >= 0; i--) l.push(gun(new Date(d.getTime() - i * 86400000)));
+  return l;
+}
+async function gunlukOku(n) {
+  const gunler = gunlerArasi(n);
+  const q = await getDocs(query(collection(db, 'gunluk'), where(documentId(), '>=', gunler[0])));
+  const m = {}; q.forEach((d) => { m[d.id] = d.data(); });
+  return gunler.map((g) => Object.assign({ g, sayfa: 0, oturum: 0, odeme: 0, siparis: 0, uye: 0, urun: {}, sepet: {} }, m[g] || {}));
+}
+function topla(l, alan) { return l.reduce((t, x) => t + (Number(x[alan]) || 0), 0); }
+function haritaTopla(l, alan) {
+  const m = {}; l.forEach((x) => Object.entries(x[alan] || {}).forEach(([k, v]) => { m[k] = (m[k] || 0) + (Number(v) || 0); }));
+  return Object.entries(m).sort((a, b) => b[1] - a[1]);
+}
+function barlar(l, bos) {
+  if (!l.length) return '<p class="empty">' + (bos || 'Henüz veri yok.') + '</p>';
+  const max = l[0][1] || 1;
+  return l.map(([k, v]) => `<div class="bar-row"><div><div class="lbl">${esc(k)}</div><div class="track"><div class="fill" style="width:${Math.max(3, v / max * 100)}%"></div></div></div><div class="n">${sayi(v)}</div></div>`).join('');
+}
+function grafik(l) {
+  const W = 700, H = 180, P = 22, n = l.length, max = Math.max(1, ...l.map((x) => x.oturum || 0));
+  const bw = (W - P) / n;
+  const bars = l.map((x, i) => {
+    const h = (x.oturum || 0) / max * (H - 40);
+    const lab = n <= 10 || i % Math.ceil(n / 8) === 0 || i === n - 1 ? `<text x="${P + i * bw + bw / 2}" y="${H - 4}" text-anchor="middle">${x.g.slice(8)}.${x.g.slice(5, 7)}</text>` : '';
+    const val = n <= 10 && x.oturum ? `<text x="${P + i * bw + bw / 2}" y="${H - 22 - h}" text-anchor="middle">${x.oturum}</text>` : '';
+    return `<rect x="${P + i * bw + bw * .18}" y="${H - 18 - h}" width="${bw * .64}" height="${Math.max(h, 1)}" fill="#C8B79E" opacity="${i === n - 1 ? 1 : .55}"><title>${x.g}: ${x.oturum || 0} ziyaret</title></rect>${val}${lab}`;
+  }).join('');
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Günlük ziyaret grafiği"><text x="0" y="12">${max}</text><line x1="${P}" x2="${W}" y1="${H - 18}" y2="${H - 18}" stroke="#262626"/>${bars}</svg>`;
+}
+const ad = (id) => urunAd[id] || ('Ürün #' + id);
+
+const SEKMELER = {
+  // ---- GENEL BAKIŞ ----
+  async genel() {
+    const aralik = Number(sessionStorage.getItem('vaelo-aralik') || 7);
+    const l = await gunlukOku(aralik === 1 ? 7 : aralik);
+    const secili = aralik === 1 ? l.slice(-1) : l;
+    const bes = Timestamp.fromMillis(Date.now() - 5 * 60000);
+    let simdi = 0, kaynaklar = [], cihazlar = [];
+    try {
+      const c = await getDocs(query(collection(db, 'olaylar'), where('t', '>=', bes), orderBy('t', 'desc'), limit(200)));
+      simdi = new Set(c.docs.map((d) => d.data().oturum)).size;
+      const bas = Timestamp.fromMillis(Date.now() - aralik * 86400000);
+      const s = await getDocs(query(collection(db, 'olaylar'), where('t', '>=', bas), orderBy('t', 'desc'), limit(600)));
+      const k = {}, cz = {}, gor = new Set();
+      s.forEach((d) => { const x = d.data(); if (gor.has(x.oturum)) return; gor.add(x.oturum); k[x.kaynak || 'doğrudan'] = (k[x.kaynak || 'doğrudan'] || 0) + 1; cz[x.cihaz || '?'] = (cz[x.cihaz || '?'] || 0) + 1; });
+      kaynaklar = Object.entries(k).sort((a, b) => b[1] - a[1]).slice(0, 8);
+      cihazlar = Object.entries(cz).sort((a, b) => b[1] - a[1]);
+    } catch (e) {}
+    const bakilan = haritaTopla(secili, 'urun').slice(0, 8).map(([k, v]) => [ad(k), v]);
+    const eklenen = haritaTopla(secili, 'sepet').slice(0, 8).map(([k, v]) => [ad(k), v]);
+    const etiket = aralik === 1 ? 'bugün' : 'son ' + aralik + ' gün';
+    $('#icerik').innerHTML = `
+      <h2>Genel Bakış</h2><p class="sub">Sitenin ${etiket} durumu. Sayılar Türkiye saatine göredir.</p>
+      <div class="row"><div class="seg" id="aralik">${[[1, 'Bugün'], [7, '7 Gün'], [30, '30 Gün']].map(([v, t]) => `<button type="button" data-v="${v}" class="${v === aralik ? 'on' : ''}">${t}</button>`).join('')}</div>
+      <button class="btn ghost sm" type="button" id="yenile">Yenile</button></div>
+      <div class="kpis">
+        <div class="kpi live"><span>Şu an sitede</span><b>${simdi}</b><em>son 5 dakika</em></div>
+        <div class="kpi"><span>Ziyaret</span><b>${sayi(topla(secili, 'oturum'))}</b><em>siteye giriş sayısı</em></div>
+        <div class="kpi"><span>Sayfa görüntüleme</span><b>${sayi(topla(secili, 'sayfa'))}</b></div>
+        <div class="kpi"><span>Ürün görüntüleme</span><b>${sayi(haritaTopla(secili, 'urun').reduce((t, x) => t + x[1], 0))}</b></div>
+        <div class="kpi"><span>Sepete ekleme</span><b>${sayi(haritaTopla(secili, 'sepet').reduce((t, x) => t + x[1], 0))}</b></div>
+        <div class="kpi"><span>Ödemeye geçen</span><b>${sayi(topla(secili, 'odeme'))}</b></div>
+        <div class="kpi"><span>Tamamlanan ödeme</span><b>${sayi(topla(secili, 'siparis'))}</b></div>
+        <div class="kpi"><span>Yeni üye</span><b>${sayi(topla(secili, 'uye'))}</b></div>
+      </div>
+      <h3>Günlük ziyaret</h3><div class="card">${grafik(l)}</div>
+      <div class="grid2">
+        <div><h3>En çok bakılan ürünler</h3><div class="card">${barlar(bakilan, 'Henüz ürün görüntülenmedi.')}</div></div>
+        <div><h3>En çok sepete eklenenler</h3><div class="card">${barlar(eklenen, 'Henüz sepete ekleme yok.')}</div></div>
+        <div><h3>Ziyaretçiler nereden geliyor</h3><div class="card">${barlar(kaynaklar, 'Henüz veri yok.')}</div></div>
+        <div><h3>Cihaz</h3><div class="card">${barlar(cihazlar, 'Henüz veri yok.')}</div></div>
+      </div>
+      <p class="note">Not: Çerezleri reddeden ziyaretçiler yalnızca toplam sayılara eklenir; "nereden geliyor", "cihaz", "canlı" ve "sepetler" bölümleri çerezleri kabul eden ziyaretçileri ve üyeleri gösterir.</p>`;
+    $('#aralik').onclick = (e) => { const b = e.target.closest('[data-v]'); if (!b) return; sessionStorage.setItem('vaelo-aralik', b.dataset.v); sekmeAc('genel'); };
+    $('#yenile').onclick = () => sekmeAc('genel');
+  },
+
+  // ---- CANLI ----
+  async canli() {
+    $('#icerik').innerHTML = `<h2>Canlı Hareketler</h2><p class="sub">Siteye girenler ve ne yaptıkları, anında. Sayfa açık kaldıkça kendiliğinden güncellenir.</p><div class="card feed" id="feed"><p class="loading">Yükleniyor…</p></div>`;
+    const renk = {};
+    const kim = (x) => x.uye ? '<b>' + esc(x.uye) + '</b>' : 'Ziyaretçi <b>#' + esc(String(x.oturum || '').slice(0, 4).toUpperCase()) + '</b>';
+    const ne = (x) => {
+      if (x.tur === 'urun') return `<span class="tag urun">Ürün</span>${esc(x.ad || ad(x.urun))} ürününe baktı`;
+      if (x.tur === 'sepet') return `<span class="tag sepet">Sepet</span>${esc(x.ad || ad(x.urun))} sepete ekledi`;
+      if (x.tur === 'odeme') return `<span class="tag odeme">Ödeme</span>Ödeme ekranına geçti (${esc(x.ad || '')})`;
+      if (x.tur === 'uye') return `<span class="tag uye">Üyelik</span>Üye oldu`;
+      const s = x.sayfa || '/';
+      const isim = s === '/' || s === '/#' ? 'Ana sayfa' : /#signature/.test(s) ? 'Signature koleksiyonu' : /#street/.test(s) ? 'Street Division koleksiyonu' : s;
+      return `<span class="tag">Sayfa</span>${esc(isim)}`;
+    };
+    canliDinle = onSnapshot(query(collection(db, 'olaylar'), orderBy('t', 'desc'), limit(80)), (q) => {
+      const el = $('#feed'); if (!el) return;
+      if (q.empty) { el.innerHTML = '<p class="empty">Henüz hareket yok. Siteyi bir ziyaretçi açıp çerezleri kabul ettiğinde burada görünecek.</p>'; return; }
+      el.innerHTML = q.docs.map((d) => { const x = d.data(); return `<div class="ev"><time>${saat(x.t)}<br>${x.t ? new Date(x.t.seconds * 1000).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit' }) : ''}</time><div>${kim(x)} · ${ne(x)}<small>${esc(x.cihaz || '')}${x.kaynak ? ' · ' + esc(x.kaynak) : ''}</small></div></div>`; }).join('');
+    }, (e) => { const el = $('#feed'); if (el) el.innerHTML = '<p class="empty">Okunamadı: ' + esc(e.code || e.message) + '</p>'; });
+  },
+
+  // ---- SEPETLER ----
+  async sepetler() {
+    const q = await getDocs(query(collection(db, 'sepetler'), orderBy('guncel', 'desc'), limit(150)));
+    const l = q.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter((s) => (s.urunler || []).length);
+    const toplam = l.reduce((t, s) => t + (s.toplam || 0), 0);
+    $('#icerik').innerHTML = `<h2>Sepetler</h2><p class="sub">Şu anda içinde ürün olan sepetler. Satın alan veya sepetini boşaltan listeden düşer.</p>
+      <div class="kpis" style="margin-bottom:18px"><div class="kpi"><span>Dolu sepet</span><b>${l.length}</b></div><div class="kpi"><span>Sepetlerdeki toplam tutar</span><b>${tl(toplam)}</b></div></div>
+      ${l.length ? l.map((s) => `<div class="card"><div class="head-line"><div>${s.email ? '<b>' + esc(s.ad || s.email) + '</b><br><span class="muted">' + esc(s.email) + '</span>' : '<b>Ziyaretçi #' + esc(s.id.slice(0, 4).toUpperCase()) + '</b><br><span class="muted">Üye değil</span>'}</div><div style="text-align:right"><span class="total">${tl(s.toplam)}</span><br><span class="muted">${once(s.guncel)} · ${esc(s.cihaz || '')}</span></div></div>
+        <div class="items">${s.urunler.map((x) => `<div class="item">${x.img ? `<img src="${esc(x.img)}" alt="" referrerpolicy="no-referrer" loading="lazy">` : '<span></span>'}<div>${esc(x.ad)}<br><small>Beden ${esc(x.beden)} · ${x.adet} adet</small></div><div>${tl(x.fiyat * x.adet)}</div></div>`).join('')}</div>
+        ${s.email ? `<div class="actions"><a class="btn ghost sm" href="mailto:${esc(s.email)}?subject=${encodeURIComponent('VAELO sepetiniz sizi bekliyor')}">Mail at</a></div>` : ''}</div>`).join('') : '<p class="empty">Şu an dolu sepet yok.</p>'}`;
+  },
+
+  // ---- SİPARİŞLER ----
+  async siparisler() {
+    const q = await getDocs(query(collection(db, 'siparisler'), orderBy('t', 'desc'), limit(150)));
+    const hepsi = q.docs.map((d) => Object.assign({ no: d.id }, d.data()));
+    const filtre = sessionStorage.getItem('vaelo-sfiltre') || 'hepsi';
+    const DUR = { 'odeme-ekrani': 'Ödeme yarım kaldı / bekleniyor', 'musteri-dondu': 'Ödeme yapıldı (PayTR\'den kontrol et)', 'odendi': 'Ödendi · hazırlanıyor', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal' };
+    const l = hepsi.filter((o) => filtre === 'hepsi' || (filtre === 'yarim' ? o.durum === 'odeme-ekrani' : o.durum !== 'odeme-ekrani'));
+    const tamam = hepsi.filter((o) => o.durum !== 'odeme-ekrani' && o.durum !== 'iptal');
+    $('#icerik').innerHTML = `<h2>Siparişler</h2><p class="sub">Ödeme ekranına geçen her müşteri burada. Kesin ödeme onayını her zaman PayTR panelinden kontrol et.</p>
+      <div class="kpis" style="margin-bottom:18px"><div class="kpi"><span>Ödenen sipariş</span><b>${tamam.length}</b></div><div class="kpi"><span>Ciro (ödenen)</span><b>${tl(tamam.reduce((t, o) => t + (o.toplam || 0), 0))}</b></div><div class="kpi"><span>Yarım kalan</span><b>${hepsi.length - hepsi.filter((o) => o.durum !== 'odeme-ekrani').length}</b></div></div>
+      <div class="row"><div class="seg" id="sf">${[['hepsi', 'Tümü'], ['tamam', 'Ödenenler'], ['yarim', 'Yarım kalanlar']].map(([v, t]) => `<button type="button" data-v="${v}" class="${v === filtre ? 'on' : ''}">${t}</button>`).join('')}</div><a class="btn ghost sm" href="https://www.paytr.com/magaza/islemler" target="_blank" rel="noopener">PayTR işlemleri</a></div>
+      ${l.length ? l.map((o) => {
+        const tel = String(o.tel || '').replace(/\D/g, '').replace(/^0/, '90');
+        return `<div class="card"><div class="head-line"><div><b>${esc(o.ad)}</b><br><span class="muted">${esc(o.no)} · ${tarihSaat(o.t)}</span></div><div style="text-align:right"><span class="total">${tl(o.toplam)}</span><br><span class="muted st-${esc(o.durum)}">${esc(DUR[o.durum] || o.durum)}</span></div></div>
+        <div class="items">${(o.urunler || []).map((x) => `<div class="item"><span></span><div>${esc(x.ad)}<br><small>Beden ${esc(x.beden)} · ${x.adet} adet</small></div><div>${tl(x.fiyat * x.adet)}</div></div>`).join('')}</div>
+        <p class="muted" style="margin-top:10px">${esc(o.adres)}, ${esc(o.ilce)} / ${esc(o.il)}<br>${esc(o.tel)} · ${esc(o.email)}${o.hediye ? ' · <b style="color:var(--gold)">Hediye paketi</b>' : ''}${o.uid ? ' · Üye' : ''}</p>
+        <div class="actions"><select data-no="${esc(o.no)}" aria-label="Sipariş durumu">${Object.entries(DUR).map(([k, v]) => `<option value="${k}"${k === o.durum ? ' selected' : ''}>${v}</option>`).join('')}</select>
+        ${tel ? `<a class="btn ghost sm" href="https://wa.me/${tel}" target="_blank" rel="noopener">WhatsApp</a><a class="btn ghost sm" href="tel:${esc(o.tel)}">Ara</a>` : ''}${o.email ? `<a class="btn ghost sm" href="mailto:${esc(o.email)}?subject=${encodeURIComponent('VAELO siparişiniz ' + o.no)}">Mail</a>` : ''}</div></div>`;
+      }).join('') : '<p class="empty">Bu filtrede sipariş yok.</p>'}`;
+    $('#sf').onclick = (e) => { const b = e.target.closest('[data-v]'); if (!b) return; sessionStorage.setItem('vaelo-sfiltre', b.dataset.v); sekmeAc('siparisler'); };
+    document.querySelectorAll('select[data-no]').forEach((s) => s.onchange = async () => {
+      s.disabled = true;
+      try { await updateDoc(doc(db, 'siparisler', s.dataset.no), { durum: s.value }); sekmeAc('siparisler'); }
+      catch (e) { alert('Kaydedilemedi: ' + (e.code || e.message)); s.disabled = false; }
+    });
+  },
+
+  // ---- ÜYELER ----
+  async uyeler() {
+    const q = await getDocs(query(collection(db, 'uyeler'), orderBy('kayit', 'desc'), limit(1000)));
+    const l = q.docs.map((d) => Object.assign({ uid: d.id }, d.data()));
+    $('#icerik').innerHTML = `<h2>Üyeler</h2><p class="sub">Sitene üye olan herkes. Toplam <b>${l.length}</b> üye, <b>${l.filter((u) => u.bulten).length}</b> kişi kampanya maili almak istiyor.</p>
+      <div class="row filters"><input type="search" id="ara" placeholder="İsim veya e-posta ara"><button class="btn ghost sm" type="button" id="csv">Excel'e aktar (CSV)</button></div>
+      ${l.length ? `<div class="card tbl"><table><thead><tr><th>Ad soyad</th><th>E-posta</th><th>Üyelik</th><th>Son giriş</th><th>Kampanya</th></tr></thead><tbody id="uyeTbl">${l.map((u) => `<tr data-s="${esc((u.ad + ' ' + u.email).toLowerCase())}"><td>${esc(u.ad)}</td><td><a href="mailto:${esc(u.email)}">${esc(u.email)}</a></td><td>${tarihSaat(u.kayit)}</td><td>${once(u.son)}</td><td>${u.bulten ? 'Evet' : '—'}</td></tr>`).join('')}</tbody></table></div>` : '<p class="empty">Henüz üye yok.</p>'}`;
+    const ara = $('#ara');
+    if (ara) ara.oninput = () => { const v = ara.value.toLowerCase(); document.querySelectorAll('#uyeTbl tr').forEach((r) => { r.style.display = r.dataset.s.includes(v) ? '' : 'none'; }); };
+    $('#csv').onclick = () => {
+      const satir = [['Ad soyad', 'E-posta', 'Üyelik tarihi', 'Kampanya izni']].concat(l.map((u) => [u.ad, u.email, u.kayit ? new Date(u.kayit.seconds * 1000).toLocaleString('tr-TR') : '', u.bulten ? 'Evet' : 'Hayır']));
+      const csv = '﻿' + satir.map((r) => r.map((c) => '"' + String(c == null ? '' : c).replace(/"/g, '""') + '"').join(';')).join('\n');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = 'vaelo-uyeler-' + gun() + '.csv'; a.click();
+    };
+  },
+
+  // ---- ÜRÜNLER ----
+  async urunler() {
+    const l = await gunlukOku(30);
+    const bak = Object.fromEntries(haritaTopla(l, 'urun')), sep = Object.fromEntries(haritaTopla(l, 'sepet'));
+    const sirali = urunler.slice().sort((a, b) => (bak[b.id] || 0) - (bak[a.id] || 0));
+    $('#icerik').innerHTML = `<h2>Ürünler</h2><p class="sub">Sitedeki ${urunler.length} ürün ve son 30 gündeki ilgisi. Ürünler, fiyatlar ve açıklamalar Shopier mağazandan her 30 dakikada bir otomatik gelir; değiştirmek için Shopier'de düzenlemen yeterli.</p>
+      <div class="row"><a class="btn sm" href="https://www.shopier.com/VAELOaccessories" target="_blank" rel="noopener">Shopier mağazası</a><a class="btn ghost sm" href="https://github.com/vaeloaccessories/vaeloaccessories.github.io/actions/workflows/sync-shopier.yml" target="_blank" rel="noopener">Ürünleri şimdi güncelle</a></div>
+      <div class="prods">${sirali.map((p) => `<div class="prod">${p.images && p.images[0] ? `<img src="${esc(p.images[0])}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}<div>${esc(ad(p.id))}<br><span class="muted">${esc(p.category || '')}</span><br><b>${tl(p.price)}</b>
+        <div class="st"><span>👁 ${sayi(bak[p.id])} bakış</span><span>🛒 ${sayi(sep[p.id])} sepete ekleme</span></div>
+        <div class="actions"><a class="btn ghost sm" href="${esc(p.url)}" target="_blank" rel="noopener">Shopier</a></div></div></div>`).join('')}</div>`;
+  },
+
+  // ---- BAĞLANTILAR ----
+  async baglantilar() {
+    const L = [
+      ['vaelo.com.tr', 'Siteni müşteri gibi aç', 'https://www.vaelo.com.tr/'],
+      ['Shopier', 'Ürün, fiyat, stok ve açıklama düzenle', 'https://www.shopier.com/VAELOaccessories'],
+      ['PayTR Mağaza Paneli', 'Ödemeler, iadeler, hesap', 'https://www.paytr.com/magaza'],
+      ['Printitürk', 'Üretim ve baskı siparişleri', 'https://www.printiturk.com/'],
+      ['Geliver', 'Aras Kargo gönderileri', 'https://app.geliver.io/'],
+      ['Google Analytics', 'Ayrıntılı trafik raporları', 'https://analytics.google.com/'],
+      ['Meta Business', 'Instagram / Facebook reklamları', 'https://business.facebook.com/'],
+      ['Firebase', 'Üyeler ve veritabanı (ileri düzey)', 'https://console.firebase.google.com/project/vaelo-8c726/overview'],
+      ['GitHub', 'Sitenin dosyaları', 'https://github.com/vaeloaccessories/vaeloaccessories.github.io'],
+      ['METUnic', 'Alan adı (domain) ve DNS', 'https://www.metunic.com.tr/'],
+      ['ImprovMX', 'info@vaelo.com.tr mail yönlendirme', 'https://app.improvmx.com/'],
+      ['Google Search Console', 'Google aramalarındaki görünüm', 'https://search.google.com/search-console']
+    ];
+    $('#icerik').innerHTML = `<h2>Bağlantılar</h2><p class="sub">İşini yürüttüğün tüm paneller tek yerde.</p><div class="links">${L.map(([t, d, u]) => `<a href="${u}" target="_blank" rel="noopener">${t}<span>${d}</span></a>`).join('')}</div>`;
+  }
+};
+</script>
+</body>
+</html>

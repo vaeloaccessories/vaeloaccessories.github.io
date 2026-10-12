@@ -22,7 +22,8 @@
   // ---- sepet verisi ----
   var KEY = 'vaelo-sepet', mem = [];
   function oku() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return mem; } }
-  function yaz(s) { mem = s; try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} ciz(); }
+  function haber(ad, d) { try { document.dispatchEvent(new CustomEvent(ad, { detail: d })); } catch (e) {} }
+  function yaz(s) { mem = s; try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} ciz(); haber('vaelo:sepet', s); }
   function ekle(u) {
     var s = oku(), v = s.filter(function (x) { return x.id === u.id && x.size === u.size; })[0];
     if (v) v.qty = Math.min(10, v.qty + 1); else s.push({ id: u.id, name: u.name, price: u.price, img: u.img, size: u.size, qty: 1 });
@@ -142,6 +143,7 @@
       '<p class="vs-err" aria-live="polite"></p>' +
       '<button class="vs-back" type="button">← Sepete dön</button></form>';
     var f = body.querySelector('form');
+    var u = window.VAELO_UYE; if (u) { if (!form.name && u.ad) form.name = u.ad; if (!form.email && u.email) form.email = u.email; }
     ['name', 'email', 'phone', 'city', 'district', 'address'].forEach(function (k) { if (form[k]) f.elements[k].value = form[k]; f.elements[k].oninput = function () { form[k] = this.value; }; });
     f.querySelector('.vs-back').onclick = function () { adim = 'sepet'; ciz(); };
     f.querySelector('#vs-onay').onchange = function () { form.onay = this.checked; };
@@ -162,6 +164,7 @@
           if (window.gtag) gtag('event', 'begin_checkout', { currency: 'TRY', value: d.total });
           if (window.fbq) fbq('track', 'InitiateCheckout', { value: d.total, currency: 'TRY' });
           try { sessionStorage.setItem('vaelo-tutar', String(d.total)); } catch (e3) {}
+          haber('vaelo:odeme', { order: d.order, total: d.total, veri: veri, urunler: oku() });
           var fr = pay.querySelector('iframe'); fr.src = d.iframe; pay.classList.add('on');
           go.disabled = false; go.textContent = 'Güvenli Öde · ' + tl(t.toplam);
         })
@@ -194,6 +197,7 @@
     ekleBtn.onclick = function () {
       if (!secili) { ipucu.textContent = 'Lütfen bir beden seçin.'; return; }
       ekle({ id: info.dataset.id, name: info.dataset.name, price: +info.dataset.price, img: info.dataset.img, size: secili });
+      haber('vaelo:ekle', { id: info.dataset.id, name: info.dataset.name });
       if (window.gtag) gtag('event', 'add_to_cart', { currency: 'TRY', value: +info.dataset.price });
       if (window.fbq) fbq('track', 'AddToCart', { content_ids: [info.dataset.id], content_type: 'product', value: +info.dataset.price, currency: 'TRY' });
       adim = 'sepet'; ciz(); ac();
