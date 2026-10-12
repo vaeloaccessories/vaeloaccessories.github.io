@@ -41,7 +41,7 @@ function ayarlar(env) {
 // Şifreleri göstermeden kontrol eder: uzunluk ve boşluk var mı.
 function kontrol(env) {
   const bilgi = (v) => ({ uzunluk: String(v ?? '').length, bosluk: /\s/.test(String(v ?? '')), dolu: !!v });
-  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), RESEND_API_KEY: bilgi(env.RESEND_API_KEY), SIPARISLER: !!env.SIPARISLER });
+  return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), RESEND_API_KEY: bilgi(env.RESEND_API_KEY), FIREBASE_SA: bilgi(env.FIREBASE_SA), SIPARISLER: !!env.SIPARISLER });
 }
 
 async function startPayment(request, env) {
@@ -187,11 +187,11 @@ function urunTablosu(o) {
     satir('<strong>Toplam</strong>', `<strong>${tl(o.total)}</strong>`) + `</table>`;
 }
 
-async function mailAt(env, to, subject, html, replyTo) {
+async function mailAt(env, to, subject, html, replyTo, from) {
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Authorization': 'Bearer ' + String(env.RESEND_API_KEY).trim(), 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env.MAIL_FROM || 'VAELO <siparis@vaelo.com.tr>', to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+    body: JSON.stringify({ from: from || env.MAIL_FROM || 'VAELO <siparis@vaelo.com.tr>', to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
   });
   if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
 }
@@ -225,6 +225,119 @@ async function siparisMailleri(env, oid, deneme) {
   await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
 }
 
+// ---- Üyelik mailleri: şifre yenileme, e-posta doğrulama, hoş geldin (Firebase + Resend) ----
+// Ayar: FIREBASE_SA (gizli) = Firebase "Hizmet hesabı" anahtar dosyasının (JSON) tamamı.
+// Bu ayar yoksa site, Firebase'in kendi (tasarımsız) maillerine geri döner.
+const FB_KEY = 'AIzaSyAX_6qzkUytZDPAvvAbPmWQJ2utij_E25k';
+const FB_PROJE = 'vaelo-8c726';
+let gToken = null;
+const b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const b64urlStr = (t) => b64url(new TextEncoder().encode(t));
+
+async function googleToken(env) {
+  if (gToken && gToken.exp > Date.now() + 60000) return gToken.v;
+  const sa = JSON.parse(env.FIREBASE_SA);
+  const now = Math.floor(Date.now() / 1000);
+  const govde = b64urlStr(JSON.stringify({ alg: 'RS256', typ: 'JWT' })) + '.' + b64urlStr(JSON.stringify({
+    iss: sa.client_email, scope: 'https://www.googleapis.com/auth/identitytoolkit https://www.googleapis.com/auth/cloud-platform',
+    aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 3600,
+  }));
+  const pem = sa.private_key.replace(/-----[^-]+-----/g, '').replace(/\s/g, '');
+  const der = Uint8Array.from(atob(pem), (c) => c.charCodeAt(0));
+  const key = await crypto.subtle.importKey('pkcs8', der, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
+  const imza = new Uint8Array(await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(govde)));
+  const r = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'grant_type=' + encodeURIComponent('urn:ietf:params:oauth:grant-type:jwt-bearer') + '&assertion=' + govde + '.' + b64url(imza),
+  });
+  const d = await r.json();
+  if (!d.access_token) throw new Error('Google anahtarı alınamadı: ' + JSON.stringify(d).slice(0, 200));
+  gToken = { v: d.access_token, exp: Date.now() + (d.expires_in || 3600) * 1000 };
+  return gToken.v;
+}
+
+// Firebase'den tek kullanımlık kod alır (mail Firebase tarafından GÖNDERİLMEZ, biz göndeririz).
+async function oobKod(env, requestType, email) {
+  const r = await fetch(`https://identitytoolkit.googleapis.com/v1/projects/${FB_PROJE}/accounts:sendOobCode`, {
+    method: 'POST', headers: { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ requestType, email, returnOobLink: true }),
+  });
+  const d = await r.json();
+  if (!r.ok || !d.oobLink) throw new Error((d.error && d.error.message) || 'kod alınamadı');
+  return new URL(d.oobLink).searchParams.get('oobCode');
+}
+
+async function kimlik(idToken) {
+  const r = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + FB_KEY, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idToken: String(idToken || '') }),
+  });
+  const d = await r.json().catch(() => ({}));
+  return d.users && d.users[0];
+}
+
+function dugme(link, yazi) {
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px 0 22px"><tr><td style="background:#0A0A0A"><a href="${link}" style="display:inline-block;padding:16px 34px;color:#F3F1EC;text-decoration:none;font-size:13px;letter-spacing:3px;text-transform:uppercase">${yazi}</a></td></tr></table>`;
+}
+const altNot = (link) => `<span style="color:#6B6861;font-size:12px">Düğme çalışmazsa bu bağlantıyı tarayıcınıza yapıştırın:<br><a href="${link}" style="color:#6B6861;word-break:break-all">${link}</a></span>`;
+const UYE_FROM = (env) => env.MAIL_FROM_UYE || 'VAELO <uyelik@vaelo.com.tr>';
+
+async function bekle(env, anahtar, saniye) {
+  if (!env.SIPARISLER) return false;
+  if (await env.SIPARISLER.get(anahtar)) return true;
+  await env.SIPARISLER.put(anahtar, '1', { expirationTtl: Math.max(60, saniye) });
+  return false;
+}
+
+async function uyeMail(request, env) {
+  if (!env.FIREBASE_SA || !env.RESEND_API_KEY) return json({ ok: false, yedek: true });
+  let b = {};
+  try { b = await request.json(); } catch { return json({ ok: false, error: 'Geçersiz istek.' }, 400); }
+  const tur = String(b.tur || '');
+  try {
+    if (tur === 'sifre') {
+      const email = String(b.email || '').trim().toLowerCase().slice(0, 160);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ ok: false, error: 'E-posta adresi geçerli görünmüyor.' }, 400);
+      if (await bekle(env, 'mail:sifre:' + email, 60)) return json({ ok: true });
+      let kod;
+      try { kod = await oobKod(env, 'PASSWORD_RESET', email); }
+      catch (err) { if (/EMAIL_NOT_FOUND|USER_NOT_FOUND/.test(err.message)) return json({ ok: true }); throw err; }
+      const link = `${SITE}/hesap-islem.html?mode=resetPassword&oobCode=${encodeURIComponent(kod)}`;
+      await mailAt(env, email, 'Şifrenizi yenileyin · VAELO', mailSablon('Şifrenizi yenileyin',
+        `Merhaba,<br><br>VAELO hesabınız için bir şifre yenileme talebi aldık. Yeni şifrenizi belirlemek için aşağıdaki düğmeye dokunun.` +
+        dugme(link, 'Şifremi Yenile') +
+        `Bu bağlantı güvenliğiniz için <strong>1 saat</strong> geçerlidir. Talep size ait değilse bu maili görmezden gelebilirsiniz; şifreniz değişmez.<br><br>` + altNot(link)), 'info@vaelo.com.tr', UYE_FROM(env));
+      return json({ ok: true });
+    }
+    const u = await kimlik(b.idToken);
+    if (!u || !u.email) return json({ ok: false, error: 'Oturum doğrulanamadı.' }, 401);
+    const ad = e(String(u.displayName || '').split(' ')[0]);
+    if (tur === 'dogrula') {
+      if (u.emailVerified) return json({ ok: true, zaten: true });
+      if (await bekle(env, 'mail:dogrula:' + u.localId, 60)) return json({ ok: true });
+      const kod = await oobKod(env, 'VERIFY_EMAIL', u.email);
+      const link = `${SITE}/hesap-islem.html?mode=verifyEmail&oobCode=${encodeURIComponent(kod)}`;
+      await mailAt(env, u.email, 'E-posta adresinizi doğrulayın · VAELO', mailSablon('E-posta adresinizi doğrulayın',
+        `Merhaba${ad ? ' ' + ad : ''},<br><br>Hesabınızı güvence altına almak için bu e-posta adresinin size ait olduğunu doğrulamamız gerekiyor.` +
+        dugme(link, 'E-postamı Doğrula') +
+        `Bu işlemi siz başlatmadıysanız bu maili görmezden gelebilirsiniz.<br><br>` + altNot(link)), 'info@vaelo.com.tr', UYE_FROM(env));
+      return json({ ok: true });
+    }
+    if (tur === 'hosgeldin') {
+      if (Date.now() - Number(u.createdAt || 0) > 30 * 60 * 1000) return json({ ok: true });
+      if (await bekle(env, 'mail:hosgeldin:' + u.localId, 60 * 60 * 24 * 30)) return json({ ok: true });
+      await mailAt(env, u.email, 'VAELO ailesine hoş geldiniz', mailSablon(`Hoş geldiniz${ad ? ', ' + ad : ''}.`,
+        `VAELO ailesinin bir parçası olduğunuz için teşekkür ederiz.<br><br>Her parçamız sizin için özel olarak, yüksek gramajlı premium kumaşla üretilir. Üyeliğinizle siparişlerinizi <strong>Hesabım</strong> bölümünden takip edebilir, ödeme bilgilerinizin otomatik dolmasıyla daha hızlı alışveriş yapabilirsiniz.` +
+        dugme(SITE + '/#signature', 'Koleksiyonu Keşfet') +
+        `Bir sorunuz olursa bu maile yanıt vermeniz yeterli; WhatsApp'tan da bize her zaman ulaşabilirsiniz.`), 'info@vaelo.com.tr', UYE_FROM(env));
+      return json({ ok: true });
+    }
+    return json({ ok: false, error: 'Bilinmeyen istek.' }, 400);
+  } catch (err) {
+    console.log('Üyelik maili hata:', tur, err.message);
+    return json({ ok: false, yedek: true });
+  }
+}
+
 // PayTR, ödeme sonucunu buraya bildirir (PayTR panelinde "Bildirim URL" olarak bu adresin sonuna /paytr-bildirim eklenir).
 async function paytrCallback(request, env) {
   const A = ayarlar(env);
@@ -252,6 +365,7 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
     if (request.method === 'POST' && url.pathname === '/odeme') return startPayment(request, env);
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
+    if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
     if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 2, hediye: HEDIYE_PAKETI });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

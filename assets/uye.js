@@ -3,7 +3,7 @@
  * - Ziyaret sayıları, ürün görüntülemeleri, sepetler ve siparişler admin paneli için kaydedilir.
  *   Çerezleri reddeden ziyaretçiden yalnızca kimliksiz toplam sayılar alınır.
  */
-import { auth, db, gun, hataMetni } from './fb.js';
+import { auth, db, gun, hataMetni, vaeloMail } from './fb.js';
 import {
   onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   signOut, sendPasswordResetEmail, updateProfile
@@ -216,6 +216,7 @@ function ciz() {
         await updateProfile(k.user, { displayName: ad });
         await setDoc(doc(db, 'uyeler', k.user.uid), { ad: ad.slice(0, 120), email: k.user.email, kayit: serverTimestamp(), son: serverTimestamp(), bulten: f.querySelector('#vu-bulten').checked, cihaz });
         say({ uye: increment(1) });
+        k.user.getIdToken().then((t) => vaeloMail('hosgeldin', { idToken: t })).catch(() => {});
         uye = auth.currentUser; olay('uye', { urun: null, ad: 'Yeni üyelik' });
         ciz();
       } catch (x) { err.textContent = hataMetni(x); go.disabled = false; go.textContent = 'Üye Ol'; }
@@ -243,9 +244,10 @@ function sifreCiz() {
   f.onsubmit = async (e) => {
     e.preventDefault(); err.textContent = '';
     try {
-      await sendPasswordResetEmail(auth, f.email.value.trim());
+      const em = f.email.value.trim();
+      if (!(await vaeloMail('sifre', { email: em }))) await sendPasswordResetEmail(auth, em);
       err.className = 'vu-msg'; err.textContent = 'Bağlantı gönderildi. Gelen kutunuzu (ve gereksiz klasörünü) kontrol edin.';
-    } catch (x) { err.className = 'vu-err'; err.textContent = hataMetni(x); }
+    } catch (x) { err.className = 'vu-err'; err.textContent = x.vaelo ? x.message : hataMetni(x); }
   };
 }
 

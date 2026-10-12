@@ -40,3 +40,16 @@ const HATALAR = {
 export function hataMetni(e) {
   return HATALAR[e && e.code] || 'Bir sorun oluştu. Lütfen tekrar deneyin.';
 }
+
+/** Tasarımlı üyelik maili (VAELO kasası üzerinden). Gönderemezse false döner; o zaman Firebase'in kendi maili kullanılır. */
+export async function vaeloMail(tur, veri) {
+  try {
+    const r = await fetch('https://vaelo-odeme.vaeloaccessories.workers.dev/uye-mail', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ tur }, veri || {}))
+    });
+    const d = await r.json();
+    if (d.ok) return true;
+    if (d.error && !d.yedek) { const e = new Error(d.error); e.vaelo = true; throw e; }
+    return false;
+  } catch (e) { if (e.vaelo) throw e; return false; }
+}

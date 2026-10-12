@@ -161,7 +161,7 @@
 </div>
 
 <script type="module">
-import { auth, db, gun, hataMetni, ADMIN_EMAIL } from '/assets/fb.js';
+import { auth, db, gun, hataMetni, ADMIN_EMAIL, vaeloMail } from '/assets/fb.js';
 import {
   onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   sendEmailVerification, sendPasswordResetEmail, signOut
@@ -190,6 +190,9 @@ function goster(id) { ekranlar.forEach((e) => document.getElementById(e).classLi
 document.querySelectorAll('[data-cikis]').forEach((b) => b.onclick = () => signOut(auth));
 
 // ---------------- GİRİŞ ----------------
+async function dogrulamaGonder(u) {
+  if (!(await vaeloMail('dogrula', { idToken: await u.getIdToken() }))) await sendEmailVerification(u);
+}
 $('#gEmail').value = ADMIN_EMAIL;
 const gMsg = $('#gMsg');
 $('#girisForm').onsubmit = async (e) => {
@@ -204,17 +207,17 @@ $('#ilkKez').onclick = async () => {
   if (sifre.length < 8) { gMsg.textContent = 'Şifre kutusuna en az 8 karakterli yeni bir şifre yaz, sonra bu bağlantıya tekrar bas.'; return; }
   try {
     const k = await createUserWithEmailAndPassword(auth, email, sifre);
-    await sendEmailVerification(k.user);
+    await dogrulamaGonder(k.user);
   } catch (x) {
     gMsg.textContent = x.code === 'auth/email-already-in-use' ? 'Bu hesap zaten var. Şifreni hatırlamıyorsan "Şifremi unuttum"a bas.' : hataMetni(x);
   }
 };
 $('#unuttum').onclick = async () => {
-  try { await sendPasswordResetEmail(auth, $('#gEmail').value.trim()); gMsg.className = 'msg ok'; gMsg.textContent = 'Şifre yenileme bağlantısı mailine gönderildi.'; }
+  try { const em = $('#gEmail').value.trim(); if (!(await vaeloMail('sifre', { email: em }))) await sendPasswordResetEmail(auth, em); gMsg.className = 'msg ok'; gMsg.textContent = 'Şifre yenileme bağlantısı mailine gönderildi.'; }
   catch (x) { gMsg.className = 'msg'; gMsg.textContent = hataMetni(x); }
 };
 $('#tekrarGonder').onclick = async () => {
-  try { await sendEmailVerification(auth.currentUser); $('#dMsg').className = 'msg ok'; $('#dMsg').textContent = 'Mail tekrar gönderildi.'; }
+  try { await dogrulamaGonder(auth.currentUser); $('#dMsg').className = 'msg ok'; $('#dMsg').textContent = 'Mail tekrar gönderildi.'; }
   catch (x) { $('#dMsg').className = 'msg'; $('#dMsg').textContent = hataMetni(x); }
 };
 $('#dogruladim').onclick = async () => {
