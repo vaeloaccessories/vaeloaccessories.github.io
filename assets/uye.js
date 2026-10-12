@@ -167,6 +167,18 @@ const css = `
 .vu-ord span{color:#6B6861}
 .vu-empty{color:#6B6861;font-size:.88rem}
 .vu-nav-btn{cursor:pointer}
+.vu-hg{position:fixed;inset:0;z-index:100001;background:#0A0A0A;color:#F3F1EC;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px 24px calc(32px + env(safe-area-inset-bottom,0px));opacity:0;transition:opacity .8s ease;font-family:Jost,Helvetica,Arial,sans-serif;font-weight:300}
+.vu-hg.on{opacity:1}
+.vu-hg-in{max-width:520px;transform:translateY(18px);transition:transform 1.1s cubic-bezier(.16,.84,.24,1)}
+.vu-hg.on .vu-hg-in{transform:none}
+.vu-hg-logo{font:600 2.1rem/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.34em;padding-left:.34em}
+.vu-hg-sub{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:#8F8B83;margin-top:10px}
+.vu-hg-line{width:40px;height:1px;background:#C8B79E;margin:44px auto 36px}
+.vu-hg h2{font:500 clamp(2.2rem,7vw,3.4rem)/1.1 "Cormorant Garamond",Georgia,serif;margin:0 0 18px}
+.vu-hg p{font-size:.98rem;line-height:1.75;color:#CFCBC3;margin:0 auto;max-width:420px}
+.vu-hg-btns{display:flex;flex-direction:column;gap:10px;margin-top:42px}
+.vu-hg-btns button{padding:16px;font:400 12px Jost,Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:1px solid #F3F1EC}
+.vu-hg-a{background:#F3F1EC;color:#0A0A0A}.vu-hg-b{background:transparent;color:#F3F1EC}
 `;
 const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -218,7 +230,7 @@ function ciz() {
         say({ uye: increment(1) });
         k.user.getIdToken().then((t) => vaeloMail('hosgeldin', { idToken: t })).catch(() => {});
         uye = auth.currentUser; olay('uye', { urun: null, ad: 'Yeni üyelik' });
-        ciz();
+        kapat(); hosGeldin(ad);
       } catch (x) { err.textContent = hataMetni(x); go.disabled = false; go.textContent = 'Üye Ol'; }
     } else {
       go.disabled = true; go.textContent = 'Giriş yapılıyor…';
@@ -228,6 +240,28 @@ function ciz() {
       } catch (x) { err.textContent = hataMetni(x); go.disabled = false; go.textContent = 'Giriş Yap'; }
     }
   };
+}
+
+function hosGeldin(ad) {
+  const ilk = esc(String(ad || '').trim().split(/\s+/)[0] || '');
+  const k = document.createElement('div');
+  k.className = 'vu-hg'; k.setAttribute('role', 'dialog'); k.setAttribute('aria-label', 'Hoş geldiniz');
+  k.innerHTML = `<div class="vu-hg-in">
+    <div class="vu-hg-logo">VAĖLO</div><div class="vu-hg-sub">Accessories &amp; Apparel</div>
+    <div class="vu-hg-line"></div>
+    <h2>Hoş geldiniz${ilk ? ', ' + ilk : ''}.</h2>
+    <p>Artık VAĖLO ailesinin bir parçasısınız. Siparişlerinizi Hesabım bölümünden takip edebilir, bir sonraki alışverişinizi çok daha hızlı tamamlayabilirsiniz. Hoş geldin mailiniz de yolda.</p>
+    <div class="vu-hg-btns"><button type="button" class="vu-hg-a">Koleksiyonu Keşfet</button><button type="button" class="vu-hg-b">Hesabım</button></div>
+  </div>`;
+  document.body.appendChild(k);
+  requestAnimationFrame(() => requestAnimationFrame(() => k.classList.add('on')));
+  const git = (sonra) => { k.classList.remove('on'); setTimeout(() => { k.remove(); sonra(); }, 600); };
+  k.querySelector('.vu-hg-a').onclick = () => git(() => {
+    const a = document.querySelector('a[data-view="signature"]');
+    if (a) a.click(); else location.href = '/#signature';
+  });
+  k.querySelector('.vu-hg-b').onclick = () => git(() => ac());
+  k.querySelector('.vu-hg-a').focus();
 }
 
 function sifreCiz() {
