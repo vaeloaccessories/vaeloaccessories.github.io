@@ -11,6 +11,7 @@
     if (deger === 'kabul') {
       if (window.gtag) gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
       if (window.fbq) fbq('consent', 'grant');
+      try { document.dispatchEvent(new CustomEvent('vaelo:cerez')); } catch (e) {}
     }
     bant.style.transform = 'translateY(110%)';
     setTimeout(function () { bant.remove(); }, 500);

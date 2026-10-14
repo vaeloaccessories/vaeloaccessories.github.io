@@ -89,10 +89,10 @@ addEventListener('hashchange', () => {
 });
 
 // ---------- sepet (sepet.js'ten gelen haberler) ----------
-document.addEventListener('vaelo:sepet', (e) => {
+function sepetiGonder(liste) {
   if (!izinVar()) return;
   const z = ziyaretciNo(); if (!z) return;
-  const s = (e.detail || []).slice(0, 30);
+  const s = (liste || []).slice(0, 30);
   sessizce(setDoc(doc(db, 'sepetler', z), {
     urunler: s.map((x) => ({ id: String(x.id), ad: String(x.name || '').slice(0, 120), beden: String(x.size || ''), adet: Number(x.qty) || 1, fiyat: Number(x.price) || 0, img: String(x.img || '').slice(0, 300) })),
     toplam: s.reduce((t, x) => t + (Number(x.price) || 0) * (Number(x.qty) || 1), 0),
@@ -102,6 +102,17 @@ document.addEventListener('vaelo:sepet', (e) => {
     email: uye ? (uye.email || null) : null,
     cihaz
   }));
+}
+function kayitliSepet() {
+  try { const s = JSON.parse(localStorage.getItem('vaelo-sepet') || '[]'); return Array.isArray(s) ? s : []; } catch (e) { return []; }
+}
+// Sepet her değiştiğinde
+document.addEventListener('vaelo:sepet', (e) => sepetiGonder(e.detail));
+// Çerezleri sonradan kabul eden ya da sonradan üye girişi yapan ziyaretçinin
+// zaten dolu olan sepeti de panele düşsün; sayfa her açıldığında da güncellensin.
+document.addEventListener('vaelo:cerez', () => { const s = kayitliSepet(); if (s.length) sepetiGonder(s); });
+onAuthStateChanged(auth, () => {
+  setTimeout(() => { const s = kayitliSepet(); if (s.length) sepetiGonder(s); }, 300);
 });
 document.addEventListener('vaelo:ekle', (e) => {
   const u = e.detail || {}; if (!u.id) return;

@@ -367,8 +367,18 @@ const SEKMELER = {
     const q = await getDocs(query(collection(db, 'sepetler'), orderBy('guncel', 'desc'), limit(150)));
     const l = q.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter((s) => (s.urunler || []).length);
     const toplam = l.reduce((t, s) => t + (s.toplam || 0), 0);
+    let eklenen = [], ekSayi = 0;
+    try {
+      const g = await gunlukOku(7);
+      const h = haritaTopla(g, 'sepet');
+      ekSayi = h.reduce((t, x) => t + x[1], 0);
+      eklenen = h.slice(0, 12).map(([k, v]) => [ad(k), v]);
+    } catch (e) {}
     $('#icerik').innerHTML = `<h2>Sepetler</h2><p class="sub">Şu anda içinde ürün olan sepetler. Satın alan veya sepetini boşaltan listeden düşer.</p>
-      <div class="kpis" style="margin-bottom:18px"><div class="kpi"><span>Dolu sepet</span><b>${l.length}</b></div><div class="kpi"><span>Sepetlerdeki toplam tutar</span><b>${tl(toplam)}</b></div></div>
+      <div class="kpis" style="margin-bottom:18px"><div class="kpi"><span>Dolu sepet</span><b>${l.length}</b><em>kişi kişi görünenler</em></div><div class="kpi"><span>Sepetlerdeki toplam tutar</span><b>${tl(toplam)}</b></div><div class="kpi"><span>Sepete ekleme</span><b>${sayi(ekSayi)}</b><em>son 7 gün · herkes</em></div></div>
+      <h3>Son 7 günde sepete eklenen ürünler</h3><div class="card" style="margin-bottom:18px">${barlar(eklenen, 'Son 7 günde sepete ekleme yok.')}</div>
+      <p class="note" style="margin-bottom:18px">Bu liste herkesi sayar. Aşağıdaki kişi kişi sepetler ise yalnızca çerezleri kabul eden ziyaretçileri ve üyeleri gösterir; çerezi reddeden birinin sepeti kişi olarak görünmez ama eklediği ürün yukarıdaki listede yer alır.</p>
+      <h3>Kişi kişi sepetler</h3>
       ${l.length ? l.map((s) => `<div class="card"><div class="head-line"><div>${s.email ? '<b>' + esc(s.ad || s.email) + '</b><br><span class="muted">' + esc(s.email) + '</span>' : '<b>Ziyaretçi #' + esc(s.id.slice(0, 4).toUpperCase()) + '</b><br><span class="muted">Üye değil</span>'}</div><div style="text-align:right"><span class="total">${tl(s.toplam)}</span><br><span class="muted">${once(s.guncel)} · ${esc(s.cihaz || '')}</span></div></div>
         <div class="items">${s.urunler.map((x) => `<div class="item">${x.img ? `<img src="${esc(x.img)}" alt="" referrerpolicy="no-referrer" loading="lazy">` : '<span></span>'}<div>${esc(x.ad)}<br><small>Beden ${esc(x.beden)} · ${x.adet} adet</small></div><div>${tl(x.fiyat * x.adet)}</div></div>`).join('')}</div>
         ${s.email ? `<div class="actions"><a class="btn ghost sm" href="mailto:${esc(s.email)}?subject=${encodeURIComponent('VAELO sepetiniz sizi bekliyor')}">Mail at</a></div>` : ''}</div>`).join('') : '<p class="empty">Şu an dolu sepet yok.</p>'}`;
