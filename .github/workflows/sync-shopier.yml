@@ -197,6 +197,10 @@ jobs:
             // Sitedeki fiyat = Shopier fiyatı + %15, sonu 9 ile biten sayıya yuvarlanır (799 → 919, 1099 → 1269, 1299 → 1499).
             const ZAM = 1.15;
             for (const p of products) p.price = Math.ceil((p.price * ZAM + 1) / 10) * 10 - 1;
+            // Shopier'deki tişört açıklamalarının hepsinde "düz siyah tişört" yazıyor; ürün adına göre doğru renk/baskı yazılır.
+            const renk = (n) => (/Beyaz/i.test(n) ? 'beyaz' : 'siyah');
+            const tisort = (n) => (/Grafik/i.test(n) ? 'grafik baskılı ' : /V Logo/i.test(n) ? 'V logo baskılı ' : 'düz ') + renk(n) + ' tişört';
+            for (const p of products) p.description = p.description.replace('düz siyah tişört', tisort(p.name));
             for (const p of products) p.images = p.images.map((u, i) => { const f = ['jpg', 'png'].map((e) => `assets/urun/${p.id}_${i}.${e}`).find((f) => fs.existsSync(f)); return f ? 'https://www.vaelo.com.tr/' + f : u; });
             const data = { shipping, products: products.map(({ ship, ...p }) => p) };
             fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
