@@ -153,7 +153,7 @@ jobs:
                 headers: { authorization: 'Bearer ' + token, accept: 'application/json', 'user-agent': ua },
               });
               const txt = await r.text();
-              console.log('API ' + path + ' -> HTTP ' + r.status + ' | tarayıcı adı: ' + ua.slice(0, 10) + ' | sunucu: ' + (r.headers.get('server') || '-') + ' | tür: ' + (r.headers.get('content-type') || '-'));
+              console.log('::notice::API ' + path + ' -> HTTP ' + r.status + ' | tarayıcı adı: ' + ua.slice(0, 10) + ' | sunucu: ' + (r.headers.get('server') || '-') + ' | tür: ' + (r.headers.get('content-type') || '-'));
               if (r.ok) return txt;
               last = 'HTTP ' + r.status + ' ' + txt.slice(0, 300);
               if (r.status !== 403) break;
@@ -178,10 +178,10 @@ jobs:
             let products = [];
             if (process.env.SHOPIER_TOKEN) {
               const token = cleanToken(process.env.SHOPIER_TOKEN);
-              console.log('Resmi Shopier API kullanılıyor | anahtar uzunluğu: ' + token.length + ' | içinde boşluk var mı: ' + (/\s/.test(token) ? 'evet' : 'hayır'));
+              console.log('::notice::Resmi Shopier API kullanılıyor | anahtar uzunluğu: ' + token.length + ' | içinde boşluk var mı: ' + (/\s/.test(token) ? 'evet' : 'hayır'));
               products = (await fromApi(token)).filter((p) => p.name && p.price && p.images.length);
             } else {
-              console.log('SHOPIER_TOKEN yok, mağaza sayfası okunuyor');
+              console.log('::notice::SHOPIER_TOKEN yok, mağaza sayfası okunuyor');
               const storeHtml = await get(STORE);
               const ids = productIds(storeHtml);
               if (!ids.length) { console.log('Sayfanın başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
@@ -207,7 +207,7 @@ jobs:
             console.log(products.length + ' ürün yazıldı');
           }
 
-          if (!process.env.VAELO_TEST) main().catch((e) => { console.error(e.message); process.exit(1); });
+          if (!process.env.VAELO_TEST) main().catch((e) => { console.log('::error::' + String(e.message).replace(/\n/g, ' ')); process.exit(1); });
           EOF
           node /tmp/sync.mjs
 
