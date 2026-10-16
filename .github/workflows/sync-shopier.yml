@@ -175,7 +175,6 @@ jobs:
           }
 
           async function main() {
-            try { const r = await fetch('https://api.shopier.com/v1/products?limit=1', { headers: { accept: 'application/json', 'user-agent': 'shopier-go/1.0.0' } }); const t = await r.text(); console.log('::notice::API deneme (anahtarsız): HTTP ' + r.status + ' | ' + t.slice(0, 120).replace(/\s+/g, ' ')); } catch (e) { console.log('::notice::API deneme hata: ' + e.message); }
             let products = [];
             if (process.env.SHOPIER_TOKEN) {
               const token = cleanToken(process.env.SHOPIER_TOKEN);
