@@ -154,7 +154,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
 fbq('track', 'PageView');
-fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'product', value: ${Number(p.price)}, currency: 'TRY' });
+fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'product_group', value: ${Number(p.price)}, currency: 'TRY' });
 </script>
 <!-- End Meta Pixel Code -->
 <!-- Google Analytics -->

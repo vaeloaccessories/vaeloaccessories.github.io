@@ -199,7 +199,7 @@
       ekle({ id: info.dataset.id, name: info.dataset.name, price: +info.dataset.price, img: info.dataset.img, size: secili });
       haber('vaelo:ekle', { id: info.dataset.id, name: info.dataset.name });
       if (window.gtag) gtag('event', 'add_to_cart', { currency: 'TRY', value: +info.dataset.price });
-      if (window.fbq) fbq('track', 'AddToCart', { content_ids: [info.dataset.id], content_type: 'product', value: +info.dataset.price, currency: 'TRY' });
+      if (window.fbq) fbq('track', 'AddToCart', { content_ids: [info.dataset.id], content_type: 'product_group', value: +info.dataset.price, currency: 'TRY' });
       adim = 'sepet'; ciz(); ac();
     };
   }
