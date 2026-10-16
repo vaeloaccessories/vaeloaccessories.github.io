@@ -1,0 +1,42 @@
+name: Ürünleri güncelle (admin paneli)
+
+# Admin panelinde (Ürünler sekmesi) yapılan değişiklikleri 10 dakikada bir siteye işler.
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: urunler
+  cancel-in-progress: false
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Panel değişikliklerini oku
+        run: node .github/scripts/urunler.mjs
+
+      - name: Google ve yapay zekâ için ürün bilgisini yenile
+        continue-on-error: true
+        run: node .github/scripts/seo.mjs && node .github/scripts/pages.mjs
+
+      - name: Değişiklik varsa kaydet
+        run: |
+          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml google-urunler.xml assets/urun)" ]; then
+            git config user.name "vaelo-panel"
+            git config user.email "actions@users.noreply.github.com"
+            git add -A products.json index.html llms.txt urun sitemap.xml google-urunler.xml assets/urun
+            git commit -m "Admin panelinden ürün güncellemesi"
+            git pull --rebase -q
+            git push
+          fi

@@ -106,6 +106,17 @@
   .links a:hover{border-color:var(--gold)}
   .filters input{background:var(--card);border:1px solid var(--line);padding:9px 12px;min-width:220px;font-size:16px}
   .loading{color:var(--muted);padding:30px 0}
+  .uduz{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:50;overflow:auto;padding:24px 16px}
+  .uduz form{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--line);padding:22px}
+  .uduz label{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+  .uduz input[type=text],.uduz input[type=number],.uduz select,.uduz textarea{width:100%;box-sizing:border-box;background:var(--bg);color:var(--txt);border:1px solid var(--line);padding:11px 12px;font:inherit;font-size:16px}
+  .uduz textarea{min-height:160px;resize:vertical}
+  .uduz .gor{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px}
+  .uduz .gor div{position:relative}
+  .uduz .gor img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#222}
+  .uduz .gor button{position:absolute;top:4px;right:4px;background:#000c;color:#fff;border:0;width:26px;height:26px;cursor:pointer}
+  .uduz .alt{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .rozet{display:inline-block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:2px 6px;margin-left:6px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -168,11 +179,118 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
 import {
   collection, query, where, orderBy, limit, getDocs, onSnapshot, doc, updateDoc,
-  documentId, Timestamp
+  documentId, Timestamp, setDoc, getDoc, serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// ---- Ürün düzenleme (Firestore: urunler, urun_gorsel) ----
+let panelKayit = {}, tumUrunler = [];
+const SERILER = ['SIGNATURE PREMIUM', 'VAELO // STREET DİVİSİON'];
+const gorselOnbellek = {};
+function gorselEtiket(src) {
+  if (!src) return '';
+  if (String(src).startsWith('gorsel:')) return `<img data-g="${esc(src.slice(7))}" alt="">`;
+  return `<img src="${esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer">`;
+}
+async function gorselleriYukle(kok) {
+  for (const img of kok.querySelectorAll('img[data-g]')) {
+    const g = img.dataset.g;
+    try {
+      if (!gorselOnbellek[g]) gorselOnbellek[g] = ((await getDoc(doc(db, 'urun_gorsel', g))).data() || {}).veri || '';
+      img.src = gorselOnbellek[g];
+    } catch (e) {}
+  }
+}
+// Fotoğrafı küçültüp JPEG'e çevirir (veritabanı sınırı ~1 MB)
+function kucult(file) {
+  return new Promise((ok, hata) => {
+    const r = new FileReader();
+    r.onerror = () => hata(new Error('Dosya okunamadı'));
+    r.onload = () => {
+      const im = new Image();
+      im.onerror = () => hata(new Error('Bu dosya fotoğraf olarak açılamadı'));
+      im.onload = () => {
+        let max = 1400, q = 0.85, out = '';
+        for (let i = 0; i < 6; i++) {
+          const k = Math.min(1, max / Math.max(im.width, im.height));
+          const c = document.createElement('canvas');
+          c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+          c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+          out = c.toDataURL('image/jpeg', q);
+          if (out.length < 900000) return ok(out);
+          max = Math.round(max * 0.8); q = Math.max(0.6, q - 0.05);
+        }
+        hata(new Error('Fotoğraf çok büyük'));
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+function urunDuzenle(p) {
+  const yeni = !p;
+  const id = yeni ? String(Date.now()) : p.id;
+  p = p || { name: '', price: '', category: SERILER[0], description: '', images: [], aktif: true };
+  let gorseller = (p.images || []).slice();
+  const yeniGorsel = {};
+  const kap = document.createElement('div');
+  kap.className = 'uduz';
+  kap.innerHTML = `<form>
+    <h2 style="margin-top:0">${yeni ? 'Yeni ürün' : 'Ürünü düzenle'}</h2>
+    <label>Ürün adı</label><input type="text" name="ad" required maxlength="120" value="${esc(p.name)}" placeholder="Vaelo Signature Hoodie – Siyah">
+    <label>Fiyat (TL)</label><input type="number" name="fiyat" required min="1" step="1" value="${esc(p.price)}">
+    <label>Seri</label><select name="seri">${SERILER.map((x) => `<option${x === p.category ? ' selected' : ''}>${esc(x)}</option>`).join('')}</select>
+    <label>Açıklama</label><textarea name="aciklama" maxlength="4000">${esc(p.description)}</textarea>
+    <label>Fotoğraflar (ilki vitrin fotoğrafı, en fazla 6)</label><div class="gor"></div>
+    <input type="file" accept="image/*" multiple style="margin-top:10px">
+    <label style="display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--txt)"><input type="checkbox" name="aktif"${p.aktif === false ? '' : ' checked'}> Sitede satışta</label>
+    <p class="muted" style="font-size:.8rem;margin-top:14px">Printitürk ürün kodu: <b>VAELO-${esc(id)}</b>${yeni ? ' — bu kodu Printitürk Özel API eşleştirmesine girmeyi unutma, yoksa siparişler otomatik üretime gitmez.' : ''}</p>
+    <div class="alt"><button class="btn" type="submit">Kaydet</button><button class="btn ghost" type="button" data-kapat>Vazgeç</button></div>
+    <p class="muted" data-durum style="margin-top:12px"></p>
+  </form>`;
+  document.body.appendChild(kap);
+  const f = kap.querySelector('form'), gor = kap.querySelector('.gor'), durum = kap.querySelector('[data-durum]');
+  const ciz = () => {
+    gor.innerHTML = gorseller.map((g, i) => `<div>${yeniGorsel[g] ? `<img src="${yeniGorsel[g]}" alt="">` : gorselEtiket(g)}<button type="button" data-sil="${i}" title="Kaldır">✕</button></div>`).join('');
+    gorselleriYukle(gor);
+  };
+  ciz();
+  gor.onclick = (e) => { const b = e.target.closest('[data-sil]'); if (b) { gorseller.splice(Number(b.dataset.sil), 1); ciz(); } };
+  kap.querySelector('[data-kapat]').onclick = () => kap.remove();
+  kap.querySelector('input[type=file]').onchange = async (e) => {
+    for (const file of e.target.files) {
+      if (gorseller.length >= 6) break;
+      try { const k = 'yeni-' + Math.random().toString(36).slice(2); yeniGorsel[k] = await kucult(file); gorseller.push(k); } catch (err) { durum.textContent = err.message; }
+    }
+    e.target.value = ''; ciz();
+  };
+  f.onsubmit = async (e) => {
+    e.preventDefault();
+    if (!gorseller.length) { durum.textContent = 'En az bir fotoğraf ekle.'; return; }
+    const btn = f.querySelector('[type=submit]'); btn.disabled = true; durum.textContent = 'Kaydediliyor…';
+    try {
+      const son = [];
+      for (const g of gorseller) {
+        if (!yeniGorsel[g]) { son.push(g); continue; }
+        const gid = id + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+        await setDoc(doc(db, 'urun_gorsel', gid), { veri: yeniGorsel[g] });
+        gorselOnbellek[gid] = yeniGorsel[g];
+        son.push('gorsel:' + gid);
+      }
+      await setDoc(doc(db, 'urunler', id), {
+        name: f.ad.value.trim(), price: Math.round(Number(f.fiyat.value)), category: f.seri.value,
+        description: f.aciklama.value.trim(), images: son, aktif: f.aktif.checked, guncel: serverTimestamp()
+      });
+      durum.textContent = 'Kaydedildi ✓ 10–20 dakika içinde sitede görünür.';
+      setTimeout(() => { kap.remove(); sekmeAc('urunler'); }, 1200);
+    } catch (err) {
+      btn.disabled = false;
+      durum.textContent = 'Kaydedilemedi: ' + (err.code === 'permission-denied' ? 'veritabanı kuralları henüz güncellenmemiş.' : err.message);
+    }
+  };
+}
+
 const tl = (n) => '₺' + Number(n || 0).toLocaleString('tr-TR');
 const sayi = (n) => Number(n || 0).toLocaleString('tr-TR');
 const tarihSaat = (ts) => ts ? new Date(ts.seconds * 1000).toLocaleString('tr-TR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—';
@@ -431,19 +549,30 @@ const SEKMELER = {
   async urunler() {
     const l = await gunlukOku(30);
     const bak = Object.fromEntries(haritaTopla(l, 'urun')), sep = Object.fromEntries(haritaTopla(l, 'sepet'));
-    const sirali = urunler.slice().sort((a, b) => (bak[b.id] || 0) - (bak[a.id] || 0));
-    $('#icerik').innerHTML = `<h2>Ürünler</h2><p class="sub">Sitedeki ${urunler.length} ürün ve son 30 gündeki ilgisi. Ürünler, fiyatlar ve açıklamalar Shopier mağazandan her 30 dakikada bir otomatik gelir; değiştirmek için Shopier'de düzenlemen yeterli.</p>
-      <div class="row"><a class="btn sm" href="https://www.shopier.com/VAELOaccessories" target="_blank" rel="noopener">Shopier mağazası</a><a class="btn ghost sm" href="https://github.com/vaeloaccessories/vaeloaccessories.github.io/actions/workflows/sync-shopier.yml" target="_blank" rel="noopener">Ürünleri şimdi güncelle</a></div>
-      <div class="prods">${sirali.map((p) => `<div class="prod">${p.images && p.images[0] ? `<img src="${esc(p.images[0])}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}<div>${esc(ad(p.id))}<br><span class="muted">${esc(p.category || '')}</span><br><b>${tl(p.price)}</b>
+    panelKayit = {};
+    try { (await getDocs(collection(db, 'urunler'))).forEach((d) => { panelKayit[d.id] = d.data(); }); } catch (e) {}
+    const hepsi = urunler.map((p) => ({ ...p, ...(panelKayit[p.id] || {}), id: p.id }));
+    Object.entries(panelKayit).forEach(([id, p]) => { if (!hepsi.some((x) => x.id === id)) hepsi.push({ ...p, id }); });
+    tumUrunler = hepsi;
+    const sirali = hepsi.slice().sort((a, b) => (a.aktif === false) - (b.aktif === false) || (bak[b.id] || 0) - (bak[a.id] || 0));
+    $('#icerik').innerHTML = `<h2>Ürünler</h2><p class="sub">${hepsi.length} ürün. Fiyat, ad, açıklama ve fotoğrafları buradan değiştir; kaydettiğin her şey 10–20 dakika içinde siteye işlenir.</p>
+      <div class="row"><button class="btn sm" data-yeni>+ Yeni ürün</button></div>
+      <div class="prods">${sirali.map((p) => `<div class="prod">${gorselEtiket(p.images && p.images[0])}<div>${esc(String(p.name || '').replace(/^vaelo\s*/i, ''))}${p.aktif === false ? '<span class="rozet">Satışta değil</span>' : ''}${panelKayit[p.id] && !urunler.some((x) => x.id === p.id) && p.aktif !== false ? '<span class="rozet">Siteye işleniyor</span>' : ''}<br><span class="muted">${esc(p.category || '')}</span><br><b>${tl(p.price)}</b>
         <div class="st"><span>👁 ${sayi(bak[p.id])} bakış</span><span>🛒 ${sayi(sep[p.id])} sepete ekleme</span></div>
-        <div class="actions"><a class="btn ghost sm" href="${esc(p.url)}" target="_blank" rel="noopener">Shopier</a></div></div></div>`).join('')}</div>`;
+        <div class="actions"><button class="btn sm" data-duzenle="${esc(p.id)}">Düzenle</button></div></div></div>`).join('')}</div>`;
+    gorselleriYukle($('#icerik'));
+    $('#icerik').onclick = (e) => {
+      const d = e.target.closest('[data-duzenle]');
+      if (d) urunDuzenle(tumUrunler.find((x) => x.id === d.dataset.duzenle));
+      if (e.target.closest('[data-yeni]')) urunDuzenle(null);
+    };
   },
 
   // ---- BAĞLANTILAR ----
   async baglantilar() {
     const L = [
       ['vaelo.com.tr', 'Siteni müşteri gibi aç', 'https://www.vaelo.com.tr/'],
-      ['Shopier', 'Ürün, fiyat, stok ve açıklama düzenle', 'https://www.shopier.com/VAELOaccessories'],
+      ['Shopier', 'Shopier mağazası', 'https://www.shopier.com/VAELOaccessories'],
       ['PayTR Mağaza Paneli', 'Ödemeler, iadeler, hesap', 'https://www.paytr.com/magaza'],
       ['Printitürk', 'Üretim ve baskı siparişleri', 'https://www.printiturk.com/'],
       ['Geliver', 'Aras Kargo gönderileri', 'https://app.geliver.io/'],

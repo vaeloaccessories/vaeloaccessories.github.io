@@ -64,6 +64,23 @@ service cloud.firestore {
       allow delete: if admin();
     }
 
+    // Ürünler: admin panelinden düzenlenir, herkes okuyabilir (site bunları 10 dakikada bir işler)
+    match /urunler/{id} {
+      allow read: if true;
+      allow write: if admin() && id.matches('^[0-9]{6,14}$')
+        && request.resource.data.keys().hasOnly(['name', 'price', 'category', 'description', 'images', 'aktif', 'guncel'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 120
+        && request.resource.data.price is number
+        && request.resource.data.images is list && request.resource.data.images.size() <= 6
+        && kisa(request.resource.data.description, 4000);
+      allow delete: if admin();
+    }
+    // Panelden yüklenen ürün fotoğrafları
+    match /urun_gorsel/{id} {
+      allow read: if true;
+      allow write, delete: if admin();
+    }
+
     // Siparişler (ödeme ekranına geçildiği an kaydedilir)
     match /siparisler/{no} {
       allow read: if admin() || (request.auth != null && resource.data.uid == request.auth.uid);

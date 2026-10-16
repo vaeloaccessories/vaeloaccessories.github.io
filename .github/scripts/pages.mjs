@@ -179,7 +179,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     <p class="label">Bedenler</p>
     <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
     ${sizeTable(p.name)}
-    <a class="buy" href="${esc(shopier(p.url))}" rel="noopener">Satın Al</a>
+    <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + (/street/i.test(p.category || '') ? 'street' : 'signature'))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
     <p class="note">Ödeme PayTR güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretildiği için cayma hakkı uygulanmaz; teslimattan sonra 7 gün içinde beden değişimi yapılır. <a href="/iade-degisim.html">İade ve Değişim</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
     <div class="desc">${descHtml(p.description)}</div>
