@@ -43,7 +43,7 @@ jobs:
             const base = { 'user-agent': UA, 'accept-language': 'tr-TR,tr;q=0.9' };
             const errors = [];
             if (!useReader) {
-              try { return await fetchText(url, base); } catch (e) { errors.push('doğrudan: ' + e.message); useReader = true; console.log('Doğrudan okuma olmadı (' + e.message + '), okuyucu servis deneniyor'); }
+              try { return await fetchText(url, base); } catch (e) { errors.push('doğrudan: ' + e.message); useReader = true; console.log('::notice::Doğrudan okuma olmadı (' + e.message + '), okuyucu servis deneniyor'); }
             }
             for (let i = 0; i < 2; i++) {
               try {
@@ -184,7 +184,7 @@ jobs:
               console.log('::notice::SHOPIER_TOKEN yok, mağaza sayfası okunuyor');
               const storeHtml = await get(STORE);
               const ids = productIds(storeHtml);
-              if (!ids.length) { console.log('Sayfanın başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
+              if (!ids.length) { console.log('::notice::Sayfa uzunluğu ' + storeHtml.length + ' | başı: ' + textOf(storeHtml).slice(0, 300).replace(/\n/g, ' ')); throw new Error('Mağaza sayfasında ürün bulunamadı'); }
               for (const id of ids) {
                 const p = parseProduct(await get(STORE + '/' + id), id);
                 if (p.name && p.price && p.images.length) products.push(p);
