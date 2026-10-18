@@ -14,6 +14,7 @@
   try {
     if (q.get('odeme') === 'test') sessionStorage.setItem('vaelo-odeme', '1');
     if (q.get('odeme') === 'kapat') sessionStorage.removeItem('vaelo-odeme');
+    if (q.get('kupon')) localStorage.setItem('vaelo-kupon', q.get('kupon').toUpperCase());
   } catch (e) {}
   var acik = CANLI;
   try { acik = acik || sessionStorage.getItem('vaelo-odeme') === '1'; } catch (e) {}
@@ -29,10 +30,18 @@
     if (v) v.qty = Math.min(10, v.qty + 1); else s.push({ id: u.id, name: u.name, price: u.price, img: u.img, size: u.size, qty: 1 });
     yaz(s);
   }
+  // ---- indirim kodu (geçerli kodlar ve indirim kasada hesaplanır) ----
+  var KUPONLAR = null, KKEY = 'vaelo-kupon';
+  function kuponKod() { try { return (localStorage.getItem(KKEY) || '').toUpperCase(); } catch (e) { return ''; } }
+  function kuponYaz(k) { try { if (k) localStorage.setItem(KKEY, k); else localStorage.removeItem(KKEY); } catch (e) {} }
+  function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo } : null; }
   function toplamlar(s) {
     var ara = s.reduce(function (t, x) { return t + x.price * x.qty; }, 0);
-    var kargo = ara === 0 || ara >= UCRETSIZ_KARGO ? 0 : KARGO;
-    return { ara: ara, kargo: kargo, toplam: ara + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
+    var k = aktifKupon(), indirim = 0;
+    if (k && k.oran) indirim = s.reduce(function (t, x) { return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * x.qty; }, 0);
+    indirim = Math.round(indirim * 100) / 100;
+    var kargo = ara === 0 || ara >= UCRETSIZ_KARGO || (k && k.kargo) ? 0 : KARGO;
+    return { ara: ara, indirim: indirim, kupon: k, kargo: kargo, toplam: ara - indirim + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
   }
   var GUVEN = '<p class="vs-safe"><img src="/assets/paytr-logo.svg" alt="PayTR">ile 256-bit SSL güvenli ödeme</p>';
   var tl = function (n) { return '₺' + Number(n).toLocaleString('tr-TR'); };
@@ -74,6 +83,10 @@
     '.vs-add{display:block;width:100%;margin:22px 0 10px;padding:17px;background:#0A0A0A;color:#F3F1EC;border:0;font:400 13px Jost,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}' +
     '.vs-sizes span{cursor:pointer;user-select:none}.vs-sizes span.on{background:#0A0A0A;color:#F3F1EC;border-color:#0A0A0A}' +
     '.vs-hint{font-size:.8rem;color:#9b2c2c;min-height:1em;margin:0}' +
+    '.vs-kp{display:flex;gap:8px;margin:2px 0 12px}.vs-kp input{flex:1;min-width:0;padding:10px 12px;border:1px solid #DFDBD2;background:#fff;font:300 15px Jost,Helvetica,Arial,sans-serif;color:#0A0A0A;text-transform:uppercase;border-radius:0}' +
+    '.vs-kp button{padding:0 16px;background:none;border:1px solid #0A0A0A;color:#0A0A0A;font:400 11px Jost,Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}' +
+    '.vs-kpok{display:flex;justify-content:space-between;align-items:center;margin:2px 0 12px;padding:10px 12px;background:#0A0A0A;color:#F3F1EC;font-size:.8rem;letter-spacing:.06em}.vs-kpok button{background:none;border:0;color:#F3F1EC;opacity:.7;cursor:pointer;font-size:.75rem;text-decoration:underline}' +
+    '.vs-kperr{color:#9b2c2c;font-size:.78rem;margin:-6px 0 10px;min-height:0}' +
     '@media (max-width:600px){.vs-btn{left:16px;bottom:16px;height:48px;padding:0 16px}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -108,11 +121,30 @@
         '<div class="vs-qty"><button type="button" data-a="-" data-i="' + i + '" aria-label="Azalt">−</button><span>' + x.qty + '</span><button type="button" data-a="+" data-i="' + i + '" aria-label="Artır">+</button></div></div>' +
         '<button class="vs-del" type="button" data-a="x" data-i="' + i + '">Kaldır</button></div>';
     }).join('');
-    sum.innerHTML = ozet(t) + '<button class="vs-go" type="button">Ödemeye Geç</button>' + GUVEN;
+    sum.innerHTML = kuponAlani(t) + ozet(t) + '<button class="vs-go" type="button">Ödemeye Geç</button>' + GUVEN;
     sum.querySelector('.vs-go').onclick = function () { adim = 'form'; ciz(); };
+    kuponBagla();
+  }
+  function kuponAlani(t) {
+    if (!KUPONLAR) return '';
+    if (t.kupon) return '<div class="vs-kpok"><span>✓ ' + esc(t.kupon.kod) + ' · ' + (t.kupon.oran ? '%' + t.kupon.oran + ' indirim' : 'Kargo ücretsiz') + '</span><button type="button" data-kp="sil">Kaldır</button></div>';
+    return '<div class="vs-kp"><input placeholder="İndirim kodu" aria-label="İndirim kodu" autocomplete="off"><button type="button" data-kp="ekle">Uygula</button></div><p class="vs-kperr" aria-live="polite"></p>';
+  }
+  function kuponBagla() {
+    var sil = sum.querySelector('[data-kp="sil"]'); if (sil) sil.onclick = function () { kuponYaz(''); ciz(); };
+    var ek = sum.querySelector('[data-kp="ekle"]'); if (!ek) return;
+    var inp = sum.querySelector('.vs-kp input');
+    ek.onclick = inp.onkeydown = function (e) {
+      if (e.type === 'keydown' && e.key !== 'Enter') return;
+      var k = inp.value.trim().toUpperCase().replace(/\s+/g, '');
+      if (!k) return;
+      if (!KUPONLAR[k]) { sum.querySelector('.vs-kperr').textContent = 'Bu kod geçerli değil.'; return; }
+      kuponYaz(k); ciz();
+    };
   }
   function ozet(t) {
     return '<div class="vs-row"><span>Ara toplam</span><span>' + tl(t.ara) + '</span></div>' +
+      (t.indirim ? '<div class="vs-row"><span>İndirim (' + esc(t.kupon.kod) + ')</span><span>−' + tl(t.indirim) + '</span></div>' : '') +
       '<div class="vs-row"><span>Kargo</span><span>' + (t.kargo ? tl(t.kargo) : 'Ücretsiz') + '</span></div>' +
       (t.kargo ? '<div class="vs-row" style="font-size:.78rem;color:#6B6861"><span>' + tl(UCRETSIZ_KARGO) + ' üzeri kargo ücretsiz</span></div>' : '') +
       (t.hediye ? '<div class="vs-row"><span>Hediye paketi</span><span>' + tl(t.hediye) + '</span></div>' : '') +
@@ -129,9 +161,18 @@
 
   var form = {}, HEDIYE = 0;
   // Hediye paketi seçeneği yalnızca kasa destekliyorsa görünür (fiyat kasada hesaplanır).
-  fetch(KASA.replace(/\/odeme$/, '/surum')).then(function (r) { return r.json(); }).then(function (d) { HEDIYE = Number(d.hediye) || 0; if (adim === 'form') ciz(); }).catch(function () {});
+  fetch(KASA.replace(/\/odeme$/, '/surum')).then(function (r) { return r.json(); }).then(function (d) {
+    HEDIYE = Number(d.hediye) || 0;
+    // Kasa indirim kodlarını destekliyorsa kupon alanı ve hoş geldin çarkı açılır.
+    if (d.kuponlar) {
+      KUPONLAR = d.kuponlar;
+      if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=1'; sc.defer = true; document.head.appendChild(sc); }
+    }
+    ciz();
+  }).catch(function () {});
+  document.addEventListener('vaelo:kupon', function (e) { if (e.detail && e.detail.kod) { kuponYaz(String(e.detail.kod).toUpperCase()); ciz(); } });
   function formCiz(t) {
-    var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
+    var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, indirim: t.indirim, kupon: t.kupon, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
     body.innerHTML = '<form class="vs-f" novalidate>' +
       '<label for="vs-ad">Ad soyad</label><input id="vs-ad" name="name" autocomplete="name" required>' +
       '<label for="vs-ep">E-posta</label><input id="vs-ep" name="email" type="email" autocomplete="email" required>' +
@@ -155,6 +196,7 @@
       if (!f.querySelector('#vs-onay').checked) { err.textContent = 'Devam etmek için sözleşmeleri onaylamanız gerekiyor.'; return; }
       var veri = { name: f.elements.name.value, email: f.elements.email.value, phone: f.elements.phone.value, city: f.elements.city.value, district: f.elements.district.value, address: f.elements.address.value,
         gift: !!(HEDIYE && form.gift),
+        kupon: t.kupon ? t.kupon.kod : '',
         items: oku().map(function (x) { return { id: x.id, size: x.size, qty: x.qty }; }) };
       go.disabled = true; go.textContent = 'Ödeme ekranı açılıyor…';
       fetch(KASA, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(veri) })

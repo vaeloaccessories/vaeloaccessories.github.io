@@ -9,6 +9,14 @@ const SITE = 'https://www.vaelo.com.tr';
 const FREE_SHIPPING_FROM = 3000;
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 const HEDIYE_PAKETI = 100;
+// İndirim kodları. oran = yüzde indirim (yalnızca ürünlere), kargo = kargo ücretsiz.
+const KUPONLAR = {
+  HOSGELDIN5: { oran: 5 },
+  HOSGELDIN7: { oran: 7 },
+  HOSGELDIN10: { oran: 10 },
+  KARGOBEDAVA: { kargo: true },
+  VAELOHERE: { oran: 10 },
+};
 
 const cors = {
   'Access-Control-Allow-Origin': SITE,
@@ -85,7 +93,23 @@ async function startPayment(request, env) {
     total += Number(p.price) * qty;
     urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name) });
   }
-  const shipping = total >= FREE_SHIPPING_FROM ? 0 : Number(catalog.shipping || 120);
+  const kod = clean(body.kupon, 30).toUpperCase().replace(/\s+/g, '');
+  const kupon = kod ? KUPONLAR[kod] : null;
+  if (kod && !kupon) return json({ ok: false, error: 'İndirim kodu geçersiz.' }, 400);
+  const araToplam = total;
+  if (kupon && kupon.oran) {
+    // İndirim her ürünün birim fiyatına yansıtılır; PayTR sepeti ile tutar birebir tutar.
+    total = 0;
+    for (const b of basket) {
+      const yeni = Math.round(Number(b[1]) * (100 - kupon.oran)) / 100;
+      b[0] += ` · ${kod} %${kupon.oran}`;
+      b[1] = yeni.toFixed(2);
+      total += yeni * b[2];
+    }
+    total = Math.round(total * 100) / 100;
+  }
+  const indirim = Math.round((araToplam - total) * 100) / 100;
+  const shipping = (kupon && kupon.kargo) || araToplam >= FREE_SHIPPING_FROM ? 0 : Number(catalog.shipping || 120);
   if (shipping > 0) basket.push(['Kargo', shipping.toFixed(2), 1]);
   total += shipping;
   const gift = body.gift === true;
@@ -120,9 +144,9 @@ async function startPayment(request, env) {
   }
   // Sipariş bilgisi, ödeme onaylanınca Printitürk'e gönderilmek üzere saklanır (30 gün).
   if (env.SIPARISLER) {
-    await env.SIPARISLER.put(merchant_oid, JSON.stringify({ name, email, phone, address, city, district, urunler, total, gift, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
+    await env.SIPARISLER.put(merchant_oid, JSON.stringify({ name, email, phone, address, city, district, urunler, total, gift, kupon: kupon ? kod : '', indirim, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
   }
-  return json({ ok: true, iframe: 'https://www.paytr.com/odeme/guvenli/' + out.token, total, shipping, order: merchant_oid });
+  return json({ ok: true, iframe: 'https://www.paytr.com/odeme/guvenli/' + out.token, total, shipping, indirim, order: merchant_oid });
 }
 
 // Ürün adından Printitürk renk adını çıkarır (ör. "Signature Hoodie – Siyah" → "Siyah").
@@ -184,6 +208,7 @@ function urunTablosu(o) {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">` +
     o.urunler.map((u) => satir(`${e(u.name.replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">Beden: ${e(u.size)} · ${u.qty} adet</span>`, '')).join('') +
     (o.gift ? satir('Hediye paketi', tl(HEDIYE_PAKETI)) : '') +
+    (o.kupon ? satir(`İndirim kodu (${e(o.kupon)})`, o.indirim ? '−' + tl(o.indirim) : 'Kargo ücretsiz') : '') +
     satir('<strong>Toplam</strong>', `<strong>${tl(o.total)}</strong>`) + `</table>`;
 }
 
@@ -367,7 +392,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 2, hediye: HEDIYE_PAKETI });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 3, hediye: HEDIYE_PAKETI, kuponlar: KUPONLAR });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },
 };
