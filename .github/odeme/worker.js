@@ -16,6 +16,7 @@ const KUPONLAR = {
   HOSGELDIN10: { oran: 10 },
   KARGOBEDAVA: { kargo: true },
   VAELOHERE: { oran: 10 },
+  FOTO10: { oran: 10 },   // fotoğraf paylaşan müşteriye verilen teşekkür kodu
 };
 
 const cors = {
@@ -247,6 +248,7 @@ async function siparisMailleri(env, oid, deneme) {
     sonuc.push('sahip');
   } catch (err) { console.log('Sahip maili gitmedi:', oid, err.message); }
   o.mail = sonuc;
+  o.odeme = new Date().toISOString();
   await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
 }
 
@@ -384,7 +386,46 @@ async function paytrCallback(request, env) {
   return new Response('OK');
 }
 
+// ---- Teslimattan sonra "fotoğrafını paylaş, %10 kazan" maili ----
+// Cloudflare'de günde bir kez çalışır (Settings > Triggers > Cron Triggers).
+// Ödemeden 10 gün sonra (ürün eline geçmiş olsun diye) her müşteriye bir kez gider.
+const YORUM_GUN = 10;
+async function yorumMailleri(env) {
+  if (!env.SIPARISLER || !env.RESEND_API_KEY) return { gonderilen: 0 };
+  const simdi = Date.now(), gun = 86400000;
+  let cursor, gonderilen = 0;
+  do {
+    const liste = await env.SIPARISLER.list({ prefix: 'VAELO', cursor });
+    for (const k of liste.keys) {
+      const raw = await env.SIPARISLER.get(k.name);
+      if (!raw) continue;
+      let o; try { o = JSON.parse(raw); } catch { continue; }
+      if (o.yorumMail || !Array.isArray(o.mail) || !o.mail.includes('musteri')) continue;   // ödenmemiş, denemeler ve zaten gidenler atlanır
+      const t = Date.parse(o.odeme || o.odendi || o.created);
+      if (!t || simdi - t < YORUM_GUN * gun || simdi - t > (YORUM_GUN + 14) * gun) continue;
+      const ad = e(String(o.name || '').split(' ')[0]);
+      const urun = o.urunler && o.urunler[0] ? e(String(o.urunler[0].name).replace(/^Vaelo\s+/i, 'VAELO ')) : 'VAELO parçan';
+      const wa = 'https://wa.me/905513708320?text=' + encodeURIComponent(`Merhaba, VAELO siparişimin (${k.name}) fotoğrafını gönderiyorum.`);
+      try {
+        await mailAt(env, o.email, 'Seni VAELO ile görmek isteriz · %10 hediye', mailSablon(`${ad ? ad + ', ' : ''}nasıl yakıştı?`,
+          `${urun} birkaç gündür seninle. Umarız ilk günkü kadar seviyorsun.<br><br>` +
+          `Üzerindeyken bir fotoğrafını bizimle paylaş, <strong>bir sonraki alışverişinde geçerli %10 indirim kodunu</strong> hemen gönderelim.<br><br>` +
+          `<strong>Nasıl paylaşırım?</strong><br>• Bu maile fotoğrafınla yanıt ver, ya da<br>• WhatsApp'tan gönder, ya da<br>• Instagram'da <strong>@vaeloaccessories</strong> hesabını etiketle.<br><br>` +
+          `<a href="${wa}" style="display:inline-block;background:#0A0A0A;color:#F3F1EC;text-decoration:none;padding:14px 26px;font-size:13px;letter-spacing:2px">FOTOĞRAFIMI GÖNDER</a><br><br>` +
+          `<span style="color:#6B6861;font-size:12px">İstersen birkaç cümlelik yorumunu da ekle; izninle sitemizde paylaşırız. Sipariş no: ${e(k.name)}</span>`), 'info@vaelo.com.tr');
+        o.yorumMail = new Date().toISOString();
+        await env.SIPARISLER.put(k.name, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 60 });
+        gonderilen++;
+      } catch (err) { console.log('Yorum maili gitmedi:', k.name, err.message); }
+    }
+    cursor = liste.list_complete ? null : liste.cursor;
+  } while (cursor);
+  console.log('Yorum maili gönderilen:', gonderilen);
+  return { gonderilen };
+}
+
 export default {
+  async scheduled(event, env, ctx) { ctx.waitUntil(yorumMailleri(env)); },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
