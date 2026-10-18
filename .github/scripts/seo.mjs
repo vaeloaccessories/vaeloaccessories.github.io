@@ -77,12 +77,13 @@ const llms = `# VAELO
 - [Online mağaza](${SITE}): sepet ve PayTR güvencesiyle kredi/banka kartı ile güvenli ödeme
 - [Instagram](https://www.instagram.com/vaeloaccessories): @vaeloaccessories
 - [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [info@vaelo.com.tr](mailto:info@vaelo.com.tr)
-- [İade ve değişim](${SITE}iade-degisim.html): kargo ve değişim koşulları
+- [İade ve değişim](${SITE}iade-degisim.html): kargo ve iade koşulları
 - İki seri: Signature Premium (sade, zamansız, V monogramlı) ve VAELO // Street Division (şehir stili, grafik baskılı)
 - Kapşonlu sweatshirtler: %100 şardonlu pamuk, 380 GSM yüksek gramaj (heavyweight), oversize kesim
 - Bedenler: S, M, L, XL, XXL (unisex oversize)
 - Kargo: ${data.shipping || 120} TL; 3.000 TL üzeri siparişlerde ücretsiz; siparişler 2–3 iş günü içinde kargoya verilir
-- İade yok; teslimattan itibaren 7 gün içinde değişim yapılır
+- Teslimattan itibaren 7 gün içinde iade talebi; inceleme sonrası onaylanır. Beden değişimi yok.
+- Yıkama: ters çevirerek, en düşük sıcaklıkta, hassas programda; bu şartlarda baskı atmaz
 
 ## Rehber
 - [Kaliteli kapşonlu sweatshirt nasıl seçilir?](${SITE}rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html): GSM, şardon ve kalıp rehberi

@@ -181,8 +181,9 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     ${sizeTable(p.name)}
     <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + (/street/i.test(p.category || '') ? 'street' : 'signature'))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
-    <p class="note">Ödeme PayTR güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretildiği için cayma hakkı uygulanmaz; teslimattan sonra 7 gün içinde beden değişimi yapılır. <a href="/iade-degisim.html">İade ve Değişim</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
+    <p class="note">Ödeme PayTR güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. Beden değişimi yapılmamaktadır. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
     <div class="desc">${descHtml(p.description)}</div>
+    <div class="desc"><h3>Yıkama Talimatı</h3><ul><li>Ters çevirerek yıkayın.</li><li>En düşük sıcaklıkta (en fazla 30°C) ve en hassas programda yıkayın.</li><li>Ağartıcı kullanmayın, kurutma makinesine atmayın, baskının üzerine ütü yapmayın.</li><li>Bu şartlarda yıkandığında baskı solma, çatlama veya atma yapmaz.</li></ul></div>
   </div>
 </main>
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
