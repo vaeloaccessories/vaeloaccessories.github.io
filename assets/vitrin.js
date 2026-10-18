@@ -38,9 +38,9 @@
         var o = a <= 1 ? 1 - c * 0.55 : Math.max(0, 0.45 - (a - 1) * 0.9);
         el.style.transform = 'translateX(' + (d * step).toFixed(3) + 'vw) scale(' + (1 - c * 0.22).toFixed(4) + ')';
         el.style.opacity = o.toFixed(3);
-        el.style.filter = c < 0.02 ? 'none' : 'blur(' + (c * 3).toFixed(2) + 'px)';
         el.style.zIndex = 10 - Math.round(a);
         el.classList.toggle('on', a < 0.5);
+        el.classList.toggle('yan', a >= 0.5);
         el.tabIndex = a < 1.5 ? 0 : -1;
         el.style.pointerEvents = a < 1.5 ? 'auto' : 'none';
       }
