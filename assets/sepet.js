@@ -245,6 +245,8 @@
       adim = 'sepet'; ciz(); ac();
     };
   }
+  // ürün sayfasında beden bulucu
+  if (info) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=1'; bj.defer = true; document.head.appendChild(bj); }
   // Menüdeki "Sepetim" bağlantısı sepeti açar.
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#sepet"]'); if (!a) return; e.preventDefault(); e.stopPropagation(); adim = 'sepet'; ciz(); ac(); }, true);
   if (location.hash === '#sepet') { ciz(); ac(); }
