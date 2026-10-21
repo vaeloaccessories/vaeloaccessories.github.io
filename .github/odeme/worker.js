@@ -447,6 +447,38 @@ async function yorumMailleri(env) {
   return { gonderilen };
 }
 
+// ---- Bayilik başvurusu (bayi.html formu) → sahibine mail (Resend) ----
+async function bayiBasvuru(request, env) {
+  if (!env.RESEND_API_KEY) return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen WhatsApp\'tan bize yazın.' }, 503);
+  let b;
+  try { b = await request.json(); } catch { return json({ ok: false, error: 'Geçersiz istek.' }, 400); }
+  if (b.web) return json({ ok: true }); // bot tuzağı
+  const d = { ad: clean(b.ad, 40), soyad: clean(b.soyad, 40), firma: clean(b.firma, 80), il: clean(b.il, 40), ilce: clean(b.ilce, 40), tel: clean(b.tel, 20), email: clean(b.email, 100), mesaj: clean(b.mesaj, 1000) };
+  if (d.ad.length < 2 || d.soyad.length < 2 || d.il.length < 2 || d.ilce.length < 2 || d.tel.replace(/\D/g, '').length < 10 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) {
+    return json({ ok: false, error: 'Lütfen tüm zorunlu alanları doğru doldurun.' }, 400);
+  }
+  const sahip = env.MAIL_SAHIBI || 'vaeloaccessories@gmail.com';
+  const tel = d.tel.replace(/[^\d+]/g, '');
+  const wa = '90' + tel.replace(/\D/g, '').replace(/^(90)?0?/, '');
+  const satir = (k, v) => v ? `<tr><td style="padding:8px 0;border-bottom:1px solid #eee;color:#6B6861;width:120px">${k}</td><td style="padding:8px 0;border-bottom:1px solid #eee">${v}</td></tr>` : '';
+  try {
+    await mailAt(env, sahip, `Yeni bayilik başvurusu · ${d.ad} ${d.soyad} · ${d.il}`, mailSablon('Yeni bayilik başvurusu',
+      `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px">` +
+      satir('Ad Soyad', e(d.ad + ' ' + d.soyad)) + satir('Firma', e(d.firma)) + satir('İl / İlçe', e(d.il + ' / ' + d.ilce)) +
+      satir('Telefon', `<a href="tel:${e(tel)}">${e(d.tel)}</a> · <a href="https://wa.me/${e(wa)}">WhatsApp</a>`) +
+      satir('E-posta', `<a href="mailto:${e(d.email)}">${e(d.email)}</a>`) + satir('Mesaj', e(d.mesaj)) +
+      `</table><br>Bu maile "Yanıtla" dersen cevabın doğrudan başvuran kişiye gider.`), d.email, 'VAELO Bayilik <info@vaelo.com.tr>');
+  } catch (err) {
+    console.log('Bayi maili gitmedi:', err.message);
+    return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen WhatsApp\'tan bize yazın.' }, 502);
+  }
+  try {
+    await mailAt(env, d.email, 'Bayilik başvurunuz alındı · VAELO', mailSablon('Başvurunuz alındı.',
+      `Merhaba ${e(d.ad)},<br><br>VAELO bayilik başvurunuz bize ulaştı. Bilgilerinizi inceleyip en kısa sürede sizinle iletişime geçeceğiz.<br><br>Sorunuz olursa bu maile yanıt verebilirsiniz.`), sahip, 'VAELO <info@vaelo.com.tr>');
+  } catch (err) { console.log('Başvurana onay maili gitmedi:', err.message); }
+  return json({ ok: true });
+}
+
 export default {
   async scheduled(event, env, ctx) { ctx.waitUntil(yorumMailleri(env)); },
   async fetch(request, env) {
@@ -455,6 +487,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/odeme') return startPayment(request, env);
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
+    if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
     if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
     if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 4, hediye: HEDIYE_PAKETI, kuponlar: KUPONLAR, paket: true });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
