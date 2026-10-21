@@ -35,13 +35,29 @@
   function kuponKod() { try { return (localStorage.getItem(KKEY) || '').toUpperCase(); } catch (e) { return ''; } }
   function kuponYaz(k) { try { if (k) localStorage.setItem(KKEY, k); else localStorage.removeItem(KKEY); } catch (e) {} }
   function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo } : null; }
+  // ---- 3'lü paket (yalnızca kasa destekliyorsa açılır; tutar kasada aynı şekilde hesaplanır) ----
+  var PAKETLER = null;
+  function paketle(s) {
+    var birim = [], kullan = s.map(function () { return 0; }), gruplar = [];
+    s.forEach(function (x, i) { for (var j = 0; j < x.qty; j++) birim.push({ i: i, id: String(x.id), price: x.price, ok: false }); });
+    (PAKETLER || []).forEach(function (pk) {
+      var uy = birim.filter(function (b) { return !b.ok && (pk.urunler || []).indexOf(b.id) >= 0; }).sort(function (a, b) { return b.price - a.price; });
+      var n = Math.floor(uy.length / 3); if (!n) return;
+      var normal = 0;
+      uy.slice(0, n * 3).forEach(function (b) { b.ok = true; kullan[b.i]++; normal += b.price; });
+      gruplar.push({ kod: pk.kod, ad: pk.ad, fiyat: pk.fiyat, adet: n, normal: normal });
+    });
+    return { gruplar: gruplar, kalan: s.map(function (x, i) { return x.qty - kullan[i]; }) };
+  }
   function toplamlar(s) {
     var ara = s.reduce(function (t, x) { return t + x.price * x.qty; }, 0);
+    var pk = paketle(s), paket = pk.gruplar.reduce(function (t, g) { return t + g.normal - g.fiyat * g.adet; }, 0);
     var k = aktifKupon(), indirim = 0;
-    if (k && k.oran) indirim = s.reduce(function (t, x) { return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * x.qty; }, 0);
+    // yüzde indirim paket dışındaki ürünlere uygulanır
+    if (k && k.oran) indirim = s.reduce(function (t, x, i) { return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
     indirim = Math.round(indirim * 100) / 100;
-    var kargo = ara === 0 || ara >= UCRETSIZ_KARGO || (k && k.kargo) ? 0 : KARGO;
-    return { ara: ara, indirim: indirim, kupon: k, kargo: kargo, toplam: ara - indirim + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
+    var kargo = ara === 0 || ara >= UCRETSIZ_KARGO || pk.gruplar.length || (k && k.kargo) ? 0 : KARGO;
+    return { ara: ara, paket: paket, gruplar: pk.gruplar, indirim: indirim, kupon: k, kargo: kargo, toplam: ara - paket - indirim + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
   }
   var GUVEN = '<p class="vs-safe"><img src="/assets/paytr-logo.svg" alt="PayTR">ile 256-bit SSL güvenli ödeme</p>';
   var tl = function (n) { return '₺' + Number(n).toLocaleString('tr-TR'); };
@@ -144,9 +160,10 @@
   }
   function ozet(t) {
     return '<div class="vs-row"><span>Ara toplam</span><span>' + tl(t.ara) + '</span></div>' +
+      (t.paket ? t.gruplar.map(function (g) { return '<div class="vs-row"><span>' + esc(g.ad) + (g.adet > 1 ? ' ×' + g.adet : '') + '</span><span>−' + tl(g.normal - g.fiyat * g.adet) + '</span></div>'; }).join('') : '') +
       (t.indirim ? '<div class="vs-row"><span>İndirim (' + esc(t.kupon.kod) + ')</span><span>−' + tl(t.indirim) + '</span></div>' : '') +
       '<div class="vs-row"><span>Kargo</span><span>' + (t.kargo ? tl(t.kargo) : 'Ücretsiz') + '</span></div>' +
-      (t.kargo ? '<div class="vs-row" style="font-size:.78rem;color:#6B6861"><span>' + tl(UCRETSIZ_KARGO) + ' üzeri kargo ücretsiz</span></div>' : '') +
+      (t.kargo ? '<div class="vs-row" style="font-size:.78rem;color:#6B6861"><span>' + (PAKETLER ? '3\'lü pakette veya ' : '') + tl(UCRETSIZ_KARGO) + ' üzeri kargo ücretsiz</span></div>' : '') +
       (t.hediye ? '<div class="vs-row"><span>Hediye paketi</span><span>' + tl(t.hediye) + '</span></div>' : '') +
       '<div class="vs-row t"><span>Toplam</span><span>' + tl(t.toplam) + '</span></div>';
   }
@@ -159,10 +176,23 @@
     yaz(s);
   });
 
+  // Kasa paketi destekliyorsa: güncel fiyatları ve paketleri ürün listesinden al.
+  function paketAc() {
+    fetch('/products.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.paketler || !d.paketler.length) return;
+      PAKETLER = d.paketler;
+      var fiyat = {}; (d.products || []).forEach(function (p) { fiyat[String(p.id)] = Number(p.price); });
+      var s = oku(), degisti = false;
+      s.forEach(function (x) { var f = fiyat[String(x.id)]; if (f && f !== x.price) { x.price = f; degisti = true; } });
+      if (degisti) yaz(s); else ciz();
+      document.querySelectorAll('.paket[hidden]').forEach(function (el) { el.hidden = false; });
+    }).catch(function () {});
+  }
   var form = {}, HEDIYE = 0;
   // Hediye paketi seçeneği yalnızca kasa destekliyorsa görünür (fiyat kasada hesaplanır).
   fetch(KASA.replace(/\/odeme$/, '/surum')).then(function (r) { return r.json(); }).then(function (d) {
     HEDIYE = Number(d.hediye) || 0;
+    if (d.paket) paketAc();
     // Kasa indirim kodlarını destekliyorsa kupon alanı ve hoş geldin çarkı açılır.
     if (d.kuponlar) {
       KUPONLAR = d.kuponlar;
@@ -172,7 +202,7 @@
   }).catch(function () {});
   document.addEventListener('vaelo:kupon', function (e) { if (e.detail && e.detail.kod) { kuponYaz(String(e.detail.kod).toUpperCase()); ciz(); } });
   function formCiz(t) {
-    var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, indirim: t.indirim, kupon: t.kupon, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
+    var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, paket: t.paket, gruplar: t.gruplar, indirim: t.indirim, kupon: t.kupon, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
     body.innerHTML = '<form class="vs-f" novalidate>' +
       '<label for="vs-ad">Ad soyad</label><input id="vs-ad" name="name" autocomplete="name" required>' +
       '<label for="vs-ep">E-posta</label><input id="vs-ep" name="email" type="email" autocomplete="email" required>' +

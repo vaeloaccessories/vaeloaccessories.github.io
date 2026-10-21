@@ -6,6 +6,8 @@ const SITE = 'https://www.vaelo.com.tr/';
 const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const list = (data.products || []).filter((p) => p.name && p.price && p.id);
 const ship = data.shipping || 120;
+// 3'lü paket notu: kasa paketi destekliyorsa sepet.js görünür yapar.
+const paketNotu = (p) => { const k = (data.paketler || []).find((x) => (x.urunler || []).includes(String(p.id))); return k ? `<p class="paket" hidden>3'lü al: <b>₺${fmt(k.fiyat)}</b> · Kargo bedava<br><span>Bu seriden istediğin 3 parçayı sepete ekle, indirim otomatik uygulanır.</span></p>` : ''; };
 
 const TR = { ç: 'c', ğ: 'g', ı: 'i', İ: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', Ö: 'o', Ş: 's', Ü: 'u', Ė: 'e', ė: 'e' };
 const clean = (n) => String(n).replace(/^vaelo\s+/i, '').trim();
@@ -108,6 +110,8 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;margin:10px 0 14px}
   .price{font-size:1.4rem;margin-bottom:24px}
+  .paket{margin:-12px 0 24px;padding:12px 14px;border:1px solid var(--black);font-size:.95rem;line-height:1.5}
+  .paket span{font-size:.8rem;color:var(--muted)}
   .colors{display:flex;gap:10px;margin:10px 0 24px}
   .sw{display:inline-flex;width:34px;height:34px;border-radius:50%;border:1px solid transparent;padding:3px;transition:border-color .2s}
   .sw i{display:block;width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
@@ -175,6 +179,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     <p class="cat" lang="en">${esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium')} · ${kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}</p>
+    ${paketNotu(p)}
     ${colorHtml}
     <p class="label">Bedenler</p>
     <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
