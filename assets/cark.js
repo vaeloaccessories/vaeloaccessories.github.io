@@ -1,5 +1,5 @@
 /* VAELO hoş geldin çarkı
- * Siteye ilk girişte bir kez açılır. Çıkan kod sepete otomatik uygulanır.
+ * Her ziyarette (yeni oturumda) bir kez açılır; çevirme hakkı yine tek seferdir. Çıkan kod sepete otomatik uygulanır.
  * Kodların geçerliliği ve indirim ödeme kasasında (worker.js) hesaplanır.
  * Dilimler eşit olasılıklıdır.
  */
@@ -130,11 +130,14 @@
 
   // Çerez bandı açıksa önce o kapansın, sonra çark gelsin.
   function cerezSecildi() { return !!al('vaelo-cerez'); }
-  if (!durum) {
+  var OTURUM = 'vaelo-cark-oturum', gosterildi = false;
+  try { gosterildi = sessionStorage.getItem(OTURUM) === '1'; } catch (e) {}
+  if (!gosterildi) {
     var bekle = setInterval(function () {
       if (!cerezSecildi()) return;
       clearInterval(bekle);
-      setTimeout(function () { if (!bg && !durum) ac(); }, 1200);
+      try { sessionStorage.setItem(OTURUM, '1'); } catch (e) {}
+      setTimeout(function () { if (!bg) { if (durum === 'kapatti') durum = null; ac(); } }, 1200);
     }, 700);
   }
   else if (durum === 'kapatti') sekme();
