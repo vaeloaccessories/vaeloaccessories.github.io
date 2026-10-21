@@ -53,7 +53,19 @@ function kontrol(env) {
   return json({ PAYTR_MERCHANT_ID: bilgi(env.PAYTR_MERCHANT_ID), PAYTR_MERCHANT_KEY: bilgi(env.PAYTR_MERCHANT_KEY), PAYTR_MERCHANT_SALT: bilgi(env.PAYTR_MERCHANT_SALT), PAYTR_TEST_MODE: String(env.PAYTR_TEST_MODE ?? ''), PRINTITURK_TOKEN: bilgi(env.PRINTITURK_TOKEN), RESEND_API_KEY: bilgi(env.RESEND_API_KEY), FIREBASE_SA: bilgi(env.FIREBASE_SA), SIPARISLER: !!env.SIPARISLER });
 }
 
+// Aynı IP'den kısa sürede çok istek gelirse durdurur (spam ve kötüye kullanım engeli).
+async function cokIstek(env, request, tur, max, saniye) {
+  if (!env.SIPARISLER) return false;
+  const ip = request.headers.get('CF-Connecting-IP') || 'bilinmiyor';
+  const anahtar = 'hiz:' + tur + ':' + ip;
+  const n = Number(await env.SIPARISLER.get(anahtar)) || 0;
+  if (n >= max) return true;
+  await env.SIPARISLER.put(anahtar, String(n + 1), { expirationTtl: Math.max(60, saniye) });
+  return false;
+}
+
 async function startPayment(request, env) {
+  if (await cokIstek(env, request, 'odeme', 15, 600)) return json({ ok: false, error: 'Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.' }, 429);
   const A = ayarlar(env);
   if (!A.id || !A.key || !A.salt) {
     return json({ ok: false, error: 'Ödeme sistemi henüz ayarlanmadı.' }, 503);
@@ -449,6 +461,7 @@ async function yorumMailleri(env) {
 
 // ---- Bayilik başvurusu (bayi.html formu) → sahibine mail (Resend) ----
 async function bayiBasvuru(request, env) {
+  if (await cokIstek(env, request, 'bayi', 3, 3600)) return json({ ok: false, error: 'Kısa sürede çok fazla başvuru gönderildi. Lütfen daha sonra tekrar deneyin.' }, 429);
   if (!env.RESEND_API_KEY) return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen WhatsApp\'tan bize yazın.' }, 503);
   let b;
   try { b = await request.json(); } catch { return json({ ok: false, error: 'Geçersiz istek.' }, 400); }
@@ -488,7 +501,6 @@ export default {
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
-    if (request.method === 'GET' && url.pathname === '/kontrol') return kontrol(env);
     if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 4, hediye: HEDIYE_PAKETI, kuponlar: KUPONLAR, paket: true });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },

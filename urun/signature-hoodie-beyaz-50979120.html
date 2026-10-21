@@ -79,7 +79,8 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+var y=function(){s.parentNode.insertBefore(t,s)},c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(x){}
+if(c==='kabul')y();else b.addEventListener('vaelo:cerez',y,{once:true})}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
@@ -89,7 +90,7 @@ fbq('track', 'ViewContent', { content_ids: ['50979120'], content_type: 'product_
 <!-- End Meta Pixel Code -->
 <!-- Google Analytics -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
+<script>(function(){function y(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C';document.head.appendChild(s)}var c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(e){}if(c==='kabul')y();else document.addEventListener('vaelo:cerez',y,{once:true})})();</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
 <body>

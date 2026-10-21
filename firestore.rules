@@ -16,12 +16,27 @@ service cloud.firestore {
     function benim(uid) {
       return uid == null || (request.auth != null && uid == request.auth.uid);
     }
+    // Sayaçlar sayı olmalı ve her seferde en fazla 5 artabilir (sahte istatistik ve zararlı kod engeli).
+    function sayac(f) {
+      return !(f in request.resource.data) || (request.resource.data[f] is int
+        && request.resource.data[f] - (resource == null ? 0 : resource.data.get(f, 0)) >= 0
+        && request.resource.data[f] - (resource == null ? 0 : resource.data.get(f, 0)) <= 5);
+    }
+    function harita(f) {
+      return !(f in request.resource.data) || request.resource.data[f] is map;
+    }
+    function metin(f, n) {
+      return !(f in request.resource.data) || request.resource.data[f] == null
+        || (request.resource.data[f] is string && request.resource.data[f].size() <= n);
+    }
 
     // Günlük toplam sayılar (ziyaret, sayfa, ürün görüntüleme, sepete ekleme...)
     match /gunluk/{g} {
       allow read, delete: if admin();
       allow create, update: if g.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
         && request.resource.data.keys().hasOnly(['sayfa', 'oturum', 'urun', 'sepet', 'odeme', 'siparis', 'uye'])
+        && sayac('sayfa') && sayac('oturum') && sayac('odeme') && sayac('siparis') && sayac('uye')
+        && harita('urun') && harita('sepet')
         && request.resource.data.get('urun', {}).size() < 300
         && request.resource.data.get('sepet', {}).size() < 300;
     }
@@ -49,6 +64,8 @@ service cloud.firestore {
         && request.resource.data.urunler is list
         && request.resource.data.urunler.size() <= 30
         && request.resource.data.guncel == request.time
+        && request.resource.data.toplam is number
+        && metin('ad', 160) && metin('email', 160) && metin('cihaz', 20) && metin('uye', 160)
         && benim(request.resource.data.uye);
     }
 
@@ -58,9 +75,13 @@ service cloud.firestore {
       allow create: if request.auth != null && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['ad', 'email', 'kayit', 'son', 'bulten', 'cihaz'])
         && request.resource.data.email == request.auth.token.email
-        && kisa(request.resource.data.ad, 120);
+        && kisa(request.resource.data.ad, 120)
+        && request.resource.data.get('bulten', false) is bool
+        && metin('cihaz', 20);
       allow update: if admin() || (request.auth != null && request.auth.uid == uid
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['son', 'ad', 'bulten']));
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['son', 'ad', 'bulten'])
+        && kisa(request.resource.data.ad, 120)
+        && request.resource.data.get('bulten', false) is bool);
       allow delete: if admin();
     }
 
@@ -90,8 +111,14 @@ service cloud.firestore {
         && request.resource.data.durum == 'odeme-ekrani'
         && request.resource.data.urunler is list
         && request.resource.data.urunler.size() <= 30
+        && request.resource.data.toplam is number
+        && request.resource.data.hediye is bool
+        && metin('ad', 120) && metin('email', 160) && metin('tel', 40)
+        && metin('il', 60) && metin('ilce', 60) && metin('adres', 500)
         && benim(request.resource.data.uid);
+      // Müşteri yalnızca kendi siparişini, ödeme ekranına geçtikten sonraki 2 saat içinde "ödedim" yapabilir.
       allow update: if admin() || (resource.data.durum == 'odeme-ekrani'
+        && request.time < resource.data.t + duration.value(2, 'h')
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['durum'])
         && request.resource.data.durum == 'musteri-dondu');
       allow delete: if admin();

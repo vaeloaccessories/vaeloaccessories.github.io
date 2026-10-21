@@ -4,7 +4,10 @@
   'use strict';
   var KEY = 'vaelo-cerez', secim = null;
   try { secim = localStorage.getItem(KEY); } catch (e) {}
-  if (secim === 'kabul' || secim === 'red') return;
+  // "#cerez-tercihi" bağlantısıyla tercih sonradan değiştirilebilir.
+  var tekrar = location.hash === '#cerez-tercihi';
+  addEventListener('hashchange', function () { if (location.hash === '#cerez-tercihi') location.reload(); });
+  if ((secim === 'kabul' || secim === 'red') && !tekrar) return;
 
   function kaydet(deger) {
     try { localStorage.setItem(KEY, deger); } catch (e) {}
@@ -12,7 +15,11 @@
       if (window.gtag) gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
       if (window.fbq) fbq('consent', 'grant');
       try { document.dispatchEvent(new CustomEvent('vaelo:cerez')); } catch (e) {}
+    } else {
+      if (window.gtag) gtag('consent', 'update', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      if (window.fbq) fbq('consent', 'revoke');
     }
+    if (tekrar) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
     bant.style.transform = 'translateY(110%)';
     setTimeout(function () { bant.remove(); }, 500);
   }

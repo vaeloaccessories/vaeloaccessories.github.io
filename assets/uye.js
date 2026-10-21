@@ -21,7 +21,6 @@ let ilkDurum = false;         // giriş durumu öğrenildi mi
 const YONETICI = (() => { try { return localStorage.getItem('vaelo-admin') === '1'; } catch (e) { return false; } })();
 function izinVar() {
   if (YONETICI) return false;
-  if (uye) return true;
   try { return localStorage.getItem('vaelo-cerez') === 'kabul'; } catch (e) { return false; }
 }
 function rastgele() {
@@ -217,8 +216,9 @@ function ciz() {
     <form class="vu-f" novalidate>
       ${kayit ? '<label for="vu-ad">Ad soyad</label><input id="vu-ad" type="text" name="ad" autocomplete="name" required>' : ''}
       <label for="vu-ep">E-posta</label><input id="vu-ep" type="email" name="email" autocomplete="email" required>
-      <label for="vu-sf">Şifre</label><input id="vu-sf" type="password" name="sifre" autocomplete="${kayit ? 'new-password' : 'current-password'}" required${kayit ? ' minlength="6" placeholder="En az 6 karakter"' : ''}>
-      ${kayit ? `<div class="vu-ok"><input id="vu-kvkk" type="checkbox"><label for="vu-kvkk" style="all:unset"><a href="/kvkk-aydinlatma-metni.html" target="_blank">KVKK Aydınlatma Metni</a>’ni okudum. Üyeliğim, siparişlerim ve sitedeki alışveriş deneyimimin (gezinme ve sepet bilgileri) bu kapsamda işlenmesini kabul ediyorum.</label></div>
+      <label for="vu-sf">Şifre</label><input id="vu-sf" type="password" name="sifre" autocomplete="${kayit ? 'new-password' : 'current-password'}" required${kayit ? ' minlength="8" placeholder="En az 8 karakter"' : ''}>
+      ${kayit ? `<div class="vu-ok"><input id="vu-kvkk" type="checkbox"><label for="vu-kvkk" style="all:unset"><a href="/kvkk-aydinlatma-metni.html" target="_blank">KVKK Aydınlatma Metni</a>’ni okudum; üyeliğim ve siparişlerim için bilgilerimin işleneceğini biliyorum.</label></div>
+      <div class="vu-ok"><input id="vu-izin" type="checkbox"><label for="vu-izin" style="all:unset">Alışveriş deneyimimin geliştirilmesi için sitede gezindiğim sayfaların ve sepetimin kaydedilmesine izin veriyorum. (İsteğe bağlı)</label></div>
       <div class="vu-ok"><input id="vu-bulten" type="checkbox"><label for="vu-bulten" style="all:unset">Yeni koleksiyon ve kampanyalardan e-posta ile haberdar olmak istiyorum. (İsteğe bağlı)</label></div>` : ''}
       <p class="vu-err" aria-live="polite"></p>
       <button class="vu-go" type="submit">${kayit ? 'Üye Ol' : 'Giriş Yap'}</button>
@@ -232,7 +232,14 @@ function ciz() {
     if (kayit) {
       const ad = f.ad.value.trim();
       if (ad.length < 2) { err.textContent = 'Lütfen adınızı ve soyadınızı yazın.'; return; }
-      if (!f.querySelector('#vu-kvkk').checked) { err.textContent = 'Üye olmak için KVKK onayı gerekiyor.'; return; }
+      if (sifre.length < 8) { err.textContent = 'Şifreniz en az 8 karakter olmalı.'; return; }
+      if (!f.querySelector('#vu-kvkk').checked) { err.textContent = 'Üye olmak için KVKK Aydınlatma Metni’ni okuduğunuzu onaylayın.'; return; }
+      if (f.querySelector('#vu-izin').checked) {
+        try { localStorage.setItem('vaelo-cerez', 'kabul'); } catch (x) {}
+        if (window.gtag) gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+        if (window.fbq) fbq('consent', 'grant');
+        try { document.dispatchEvent(new CustomEvent('vaelo:cerez')); } catch (x) {}
+      }
       go.disabled = true; go.textContent = 'Üyeliğiniz oluşturuluyor…';
       try {
         const k = await createUserWithEmailAndPassword(auth, email, sifre);

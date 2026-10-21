@@ -35,7 +35,8 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+var y=function(){s.parentNode.insertBefore(t,s)},c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(x){}
+if(c==='kabul')y();else b.addEventListener('vaelo:cerez',y,{once:true})}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
@@ -45,7 +46,7 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
 <!-- Google Analytics -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
+<script>(function(){function y(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C';document.head.appendChild(s)}var c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(e){}if(c==='kabul')y();else document.addEventListener('vaelo:cerez',y,{once:true})})();</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
 <body>
@@ -68,17 +69,18 @@ fbq('track', 'PageView');
   <h2>Çerezler</h2>
   <ul>
     <li>Sitenin düzgün çalışması için zorunlu çerezler,</li>
-    <li>Ziyaret istatistikleri için Google Analytics çerezleri,</li>
-    <li>Reklamların ölçülmesi için Meta (Facebook/Instagram) çerezleri kullanılır.</li>
-    <li>Tarayıcınızın ayarlarından çerezleri silebilir veya engelleyebilirsiniz.</li>
+    <li>Onay vermeniz halinde ziyaret istatistikleri için Google Analytics çerezleri,</li>
+    <li>Onay vermeniz halinde reklamların ölçülmesi için Meta (Facebook/Instagram) çerezleri kullanılır.</li>
+    <li>Onay vermediğiniz sürece Google Analytics ve Meta kodları sayfaya hiç yüklenmez.</li>
+    <li>Tercihinizi istediğiniz zaman <a href="/#cerez-tercihi">buradan değiştirebilirsiniz</a>; tarayıcınızın ayarlarından çerezleri silebilir veya engelleyebilirsiniz.</li>
   </ul>
 
   <h2>Bilgilerin paylaşımı</h2>
-  <p>Bilgileriniz satılmaz ve kiralanmaz. Yalnızca siparişinizin üretimi, teslimatı ve ödemesi için gerekli olduğu ölçüde iş ortaklarımızla ve yasal zorunluluk halinde yetkili kurumlarla paylaşılır.</p>
+  <p>Bilgileriniz satılmaz ve kiralanmaz. Yalnızca siparişinizin üretimi, teslimatı ve ödemesi için gerekli olduğu ölçüde iş ortaklarımızla ve yasal zorunluluk halinde yetkili kurumlarla paylaşılır. Bu iş ortakları: üretim tedarikçimiz (Printitürk), kargo firması, ödeme kuruluşu (PayTR) ve teknik altyapı sağlayıcılarımız (GitHub, Google Firebase, Cloudflare, Resend, Brevo, Google Analytics, Meta). Ayrıntılar ve yurt dışına aktarım bilgisi <a href="/kvkk-aydinlatma-metni.html">KVKK Aydınlatma Metni</a>’nde yer alır.</p>
 
   <h2>İletişim</h2>
   <ul>
-    <li>Unvan: Ecevit Yıldırım (VAELO)</li>
+    <li>Unvan: Ecevit Yıldırım – VAELO Accessories &amp; Apparel</li>
     <li>Adres: İlkyerleşim Mahallesi, Sularkent Sitesi 2/11, Yenimahalle / Ankara</li>
     <li>Vergi dairesi ve numarası: Ostim Vergi Dairesi – 9550250842</li>
     <li>E-posta: <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a></li>
@@ -86,7 +88,7 @@ fbq('track', 'PageView');
     <li>İnternet sitesi: <a href="https://www.vaelo.com.tr/">www.vaelo.com.tr</a></li>
   </ul>
 </main>
-<footer>© 2026 VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a></footer>
+<footer>© 2026 VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a></footer>
 <script src="/assets/cerez.js" defer></script>
 </body>
 </html>

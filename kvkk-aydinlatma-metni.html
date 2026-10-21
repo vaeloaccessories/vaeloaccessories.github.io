@@ -35,7 +35,8 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
+var y=function(){s.parentNode.insertBefore(t,s)},c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(x){}
+if(c==='kabul')y();else b.addEventListener('vaelo:cerez',y,{once:true})}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
@@ -45,7 +46,7 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
 <!-- Google Analytics -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C"></script>
+<script>(function(){function y(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C';document.head.appendChild(s)}var c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(e){}if(c==='kabul')y();else document.addEventListener('vaelo:cerez',y,{once:true})})();</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
 </head>
 <body>
@@ -58,7 +59,7 @@ fbq('track', 'PageView');
   <p class="upd">6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca, veri sorumlusu sıfatıyla kişisel verilerinizi nasıl işlediğimizi açıklarız.</p>
   <h2>Veri sorumlusu</h2>
   <ul>
-    <li>Unvan: Ecevit Yıldırım (VAELO)</li>
+    <li>Unvan: Ecevit Yıldırım – VAELO Accessories &amp; Apparel</li>
     <li>Adres: İlkyerleşim Mahallesi, Sularkent Sitesi 2/11, Yenimahalle / Ankara</li>
     <li>Vergi dairesi ve numarası: Ostim Vergi Dairesi – 9550250842</li>
     <li>E-posta: <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a></li>
@@ -68,11 +69,11 @@ fbq('track', 'PageView');
 
   <h2>İşlenen kişisel veriler</h2>
   <ul>
-    <li>Kimlik ve iletişim bilgileri: ad soyad, telefon, e-posta.</li>
+    <li>Kimlik ve iletişim bilgileri: ad soyad, telefon, e-posta; bayilik başvurusunda ayrıca firma adı, il ve ilçe.</li>
     <li>Teslimat bilgileri: adres.</li>
     <li>Sipariş bilgileri: satın alınan ürünler, beden, tutar, sipariş tarihi.</li>
     <li>Üyelik bilgileri: ad soyad, e-posta, üyelik ve son giriş tarihi (şifreniz tarafımızca görülemez, şifrelenmiş olarak saklanır).</li>
-    <li>İnternet sitesi kullanım bilgileri: IP adresi, çerezler, ziyaret istatistikleri; çerezlere onay vermeniz veya üye olmanız halinde görüntülediğiniz sayfa ve ürünler, sepetinizdeki ürünler, cihaz türü ve siteye hangi kaynaktan geldiğiniz.</li>
+    <li>İnternet sitesi kullanım bilgileri: IP adresi, çerezler, ziyaret istatistikleri; çerezlere ya da üyelik sırasında gezinme kaydına onay vermeniz halinde görüntülediğiniz sayfa ve ürünler, sepetinizdeki ürünler, cihaz türü ve siteye hangi kaynaktan geldiğiniz.</li>
   </ul>
 
   <h2>İşleme amaçları</h2>
@@ -85,22 +86,31 @@ fbq('track', 'PageView');
     <li>Onay vermeniz halinde kampanya ve bülten gönderimi, sitenin ve alışveriş deneyiminin geliştirilmesi, ürün ilgisinin ölçülmesi ve reklam ölçümü.</li>
   </ul>
 
+  <h2>Toplama yöntemi</h2>
+  <p>Kişisel verileriniz; sipariş, üyelik, bülten ve bayilik formları, e-posta ve WhatsApp yazışmaları ile çerezler aracılığıyla elektronik ortamda toplanır.</p>
+
   <h2>Hukuki sebepler</h2>
-  <p>Kişisel verileriniz KVKK’nın 5. maddesinde yer alan; sözleşmenin kurulması ve ifası, hukuki yükümlülüğün yerine getirilmesi, meşru menfaat ve açık rıza hukuki sebeplerine dayanılarak işlenir.</p>
+  <p>Kişisel verileriniz KVKK’nın 5. maddesinde yer alan; sözleşmenin kurulması ve ifası, hukuki yükümlülüğün yerine getirilmesi, meşru menfaat ve açık rıza hukuki sebeplerine dayanılarak işlenir. Çerezler ile ziyaret istatistikleri, reklam ölçümü, gezinme kaydı ve kampanya e-postaları yalnızca açık rızanızla işlenir; rızanızı dilediğiniz zaman geri alabilirsiniz.</p>
 
   <h2>Aktarıldığı kişiler</h2>
   <ul>
     <li>Ürünün üretimi için üretim tedarikçimize,</li>
     <li>Teslimat için kargo firmalarına,</li>
     <li>Ödemenin alınması için lisanslı ödeme kuruluşuna (kart bilgileriniz yalnızca ödeme kuruluşu tarafından işlenir),</li>
-    <li>Site barındırma, üyelik ve veri saklama (Google Firebase), ziyaret istatistikleri ve reklam ölçümü hizmeti aldığımız firmalara (bu hizmetler yurt dışında bulunan sunucuları kullanabilir),</li>
+    <li>Hizmet aldığımız teknik altyapı sağlayıcılarına: site barındırma (GitHub), üyelik ve veri saklama (Google Firebase), ödeme altyapısı ve sipariş kaydı (Cloudflare), sipariş ve üyelik e-postaları (Resend), bülten e-postaları (Brevo), ziyaret istatistikleri (Google Analytics) ve reklam ölçümü (Meta Platforms).</li>
     <li>Talep halinde yetkili kamu kurum ve kuruluşlarına.</li>
   </ul>
 
+  <h2>Yurt dışına aktarım</h2>
+  <p>Yukarıda adı geçen teknik altyapı sağlayıcılarının sunucuları yurt dışında bulunabilir. Bu aktarım, KVKK’nın 9. maddesine uygun olarak; sözleşmenin ifası için zorunlu olan hallerde (sipariş ve üyelik) ilgili hukuki sebebe, ziyaret istatistikleri, reklam ölçümü ve bülten için ise açık rızanıza dayanılarak yapılır.</p>
+
+  <h2>Saklama süresi</h2>
+  <p>Sipariş ve fatura bilgileri ilgili mevzuatta öngörülen süreler (vergi ve ticaret mevzuatı gereği 10 yıl) boyunca, üyelik bilgileri üyelik devam ettiği sürece, ödeme sistemindeki geçici sipariş kayıtları en fazla 90 gün, ziyaret ve sepet kayıtları en fazla 2 yıl saklanır; süre dolunca silinir veya anonim hale getirilir.</p>
+
   <h2>Haklarınız</h2>
-  <p>KVKK’nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme, aktarıldığı kişileri öğrenme, itiraz etme ve zararın giderilmesini talep etme haklarına sahipsiniz. Başvurularınızı <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> adresine iletebilirsiniz; en geç 30 gün içinde yanıtlanır.</p>
+  <p>KVKK’nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme, aktarıldığı kişileri öğrenme, itiraz etme ve zararın giderilmesini talep etme haklarına sahipsiniz. Üyeliğinizin ve verilerinizin silinmesi dahil tüm başvurularınızı <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> adresine iletebilirsiniz; en geç 30 gün içinde yanıtlanır. Çerez tercihinizi <a href="/#cerez-tercihi">buradan</a> değiştirebilirsiniz.</p>
 </main>
-<footer>© 2026 VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a></footer>
+<footer>© 2026 VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a></footer>
 <script src="/assets/cerez.js" defer></script>
 </body>
 </html>

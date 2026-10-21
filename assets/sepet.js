@@ -211,6 +211,7 @@
       '<label for="vs-adr">Açık adres</label><textarea id="vs-adr" name="address" autocomplete="street-address" placeholder="Mahalle, sokak, bina ve daire no" required></textarea>' +
       (HEDIYE ? '<div class="vs-ok"><input id="vs-hediye" type="checkbox"' + (form.gift ? ' checked' : '') + '><label for="vs-hediye" style="all:unset"><strong style="font-weight:500">Hediye paketi</strong> (+' + tl(HEDIYE) + ') — özel kutu ve paketleme ile gönderilsin</label></div>' : '') +
       '<div class="vs-ok"><input id="vs-onay" type="checkbox"' + (form.onay ? ' checked' : '') + '><label for="vs-onay" style="all:unset"><a href="/on-bilgilendirme-formu.html" target="_blank">Ön Bilgilendirme Formu</a>’nu ve <a href="/mesafeli-satis-sozlesmesi.html" target="_blank">Mesafeli Satış Sözleşmesi</a>’ni okudum, kabul ediyorum.</label></div>' +
+      '<p style="font-size:12px;opacity:.7;margin:6px 0 0">Bilgileriniz siparişinizin hazırlanması ve teslimi için <a href="/kvkk-aydinlatma-metni.html" target="_blank">KVKK Aydınlatma Metni</a> kapsamında işlenir.</p>' +
       '<p class="vs-err" aria-live="polite"></p>' +
       '<button class="vs-back" type="button">← Sepete dön</button></form>';
     var f = body.querySelector('form');

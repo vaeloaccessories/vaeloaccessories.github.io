@@ -61,14 +61,14 @@ if (!kod) {
   try {
     const email = await verifyPasswordResetCode(auth, kod);
     kutu.innerHTML = `<h1>Yeni şifrenizi belirleyin</h1><p>${esc(email)} hesabı için yeni bir şifre oluşturun.</p>
-      <form id="f" novalidate><label for="s1">Yeni şifre</label><input id="s1" type="password" autocomplete="new-password" placeholder="En az 6 karakter">
+      <form id="f" novalidate><label for="s1">Yeni şifre</label><input id="s1" type="password" autocomplete="new-password" placeholder="En az 8 karakter">
       <label for="s2">Yeni şifre (tekrar)</label><input id="s2" type="password" autocomplete="new-password">
       <p class="err" id="err" aria-live="polite"></p><button class="btn" type="submit">Şifremi Kaydet</button></form>`;
     const f = document.getElementById('f'), err = document.getElementById('err');
     f.onsubmit = async (ev) => {
       ev.preventDefault(); err.textContent = '';
       const a = f.s1.value, b = f.s2.value;
-      if (a.length < 6) { err.textContent = 'Şifre en az 6 karakter olmalı.'; return; }
+      if (a.length < 8) { err.textContent = 'Şifre en az 8 karakter olmalı.'; return; }
       if (a !== b) { err.textContent = 'İki şifre birbiriyle aynı değil.'; return; }
       const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Kaydediliyor…';
       try { await confirmPasswordReset(auth, kod, a); sonuc('Şifreniz yenilendi', 'Yeni şifrenizle giriş yapabilirsiniz.', '<a class="btn" href="/#hesap">Giriş Yap</a>'); }
