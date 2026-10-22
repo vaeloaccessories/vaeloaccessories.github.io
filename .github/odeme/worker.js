@@ -144,7 +144,7 @@ async function startPayment(request, env) {
   paketIndirim = Math.round(paketIndirim * 100) / 100;
   const indirim = Math.round((araToplam - paketIndirim - total) * 100) / 100;
   const paket = paketSatir.map((b) => b[0] + (b[2] > 1 ? ' ×' + b[2] : ''));
-  const shipping = (kupon && kupon.kargo) || paketSatir.length || araToplam >= FREE_SHIPPING_FROM ? 0 : Number(catalog.shipping || 120);
+  const shipping = (kupon && kupon.kargo) || paketSatir.length || araToplam >= Number(catalog.freeShippingFrom ?? FREE_SHIPPING_FROM) ? 0 : Number(catalog.shipping ?? 120);
   if (shipping > 0) basket.push(['Kargo', shipping.toFixed(2), 1]);
   total += shipping;
   const gift = body.gift === true;
