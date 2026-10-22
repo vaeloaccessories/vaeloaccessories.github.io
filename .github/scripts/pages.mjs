@@ -5,7 +5,7 @@ import fs from 'node:fs';
 const SITE = 'https://www.vaelo.com.tr/';
 const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const list = (data.products || []).filter((p) => p.name && p.price && p.id);
-const ship = data.shipping || 120;
+const ship = data.shipping ?? 120;
 // 3'lü paket notu: kasa paketi destekliyorsa sepet.js görünür yapar.
 const paketNotu = (p) => { const k = (data.paketler || []).find((x) => (x.urunler || []).includes(String(p.id))); return k ? `<p class="paket" hidden>3'lü al: <b>₺${fmt(k.fiyat)}</b> · Kargo bedava<br><span>Bu seriden istediğin 3 parçayı sepete ekle, indirim otomatik uygulanır.</span></p>` : ''; };
 
@@ -187,7 +187,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     ${sizeTable(p.name)}
     <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + (/street/i.test(p.category || '') ? 'street' : 'signature'))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
-    <p class="note">Ödeme PayTR güvencesiyle yapılır. Kargo ${ship} TL, 3.000 TL üzeri siparişlerde ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
+    <p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
     <div class="desc">${descHtml(p.description)}</div>
     <div class="desc"><h3>Yıkama Talimatı</h3><ul><li>Ters çevirerek yıkayın.</li><li>En düşük sıcaklıkta (en fazla 30°C) ve en hassas programda yıkayın.</li><li>Ağartıcı kullanmayın, kurutma makinesine atmayın, baskının üzerine ütü yapmayın.</li><li>Bu şartlarda yıkandığında baskı solma, çatlama veya atma yapmaz.</li></ul></div>
   </div>

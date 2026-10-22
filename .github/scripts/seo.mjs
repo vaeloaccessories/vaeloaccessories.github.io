@@ -81,7 +81,7 @@ const llms = `# VAELO
 - İki seri: Signature Premium (sade, zamansız, V monogramlı) ve VAELO // Street Division (şehir stili, grafik baskılı)
 - Kapşonlu sweatshirtler: %100 şardonlu pamuk, 380 GSM yüksek gramaj (heavyweight), oversize kesim
 - Bedenler: S, M, L, XL, XXL (unisex oversize)
-- Kargo: ${data.shipping || 120} TL; 3.000 TL üzeri siparişlerde ücretsiz; siparişler 2–3 iş günü içinde kargoya verilir
+- Kargo: tüm siparişlerde ücretsiz; siparişler 2–3 iş günü içinde kargoya verilir
 - Teslimattan itibaren 7 gün içinde iade talebi, iade kargosu ücretsiz; inceleme sonrası onaylanır. Beden değişimi yok.
 - Yıkama: ters çevirerek, en düşük sıcaklıkta, hassas programda; bu şartlarda baskı atmaz
 
