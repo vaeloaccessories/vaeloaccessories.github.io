@@ -194,7 +194,7 @@
         '<div class="vb-ol"><div class="vb-bas"><span></span><span>Dar</span><span>İdeal</span><span>Bol</span></div>' +
         [['Göğüs', r.gogus], ['Bel', r.bel], ['Boy', r.boy]].map(function (c) { return '<div class="vb-cz"><span>' + c[0] + '</span><div><i style="left:' + (c[1] * 100).toFixed(0) + '%" title="' + nm[c[1] < .33 ? 0 : c[1] > .67 ? 2 : 1] + '"></i></div></div>'; }).join('') + '</div>' +
         '<div class="vb-not"><b>Kalıp notu</b>' + not + '</div>' +
-        '<p class="vb-alt2">Bu genel bir öneridir; kişisel tercihe göre değişebilir. Beden değişimi yapılmadığı için emin değilsen <a href="https://wa.me/905513708320?text=' + encodeURIComponent('Merhaba, ' + isim + ' için beden sormak istiyorum. Boy: ' + s.boy + ' cm, kilo: ' + s.kilo + ' kg.') + '" target="_blank" rel="noopener">WhatsApp’tan sor</a>.</p>' +
+        '<p class="vb-alt2">Bu genel bir öneridir; kişisel tercihe göre değişebilir. Beden değişimi mümkün ama yine de emin değilsen <a href="https://wa.me/905513708320?text=' + encodeURIComponent('Merhaba, ' + isim + ' için beden sormak istiyorum. Boy: ' + s.boy + ' cm, kilo: ' + s.kilo + ' kg.') + '" target="_blank" rel="noopener">WhatsApp’tan sor</a>.</p>' +
         '<button type="button" class="vb-bastan">Ölçüleri değiştir</button></div>';
       govde.querySelector('.vb-bastan').onclick = function () { adim = 1; ciz(); };
       alt.innerHTML = '<button type="button" class="vb-ileri">Sepete ' + r.beden + ' Ekle</button>';
