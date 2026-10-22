@@ -6,7 +6,7 @@
 // İsteğe bağlı ayar: PAYTR_TEST_MODE = "1" iken gerçek para çekilmez.
 
 const SITE = 'https://www.vaelo.com.tr';
-const FREE_SHIPPING_FROM = 3000;
+const FREE_SHIPPING_FROM = 0; // 0 = tüm siparişlerde kargo ücretsiz
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 const HEDIYE_PAKETI = 100;
 // İndirim kodları. oran = yüzde indirim (yalnızca ürünlere), kargo = kargo ücretsiz.

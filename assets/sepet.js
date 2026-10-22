@@ -6,7 +6,7 @@
   'use strict';
   var CANLI = true;
   var KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev/odeme';
-  var UCRETSIZ_KARGO = 3000, KARGO = 120;
+  var UCRETSIZ_KARGO = 0, KARGO = 0;
   var BEDENLER = ['S', 'M', 'L', 'XL', 'XXL'];
 
   // ---- açık mı? ----
