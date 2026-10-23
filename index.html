@@ -325,29 +325,37 @@ fbq('track', 'PageView');
     .gate-marquee { display: none; }
   }
 
-  /* ana sayfa girişi: ürünsüz, marka adı merkezde */
-  .gateway { background: linear-gradient(100deg, #F1EEE8 0%, #E3DFD6 34%, #3b3934 58%, #121211 76%, #0A0A0A 100%); }
-  .gate, .gate-street { background: transparent; }
+  /* ana sayfa girişi: ürünsüz, düz siyah, marka adı merkezde */
+  .gateway { background: #0A0A0A; }
+  .gate, .gate-street { background: transparent; color: var(--paper); }
   .gate-bg, .gate-logo { display: none; }
-  .gateway::before { content: ""; position: absolute; inset: -20%; z-index: 1; pointer-events: none;
-    background: radial-gradient(38% 42% at 50% 50%, rgba(255,247,230,.20), rgba(255,247,230,0) 70%);
-    opacity: 0; animation: gwglow 1.8s var(--ease) calc(var(--t0) + .2s) forwards, gwdrift 16s ease-in-out calc(var(--t0) + 2s) infinite alternate; }
-  @keyframes gwglow { to { opacity: 1; } }
-  @keyframes gwdrift { from { transform: translateX(-9%); } to { transform: translateX(9%); } }
-  .gate-word { position: absolute; left: 0; right: 0; top: 46%; transform: translateY(-50%); z-index: 3; pointer-events: none; text-align: center;
-    font-family: var(--serif); font-weight: 300; font-size: clamp(3.4rem, 15.5vw, 17rem); line-height: 1; color: #fff; mix-blend-mode: difference; white-space: nowrap;
-    letter-spacing: .26em; padding-left: .26em; opacity: 0; animation: gwword 2.6s var(--ease) calc(var(--t0) + .3s) forwards; }
-  .gate-word small { display: block; margin-top: 2.2vh; font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(.95rem, 1.5vw, 1.35rem); letter-spacing: .08em; padding-left: 0; }
-  @keyframes gwword { from { opacity: 0; letter-spacing: .62em; filter: blur(14px); } to { opacity: 1; letter-spacing: .26em; filter: blur(0); } }
-  .gate-text { z-index: 4; }
-  .gate p { max-width: 36em; }
+  .gate-text { z-index: 4; padding-top: 20px; position: relative; width: 100%; }
+  .gate-text::before { content: ""; position: absolute; top: 0; left: 5vw; right: 5vw; height: 1px; background: rgba(243,241,236,.22); }
+  .gate-text { padding-left: 5vw; padding-right: 5vw; }
+  .gate-text::before { left: 5vw; right: 5vw; }
+  .gate p { max-width: 36em; color: #b9b4a8; }
+  .gate-cta { color: #cdbf9f; }
+  .gate-word { position: absolute; left: 0; right: 0; top: 44%; transform: translateY(-50%); z-index: 3; pointer-events: none; text-align: center;
+    font-family: var(--serif); font-weight: 300; font-size: clamp(3.4rem, 14vw, 15rem); line-height: 1; white-space: nowrap;
+    letter-spacing: .3em; padding-left: .3em;
+    color: transparent; -webkit-text-fill-color: transparent;
+    background: linear-gradient(100deg, #9b927f 0%, #9b927f 42%, #f3ebd8 50%, #9b927f 58%, #9b927f 100%) 100% 0 / 260% 100% no-repeat;
+    -webkit-background-clip: text; background-clip: text;
+    opacity: 0; animation: gwword 2.8s var(--ease) calc(var(--t0) + .3s) forwards, gwshine 7s ease-in-out calc(var(--t0) + 3.2s) infinite; }
+  .gate-word small { display: block; margin-top: 3vh; font-style: italic; font-weight: 300; font-size: clamp(.95rem, 1.5vw, 1.35rem); letter-spacing: .1em; padding-left: 0;
+    color: #9b927f; -webkit-text-fill-color: #9b927f; background: none; }
+  .gate-word small::before { content: ""; display: block; width: 56px; height: 1px; margin: 0 auto 3vh; background: #9b927f; opacity: .7; }
+  @keyframes gwword { from { opacity: 0; letter-spacing: .7em; filter: blur(14px); } to { opacity: 1; letter-spacing: .3em; filter: blur(0); } }
+  @keyframes gwshine { 0%, 55% { background-position: 100% 0; } 100% { background-position: 0 0; } }
   @media (max-width: 800px) {
-    .gateway { background: linear-gradient(180deg, #F1EEE8 0%, #E3DFD6 52%, #3b3934 72%, #0A0A0A 100%); }
+    .gate-text { padding-left: 7vw; padding-right: 7vw; }
+    .gate-text::before { left: 7vw; right: 7vw; }
+    .gate-text { max-width: none; }
     .gate p { max-width: 88vw; }
-    .gate-word { top: 27%; font-size: clamp(2.6rem, 17vw, 5rem); letter-spacing: .2em; padding-left: .2em; }
-    @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(10px); } to { opacity: 1; letter-spacing: .2em; filter: blur(0); } }
+    .gate-word { top: 26%; font-size: clamp(2.6rem, 16vw, 5rem); letter-spacing: .22em; padding-left: .22em; }
+    @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(10px); } to { opacity: 1; letter-spacing: .22em; filter: blur(0); } }
   }
-  @media (prefers-reduced-motion: reduce) { .gate-word, .gateway::before { animation: none; opacity: 1; filter: none; } }
+  @media (prefers-reduced-motion: reduce) { .gate-word { animation: none; opacity: 1; filter: none; } }
 
   /* one "page" at a time */
   html[data-view="home"] #koleksiyon, html[data-view="home"] #street, html[data-view="home"] .shipbar { display: none; }
@@ -498,7 +506,7 @@ fbq('track', 'PageView');
 <main>
   <h1 class="seo-h1">VAELO – Lüks Kapşonlu Sweatshirt, Hoodie ve Premium Sweatshirt</h1>
   <div class="gateway" id="gateway">
-    <div class="gate-word" aria-hidden="true">VAELO<small>Sessiz lüksün yeni tanımı</small></div>
+    <div class="gate-word" aria-hidden="true">VAĖLO<small>Sessiz lüksün yeni tanımı</small></div>
     <a class="gate gate-sig" id="gate-sig" href="#signature" data-view="signature">
       <div class="gate-bg" aria-hidden="true"><img alt="" src="assets/signature-bg.webp" width="768" height="1376" fetchpriority="high" decoding="async"></div>
       <div class="gate-text">
