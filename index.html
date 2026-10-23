@@ -325,37 +325,36 @@ fbq('track', 'PageView');
     .gate-marquee { display: none; }
   }
 
-  /* ana sayfa girişi: ürünsüz, düz siyah, marka adı merkezde */
+  /* ana sayfa girişi: üç fotoğraf yan yana, silik logo */
   .gateway { background: #0A0A0A; }
   .gate, .gate-street { background: transparent; color: var(--paper); }
   .gate-bg, .gate-logo { display: none; }
-  .gate-text { z-index: 4; padding-top: 20px; position: relative; width: 100%; }
-  .gate-text::before { content: ""; position: absolute; top: 0; left: 5vw; right: 5vw; height: 1px; background: rgba(243,241,236,.22); }
-  .gate-text { padding-left: 5vw; padding-right: 5vw; }
-  .gate-text::before { left: 5vw; right: 5vw; }
-  .gate p { max-width: 36em; color: #b9b4a8; }
-  .gate-cta { color: #cdbf9f; }
-  .gate-word { position: absolute; left: 0; right: 0; top: 44%; transform: translateY(-50%); z-index: 3; pointer-events: none; text-align: center;
-    font-family: var(--serif); font-weight: 300; font-size: clamp(3.4rem, 14vw, 15rem); line-height: 1; white-space: nowrap;
-    letter-spacing: .3em; padding-left: .3em;
-    color: transparent; -webkit-text-fill-color: transparent;
-    background: linear-gradient(100deg, #9b927f 0%, #9b927f 42%, #f3ebd8 50%, #9b927f 58%, #9b927f 100%) 100% 0 / 260% 100% no-repeat;
-    -webkit-background-clip: text; background-clip: text;
-    opacity: 0; animation: gwword 2.8s var(--ease) calc(var(--t0) + .3s) forwards, gwshine 7s ease-in-out calc(var(--t0) + 3.2s) infinite; }
-  .gate-word small { display: block; margin-top: 3vh; font-style: italic; font-weight: 300; font-size: clamp(.95rem, 1.5vw, 1.35rem); letter-spacing: .1em; padding-left: 0;
-    color: #9b927f; -webkit-text-fill-color: #9b927f; background: none; }
-  .gate-word small::before { content: ""; display: block; width: 56px; height: 1px; margin: 0 auto 3vh; background: #9b927f; opacity: .7; }
-  @keyframes gwword { from { opacity: 0; letter-spacing: .7em; filter: blur(14px); } to { opacity: 1; letter-spacing: .3em; filter: blur(0); } }
-  @keyframes gwshine { 0%, 55% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+  .gw-photos { position: absolute; inset: 0; z-index: 0; display: flex; }
+  .gw-photos div { flex: 1; position: relative; overflow: hidden; clip-path: inset(100% 0 0 0); animation: gwreveal 1.6s var(--ease) forwards; }
+  .gw-photos div:nth-child(1) { animation-delay: calc(var(--t0) + .1s); }
+  .gw-photos div:nth-child(2) { animation-delay: calc(var(--t0) + .3s); }
+  .gw-photos div:nth-child(3) { animation-delay: calc(var(--t0) + .5s); }
+  @keyframes gwreveal { to { clip-path: inset(0 0 0 0); } }
+  .gw-photos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; transform: scale(1.12); animation: gwzoom 14s var(--ease) calc(var(--t0) + .1s) forwards; filter: saturate(.8) contrast(1.04); }
+  @keyframes gwzoom { to { transform: scale(1.02); } }
+  .gateway::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(10,10,10,.42) 0%, rgba(10,10,10,.08) 28%, rgba(10,10,10,.22) 52%, rgba(10,10,10,.88) 100%); }
+  .gate-word { position: absolute; left: 0; right: 0; top: 42%; transform: translateY(-50%); z-index: 2; pointer-events: none; text-align: center;
+    font-family: var(--serif); font-weight: 300; font-size: clamp(3.6rem, 15vw, 16rem); line-height: 1; white-space: nowrap; color: #fff;
+    letter-spacing: .3em; padding-left: .3em; opacity: 0; animation: gwword 2.8s var(--ease) calc(var(--t0) + 1s) forwards; }
+  @keyframes gwword { from { opacity: 0; letter-spacing: .62em; filter: blur(12px); } to { opacity: .24; letter-spacing: .3em; filter: blur(0); } }
+  .gate-text { z-index: 4; position: relative; width: 100%; padding: 0 5vw 6vh; }
+  .gate p { max-width: 30em; color: rgba(243,241,236,.82); }
+  .gate-cta { color: #fff; }
+  .gate-text { text-shadow: 0 1px 14px rgba(0,0,0,.45); }
+  .gate h2.gate-sub { color: #fff; }
   @media (max-width: 800px) {
-    .gate-text { padding-left: 7vw; padding-right: 7vw; }
-    .gate-text::before { left: 7vw; right: 7vw; }
-    .gate-text { max-width: none; }
-    .gate p { max-width: 88vw; }
-    .gate-word { top: 26%; font-size: clamp(2.6rem, 16vw, 5rem); letter-spacing: .22em; padding-left: .22em; }
-    @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(10px); } to { opacity: 1; letter-spacing: .22em; filter: blur(0); } }
+    .gw-photos div:nth-child(3) { display: none; }
+    .gate-word { top: 28%; font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: .22em; padding-left: .22em; }
+    @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(8px); } to { opacity: .26; letter-spacing: .22em; filter: blur(0); } }
+    .gate-text { padding: 0 7vw 3vh; }
   }
-  @media (prefers-reduced-motion: reduce) { .gate-word { animation: none; opacity: 1; filter: none; } }
+  @media (prefers-reduced-motion: reduce) { .gw-photos div { animation: none; clip-path: none; } .gw-photos img { animation: none; transform: none; } .gate-word { animation: none; opacity: .24; filter: none; } }
 
   /* one "page" at a time */
   html[data-view="home"] #koleksiyon, html[data-view="home"] #street, html[data-view="home"] .shipbar { display: none; }
@@ -506,7 +505,8 @@ fbq('track', 'PageView');
 <main>
   <h1 class="seo-h1">VAELO – Lüks Kapşonlu Sweatshirt, Hoodie ve Premium Sweatshirt</h1>
   <div class="gateway" id="gateway">
-    <div class="gate-word" aria-hidden="true">VAĖLO<small>Sessiz lüksün yeni tanımı</small></div>
+    <div class="gw-photos" aria-hidden="true"><div><img src="assets/hero-1.webp" alt="" fetchpriority="high"></div><div><img src="assets/hero-2.webp" alt=""></div><div><img src="assets/hero-3.webp" alt=""></div></div>
+    <div class="gate-word" aria-hidden="true">VAĖLO</div>
     <a class="gate gate-sig" id="gate-sig" href="#signature" data-view="signature">
       <div class="gate-bg" aria-hidden="true"><img alt="" src="assets/signature-bg.webp" width="768" height="1376" fetchpriority="high" decoding="async"></div>
       <div class="gate-text">
