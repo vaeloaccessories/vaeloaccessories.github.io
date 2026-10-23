@@ -343,7 +343,7 @@ fbq('track', 'PageView');
     font-family: var(--serif); font-weight: 300; font-size: clamp(3.6rem, 15vw, 16rem); line-height: 1; white-space: nowrap; color: #fff;
     letter-spacing: .3em; padding-left: .3em; opacity: 0; animation: gwword 2.8s var(--ease) calc(var(--t0) + 1s) forwards; }
   @keyframes gwword { from { opacity: 0; letter-spacing: .62em; filter: blur(12px); } to { opacity: .24; letter-spacing: .3em; filter: blur(0); } }
-  .gate-text { z-index: 4; position: relative; width: 100%; padding: 0 5vw 6vh; }
+  .gate-text { z-index: 4; position: relative; width: 100%; padding: 0 5vw calc(86px + 4vh); }
   .gate p { max-width: 30em; color: rgba(243,241,236,.82); }
   .gate-cta { color: #fff; }
   .gate-text { text-shadow: 0 1px 14px rgba(0,0,0,.45); }
@@ -353,6 +353,10 @@ fbq('track', 'PageView');
     .gate-word { top: 28%; font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: .22em; padding-left: .22em; }
     @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(8px); } to { opacity: .26; letter-spacing: .22em; filter: blur(0); } }
     .gate-text { padding: 0 7vw 3vh; }
+    .gw-photos { top: 92px; }
+    .gw-photos img { object-position: 38% 0%; transform-origin: 50% 0%; transform: scale(1.04); }
+    @keyframes gwzoom { to { transform: scale(1); } }
+    .gate-word { top: 60%; }
   }
   @media (prefers-reduced-motion: reduce) { .gw-photos div { animation: none; clip-path: none; } .gw-photos img { animation: none; transform: none; } .gate-word { animation: none; opacity: .24; filter: none; } }
 
