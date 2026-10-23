@@ -325,6 +325,30 @@ fbq('track', 'PageView');
     .gate-marquee { display: none; }
   }
 
+  /* ana sayfa girişi: ürünsüz, marka adı merkezde */
+  .gateway { background: linear-gradient(100deg, #F1EEE8 0%, #E3DFD6 34%, #3b3934 58%, #121211 76%, #0A0A0A 100%); }
+  .gate, .gate-street { background: transparent; }
+  .gate-bg, .gate-logo { display: none; }
+  .gateway::before { content: ""; position: absolute; inset: -20%; z-index: 1; pointer-events: none;
+    background: radial-gradient(38% 42% at 50% 50%, rgba(255,247,230,.20), rgba(255,247,230,0) 70%);
+    opacity: 0; animation: gwglow 1.8s var(--ease) calc(var(--t0) + .2s) forwards, gwdrift 16s ease-in-out calc(var(--t0) + 2s) infinite alternate; }
+  @keyframes gwglow { to { opacity: 1; } }
+  @keyframes gwdrift { from { transform: translateX(-9%); } to { transform: translateX(9%); } }
+  .gate-word { position: absolute; left: 0; right: 0; top: 46%; transform: translateY(-50%); z-index: 3; pointer-events: none; text-align: center;
+    font-family: var(--serif); font-weight: 300; font-size: clamp(3.4rem, 15.5vw, 17rem); line-height: 1; color: #fff; mix-blend-mode: difference; white-space: nowrap;
+    letter-spacing: .26em; padding-left: .26em; opacity: 0; animation: gwword 2.6s var(--ease) calc(var(--t0) + .3s) forwards; }
+  .gate-word small { display: block; margin-top: 2.2vh; font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(.95rem, 1.5vw, 1.35rem); letter-spacing: .08em; padding-left: 0; }
+  @keyframes gwword { from { opacity: 0; letter-spacing: .62em; filter: blur(14px); } to { opacity: 1; letter-spacing: .26em; filter: blur(0); } }
+  .gate-text { z-index: 4; }
+  .gate p { max-width: 36em; }
+  @media (max-width: 800px) {
+    .gateway { background: linear-gradient(180deg, #F1EEE8 0%, #E3DFD6 52%, #3b3934 72%, #0A0A0A 100%); }
+    .gate p { max-width: 88vw; }
+    .gate-word { top: 27%; font-size: clamp(2.6rem, 17vw, 5rem); letter-spacing: .2em; padding-left: .2em; }
+    @keyframes gwword { from { opacity: 0; letter-spacing: .5em; filter: blur(10px); } to { opacity: 1; letter-spacing: .2em; filter: blur(0); } }
+  }
+  @media (prefers-reduced-motion: reduce) { .gate-word, .gateway::before { animation: none; opacity: 1; filter: none; } }
+
   /* one "page" at a time */
   html[data-view="home"] #koleksiyon, html[data-view="home"] #street, html[data-view="home"] .shipbar { display: none; }
   html[data-view="signature"] .gateway, html[data-view="signature"] #street { display: none; }
@@ -474,6 +498,7 @@ fbq('track', 'PageView');
 <main>
   <h1 class="seo-h1">VAELO – Lüks Kapşonlu Sweatshirt, Hoodie ve Premium Sweatshirt</h1>
   <div class="gateway" id="gateway">
+    <div class="gate-word" aria-hidden="true">VAELO<small>Sessiz lüksün yeni tanımı</small></div>
     <a class="gate gate-sig" id="gate-sig" href="#signature" data-view="signature">
       <div class="gate-bg" aria-hidden="true"><img alt="" src="assets/signature-bg.webp" width="768" height="1376" fetchpriority="high" decoding="async"></div>
       <div class="gate-text">
