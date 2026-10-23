@@ -348,6 +348,10 @@ fbq('track', 'PageView');
   .gate-cta { color: #fff; }
   .gate-text { text-shadow: 0 1px 14px rgba(0,0,0,.45); }
   .gate h2.gate-sub { color: #fff; }
+  @media (hover: hover) and (min-width: 801px) {
+    .gateway:hover .gate, .gateway .gate:hover { flex: 1; }
+    .gate-street .gate-text { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+  }
   @media (max-width: 800px) {
     .gw-photos div:nth-child(3) { display: none; }
     .gate-word { top: 28%; font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: .22em; padding-left: .22em; }
