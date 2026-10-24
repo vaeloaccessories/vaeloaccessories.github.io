@@ -30,9 +30,10 @@
   var css = '' +
     '.ek-bg{position:fixed;inset:0;z-index:99996;background:rgba(10,10,10,.72);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .35s}' +
     '.ek-bg.on{opacity:1}' +
-    '.ek{position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;background:#0A0A0A;border:1px solid #b9a98a;padding:42px 30px 30px;text-align:center;color:#f4efe6;font-family:Georgia,"Times New Roman",serif;transform:translateY(14px);transition:transform .35s}' +
+    '.ek{position:relative;width:100%;max-width:420px;max-height:94vh;overflow:auto;background:#0A0A0A;border:1px solid #b9a98a;padding:0 0 18px;text-align:center;color:#f4efe6;font-family:Georgia,"Times New Roman",serif;transform:translateY(14px);transition:transform .35s}' +
     '.ek-bg.on .ek{transform:none}' +
-    '.ek-x{position:absolute;top:8px;right:12px;background:none;border:0;color:#f4efe6;font-size:28px;line-height:1;cursor:pointer;padding:6px}' +
+    '.ek-img{display:block;width:100%;height:auto;max-height:68vh;object-fit:contain;background:#0A0A0A}' +
+    '.ek-x{position:absolute;z-index:2;top:8px;right:10px;background:rgba(10,10,10,.7);border:0;color:#f4efe6;font-size:28px;line-height:1;cursor:pointer;padding:6px}' +
     '.ek-logo{font-size:15px;letter-spacing:.5em;color:#b9a98a}' +
     '.ek-tag{margin-top:22px;font:11px Arial,sans-serif;letter-spacing:.28em;color:#b9a98a;text-transform:uppercase}' +
     '.ek h2{margin-top:10px;font-size:34px;font-weight:400;letter-spacing:.14em;line-height:1.15}' +
@@ -42,8 +43,8 @@
     '.ek-n{font-size:20px;color:#b9a98a;min-width:26px}' +
     '.ek-it b{display:block;font:600 14px Arial,sans-serif;letter-spacing:.04em}' +
     '.ek-it span{display:block;margin-top:3px;font:13px/1.45 Arial,sans-serif;color:#b8b2a6}' +
-    '.ek-btn{display:block;width:100%;margin-top:26px;background:#f4efe6;color:#0A0A0A;border:0;padding:15px;font:700 12px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}' +
-    '.ek-note{margin-top:14px;font:11px Arial,sans-serif;color:#7d786e}' +
+    '.ek-btn{display:block;width:calc(100% - 36px);margin:16px 18px 0;background:#f4efe6;color:#0A0A0A;border:0;padding:15px;font:700 12px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}' +
+    '.ek-note{margin:12px 18px 0;font:11px Arial,sans-serif;color:#7d786e}' +
     '@media (prefers-reduced-motion:reduce){.ek,.ek-bg{transition:none}}';
 
   var bg = null;
@@ -63,16 +64,9 @@
     bg.innerHTML = '' +
       '<div class="ek">' +
         '<button class="ek-x" aria-label="Kapat">&times;</button>' +
-        '<div class="ek-logo">VAĖLO</div>' +
-        '<div class="ek-tag">Sezon açılışı</div>' +
-        '<h2>EARLY<br>NOVEMBER</h2>' +
-        '<div class="ek-date">1–7 Kasım 2026</div>' +
-        '<div class="ek-list">' +
-          '<div class="ek-it"><div class="ek-n">01</div><div><b>İlk 50 siparişe özel</b><span>Yeni sezon parçalar sınırlı sayıda üretilir. Stok bitince kampanya sona erer.</span></div></div>' +
-          '<div class="ek-it"><div class="ek-n">02</div><div><b>Yorum yaz, kod kazan</b><span>Ürününü aldıktan sonra yorumunu bize WhatsApp\'tan veya e-postayla ilet, sonraki alışverişine özel kod hediye.</span></div></div>' +
-        '</div>' +
+        '<img class="ek-img" src="/assets/erken-kasim.webp" alt="VAELO Early November, 1–7 Kasım, ilk 50 siparişe özel" width="810" height="1013">' +
         '<button class="ek-btn">Koleksiyonu Keşfet</button>' +
-        '<div class="ek-note">Tüm siparişlerde kargo ücretsiz · 7 gün iade</div>' +
+        '<div class="ek-note">Yorum yaz, sonraki alışverişine özel kod kazan · Tüm siparişlerde kargo ücretsiz</div>' +
       '</div>';
     document.body.appendChild(bg);
     requestAnimationFrame(function () { requestAnimationFrame(function () { bg.classList.add('on'); }); });
