@@ -1,11 +1,11 @@
 /* VAELO Early November kampanyası
- * Yalnızca 1–7 Kasım 2026 arasında görünür; sonrasında kendiliğinden kapanır.
+ * Yalnızca 24 Ekim – 7 Kasım 2026 arasında görünür; sonrasında kendiliğinden kapanır.
  * Test için adresin sonuna ?erken=1 eklenebilir.
  * Pencere, hoş geldin çarkı kapandıktan sonra açılır (iki pencere üst üste binmesin).
  */
 (function () {
   'use strict';
-  var BASLA = new Date('2026-11-01T00:00:00+03:00').getTime();
+  var BASLA = new Date('2026-10-24T22:00:00+03:00').getTime();
   var BITIS = new Date('2026-11-07T23:59:59+03:00').getTime();
   var test = /[?&]erken=1/.test(location.search);
   var simdi = Date.now();
