@@ -99,11 +99,11 @@ async function startPayment(request, env) {
     const p = byId.get(String(it.id));
     const qty = Math.floor(Number(it.qty));
     const size = String(it.size || '');
-    if (!p || !(qty >= 1 && qty <= 10) || !SIZES.includes(size)) {
+    if (!p || !(qty >= 1 && qty <= 10) || !(p.category === 'Saat' ? size === 'Standart' : SIZES.includes(size))) {
       return json({ ok: false, error: 'Sepetteki bir ürün artık mevcut değil. Lütfen sepetinizi yenileyin.' }, 400);
     }
     satirlar.push({ p, size, qty });
-    urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name) });
+    urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name), saat: p.category === 'Saat' });
   }
   const kod = clean(body.kupon, 30).toUpperCase().replace(/\s+/g, '');
   const kupon = kod ? KUPONLAR[kod] : null;
@@ -133,7 +133,7 @@ async function startPayment(request, env) {
     const kalan = x.qty - kullan[i];
     if (!kalan) return;
     let fiyat = Number(x.p.price);
-    let ad = `${x.p.name.replace(/^Vaelo\s+/i, 'VAELO ')} (Beden: ${x.size})`;
+    let ad = `${x.p.name.replace(/^Vaelo\s+/i, 'VAELO ')} ${x.size === 'Standart' ? '' : ' (Beden: ' + x.size + ')'}`;
     // Yüzde indirim paket dışındaki ürünlerin birim fiyatına yansıtılır; PayTR sepeti ile tutar birebir tutar.
     if (kupon && kupon.oran) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
     basket.push([ad, fiyat.toFixed(2), kalan]);
@@ -198,13 +198,20 @@ async function printiturkeGonder(env, oid) {
   if (!raw) { console.log('Sipariş kaydı bulunamadı:', oid); return; }
   const o = JSON.parse(raw);
   if (o.printiturk) return;
+  // Saatler Printitürk'te üretilmez; yalnızca giyim ürünleri gönderilir (saat siparişi elle hazırlanır).
+  if (!o.urunler.some((u) => !u.saat)) {
+    o.printiturk = 'saat-elle'; o.odendi = new Date().toISOString();
+    await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
+    console.log('Yalnızca saat siparişi, Printitürk atlandı:', oid);
+    return;
+  }
   const parts = o.name.split(' ');
   const last = parts.length > 1 ? parts.pop() : '-';
   const payload = {
     external_order_id: oid,
     customer: { first_name: parts.join(' '), last_name: last, email: o.email, phone: o.phone.replace(/\D/g, '').replace(/^90/, '').replace(/^0/, ''),
       address: o.address, city: o.city, district: o.district },
-    items: o.urunler.map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
+    items: o.urunler.filter((u) => !u.saat).map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
     gift_package: !!o.gift,
     order_note: 'vaelo.com.tr sipariş no: ' + oid + (o.gift ? ' · HEDİYE PAKETİ' : ''),
   };
@@ -241,7 +248,7 @@ function mailSablon(baslik, icerik) {
 function urunTablosu(o) {
   const satir = (a, b) => `<tr><td style="padding:8px 0;border-bottom:1px solid #eee">${a}</td><td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${b}</td></tr>`;
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">` +
-    o.urunler.map((u) => satir(`${e(u.name.replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">Beden: ${e(u.size)} · ${u.qty} adet</span>`, '')).join('') +
+    o.urunler.map((u) => satir(`${e(u.name.replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">${u.size === 'Standart' ? '' : 'Beden: ' + e(u.size) + ' · '}${u.qty} adet</span>`, '')).join('') +
     (o.gift ? satir('Hediye paketi', tl(HEDIYE_PAKETI)) : '') +
     (o.paket && o.paket.length ? satir(e(o.paket.join(', ')), '−' + tl(o.paketIndirim || 0)) : '') +
     (o.kupon ? satir(`İndirim kodu (${e(o.kupon)})`, o.indirim ? '−' + tl(o.indirim) : 'Kargo ücretsiz') : '') +
