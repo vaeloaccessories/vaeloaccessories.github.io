@@ -1066,7 +1066,7 @@ function syncProducts() {            // products.json is refreshed automatically
     .then(function (r) { if (!r.ok) throw new Error('no json'); return r.json(); })
     .then(function (d) {
       clearTimeout(t);
-      var list = (d && d.products) || [];
+      var list = ((d && d.products) || []).filter(function (p) { return !p.gizli; });
       var isStreet = function (p) { return /street/i.test(p.category || ''); };
       var prem = list.filter(function (p) { return !isStreet(p); }).map(productCard).filter(Boolean);
       var street = list.filter(isStreet).map(productCard).filter(Boolean);

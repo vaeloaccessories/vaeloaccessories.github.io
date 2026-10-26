@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 const SITE = 'https://www.vaelo.com.tr/';
 const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
-const list = (data.products || []).filter((p) => p.name && p.price && p.id);
+const list = (data.products || []).filter((p) => p.name && p.price && p.id && !p.gizli);
 const ship = data.shipping ?? 120;
 // 3'lü paket notu: kasa paketi destekliyorsa sepet.js görünür yapar.
 const paketNotu = (p) => { const k = (data.paketler || []).find((x) => (x.urunler || []).includes(String(p.id))); return k ? `<p class="paket" hidden>3'lü al: <b>₺${fmt(k.fiyat)}</b> · Kargo bedava<br><span>Bu seriden istediğin 3 parçayı sepete ekle, indirim otomatik uygulanır.</span></p>` : ''; };

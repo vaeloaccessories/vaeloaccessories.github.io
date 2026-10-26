@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 const SITE = 'https://www.vaelo.com.tr/';
 const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
-const list = (data.products || []).filter((p) => p.name && p.price);
+const list = (data.products || []).filter((p) => p.name && p.price && !p.gizli);
 
 const isHoodie = (n) => /hoodie|kap[sşü]+on/i.test(n);
 const kind = (n) => isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';

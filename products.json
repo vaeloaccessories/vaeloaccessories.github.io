@@ -256,6 +256,18 @@
       "description": "Kumaş Tipi: %100 Yüksek Gramajlı Şardonlu Pamuk (380 GSM - Heavyweight). Old money ve streetwear estetiğinde düşük omuzlu oversize kesim, çift katlı yapılandırılmış kapüşon, mat metal uçlu lüks bağcıklar ve güçlendirilmiş fitilli kol ağızları. Göğüste minimalist VAĖLO logosu, sırtta özel tipografi ve mühür damgası.",
       "url": "https://www.shopier.com/VAELOaccessories/51315446",
       "category": "VAELO // STREET DIVISION"
+    },
+    {
+      "id": "TEST1TL",
+      "name": "Vaelo Test Ürünü (1 TL)",
+      "price": 1,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/50994608_0.jpg"
+      ],
+      "description": "Ödeme sistemi deneme ürünüdür. Vitrinde görünmez, Google'a kapalıdır.",
+      "url": "",
+      "category": "SIGNATURE PREMIUM",
+      "gizli": true
     }
   ]
 }
