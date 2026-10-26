@@ -277,7 +277,7 @@ async function siparisMailleri(env, oid, deneme) {
       await mailAt(env, o.email, 'Siparişiniz alındı · VAELO', mailSablon('Teşekkürler, siparişiniz alındı.',
         `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. Ürününüz sizin için özel olarak üretilecek ve <strong>2–3 iş günü</strong> içinde kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
         urunTablosu(o) +
-        `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da WhatsApp'tan bize yazabilirsiniz.`), sahip);
+        `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da bize ulaşabilirsiniz.`), sahip);
       sonuc.push('musteri');
     } catch (err) { console.log('Müşteri maili gitmedi:', oid, err.message); }
   }
@@ -397,7 +397,7 @@ async function uyeMail(request, env) {
       await mailAt(env, u.email, 'VAELO ailesine hoş geldiniz', mailSablon(`Hoş geldiniz${ad ? ', ' + ad : ''}.`,
         `VAELO ailesinin bir parçası olduğunuz için teşekkür ederiz.<br><br>Her parçamız sizin için özel olarak, yüksek gramajlı premium kumaşla üretilir. Üyeliğinizle siparişlerinizi <strong>Hesabım</strong> bölümünden takip edebilir, ödeme bilgilerinizin otomatik dolmasıyla daha hızlı alışveriş yapabilirsiniz.` +
         dugme(SITE + '/#signature', 'Koleksiyonu Keşfet') +
-        `Bir sorunuz olursa bu maile yanıt vermeniz yeterli; WhatsApp'tan da bize her zaman ulaşabilirsiniz.`), 'info@vaelo.com.tr', UYE_FROM(env));
+        `Bir sorunuz olursa bu maile yanıt vermeniz yeterli; bize her zaman ulaşabilirsiniz.`), 'info@vaelo.com.tr', UYE_FROM(env));
       return json({ ok: true });
     }
     return json({ ok: false, error: 'Bilinmeyen istek.' }, 400);

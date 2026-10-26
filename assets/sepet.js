@@ -242,7 +242,7 @@
           go.disabled = false; go.textContent = 'Güvenli Öde · ' + tl(t.toplam);
         })
         .catch(function (e2) {
-          err.textContent = e2.message && !/fetch|network|json/i.test(e2.message) ? e2.message : 'Bağlantı kurulamadı. Lütfen tekrar deneyin veya WhatsApp’tan bize yazın.';
+          err.textContent = e2.message && !/fetch|network|json/i.test(e2.message) ? e2.message : 'Bağlantı kurulamadı. Lütfen tekrar deneyin veya bize ulaşın.';
           go.disabled = false; go.textContent = 'Güvenli Öde · ' + tl(t.toplam);
         });
     };
@@ -278,7 +278,7 @@
     };
   }
   // ürün sayfasında beden bulucu
-  if (info && !info.querySelector('[data-std]')) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=1'; bj.defer = true; document.head.appendChild(bj); }
+  if (info && !info.querySelector('[data-std]')) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=2'; bj.defer = true; document.head.appendChild(bj); }
   // Menüdeki "Sepetim" bağlantısı sepeti açar.
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#sepet"]'); if (!a) return; e.preventDefault(); e.stopPropagation(); adim = 'sepet'; ciz(); ac(); }, true);
   if (location.hash === '#sepet') { ciz(); ac(); }

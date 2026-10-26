@@ -185,7 +185,7 @@
       yaz({ cins: s.cins, boy: s.boy, kilo: s.kilo, gogus: s.gogus, karin: s.karin, kalca: s.kalca, kalip: s.kalip });
       var cev = 2 * Math.PI * 80, dolu = cev * r.uyum / 100;
       var nm = ['Dar', 'İdeal', 'Bol'];
-      var not = r.buyuk ? 'Ölçülerine göre XXL bile dar gelebilir. Siparişten önce WhatsApp’tan bize yaz, birlikte bakalım.'
+      var not = r.buyuk ? 'Ölçülerine göre XXL bile dar gelebilir. Siparişten önce bize ulaş, birlikte bakalım.'
         : r.gogus > 0.7 ? 'Bu ürün sana biraz bol oturur; oversize sevdiğin bir duruş olur.' : r.gogus < 0.3 ? 'Bu ürün sana biraz oturaklı gelir; daha rahat istersen bir üst beden seç.' : 'Ölçülerine göre bu ürün sana tam beden oturur.';
       govde.innerHTML = '<div class="vb-son"><p class="vb-no">En iyi eşleşme</p>' +
         '<div class="vb-halka"><svg viewBox="0 0 172 172"><circle cx="86" cy="86" r="80" fill="none" stroke="#0A0A0A" stroke-width="1.5" stroke-dasharray="' + dolu.toFixed(1) + ' ' + cev.toFixed(1) + '"/></svg>' + r.beden + '</div>' +
@@ -194,7 +194,7 @@
         '<div class="vb-ol"><div class="vb-bas"><span></span><span>Dar</span><span>İdeal</span><span>Bol</span></div>' +
         [['Göğüs', r.gogus], ['Bel', r.bel], ['Boy', r.boy]].map(function (c) { return '<div class="vb-cz"><span>' + c[0] + '</span><div><i style="left:' + (c[1] * 100).toFixed(0) + '%" title="' + nm[c[1] < .33 ? 0 : c[1] > .67 ? 2 : 1] + '"></i></div></div>'; }).join('') + '</div>' +
         '<div class="vb-not"><b>Kalıp notu</b>' + not + '</div>' +
-        '<p class="vb-alt2">Bu genel bir öneridir; kişisel tercihe göre değişebilir. Beden değişimi mümkün ama yine de emin değilsen <a href="https://wa.me/905513708320?text=' + encodeURIComponent('Merhaba, ' + isim + ' için beden sormak istiyorum. Boy: ' + s.boy + ' cm, kilo: ' + s.kilo + ' kg.') + '" target="_blank" rel="noopener">WhatsApp’tan sor</a>.</p>' +
+        '<p class="vb-alt2">Bu genel bir öneridir; kişisel tercihe göre değişebilir. Beden değişimi mümkün ama yine de emin değilsen <a href="https://wa.me/905513708320?text=' + encodeURIComponent('Merhaba, ' + isim + ' için beden sormak istiyorum. Boy: ' + s.boy + ' cm, kilo: ' + s.kilo + ' kg.') + '" target="_blank" rel="noopener">Bize ulaş</a>.</p>' +
         '<button type="button" class="vb-bastan">Ölçüleri değiştir</button></div>';
       govde.querySelector('.vb-bastan').onclick = function () { adim = 1; ciz(); };
       alt.innerHTML = '<button type="button" class="vb-ileri">Sepete ' + r.beden + ' Ekle</button>';
