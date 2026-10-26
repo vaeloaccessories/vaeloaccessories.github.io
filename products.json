@@ -259,8 +259,8 @@
     },
     {
       "id": "TEST1TL",
-      "name": "Vaelo Test Ürünü (1 TL)",
-      "price": 1,
+      "name": "Vaelo Test Ürünü",
+      "price": 10,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50994608_0.jpg"
       ],
