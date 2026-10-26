@@ -7,7 +7,7 @@ const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const list = (data.products || []).filter((p) => p.name && p.price && !p.gizli);
 
 const isHoodie = (n) => /hoodie|kap[sşü]+on/i.test(n);
-const kind = (n) => isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
+const kind = (n) => /saat/i.test(n) ? 'Saat' : isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
 const clean = (n) => String(n).replace(/^vaelo\s+/i, '').trim();
 const TR = { ç: 'c', ğ: 'g', ı: 'i', İ: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', Ö: 'o', Ş: 's', Ü: 'u', Ė: 'e', ė: 'e' };
 const page = (p) => SITE + 'urun/' + clean(p.name).replace(/[^\x00-\x7F]/g, (c) => TR[c] ?? '').toLowerCase()
@@ -66,11 +66,12 @@ html = html.replace(re, () => block);
 fs.writeFileSync('index.html', html);
 
 const line = (p) => `- [${clean(p.name)}](${page(p)}): ${kind(p.name)}, ${p.price} TL`;
-const prem = list.filter((p) => !/street/i.test(p.category || ''));
+const prem = list.filter((p) => !/street/i.test(p.category || '') && p.category !== 'Saat');
+const saat = list.filter((p) => p.category === 'Saat');
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
 
-> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Yakında saat, çanta ve parfüm koleksiyonları gelecek.
+> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Saat koleksiyonu da mevcuttur; yakında çanta ve parfüm koleksiyonları gelecek.
 
 ## Marka hakkında
 - [Resmî site](${SITE}): VAELO ana sayfası
@@ -93,6 +94,9 @@ ${prem.map(line).join('\n')}
 
 ## VAELO // Street Division
 ${street.map(line).join('\n')}
+
+## VAELO Saat (Günlük, Signature, Kadın)
+${saat.map(line).join('\n')}
 `;
 fs.writeFileSync('llms.txt', llms);
 console.log(products.length + ' ürün için SEO bilgisi yazıldı');

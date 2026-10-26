@@ -15,8 +15,10 @@ export const slug = (p) => clean(p.name).replace(/[^\x00-\x7F]/g, (c) => TR[c] ?
   .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + p.id;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const isHoodie = (n) => /hoodie|kap[sşü]+on/i.test(n);
-const kind = (n) => isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
-const kindLow = (n) => isHoodie(n) ? 'kapşonlu sweatshirt' : /sweat/i.test(n) ? 'sweatshirt' : 'tişört';
+const isWatch = (p) => p.category === 'Saat';
+const GRUP = { gunluk: 'Günlük', signature: 'Signature', kadin: 'Kadın' };
+const kind = (n) => /saat/i.test(n) ? 'Saat' : isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
+const kindLow = (n) => /saat/i.test(n) ? 'saat' : isHoodie(n) ? 'kapşonlu sweatshirt' : /sweat/i.test(n) ? 'sweatshirt' : 'tişört';
 const fmt = (n) => Number(n).toLocaleString('tr-TR');
 // ürünlerdeki logo ve desenler baskıdır, nakış değil
 const fixText = (s) => String(s || '').replace(/Baskı ve nakış detaylarını/gi, 'Baskı detaylarını')
@@ -67,7 +69,7 @@ function page(p) {
   };
   const variants = colorsOf(p);
   const vIds = new Set(variants.map((v) => v.id));
-  const others = list.filter((o) => o.id !== p.id && !vIds.has(o.id) && (o.category || '') === (p.category || '')).slice(0, 4);
+  const others = list.filter((o) => o.id !== p.id && !vIds.has(o.id) && (o.category || '') === (p.category || '') && (!isWatch(p) || o.grup === p.grup)).slice(0, 4);
   const colorHtml = variants.length > 1 ? `<p class="label">Renk: <span class="cname">${esc(parts(p.name).color)}</span></p>
     <div class="colors">${variants.map((v) => { const c = parts(v.name).color; return v.id === p.id
       ? `<span class="sw on" title="${esc(c)}" aria-current="true"><i style="background:${swatch(c)}"></i></span>`
@@ -145,6 +147,7 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .more img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--sand);margin-bottom:10px}
   footer{text-align:center;font-size:12px;color:var(--muted);padding:32px 16px;border-top:1px solid var(--sand)}
 </style>
+${isWatch(p) ? '<style>.gallery img,.more img{object-fit:contain;mix-blend-mode:multiply;aspect-ratio:1/1;background:transparent}</style>' : ''}
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -170,33 +173,32 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
 <body>
 <header>
   <a class="logo" href="/">VAĖLO</a>
-  <a class="back" href="/#${/street/i.test(p.category || '') ? 'street' : 'signature'}">← Koleksiyona dön</a>
+  <a class="back" href="/#${isWatch(p) ? 'saat' : /street/i.test(p.category || '') ? 'street' : 'signature'}">← Koleksiyona dön</a>
 </header>
 <main>
   <div class="gallery">
     ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – lüks ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">`).join('\n    ')}
   </div>
   <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
-    <p class="cat" lang="en">${esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium')} · ${kind(p.name)}</p>
+    <p class="cat" lang="en">${isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}</p>
     ${paketNotu(p)}
     ${colorHtml}
-    <p class="label">Bedenler</p>
-    <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>
+    ${isWatch(p) ? '<div class="sizes" style="display:none"><span data-std>Standart</span></div>' : '<p class="label">Bedenler</p>\n    <div class="sizes"><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span></div>'}
     ${sizeTable(p.name)}
-    <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + (/street/i.test(p.category || '') ? 'street' : 'signature'))}" rel="noopener">Satın Al</a>
+    <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + (isWatch(p) ? 'saat' : /street/i.test(p.category || '') ? 'street' : 'signature'))}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">WhatsApp'tan Sor</a>
-    <p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
+    ${isWatch(p) ? `<p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Saatler özel üretimdir; teslimat süresi 7-15 iş günüdür. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış ve orijinal durumundaysa iade onaylanır. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>` : `<p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>`}
     <div class="desc">${descHtml(p.description)}</div>
-    <div class="desc"><h3>Yıkama Talimatı</h3><ul><li>Ters çevirerek yıkayın.</li><li>En düşük sıcaklıkta (en fazla 30°C) ve en hassas programda yıkayın.</li><li>Ağartıcı kullanmayın, kurutma makinesine atmayın, baskının üzerine ütü yapmayın.</li><li>Bu şartlarda yıkandığında baskı solma, çatlama veya atma yapmaz.</li></ul></div>
+    ${isWatch(p) ? '<div class="desc"><h3>Bakım ve Kullanım</h3><ul><li>Kullanımdan sonra yumuşak ve kuru bir bezle silin.</li><li>Parfüm, kimyasal ürünler ve güçlü manyetik alanlardan uzak tutun.</li><li>Sert darbelere ve aşırı sıcağa maruz bırakmayın.</li></ul></div>' : '<div class="desc"><h3>Yıkama Talimatı</h3><ul><li>Ters çevirerek yıkayın.</li><li>En düşük sıcaklıkta (en fazla 30°C) ve en hassas programda yıkayın.</li><li>Ağartıcı kullanmayın, kurutma makinesine atmayın, baskının üzerine ütü yapmayın.</li><li>Bu şartlarda yıkandığında baskı solma, çatlama veya atma yapmaz.</li></ul></div>'}
   </div>
 </main>
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
 ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – lüks ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
 </div></section>` : ''}
 <footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
-<script src="/assets/sepet.js?v=2" defer></script>
+<script src="/assets/sepet.js?v=4" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script>/* üyelik sistemi sayfa açıldıktan sonra yüklenir (site hızlı açılsın) */(function(){function y(){var s=document.createElement('script');s.type='module';s.src='/assets/uye.js?v=3';document.body.appendChild(s)}function g(){'requestIdleCallback' in window?requestIdleCallback(y,{timeout:2500}):setTimeout(y,1200)}document.readyState==='complete'?g():addEventListener('load',g)})();</script>
 </body>
@@ -223,8 +225,8 @@ for (const p of list) {
   const name = clean(p.name), imgs = (p.images || []).filter((u) => /^https:\/\//.test(u));
   if (!imgs.length) continue;
   const desc = fixText(p.description).replace(/\s+/g, ' ').trim().slice(0, 4900) || `VAELO lüks ${kindLow(p.name)}`;
-  const title = `VAELO ${name.replace(/\bHoodie\b/i, 'Kapşonlu Sweatshirt Hoodie')} | Oversize Unisex`.slice(0, 150);
-  for (const size of ['S', 'M', 'L', 'XL', 'XXL']) {
+  const title = (isWatch(p) ? `VAELO ${name} | Lüks Kol Saati` : `VAELO ${name.replace(/\bHoodie\b/i, 'Kapşonlu Sweatshirt Hoodie')} | Oversize Unisex`).slice(0, 150);
+  for (const size of (isWatch(p) ? ['Standart'] : ['S', 'M', 'L', 'XL', 'XXL'])) {
     items.push(`<item>
 <g:id>${p.id}-${size}</g:id>
 <g:item_group_id>${p.id}</g:item_group_id>
@@ -238,11 +240,11 @@ ${imgs.slice(1, 10).map((u) => `<g:additional_image_link>${x(u)}</g:additional_i
 <g:brand>VAELO</g:brand>
 <g:condition>new</g:condition>
 <g:identifier_exists>no</g:identifier_exists>
-<g:google_product_category>1604</g:google_product_category>
+<g:google_product_category>${isWatch(p) ? 201 : 1604}</g:google_product_category>
 <g:product_type>${x(kind(p.name))}</g:product_type>
-<g:gender>unisex</g:gender>
+<g:gender>${p.grup === 'kadin' ? 'female' : p.grup ? 'male' : 'unisex'}</g:gender>
 <g:age_group>adult</g:age_group>
-<g:size>${size}</g:size>
+${isWatch(p) ? '' : `<g:size>${size}</g:size>`}
 ${colorOf(name) ? `<g:color>${colorOf(name)}</g:color>` : ''}
 <g:shipping><g:country>TR</g:country><g:price>${Number(ship).toFixed(2)} TRY</g:price></g:shipping>
 </item>`);

@@ -1,6 +1,6 @@
 # VAELO
 
-> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Yakında saat, çanta ve parfüm koleksiyonları gelecek.
+> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Saat koleksiyonu da mevcuttur; yakında çanta ve parfüm koleksiyonları gelecek.
 
 ## Marka hakkında
 - [Resmî site](https://www.vaelo.com.tr/): VAELO ana sayfası
@@ -38,3 +38,57 @@
 - [Street Division Hoodie – Lacivert / Altın Grafik](https://www.vaelo.com.tr/urun/street-division-hoodie-lacivert-altin-grafik-51281543.html): Kapşonlu Sweatshirt (Hoodie), 1399 TL
 - [Street Division Tişört – Siyah / Grafik Baskı](https://www.vaelo.com.tr/urun/street-division-tisort-siyah-grafik-baski-51196509.html): Tişört, 899 TL
 - [Street Division Hoodie – Siyah / Altın Grafik](https://www.vaelo.com.tr/urun/street-division-hoodie-siyah-altin-grafik-51315446.html): Kapşonlu Sweatshirt (Hoodie), 1399 TL
+
+## VAELO Saat (Günlük, Signature, Kadın)
+- [Marina Saat](https://www.vaelo.com.tr/urun/marina-saat-71926.html): Saat, 4199 TL
+- [Cadiz Saat](https://www.vaelo.com.tr/urun/cadiz-saat-71927.html): Saat, 7800 TL
+- [Ivory Saat](https://www.vaelo.com.tr/urun/ivory-saat-71928.html): Saat, 5349 TL
+- [Rouge Saat](https://www.vaelo.com.tr/urun/rouge-saat-71929.html): Saat, 8290 TL
+- [Azur Saat](https://www.vaelo.com.tr/urun/azur-saat-71930.html): Saat, 8300 TL
+- [Glacier Saat](https://www.vaelo.com.tr/urun/glacier-saat-71931.html): Saat, 7700 TL
+- [Polar Saat](https://www.vaelo.com.tr/urun/polar-saat-71932.html): Saat, 6100 TL
+- [Opal Saat](https://www.vaelo.com.tr/urun/opal-saat-71934.html): Saat, 5100 TL
+- [Atlantic Saat](https://www.vaelo.com.tr/urun/atlantic-saat-71936.html): Saat, 4199 TL
+- [Jade Saat](https://www.vaelo.com.tr/urun/jade-saat-71937.html): Saat, 4150 TL
+- [Sierra Saat](https://www.vaelo.com.tr/urun/sierra-saat-71938.html): Saat, 6649 TL
+- [Solar Saat](https://www.vaelo.com.tr/urun/solar-saat-71941.html): Saat, 6299 TL
+- [Oliva Saat](https://www.vaelo.com.tr/urun/oliva-saat-71942.html): Saat, 7050 TL
+- [Midnight Saat](https://www.vaelo.com.tr/urun/midnight-saat-71943.html): Saat, 4199 TL
+- [Onyx Saat](https://www.vaelo.com.tr/urun/onyx-saat-71944.html): Saat, 4199 TL
+- [Verde Saat](https://www.vaelo.com.tr/urun/verde-saat-71945.html): Saat, 4350 TL
+- [Graphite Saat](https://www.vaelo.com.tr/urun/graphite-saat-71946.html): Saat, 7549 TL
+- [Evergreen Saat](https://www.vaelo.com.tr/urun/evergreen-saat-71953.html): Saat, 8399 TL
+- [Lagoon Saat](https://www.vaelo.com.tr/urun/lagoon-saat-71955.html): Saat, 7099 TL
+- [Slate Saat](https://www.vaelo.com.tr/urun/slate-saat-71956.html): Saat, 7300 TL
+- [Champagne Saat](https://www.vaelo.com.tr/urun/champagne-saat-71957.html): Saat, 8300 TL
+- [Menthe Saat](https://www.vaelo.com.tr/urun/menthe-saat-71958.html): Saat, 5390 TL
+- [Moss Saat](https://www.vaelo.com.tr/urun/moss-saat-71961.html): Saat, 8490 TL
+- [Urban Saat](https://www.vaelo.com.tr/urun/urban-saat-71963.html): Saat, 4350 TL
+- [Octa Forest Saat](https://www.vaelo.com.tr/urun/octa-forest-saat-71964.html): Saat, 8290 TL
+- [Octa Aqua Saat](https://www.vaelo.com.tr/urun/octa-aqua-saat-71974.html): Saat, 7900 TL
+- [Octa Bordeaux Saat](https://www.vaelo.com.tr/urun/octa-bordeaux-saat-71976.html): Saat, 6049 TL
+- [Aurelia Saat](https://www.vaelo.com.tr/urun/aurelia-saat-71933.html): Saat, 7950 TL
+- [Imperial Saat](https://www.vaelo.com.tr/urun/imperial-saat-71935.html): Saat, 7390 TL
+- [Bordeaux Saat](https://www.vaelo.com.tr/urun/bordeaux-saat-71940.html): Saat, 7749 TL
+- [Noir Or Saat](https://www.vaelo.com.tr/urun/noir-or-saat-71954.html): Saat, 7550 TL
+- [Royal Gold Saat](https://www.vaelo.com.tr/urun/royal-gold-saat-71960.html): Saat, 8199 TL
+- [Chrono Rose Saat](https://www.vaelo.com.tr/urun/chrono-rose-saat-71965.html): Saat, 7250 TL
+- [Velocity Chrono Saat](https://www.vaelo.com.tr/urun/velocity-chrono-saat-71975.html): Saat, 8150 TL
+- [Obsidian Saat](https://www.vaelo.com.tr/urun/obsidian-saat-71977.html): Saat, 7790 TL
+- [GMT Emerald Saat](https://www.vaelo.com.tr/urun/gmt-emerald-saat-71947.html): Saat, 5999 TL
+- [GMT Cobalt Saat](https://www.vaelo.com.tr/urun/gmt-cobalt-saat-71948.html): Saat, 4150 TL
+- [GMT Sunset Saat](https://www.vaelo.com.tr/urun/gmt-sunset-saat-71949.html): Saat, 5650 TL
+- [GMT Crimson Saat](https://www.vaelo.com.tr/urun/gmt-crimson-saat-71950.html): Saat, 7500 TL
+- [GMT Merlot Saat](https://www.vaelo.com.tr/urun/gmt-merlot-saat-71951.html): Saat, 6949 TL
+- [GMT Aurora Saat](https://www.vaelo.com.tr/urun/gmt-aurora-saat-71952.html): Saat, 7790 TL
+- [Blanc Saat](https://www.vaelo.com.tr/urun/blanc-saat-71959.html): Saat, 7890 TL
+- [Phantom Saat](https://www.vaelo.com.tr/urun/phantom-saat-71962.html): Saat, 4899 TL
+- [Rose Gem Saat](https://www.vaelo.com.tr/urun/rose-gem-saat-71966.html): Saat, 4490 TL
+- [Noir Gem Saat](https://www.vaelo.com.tr/urun/noir-gem-saat-71967.html): Saat, 4490 TL
+- [Emeraude Saat](https://www.vaelo.com.tr/urun/emeraude-saat-71968.html): Saat, 6390 TL
+- [Nuit Gem Saat](https://www.vaelo.com.tr/urun/nuit-gem-saat-71969.html): Saat, 7350 TL
+- [Bleu Gem Saat](https://www.vaelo.com.tr/urun/bleu-gem-saat-71970.html): Saat, 5050 TL
+- [Rubis Saat](https://www.vaelo.com.tr/urun/rubis-saat-71971.html): Saat, 7899 TL
+- [Perle Saat](https://www.vaelo.com.tr/urun/perle-saat-71972.html): Saat, 5850 TL
+- [Cristal Saat](https://www.vaelo.com.tr/urun/cristal-saat-71973.html): Saat, 5590 TL
+- [Lilas Saat](https://www.vaelo.com.tr/urun/lilas-saat-71939.html): Saat, 5200 TL

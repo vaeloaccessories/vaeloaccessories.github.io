@@ -7,7 +7,7 @@
   var CANLI = true;
   var KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev/odeme';
   var UCRETSIZ_KARGO = 0, KARGO = 0;
-  var BEDENLER = ['S', 'M', 'L', 'XL', 'XXL'];
+  var BEDENLER = ['S', 'M', 'L', 'XL', 'XXL', 'Standart'];
 
   // ---- açık mı? ----
   var q = new URLSearchParams(location.search);
@@ -133,7 +133,7 @@
     if (!s.length) { body.innerHTML = '<p class="vs-empty">Sepetiniz boş.</p>'; sum.innerHTML = ''; return; }
     body.innerHTML = s.map(function (x, i) {
       return '<div class="vs-item">' + (x.img ? '<img src="' + esc(x.img) + '" alt="" referrerpolicy="no-referrer">' : '<span></span>') +
-        '<div><h3>' + esc(x.name) + '</h3><p>Beden: ' + esc(x.size) + ' · ' + tl(x.price) + '</p>' +
+        '<div><h3>' + esc(x.name) + '</h3><p>' + (x.size === 'Standart' ? '' : 'Beden: ' + esc(x.size) + ' · ') + tl(x.price) + '</p>' +
         '<div class="vs-qty"><button type="button" data-a="-" data-i="' + i + '" aria-label="Azalt">−</button><span>' + x.qty + '</span><button type="button" data-a="+" data-i="' + i + '" aria-label="Artır">+</button></div></div>' +
         '<button class="vs-del" type="button" data-a="x" data-i="' + i + '">Kaldır</button></div>';
     }).join('');
@@ -262,6 +262,7 @@
         sp.classList.add('on'); secili = sp.textContent.trim(); ipucu.textContent = '';
       };
     });
+    if (sizes.querySelector('span[data-std]')) secili = 'Standart';   // saatlerde beden yok
     var ipucu = document.createElement('p'); ipucu.className = 'vs-hint'; ipucu.setAttribute('aria-live', 'polite');
     var ekleBtn = document.createElement('button'); ekleBtn.type = 'button'; ekleBtn.className = 'vs-add'; ekleBtn.textContent = 'Sepete Ekle';
     var buy = info.querySelector('.buy');
@@ -277,7 +278,7 @@
     };
   }
   // ürün sayfasında beden bulucu
-  if (info) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=1'; bj.defer = true; document.head.appendChild(bj); }
+  if (info && !info.querySelector('[data-std]')) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=1'; bj.defer = true; document.head.appendChild(bj); }
   // Menüdeki "Sepetim" bağlantısı sepeti açar.
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#sepet"]'); if (!a) return; e.preventDefault(); e.stopPropagation(); adim = 'sepet'; ciz(); ac(); }, true);
   if (location.hash === '#sepet') { ciz(); ac(); }
