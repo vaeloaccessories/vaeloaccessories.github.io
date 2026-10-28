@@ -7,7 +7,8 @@ const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const list = (data.products || []).filter((p) => p.name && p.price && !p.gizli);
 
 const isHoodie = (n) => /hoodie|kap[sşü]+on/i.test(n);
-const kind = (n) => /saat/i.test(n) ? 'Saat' : isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : 'Giyim';
+const kind = (n) => /saat/i.test(n) ? 'Saat' : isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört'
+  : (/manto|kaban|mont|trençkot|yelek|ceket|hırka|kazak|gömlek|takım|elbise|jean|pantolon|etek/i.test(n) ? 'Kadın ' + n.match(/manto|kaban|mont|trençkot|yelek|ceket|hırka|kazak|gömlek|takım|elbise|jean|pantolon|etek/i)[0].toLocaleLowerCase('tr-TR') : 'Giyim');
 const clean = (n) => String(n).replace(/^vaelo\s+/i, '').trim();
 const TR = { ç: 'c', ğ: 'g', ı: 'i', İ: 'i', ö: 'o', ş: 's', ü: 'u', Ç: 'c', Ğ: 'g', Ö: 'o', Ş: 's', Ü: 'u', Ė: 'e', ė: 'e' };
 const page = (p) => SITE + 'urun/' + clean(p.name).replace(/[^\x00-\x7F]/g, (c) => TR[c] ?? '').toLowerCase()
@@ -66,7 +67,8 @@ html = html.replace(re, () => block);
 fs.writeFileSync('index.html', html);
 
 const line = (p) => `- [${clean(p.name)}](${page(p)}): ${kind(p.name)}, ${p.price} TL`;
-const prem = list.filter((p) => !/street/i.test(p.category || '') && p.category !== 'Saat');
+const prem = list.filter((p) => !/street/i.test(p.category || '') && p.category !== 'Saat' && p.category !== 'Kadın');
+const kadin = list.filter((p) => p.category === 'Kadın');
 const saat = list.filter((p) => p.category === 'Saat');
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
@@ -97,6 +99,9 @@ ${street.map(line).join('\n')}
 
 ## VAELO Saat (Günlük, Signature, Kadın)
 ${saat.map(line).join('\n')}
-`;
+${kadin.length ? `
+## VAELO Kadın (kaban, mont, trençkot, ceket, triko, elbise, alt giyim)
+${kadin.map(line).join('\n')}
+` : ''}`;
 fs.writeFileSync('llms.txt', llms);
 console.log(products.length + ' ürün için SEO bilgisi yazıldı');

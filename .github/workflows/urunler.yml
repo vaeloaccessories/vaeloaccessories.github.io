@@ -1,6 +1,7 @@
 name: Ürünleri güncelle (admin paneli)
 
-# Admin panelinde (Ürünler sekmesi) yapılan değişiklikleri 10 dakikada bir siteye işler.
+# Admin panelinde (Ürünler sekmesi) yapılan değişiklikleri ve Kadın koleksiyonunun
+# Maxi Modena stok/fiyatlarını 10 dakikada bir siteye işler.
 on:
   schedule:
     - cron: '*/10 * * * *'
@@ -25,6 +26,12 @@ jobs:
 
       - name: Panel değişikliklerini oku
         run: node .github/scripts/urunler.mjs
+
+      - name: Kadın koleksiyonu (Maxi Modena stok, beden ve fiyat)
+        continue-on-error: true
+        env:
+          MAXI_KEY: ${{ secrets.MAXI_KEY }}
+        run: node .github/scripts/maxi.mjs
 
       - name: Google ve yapay zekâ için ürün bilgisini yenile
         continue-on-error: true

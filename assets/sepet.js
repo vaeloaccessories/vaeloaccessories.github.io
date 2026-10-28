@@ -7,7 +7,7 @@
   var CANLI = true;
   var KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev/odeme';
   var UCRETSIZ_KARGO = 0, KARGO = 0;
-  var BEDENLER = ['S', 'M', 'L', 'XL', 'XXL', 'Standart'];
+  var BEDENLER = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', '50', 'Standart'];
 
   // ---- açık mı? ----
   var q = new URLSearchParams(location.search);
@@ -278,7 +278,7 @@
     };
   }
   // ürün sayfasında beden bulucu
-  if (info && !info.querySelector('[data-std]')) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=2'; bj.defer = true; document.head.appendChild(bj); }
+  if (info && !info.querySelector('[data-std]') && !info.querySelector('[data-kadin]')) { var bj = document.createElement('script'); bj.src = '/assets/beden.js?v=2'; bj.defer = true; document.head.appendChild(bj); }
   // Menüdeki "Sepetim" bağlantısı sepeti açar.
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#sepet"]'); if (!a) return; e.preventDefault(); e.stopPropagation(); adim = 'sepet'; ciz(); ac(); }, true);
   if (location.hash === '#sepet') { ciz(); ac(); }

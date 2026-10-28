@@ -1,0 +1,41 @@
+{
+  "_not": "VAELO Kadın koleksiyonu: Maxi Modena (Sakans) bayi feed'inden çekilecek ürünler. id = feed'deki ProductId. Ürün eklemek/çıkarmak için bu listeyi düzenle.",
+  "kar": 0.53,
+  "gruplar": {
+    "dis": "Kaban & Mont",
+    "ceket": "Trençkot & Ceket",
+    "ust": "Triko & Gömlek",
+    "elbise": "Elbise & Takım",
+    "alt": "Alt Giyim"
+  },
+  "urunler": [
+    { "ad": "Kuşgözlü Kaşe Kaban", "grup": "dis", "id": ["92626", "92627"] },
+    { "ad": "İki Düğmeli Manto", "grup": "dis", "id": ["92632"] },
+    { "ad": "Uzun Kaban", "grup": "dis", "id": ["92538", "92539"] },
+    { "ad": "Kuşaklı Midi Kaban", "grup": "dis", "id": ["92459"] },
+    { "ad": "Kürk Yakalı Kemerli Uzun Kaşe Kaban", "grup": "dis", "id": ["73405", "73406", "73407", "73408", "73409"] },
+    { "ad": "Deri Kuşak Garnili Kaban", "grup": "dis", "id": ["92861", "92867"] },
+    { "ad": "Yakası Örgü Detaylı Mont", "grup": "dis", "id": ["93329", "93330"] },
+    { "ad": "Uzun Şişme Mont", "grup": "dis", "id": ["93236"] },
+    { "ad": "Tonaton Düğmeli Uzun Trençkot", "grup": "ceket", "id": ["93237", "93238"] },
+    { "ad": "Uzun Deri Trençkot", "grup": "ceket", "id": ["93240", "93241"] },
+    { "ad": "Uzun Kemerli Trençkot", "grup": "ceket", "id": ["92623", "92624", "92625"] },
+    { "ad": "Yakası Çıtçıtlı Deri Ceket", "grup": "ceket", "id": ["93317", "93318"] },
+    { "ad": "Koyun Yünü Yakalı Süet Ceket", "grup": "ceket", "id": ["93327"] },
+    { "ad": "Kruvaze Yelek", "grup": "ceket", "id": ["16963", "16964"] },
+    { "ad": "Boğazlı Örgülü Triko Kazak", "grup": "ust", "id": ["92293", "92296"] },
+    { "ad": "Oversize Triko Kazak", "grup": "ust", "id": ["16432"] },
+    { "ad": "Yumuşak Dokulu Triko Hırka", "grup": "ust", "id": ["16967"] },
+    { "ad": "Kazayağı Garnili Hırka", "grup": "ust", "id": ["92468"] },
+    { "ad": "Kaşe Gold Düğmeli Gömlek", "grup": "ust", "id": ["93246", "93247"] },
+    { "ad": "Jakarlı Balon Kollu Elbise", "grup": "elbise", "id": ["100305", "100307", "100308"] },
+    { "ad": "Pelerinli Elbise", "grup": "elbise", "id": ["93312", "93313"] },
+    { "ad": "İkili Örme Takım", "grup": "elbise", "id": ["98134", "98135", "100315"] },
+    { "ad": "Garnili İkili Takım", "grup": "elbise", "id": ["100309", "100310"] },
+    { "ad": "Pileli Comfort Pantolon", "grup": "alt", "id": ["92637"] },
+    { "ad": "Lastikli Deri Pantolon", "grup": "alt", "id": ["92477"] },
+    { "ad": "Geniş Paça Jean", "grup": "alt", "id": ["92302", "92303"] },
+    { "ad": "Boru Paça Jean", "grup": "alt", "id": ["92304"] },
+    { "ad": "Ekoseli Etek", "grup": "alt", "id": ["93290", "93291", "93292"] }
+  ]
+}

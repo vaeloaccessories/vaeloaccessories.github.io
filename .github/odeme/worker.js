@@ -99,11 +99,14 @@ async function startPayment(request, env) {
     const p = byId.get(String(it.id));
     const qty = Math.floor(Number(it.qty));
     const size = String(it.size || '');
-    if (!p || !(qty >= 1 && qty <= 10) || !(p.category === 'Saat' ? size === 'Standart' : SIZES.includes(size))) {
+    // Kadın koleksiyonu (Maxi Modena): yalnızca stokta olan bedenler satılır.
+    const kadinBeden = p && p.category === 'Kadın' ? (p.bedenler || []).find((b) => b.beden === size) : null;
+    if (!p || !(qty >= 1 && qty <= 10) || !(p.category === 'Saat' ? size === 'Standart' : p.category === 'Kadın' ? !!kadinBeden : SIZES.includes(size))) {
       return json({ ok: false, error: 'Sepetteki bir ürün artık mevcut değil. Lütfen sepetinizi yenileyin.' }, 400);
     }
     satirlar.push({ p, size, qty });
-    urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name), saat: p.category === 'Saat' });
+    urunler.push({ id: String(p.id), name: p.name, size, qty, color: renk(p.name), saat: p.category === 'Saat',
+      ...(kadinBeden ? { maxi: true, barkod: kadinBeden.barkod } : {}) });
   }
   const kod = clean(body.kupon, 30).toUpperCase().replace(/\s+/g, '');
   const kupon = kod ? KUPONLAR[kod] : null;
@@ -198,8 +201,8 @@ async function printiturkeGonder(env, oid) {
   if (!raw) { console.log('Sipariş kaydı bulunamadı:', oid); return; }
   const o = JSON.parse(raw);
   if (o.printiturk) return;
-  // Saatler Printitürk'te üretilmez; yalnızca giyim ürünleri gönderilir (saat siparişi elle hazırlanır).
-  if (!o.urunler.some((u) => !u.saat)) {
+  // Saatler ve Kadın koleksiyonu (Maxi Modena) Printitürk'te üretilmez; yalnızca VAELO baskılı giyim gönderilir.
+  if (!o.urunler.some((u) => !u.saat && !u.maxi)) {
     o.printiturk = 'saat-elle'; o.odendi = new Date().toISOString();
     await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 });
     console.log('Yalnızca saat siparişi, Printitürk atlandı:', oid);
@@ -211,7 +214,7 @@ async function printiturkeGonder(env, oid) {
     external_order_id: oid,
     customer: { first_name: parts.join(' '), last_name: last, email: o.email, phone: o.phone.replace(/\D/g, '').replace(/^90/, '').replace(/^0/, ''),
       address: o.address, city: o.city, district: o.district },
-    items: o.urunler.filter((u) => !u.saat).map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
+    items: o.urunler.filter((u) => !u.saat && !u.maxi).map((u) => ({ product_sku: 'VAELO-' + u.id, quantity: u.qty, size: u.size, color: u.color })),
     gift_package: !!o.gift,
     order_note: 'vaelo.com.tr sipariş no: ' + oid + (o.gift ? ' · HEDİYE PAKETİ' : ''),
   };
@@ -275,7 +278,7 @@ async function siparisMailleri(env, oid, deneme) {
   if (!deneme) {
     try {
       await mailAt(env, o.email, 'Siparişiniz alındı · VAELO', mailSablon('Teşekkürler, siparişiniz alındı.',
-        `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. Ürününüz sizin için özel olarak üretilecek ve <strong>2–3 iş günü</strong> içinde kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
+        `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. ${o.urunler.every((u) => u.maxi) ? 'Ürününüz hazırlanıp <strong>2–4 iş günü</strong> içinde' : 'Ürününüz sizin için özel olarak üretilecek ve <strong>2–3 iş günü</strong> içinde'} kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
         urunTablosu(o) +
         `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da bize ulaşabilirsiniz.`), sahip);
       sonuc.push('musteri');
@@ -285,6 +288,8 @@ async function siparisMailleri(env, oid, deneme) {
     await mailAt(env, sahip, `${deneme ? '[DENEME] ' : ''}Yeni sipariş · ${tl(o.total)} · ${o.name}`, mailSablon('Yeni sipariş geldi',
       `<strong>${e(o.name)}</strong><br>${e(o.phone)} · ${e(o.email)}<br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}` +
       urunTablosu(o) +
+      (o.urunler.some((u) => u.maxi) ? `<div style="border:2px solid #0A0A0A;padding:12px 14px;margin:0 0 14px"><strong>Maxi Modena siparişi ver</strong> (bayi paneli → ürün → beden, müşteri adresine gönderim):<br>` +
+        o.urunler.filter((u) => u.maxi).map((u) => `${e(u.name)} · Beden: ${e(u.size)} · Adet: ${u.qty} · Barkod: ${e(u.barkod || '-')}`).join('<br>') + `</div>` : '') +
       `Printitürk: ${o.printiturk ? 'gönderildi (' + e([].concat(o.printiturk).join(', ')) + ') — Ödeme Bekliyor sekmesinden ödemeyi unutma.' : '<strong style="color:#9b2c2c">gönderilemedi, elle gir.</strong> ' + e(o.printiturkHata || '')}` +
       `<br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span>`), o.email);
     sonuc.push('sahip');
