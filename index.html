@@ -381,6 +381,27 @@ fbq('track', 'PageView');
   html:not([data-view="kadin"]) #kadin { display: none; }
   html[data-view="kadin"] .gateway, html[data-view="kadin"] #koleksiyon, html[data-view="kadin"] #street, html[data-view="kadin"] #paket, html[data-view="kadin"] .shipbar { display: none; }
   #kadin { padding-top: calc(var(--bar) + 150px); }
+  /* ---- VAELO Kadın: ana sayfa banner ---- */
+  html:not([data-view="home"]) #kadinbanner { display: none; }
+  .kb { padding: 14vh 0 0; background: var(--paper); }
+  .kb .sb-top { padding-bottom: 4vh; }
+  .kb-cats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 30px; padding: 0 5vw 6vh; }
+  .kb-cats a { font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: color .3s, border-color .3s; }
+  .kb-cats a:hover { color: var(--black); border-bottom-color: currentColor; }
+  .kb-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .kb-card { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; color: #F3F1EC; text-decoration: none; background: #E9E5DC; }
+  .kb-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.8s var(--ease); }
+  .kb-card:hover img { transform: scale(1.04); }
+  .kb-card::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(10, 10, 10, .5)); pointer-events: none; }
+  .kb-label { position: absolute; left: 2.4vw; right: 2.4vw; bottom: 4vh; z-index: 1; }
+  .kb-label h3 { font-family: var(--sans); font-weight: 400; font-size: .78rem; letter-spacing: .26em; text-transform: uppercase; }
+  .kb-label span { display: inline-block; margin-top: 10px; font-size: .78rem; letter-spacing: .06em; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+  @media (max-width: 800px) {
+    .kb-cats { gap: 8px 18px; }
+    .kb-grid { grid-template-columns: 1fr 1fr; }
+    .kb-card:nth-child(3) { display: none; }
+    .kb-label { left: 5vw; bottom: 3vh; }
+  }
   .item[hidden] { display: none !important; }
   .sb { padding: 14vh 0 0; background: var(--paper); }
   .sb-top { text-align: center; padding: 0 5vw 7vh; }
@@ -585,6 +606,36 @@ fbq('track', 'PageView');
     </a>
     <div class="marquee gate-marquee" aria-hidden="true"><div class="track"><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i><span>Sessiz lüksün yeni tanımı</span><i></i><span>Zamansız zarafet, üstün kalite</span><i></i></div></div>
   </div>
+
+  <section class="kb" id="kadinbanner" hidden aria-label="VAELO Kadın koleksiyonu">
+    <div class="sb-top rv">
+      <span class="sb-kicker">Yeni Sezon</span>
+      <h2>VAĖLO Kadın</h2>
+      <p>Kaban, trençkot ve trikoyla kışın sade lüksü. 799 TL’den başlayan fiyatlarla.</p>
+    </div>
+    <nav class="kb-cats rv" aria-label="Kadın kategorileri">
+      <a href="#kadin" data-view="kadin" data-grup="dis">Kaban &amp; Mont</a>
+      <a href="#kadin" data-view="kadin" data-grup="ceket">Trençkot &amp; Ceket</a>
+      <a href="#kadin" data-view="kadin" data-grup="ust">Triko &amp; Gömlek</a>
+      <a href="#kadin" data-view="kadin" data-grup="elbise">Elbise &amp; Takım</a>
+      <a href="#kadin" data-view="kadin" data-grup="alt">Alt Giyim</a>
+    </nav>
+    <div class="kb-grid">
+      <a class="kb-card" href="#kadin" data-view="kadin" data-grup="dis">
+        <img src="https://api.sakans.com/storage/maximodena/xml2-6559/591bde8e4d9ca88f.jpg" alt="VAELO kadın camel uzun kaban" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="kb-label"><h3>Kaban &amp; Mont</h3><span>Keşfet</span></div>
+      </a>
+      <a class="kb-card" href="#kadin" data-view="kadin" data-grup="ceket">
+        <img src="https://api.sakans.com/storage/maximodena/xml2-7465/ddf9e2ab1f538d45.jpg" alt="VAELO kadın bej uzun trençkot" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="kb-label"><h3>Trençkot &amp; Ceket</h3><span>Keşfet</span></div>
+      </a>
+      <a class="kb-card" href="#kadin" data-view="kadin" data-grup="elbise">
+        <img src="https://api.sakans.com/storage/maximodena/xml2-7556/f8262d99ef8a4009.jpg" alt="VAELO kadın siyah pelerinli elbise" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="kb-label"><h3>Elbise &amp; Takım</h3><span>Keşfet</span></div>
+      </a>
+    </div>
+    <div class="sb-all"><a href="#kadin" data-view="kadin">Tüm Kadın Koleksiyonunu Gör</a></div>
+  </section>
 
   <section class="sb" id="saatbanner" aria-label="VAELO Saat koleksiyonu">
     <div class="sb-top rv">
@@ -1268,6 +1319,7 @@ function syncProducts() {            // products.json is refreshed automatically
         applyGridState('grid-kadin'); setKadinFilter(kadinGrup);
       }
       document.getElementById('kadin').hidden = !kadin.length;
+      document.getElementById('kadinbanner').hidden = !kadin.length;
       document.getElementById('nav-kadin').hidden = !kadin.length;
       var nka = document.getElementById('nav-kadin-m'); if (nka) nka.hidden = !kadin.length;
       document.getElementById('saat').hidden = !watches.length;
