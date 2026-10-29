@@ -57,6 +57,7 @@ for (const u of cfg.urunler) {
       category: 'Kadın',
       grup: u.grup,
       bedenler,
+      ...(/^https:\/\/.+\.mp4$/i.test(x.Video || '') ? { video: x.Video } : {}),
       tedarik: 'maxi',
     });
   }

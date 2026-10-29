@@ -118,7 +118,8 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   @media(min-width:860px){main{grid-template-columns:1.1fr 1fr;gap:64px;padding-top:24px}}
   .gallery{display:grid;gap:12px}
   .gallery img{width:100%;display:block;background:var(--sand);aspect-ratio:4/5;object-fit:cover}
-  @media(max-width:859px){.gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -16px;padding:0 16px}.gallery img{flex:0 0 82%;scroll-snap-align:center}}
+  .gallery video{width:100%;display:block;background:var(--sand);aspect-ratio:4/5;object-fit:cover}
+  @media(max-width:859px){.gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -16px;padding:0 16px}.gallery img,.gallery video{flex:0 0 82%;scroll-snap-align:center}}
   .info{align-self:start}
   @media(min-width:860px){.info{position:sticky;top:32px}}
   .cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
@@ -189,7 +190,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
 </header>
 <main>
   <div class="gallery">
-    ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – lüks ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">`).join('\n    ')}
+    ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – lüks ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">` + (i === 0 && p.video ? `\n    <video src="${esc(p.video)}" poster="${esc(imgs[1] || u)}" muted autoplay loop playsinline preload="metadata" aria-label="VAELO ${esc(name)} ürün videosu"></video>` : '')).join('\n    ')}
   </div>
   <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
     <p class="cat" lang="en">${isKadin(p) ? esc('VAELO Kadın · ' + (KGRUP[p.grup] || kind(p.name))) : isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
