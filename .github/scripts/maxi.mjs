@@ -64,8 +64,8 @@ for (const u of cfg.urunler) {
 }
 
 const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
-const once = (data.products || []).filter((p) => p.category === 'Kadın');
-data.products = (data.products || []).filter((p) => p.category !== 'Kadın').concat(yeni);
+const once = (data.products || []).filter((p) => p.category === 'Kadın' && p.tedarik === 'maxi');
+data.products = (data.products || []).filter((p) => !(p.category === 'Kadın' && p.tedarik === 'maxi')).concat(yeni);  // elle eklenen Kadın ürünleri (tedarik: vaelo) korunur
 data.kadinGruplar = cfg.gruplar;
 fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
 console.log(`Kadın koleksiyonu: ${yeni.length} ürün (önce ${once.length}).`);

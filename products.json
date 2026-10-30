@@ -3049,12 +3049,102 @@
         }
       ],
       "tedarik": "maxi"
+    },
+    {
+      "id": "vk001",
+      "name": "Paris Yıldızlı Crop Sweatshirt – Pembe",
+      "price": 849,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk001_0.webp"
+      ],
+      "description": "İnce pembe-kırmızı çizgileri, göğüsteki Paris 1975 yazısı ve koldaki mavi yıldızıyla sezonun en eğlenceli parçası.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "ust",
+      "bedenler": [
+        {
+          "beden": "S",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "M",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "L",
+          "stok": 2,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
+    },
+    {
+      "id": "vk002",
+      "name": "New York Crop Sweatshirt – Pembe Kırmızı",
+      "price": 849,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk002_0.webp"
+      ],
+      "description": "Geniş pembe-kırmızı blok çizgileri ve New York City baskısıyla dikkat çeken, enerjik bir crop sweatshirt.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "ust",
+      "bedenler": [
+        {
+          "beden": "S",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "M",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "L",
+          "stok": 2,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
+    },
+    {
+      "id": "vk003",
+      "name": "Çizgili Crop Sweatshirt – Kahverengi",
+      "price": 849,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk003_0.webp"
+      ],
+      "description": "Kahverengi zemin üzerine pembe çizgileri ve küçük göğüs baskısıyla sade ama iddialı bir crop sweatshirt.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "ust",
+      "bedenler": [
+        {
+          "beden": "S",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "M",
+          "stok": 2,
+          "barkod": ""
+        },
+        {
+          "beden": "L",
+          "stok": 2,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
     }
   ],
   "kadinGruplar": {
     "dis": "Kaban & Mont",
     "ceket": "Trençkot & Ceket",
-    "ust": "Triko & Gömlek",
+    "ust": "Üst Giyim",
     "elbise": "Elbise & Takım",
     "alt": "Alt Giyim"
   }
