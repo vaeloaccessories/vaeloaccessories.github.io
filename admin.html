@@ -165,6 +165,7 @@
       <button type="button" data-t="siparisler">Siparişler</button>
       <button type="button" data-t="uyeler">Üyeler</button>
       <button type="button" data-t="urunler">Ürünler</button>
+      <button type="button" data-t="yorumlar">Yorumlar</button>
       <button type="button" data-t="baglantilar">Bağlantılar</button>
     </nav>
   </header>
@@ -180,7 +181,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
 import {
   collection, query, where, orderBy, limit, getDocs, onSnapshot, doc, updateDoc,
-  documentId, Timestamp, setDoc, getDoc, serverTimestamp
+  documentId, Timestamp, setDoc, getDoc, serverTimestamp, deleteDoc
 } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js';
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -528,6 +529,33 @@ const SEKMELER = {
       try { await updateDoc(doc(db, 'siparisler', s.dataset.no), { durum: s.value }); sekmeAc('siparisler'); }
       catch (e) { alert('Kaydedilemedi: ' + (e.code || e.message)); s.disabled = false; }
     });
+  },
+
+  // ---- YORUMLAR ----
+  async yorumlar() {
+    const q = await getDocs(query(collection(db, 'yorumlar'), orderBy('t', 'desc'), limit(300)));
+    const l = q.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+    const bek = l.filter((y) => !y.onay), yay = l.filter((y) => y.onay);
+    const yz = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+    const kart = (y) => `<div class="card"><div class="head-line"><div><b>${esc(y.ad)}</b> <span style="letter-spacing:2px">${yz(y.puan || 0)}</span><br><span class="muted">${esc(y.urunAd || y.urun)} · ${tarihSaat(y.t)}</span></div></div>
+      ${y.baslik ? `<p style="margin-top:8px"><b>${esc(y.baslik)}</b></p>` : ''}<p style="margin-top:4px">${esc(y.yorum)}</p>
+      <div class="actions">${y.onay ? `<button type="button" class="btn ghost sm" data-gizle="${esc(y.id)}">Yayından kaldır</button>` : `<button type="button" class="btn sm" data-onay="${esc(y.id)}">Onayla</button>`}<button type="button" class="btn ghost sm" data-sil="${esc(y.id)}">Sil</button></div></div>`;
+    $('#icerik').innerHTML = `<h2>Yorumlar</h2><p class="sub">Müşterilerin ürün sayfalarından yazdığı yorumlar. Onayladığın yorum hemen sitede görünür.</p>
+      <h3 style="margin:18px 0 10px">Onay bekleyen (${bek.length})</h3>${bek.length ? bek.map(kart).join('') : '<p class="empty">Bekleyen yorum yok.</p>'}
+      <h3 style="margin:24px 0 10px">Yayında (${yay.length})</h3>${yay.length ? yay.map(kart).join('') : '<p class="empty">Henüz yayında yorum yok.</p>'}`;
+    $('#icerik').onclick = async (e) => {
+      const b = e.target.closest('[data-onay],[data-gizle],[data-sil]'); if (!b) return;
+      b.disabled = true;
+      try {
+        if (b.dataset.onay) await updateDoc(doc(db, 'yorumlar', b.dataset.onay), { onay: true });
+        else if (b.dataset.gizle) await updateDoc(doc(db, 'yorumlar', b.dataset.gizle), { onay: false });
+        else {
+          if (b.textContent !== 'Emin misin?') { b.textContent = 'Emin misin?'; b.disabled = false; return; }
+          await deleteDoc(doc(db, 'yorumlar', b.dataset.sil));
+        }
+        sekmeAc('yorumlar');
+      } catch (er) { b.disabled = false; b.textContent = 'Hata: ' + (er.code || 'tekrar dene'); }
+    };
   },
 
   // ---- ÜYELER ----

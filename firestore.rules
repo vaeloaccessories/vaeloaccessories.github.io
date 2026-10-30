@@ -123,5 +123,18 @@ service cloud.firestore {
         && request.resource.data.durum == 'musteri-dondu');
       allow delete: if admin();
     }
+    // Müşteri yorumları: herkes yazabilir (onaysız), sitede yalnızca admin onayladıkları görünür.
+    match /yorumlar/{id} {
+      allow read: if admin() || resource.data.onay == true;
+      allow create: if request.resource.data.keys().hasOnly(['urun', 'urunAd', 'ad', 'baslik', 'yorum', 'puan', 'onay', 't'])
+        && request.resource.data.urun is string && request.resource.data.urun.matches('^[a-z0-9]{1,20}$')
+        && request.resource.data.onay == false
+        && request.resource.data.puan is int && request.resource.data.puan >= 1 && request.resource.data.puan <= 5
+        && request.resource.data.ad is string && request.resource.data.ad.size() > 0 && request.resource.data.ad.size() <= 40
+        && request.resource.data.yorum is string && request.resource.data.yorum.size() >= 5 && request.resource.data.yorum.size() <= 600
+        && kisa(request.resource.data.baslik, 60) && kisa(request.resource.data.urunAd, 120)
+        && request.resource.data.t == request.time;
+      allow update, delete: if admin();
+    }
   }
 }

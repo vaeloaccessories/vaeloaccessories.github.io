@@ -214,6 +214,7 @@ ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<i
 <footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
 <script src="/assets/sepet.js?v=6" defer></script>
 <script src="/assets/cerez.js" defer></script>
+<script type="module" src="/assets/yorum.js?v=1"></script>
 <script>/* üyelik sistemi sayfa açıldıktan sonra yüklenir (site hızlı açılsın) */(function(){function y(){var s=document.createElement('script');s.type='module';s.src='/assets/uye.js?v=3';document.body.appendChild(s)}function g(){'requestIdleCallback' in window?requestIdleCallback(y,{timeout:2500}):setTimeout(y,1200)}document.readyState==='complete'?g():addEventListener('load',g)})();</script>
 </body>
 </html>
