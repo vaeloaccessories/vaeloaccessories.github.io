@@ -3139,6 +3139,48 @@
         }
       ],
       "tedarik": "vaelo"
+    },
+    {
+      "id": "vk004",
+      "name": "Püsküllü Süet Ceket – Siyah",
+      "price": 999,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk004_0.webp"
+      ],
+      "description": "Önü uzun püsküllerle süslenmiş, geniş yakalı siyah süet görünümlü ceket. Çizgili triko ve siyah pantolonla cool bir sonbahar stili.\nKesim / Kalıp: Rahat kesim, geniş klasik yaka\nBeden: Standart — stokta yalnızca 1 adet.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "ceket",
+      "rozet": "Son adet",
+      "bedenler": [
+        {
+          "beden": "Standart",
+          "stok": 1,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
+    },
+    {
+      "id": "vk005",
+      "name": "Kemerli Pelerin Kaban – Ekru",
+      "price": 999,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk005_0.webp"
+      ],
+      "description": "Dik yakalı, pelerin kollu, kıvırcık dokulu ekru kaban. Beldeki ince siyah kemerle zarif ve feminen bir silüet verir.\nKesim / Kalıp: Pelerin (panço) kol, kemerle büzülen bel\nBeden: Standart — stokta yalnızca 1 adet.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "dis",
+      "rozet": "Son adet",
+      "bedenler": [
+        {
+          "beden": "Standart",
+          "stok": 1,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
     }
   ],
   "kadinGruplar": {

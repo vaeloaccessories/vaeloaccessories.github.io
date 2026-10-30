@@ -196,6 +196,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     <p class="cat" lang="en">${isKadin(p) ? esc('VAELO Kadın · ' + (KGRUP[p.grup] || kind(p.name))) : isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}</p>
+    ${p.rozet ? `<p style="color:#d11a1a;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0">${esc(p.rozet)}</p>` : ''}
     ${paketNotu(p)}
     ${colorHtml}
     ${sizesHtml}

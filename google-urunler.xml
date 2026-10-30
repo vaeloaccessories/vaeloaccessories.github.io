@@ -7774,5 +7774,47 @@
 <g:color>Kahverengi</g:color>
 <g:shipping><g:country>TR</g:country><g:price>0.00 TRY</g:price></g:shipping>
 </item>
+<item>
+<g:id>vk004-Standart</g:id>
+<g:item_group_id>vk004</g:item_group_id>
+<g:title>VAELO Püsküllü Süet Ceket – Siyah | Kadın Ceket</g:title>
+<g:description>Önü uzun püsküllerle süslenmiş, geniş yakalı siyah süet görünümlü ceket. Çizgili triko ve siyah pantolonla cool bir sonbahar stili. Kesim / Kalıp: Rahat kesim, geniş klasik yaka Beden: Standart — stokta yalnızca 1 adet.</g:description>
+<g:link>https://www.vaelo.com.tr/urun/puskullu-suet-ceket-siyah-vk004.html</g:link>
+<g:image_link>https://www.vaelo.com.tr/assets/urun/vk004_0.webp</g:image_link>
+
+<g:availability>in_stock</g:availability>
+<g:price>999.00 TRY</g:price>
+<g:brand>VAELO</g:brand>
+<g:condition>new</g:condition>
+<g:identifier_exists>no</g:identifier_exists>
+<g:google_product_category>1604</g:google_product_category>
+<g:product_type>Ceket</g:product_type>
+<g:gender>female</g:gender>
+<g:age_group>adult</g:age_group>
+
+<g:color>Siyah</g:color>
+<g:shipping><g:country>TR</g:country><g:price>0.00 TRY</g:price></g:shipping>
+</item>
+<item>
+<g:id>vk005-Standart</g:id>
+<g:item_group_id>vk005</g:item_group_id>
+<g:title>VAELO Kemerli Pelerin Kaban – Ekru | Kadın Kaban</g:title>
+<g:description>Dik yakalı, pelerin kollu, kıvırcık dokulu ekru kaban. Beldeki ince siyah kemerle zarif ve feminen bir silüet verir. Kesim / Kalıp: Pelerin (panço) kol, kemerle büzülen bel Beden: Standart — stokta yalnızca 1 adet.</g:description>
+<g:link>https://www.vaelo.com.tr/urun/kemerli-pelerin-kaban-ekru-vk005.html</g:link>
+<g:image_link>https://www.vaelo.com.tr/assets/urun/vk005_0.webp</g:image_link>
+
+<g:availability>in_stock</g:availability>
+<g:price>999.00 TRY</g:price>
+<g:brand>VAELO</g:brand>
+<g:condition>new</g:condition>
+<g:identifier_exists>no</g:identifier_exists>
+<g:google_product_category>1604</g:google_product_category>
+<g:product_type>Kaban</g:product_type>
+<g:gender>female</g:gender>
+<g:age_group>adult</g:age_group>
+
+<g:color>Ekru</g:color>
+<g:shipping><g:country>TR</g:country><g:price>0.00 TRY</g:price></g:shipping>
+</item>
 </channel>
 </rss>
