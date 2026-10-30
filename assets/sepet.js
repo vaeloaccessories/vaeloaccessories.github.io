@@ -196,7 +196,7 @@
     // Kasa indirim kodlarını destekliyorsa kupon alanı ve hoş geldin çarkı açılır.
     if (d.kuponlar) {
       KUPONLAR = d.kuponlar;
-      if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=1'; sc.defer = true; document.head.appendChild(sc); }
+      if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=2'; sc.defer = true; document.head.appendChild(sc); }
     }
     ciz();
   }).catch(function () {});

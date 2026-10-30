@@ -40,6 +40,9 @@
     '.vk-no{background:none;border:0;color:#6B6861;font-size:.78rem;margin-top:12px;cursor:pointer;text-decoration:underline}' +
     '.vk-kod{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px dashed #0A0A0A;padding:12px 14px;margin:6px 0 10px;font:500 1.05rem Jost,Helvetica,Arial,sans-serif;letter-spacing:.14em}' +
     '.vk-kod button{background:#0A0A0A;color:#F3F1EC;border:0;padding:8px 12px;font:400 11px Jost,Helvetica,Arial,sans-serif;letter-spacing:.12em;cursor:pointer}' +
+    '.vk-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;margin:0 0 10px;background:#1F7A4D;color:#fff;border:0;font:400 13px Jost,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-sizing:border-box}' +
+    '.vk-wa svg{width:18px;height:18px;fill:currentColor}' +
+    '.vk-al2{background:none;border:0;color:#0A0A0A;font:400 12px Jost,Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;cursor:pointer;padding:6px}' +
     '.vk-big{font:500 3rem/1 "Cormorant Garamond",Georgia,serif;margin:4px 0 6px}' +
     '.vk-ok{font-size:.78rem;color:#6B6861;margin:0 0 16px}' +
     '.vk-fine{font-size:.7rem;color:#8a867d;margin:14px 0 0;line-height:1.5}' +
@@ -67,8 +70,11 @@
     return '<small>Tebrikler</small><div class="vk-big">' + (d.kod === 'KARGOBEDAVA' ? 'Kargo Bedava' : d.yazi) + '</div>' +
       '<p>' + d.mesaj + ' kazandın. Kodun sepetine otomatik uygulandı.</p>' +
       '<div class="vk-kod"><span>' + d.kod + '</span><button type="button" class="vk-cp">KOPYALA</button></div>' +
-      '<p class="vk-ok">Sepette görürsün, ayrıca bir şey yapmana gerek yok.</p>' +
-      '<button type="button" class="vk-go vk-al">Alışverişe Başla</button>';
+      '<p class="vk-ok">Kodunu kaybetme: WhatsApp\'ına gönder, sipariş ve kargo bilgilerin de oradan gelsin.</p>' +
+      '<a class="vk-wa" target="_blank" rel="noopener" href="https://wa.me/905513708320?text=' + encodeURIComponent('Merhaba VAELO! Çarktan ' + d.mesaj + ' kazandım. Kodum: ' + d.kod) + '">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>' +
+      'Kodumu WhatsApp\'a Gönder</a>' +
+      '<button type="button" class="vk-al2 vk-al">Alışverişe Başla</button>';
   }
   function ac() {
     if (tab) { tab.remove(); tab = null; }
@@ -121,6 +127,7 @@
       (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { cp.textContent = 'KOPYALANDI'; }).catch(function () { cp.textContent = t; });
     };
     var alb = bg.querySelector('.vk-al'); if (alb) alb.onclick = kapat;
+    var wa = bg.querySelector('.vk-wa'); if (wa) wa.onclick = function () { if (window.gtag) gtag('event', 'cark_whatsapp'); };
   }
   function sekme() {
     if (tab || al('vaelo-kupon')) return;
