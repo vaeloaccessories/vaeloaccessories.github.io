@@ -3181,6 +3181,36 @@
         }
       ],
       "tedarik": "vaelo"
+    },
+    {
+      "id": "vk006",
+      "name": "Püsküllü Triko Elbise – Bej",
+      "price": 999,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk006_0.webp"
+      ],
+      "description": "Omuz ve eteğindeki püskül detaylarıyla dikkat çeken, yumuşak dokulu bej triko elbise. Kemer ve uzun çizmeyle şık bir sonbahar kombini.\nKesim / Kalıp: Dik yaka, uzun kol, diz üstü boy\nKumaş: Yumuşak dokulu triko\nBeden: XS, M, L — her bedenden yalnızca 1 adet.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "elbise",
+      "bedenler": [
+        {
+          "beden": "XS",
+          "stok": 1,
+          "barkod": ""
+        },
+        {
+          "beden": "M",
+          "stok": 1,
+          "barkod": ""
+        },
+        {
+          "beden": "L",
+          "stok": 1,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
     }
   ],
   "kadinGruplar": {
