@@ -3060,7 +3060,7 @@
       "description": "İnce pembe-kırmızı çizgileri, göğüsteki Paris 1975 yazısı ve koldaki mavi yıldızıyla sezonun en eğlenceli parçası.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
       "url": "",
       "category": "Kadın",
-      "grup": "ust",
+      "grup": "outlet",
       "bedenler": [
         {
           "beden": "S",
@@ -3090,7 +3090,7 @@
       "description": "Geniş pembe-kırmızı blok çizgileri ve New York City baskısıyla dikkat çeken, enerjik bir crop sweatshirt.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
       "url": "",
       "category": "Kadın",
-      "grup": "ust",
+      "grup": "outlet",
       "bedenler": [
         {
           "beden": "S",
@@ -3120,7 +3120,7 @@
       "description": "Kahverengi zemin üzerine pembe çizgileri ve küçük göğüs baskısıyla sade ama iddialı bir crop sweatshirt.\nKesim / Kalıp: Crop boy, oversize düşük omuz, geniş kol\nKumaş: Yumuşak dokulu pamuk karışımı\nKullanım: Yüksek bel jean ve pantolonlarla günlük kombinler için ideal\nBeden: S, M, L — stok sınırlıdır.",
       "url": "",
       "category": "Kadın",
-      "grup": "ust",
+      "grup": "outlet",
       "bedenler": [
         {
           "beden": "S",
@@ -3150,7 +3150,7 @@
       "description": "Önü uzun püsküllerle süslenmiş, geniş yakalı siyah süet görünümlü ceket. Çizgili triko ve siyah pantolonla cool bir sonbahar stili.\nKesim / Kalıp: Rahat kesim, geniş klasik yaka\nBeden: Standart — stokta yalnızca 1 adet.",
       "url": "",
       "category": "Kadın",
-      "grup": "ceket",
+      "grup": "outlet",
       "rozet": "Son adet",
       "bedenler": [
         {
@@ -3171,7 +3171,7 @@
       "description": "Dik yakalı, pelerin kollu, kıvırcık dokulu ekru kaban. Beldeki ince siyah kemerle zarif ve feminen bir silüet verir.\nKesim / Kalıp: Pelerin (panço) kol, kemerle büzülen bel\nBeden: Standart — stokta yalnızca 1 adet.",
       "url": "",
       "category": "Kadın",
-      "grup": "dis",
+      "grup": "outlet",
       "rozet": "Son adet",
       "bedenler": [
         {
@@ -3192,7 +3192,7 @@
       "description": "Omuz ve eteğindeki püskül detaylarıyla dikkat çeken, yumuşak dokulu bej triko elbise. Kemer ve uzun çizmeyle şık bir sonbahar kombini.\nKesim / Kalıp: Dik yaka, uzun kol, diz üstü boy\nKumaş: Yumuşak dokulu triko\nBeden: XS, M, L — her bedenden yalnızca 1 adet.",
       "url": "",
       "category": "Kadın",
-      "grup": "elbise",
+      "grup": "outlet",
       "bedenler": [
         {
           "beden": "XS",
@@ -3211,6 +3211,27 @@
         }
       ],
       "tedarik": "vaelo"
+    },
+    {
+      "id": "vk007",
+      "name": "Şardonlu Bomber Takım – Pembe",
+      "price": 950,
+      "images": [
+        "https://www.vaelo.com.tr/assets/urun/vk007_0.webp"
+      ],
+      "description": "Fermuarlı bomber ceket ve bol paça eşofman altından oluşan, içi şardonlu yumuşacık pembe takım. Hem rahat hem şık; günlük kullanım için ideal.\nKumaş: İçi şardonlu, sıcak tutan pamuk karışımı\nKalıp: Oversize ceket, beli lastikli bağcıklı geniş paça pantolon\nBeden: XL — stokta yalnızca 1 adet.",
+      "url": "",
+      "category": "Kadın",
+      "grup": "outlet",
+      "rozet": "Son adet",
+      "bedenler": [
+        {
+          "beden": "XL",
+          "stok": 1,
+          "barkod": ""
+        }
+      ],
+      "tedarik": "vaelo"
     }
   ],
   "kadinGruplar": {
@@ -3218,6 +3239,7 @@
     "ceket": "Trençkot & Ceket",
     "ust": "Üst Giyim",
     "elbise": "Elbise & Takım",
-    "alt": "Alt Giyim"
+    "alt": "Alt Giyim",
+    "outlet": "Outlet"
   }
 }

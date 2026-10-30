@@ -7879,5 +7879,26 @@
 <g:color>Bej</g:color>
 <g:shipping><g:country>TR</g:country><g:price>0.00 TRY</g:price></g:shipping>
 </item>
+<item>
+<g:id>vk007-XL</g:id>
+<g:item_group_id>vk007</g:item_group_id>
+<g:title>VAELO Şardonlu Bomber Takım – Pembe | Kadın Takım</g:title>
+<g:description>Fermuarlı bomber ceket ve bol paça eşofman altından oluşan, içi şardonlu yumuşacık pembe takım. Hem rahat hem şık; günlük kullanım için ideal. Kumaş: İçi şardonlu, sıcak tutan pamuk karışımı Kalıp: Oversize ceket, beli lastikli bağcıklı geniş paça pantolon Beden: XL — stokta yalnızca 1 adet.</g:description>
+<g:link>https://www.vaelo.com.tr/urun/sardonlu-bomber-takim-pembe-vk007.html</g:link>
+<g:image_link>https://www.vaelo.com.tr/assets/urun/vk007_0.webp</g:image_link>
+
+<g:availability>in_stock</g:availability>
+<g:price>950.00 TRY</g:price>
+<g:brand>VAELO</g:brand>
+<g:condition>new</g:condition>
+<g:identifier_exists>no</g:identifier_exists>
+<g:google_product_category>1604</g:google_product_category>
+<g:product_type>Takım</g:product_type>
+<g:gender>female</g:gender>
+<g:age_group>adult</g:age_group>
+<g:size>XL</g:size>
+<g:color>Pembe</g:color>
+<g:shipping><g:country>TR</g:country><g:price>0.00 TRY</g:price></g:shipping>
+</item>
 </channel>
 </rss>

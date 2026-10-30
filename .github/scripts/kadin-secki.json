@@ -6,7 +6,8 @@
     "ceket": "Trençkot & Ceket",
     "ust": "Üst Giyim",
     "elbise": "Elbise & Takım",
-    "alt": "Alt Giyim"
+    "alt": "Alt Giyim",
+    "outlet": "Outlet"
   },
   "urunler": [
     { "ad": "Kuşgözlü Kaşe Kaban", "grup": "dis", "id": ["92626", "92627"] },
