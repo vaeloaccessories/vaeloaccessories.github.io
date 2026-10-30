@@ -471,6 +471,97 @@ async function yorumMailleri(env) {
   return { gonderilen };
 }
 
+// ---- Sepette ürün bırakan üyeye hatırlatma maili ----
+// Saatte bir çalışır (Cloudflare > Settings > Triggers > Cron: "0 * * * *").
+// Kime gider: sepetine ürün ekleyip 2 saattir dokunmayan, ödeme yapmamış ve üyelikte
+// "kampanyalardan haberdar olmak istiyorum" kutusunu işaretlemiş üyeye. Kişi başı 7 günde en fazla 1 mail.
+const SEPET_SAAT = 2, SEPET_EN_GEC_SAAT = 48;
+const FS = `https://firestore.googleapis.com/v1/projects/${FB_PROJE}/databases/(default)/documents`;
+function fsDeger(v) {
+  if (!v) return null;
+  if ('stringValue' in v) return v.stringValue;
+  if ('integerValue' in v) return Number(v.integerValue);
+  if ('doubleValue' in v) return v.doubleValue;
+  if ('booleanValue' in v) return v.booleanValue;
+  if ('timestampValue' in v) return v.timestampValue;
+  if ('nullValue' in v) return null;
+  if ('arrayValue' in v) return (v.arrayValue.values || []).map(fsDeger);
+  if ('mapValue' in v) return fsNesne(v.mapValue.fields);
+  return null;
+}
+const fsNesne = (f) => Object.fromEntries(Object.entries(f || {}).map(([k, v]) => [k, fsDeger(v)]));
+const iptalImza = async (env, uid) => (await hmacBase64(String(env.PAYTR_MERCHANT_SALT || 'vaelo'), 'iptal:' + uid)).replace(/[^A-Za-z0-9]/g, '').slice(0, 24);
+
+async function sepetMailleri(env) {
+  if (!env.SIPARISLER || !env.RESEND_API_KEY || !env.FIREBASE_SA) return { gonderilen: 0 };
+  const tok = await googleToken(env), H = { 'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json' };
+  const simdi = Date.now(), saat = 3600000;
+  const r = await fetch(FS + ':runQuery', { method: 'POST', headers: H, body: JSON.stringify({ structuredQuery: {
+    from: [{ collectionId: 'sepetler' }],
+    where: { compositeFilter: { op: 'AND', filters: [
+      { fieldFilter: { field: { fieldPath: 'guncel' }, op: 'GREATER_THAN_OR_EQUAL', value: { timestampValue: new Date(simdi - SEPET_EN_GEC_SAAT * saat).toISOString() } } },
+      { fieldFilter: { field: { fieldPath: 'guncel' }, op: 'LESS_THAN_OR_EQUAL', value: { timestampValue: new Date(simdi - SEPET_SAAT * saat).toISOString() } } },
+    ] } },
+    limit: 200,
+  } }) });
+  const satirlar = await r.json();
+  if (!r.ok) { console.log('Sepetler okunamadı:', JSON.stringify(satirlar).slice(0, 200)); return { gonderilen: 0 }; }
+  // Son günlerde ödeme yapmış e-postalar (yanlışlıkla hatırlatma gitmesin)
+  const odeyen = new Set();
+  let cursor;
+  do {
+    const liste = await env.SIPARISLER.list({ prefix: 'VAELO', cursor });
+    for (const k of liste.keys) {
+      const raw = await env.SIPARISLER.get(k.name); if (!raw) continue;
+      try { const o = JSON.parse(raw); if (o.email && Array.isArray(o.mail) && simdi - Date.parse(o.odeme || o.created) < 7 * 24 * saat) odeyen.add(String(o.email).toLowerCase()); } catch {}
+    }
+    cursor = liste.list_complete ? null : liste.cursor;
+  } while (cursor);
+
+  let gonderilen = 0;
+  for (const s of satirlar) {
+    if (!s.document) continue;
+    const d = fsNesne(s.document.fields);
+    const email = String(d.email || '').toLowerCase();
+    if (!d.uye || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !Array.isArray(d.urunler) || !d.urunler.length) continue;
+    if (odeyen.has(email) || await env.SIPARISLER.get('sepetmail:' + email)) continue;
+    const ur = await fetch(FS + '/uyeler/' + encodeURIComponent(d.uye), { headers: H });
+    if (!ur.ok) continue;
+    const uyeBilgi = fsNesne((await ur.json()).fields);
+    if (uyeBilgi.bulten !== true) continue;   // izin vermeyen üyeye gönderilmez
+    const ad = e(String(d.ad || uyeBilgi.ad || '').split(' ')[0]);
+    const iptal = `https://vaelo-odeme.vaeloaccessories.workers.dev/abonelik-iptal?u=${encodeURIComponent(d.uye)}&k=${await iptalImza(env, d.uye)}`;
+    const urunler = d.urunler.slice(0, 4).map((u) =>
+      `<tr><td style="padding:10px 0;border-bottom:1px solid #eee;width:74px">${u.img ? `<img src="${e(u.img)}" width="60" height="75" alt="" style="display:block;object-fit:cover;background:#DFDBD2">` : ''}</td>` +
+      `<td style="padding:10px 0 10px 12px;border-bottom:1px solid #eee">${e(String(u.ad || '').replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">${u.beden && u.beden !== 'Standart' ? 'Beden: ' + e(u.beden) + ' · ' : ''}${tl(u.fiyat || 0)}</span></td></tr>`).join('');
+    try {
+      await mailAt(env, email, 'Sepetindeki parçalar seni bekliyor · VAELO', mailSablon(`${ad ? ad + ', ' : ''}seçtiklerin hâlâ burada.`,
+        `Sepetine eklediğin parçaları senin için ayırdık. Özel üretim olduğu için siparişin bugün verilirse daha erken yola çıkar.` +
+        `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">${urunler}</table>` +
+        `Kargo ücretsiz · 7 gün içinde iade ve beden değişimi.` +
+        dugme(SITE + '/#sepet', 'Siparişi Tamamla') +
+        `<span style="color:#6B6861;font-size:12px">Bu maili, üyelikte kampanya e-postalarına izin verdiğin için aldın. <a href="${iptal}" style="color:#6B6861">Bu e-postaları artık almak istemiyorum</a>.</span>`),
+        'info@vaelo.com.tr');
+      await env.SIPARISLER.put('sepetmail:' + email, new Date().toISOString(), { expirationTtl: 7 * 24 * 3600 });
+      gonderilen++;
+    } catch (err) { console.log('Sepet maili gitmedi:', email, err.message); }
+  }
+  console.log('Sepet maili gönderilen:', gonderilen);
+  return { gonderilen };
+}
+
+// Maildeki "artık almak istemiyorum" bağlantısı: üyenin izni kapatılır.
+async function abonelikIptal(url, env) {
+  const uid = url.searchParams.get('u') || '', k = url.searchParams.get('k') || '';
+  const sayfa = (m) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VAELO</title><body style="margin:0;background:#F3F1EC;font-family:Helvetica,Arial,sans-serif;color:#0A0A0A;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px"><div><div style="font-family:Georgia,serif;font-size:28px;letter-spacing:8px">VAĖLO</div><p style="margin-top:24px">${m}</p><a href="${SITE}" style="color:#0A0A0A">vaelo.com.tr</a></div>`, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+  if (!uid || !env.FIREBASE_SA || k !== await iptalImza(env, uid)) return sayfa('Bağlantı geçersiz. Bize info@vaelo.com.tr adresinden ulaşabilirsiniz.');
+  const r = await fetch(FS + '/uyeler/' + encodeURIComponent(uid) + '?updateMask.fieldPaths=bulten&currentDocument.exists=true', {
+    method: 'PATCH', headers: { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { bulten: { booleanValue: false } } }),
+  });
+  return sayfa(r.ok ? 'Tamam, artık kampanya e-postası almayacaksınız.' : 'Şu an işlem yapılamadı. Bize info@vaelo.com.tr adresinden ulaşabilirsiniz.');
+}
+
 // ---- Bayilik başvurusu (bayi.html formu) → sahibine mail (Resend) ----
 async function bayiBasvuru(request, env) {
   if (await cokIstek(env, request, 'bayi', 3, 3600)) return json({ ok: false, error: 'Kısa sürede çok fazla başvuru gönderildi. Lütfen daha sonra tekrar deneyin.' }, 429);
@@ -505,7 +596,7 @@ async function bayiBasvuru(request, env) {
 }
 
 export default {
-  async scheduled(event, env, ctx) { ctx.waitUntil(yorumMailleri(env)); },
+  async scheduled(event, env, ctx) { ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message))])); },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
@@ -513,6 +604,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
+    if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
     if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 4, hediye: HEDIYE_PAKETI, kuponlar: KUPONLAR, paket: true });
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },

@@ -7,3 +7,4 @@
   - Street: 5309 hoodie siyah oval, 5310 lacivert oval, 5313 siyah etiket, 5312 lacivert etiket, 5314 tişört siyah grafik, 5311 tişört beyaz grafik
   - 5377 hoodie siyah altın grafik, 5378 lacivert altın grafik, 5379 tişört siyah V logo (7 Ekim 2026)
   - 17 ürünün hepsi eşleştirildi.
+- Sepet hatırlatma maili (30 Ekim 2026): `sepetMailleri` saatte bir çalışır (Cron "0 * * * *"). Sepetinde 2–48 saattir ürün bekleyen, ödeme yapmamış ve üyelikte kampanya izni (bulten) veren üyeye 7 günde en fazla 1 mail. Mailde "almak istemiyorum" bağlantısı `/abonelik-iptal` → izni kapatır.
