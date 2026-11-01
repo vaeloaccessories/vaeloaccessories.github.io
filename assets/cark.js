@@ -8,11 +8,11 @@
   var GORULDU = 'vaelo-cark';
   var DILIMLER = [
     { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: 'KARGO', alt: 'BEDAVA', kod: 'KARGOBEDAVA', mesaj: 'Ücretsiz kargo' },
+    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
     { yazi: '%7', alt: 'İNDİRİM', kod: 'HOSGELDIN7', mesaj: '%7 indirim' },
     { yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' },
     { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: 'KARGO', alt: 'BEDAVA', kod: 'KARGOBEDAVA', mesaj: 'Ücretsiz kargo' },
+    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
     { yazi: '%7', alt: 'İNDİRİM', kod: 'HOSGELDIN7', mesaj: '%7 indirim' },
     { yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' }
   ];

@@ -58,7 +58,7 @@ for (const k of kayitlar) {
     name: String(k.name || '').trim(),
     price: Number(k.price) || 0,
     images: images.slice(0, 6),
-    description: String(k.description || '').trim(),
+    description: String(k.description || '').trim().replace(/Baskı ve nakış detaylarını/gi, 'Baskı detaylarını').replace(/nakış/g, 'baskı').replace(/Nakış/g, 'Baskı'),  // ürünler baskılı, nakış değil
     url: (i >= 0 && data.products[i].url) || '',
     category: String(k.category || '')
   };

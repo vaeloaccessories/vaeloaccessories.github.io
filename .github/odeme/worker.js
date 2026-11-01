@@ -178,7 +178,7 @@ async function startPayment(request, env) {
   const out = await r.json().catch(() => ({}));
   if (out.status !== 'success') {
     console.log('PayTR hata:', JSON.stringify(out));
-    return json({ ok: false, error: 'Ödeme ekranı açılamadı. Lütfen birazdan tekrar deneyin veya WhatsApp\'tan bize yazın.' }, 502);
+    return json({ ok: false, error: 'Ödeme ekranı açılamadı. Lütfen birazdan tekrar deneyin veya bize ulaşın: +90 551 370 83 20.' }, 502);
   }
   // Sipariş bilgisi, ödeme onaylanınca Printitürk'e gönderilmek üzere saklanır (30 gün).
   if (env.SIPARISLER) {
@@ -565,7 +565,7 @@ async function abonelikIptal(url, env) {
 // ---- Bayilik başvurusu (bayi.html formu) → sahibine mail (Resend) ----
 async function bayiBasvuru(request, env) {
   if (await cokIstek(env, request, 'bayi', 3, 3600)) return json({ ok: false, error: 'Kısa sürede çok fazla başvuru gönderildi. Lütfen daha sonra tekrar deneyin.' }, 429);
-  if (!env.RESEND_API_KEY) return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen WhatsApp\'tan bize yazın.' }, 503);
+  if (!env.RESEND_API_KEY) return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen bize ulaşın: +90 551 370 83 20.' }, 503);
   let b;
   try { b = await request.json(); } catch { return json({ ok: false, error: 'Geçersiz istek.' }, 400); }
   if (b.web) return json({ ok: true }); // bot tuzağı
@@ -586,7 +586,7 @@ async function bayiBasvuru(request, env) {
       `</table><br>Bu maile "Yanıtla" dersen cevabın doğrudan başvuran kişiye gider.`), d.email, 'VAELO Bayilik <info@vaelo.com.tr>');
   } catch (err) {
     console.log('Bayi maili gitmedi:', err.message);
-    return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen WhatsApp\'tan bize yazın.' }, 502);
+    return json({ ok: false, error: 'Şu an gönderilemedi. Lütfen bize ulaşın: +90 551 370 83 20.' }, 502);
   }
   try {
     await mailAt(env, d.email, 'Bayilik başvurunuz alındı · VAELO', mailSablon('Başvurunuz alındı.',

@@ -174,6 +174,7 @@ if(c==='kabul')y();else b.addEventListener('vaelo:cerez',y,{once:true})}(window,
 'https://connect.facebook.net/en_US/fbevents.js');
 try{if(localStorage.getItem('vaelo-cerez')!=='kabul')fbq('consent','revoke');}catch(e){fbq('consent','revoke');}
 fbq('init', '1784645619627330');
+fbq('init', '2281581592691564');
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'product_group', value: ${Number(p.price)}, currency: 'TRY' });
 </script>
@@ -201,7 +202,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     ${colorHtml}
     ${sizesHtml}
     ${sizeTable(p.name)}
-    <a class="buy" href="${esc(p.url ? shopier(p.url) : '/#' + back(p))}" rel="noopener">Satın Al</a>
+    <a class="buy" href="/#${back(p)}" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">Bize Ulaşın</a>
     ${isKadin(p) ? `<p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-4 iş günü içinde kargoya verilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>` : isWatch(p) ? `<p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Saatler özel üretimdir; teslimat süresi 7-15 iş günüdür. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış ve orijinal durumundaysa iade onaylanır. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>` : `<p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-3 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 7 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 7 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>`}
     <div class="desc">${descHtml(p.description)}</div>
@@ -211,7 +212,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
 ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – lüks ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
 </div></section>` : ''}
-<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım (VAELO) · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
+<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
 <script src="/assets/sepet.js?v=6" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script type="module" src="/assets/yorum.js?v=1"></script>

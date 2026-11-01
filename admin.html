@@ -89,7 +89,7 @@
   .muted{color:var(--muted);font-size:.82rem}
   .total{font:500 1.3rem/1 "Cormorant Garamond",Georgia,serif}
   select{background:var(--bg);border:1px solid var(--line);padding:7px 10px;font-size:.82rem}
-  .st-odeme-ekrani{color:var(--warn)}.st-musteri-dondu,.st-odendi{color:var(--ok)}.st-kargoda,.st-teslim{color:#8fb3d9}.st-iptal{color:var(--bad)}
+  .st-odeme-ekrani{color:var(--warn)}.st-musteri-dondu{color:var(--warn)}.st-odendi{color:var(--ok)}.st-kargoda,.st-teslim{color:#8fb3d9}.st-iptal{color:var(--bad)}
   .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
   table{width:100%;border-collapse:collapse;font-size:.86rem}
   th{text-align:left;font-weight:400;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--line)}
@@ -509,9 +509,9 @@ const SEKMELER = {
     const q = await getDocs(query(collection(db, 'siparisler'), orderBy('t', 'desc'), limit(150)));
     const hepsi = q.docs.map((d) => Object.assign({ no: d.id }, d.data()));
     const filtre = sessionStorage.getItem('vaelo-sfiltre') || 'hepsi';
-    const DUR = { 'odeme-ekrani': 'Ödeme yarım kaldı / bekleniyor', 'musteri-dondu': 'Ödeme yapıldı (PayTR\'den kontrol et)', 'odendi': 'Ödendi · hazırlanıyor', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal' };
+    const DUR = { 'odeme-ekrani': 'Ödeme yarım kaldı / bekleniyor', 'musteri-dondu': 'Ödeme sayfasından döndü — PayTR\'den kontrol et, kesin değil', 'odendi': 'Ödendi · hazırlanıyor', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal' };
     const l = hepsi.filter((o) => filtre === 'hepsi' || (filtre === 'yarim' ? o.durum === 'odeme-ekrani' : o.durum !== 'odeme-ekrani'));
-    const tamam = hepsi.filter((o) => o.durum !== 'odeme-ekrani' && o.durum !== 'iptal');
+    const tamam = hepsi.filter((o) => ['odendi', 'kargoda', 'teslim'].includes(o.durum));  // yalnızca PayTR'den teyit edip 'Ödendi' yaptıkların
     $('#icerik').innerHTML = `<h2>Siparişler</h2><p class="sub">Ödeme ekranına geçen her müşteri burada. Kesin ödeme onayını her zaman PayTR panelinden kontrol et.</p>
       <div class="kpis" style="margin-bottom:18px"><div class="kpi"><span>Ödenen sipariş</span><b>${tamam.length}</b></div><div class="kpi"><span>Ciro (ödenen)</span><b>${tl(tamam.reduce((t, o) => t + (o.toplam || 0), 0))}</b></div><div class="kpi"><span>Yarım kalan</span><b>${hepsi.length - hepsi.filter((o) => o.durum !== 'odeme-ekrani').length}</b></div></div>
       <div class="row"><div class="seg" id="sf">${[['hepsi', 'Tümü'], ['tamam', 'Ödenenler'], ['yarim', 'Yarım kalanlar']].map(([v, t]) => `<button type="button" data-v="${v}" class="${v === filtre ? 'on' : ''}">${t}</button>`).join('')}</div><a class="btn ghost sm" href="https://www.paytr.com/magaza/islemler" target="_blank" rel="noopener">PayTR işlemleri</a></div>

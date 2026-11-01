@@ -55,7 +55,7 @@ if (!kod) {
 } else if (mode === 'verifyEmail') {
   try {
     await applyActionCode(auth, kod);
-    sonuc('E-postanız doğrulandı', 'Teşekkürler, hesabınız artık güvence altında.', '<a class="btn" href="/">Siteye Dön</a><a class="btn" style="background:transparent;color:#0A0A0A;border:1px solid #0A0A0A;margin-top:10px" href="/admin.html">Yönetim Paneli</a>');
+    sonuc('E-postanız doğrulandı', 'Teşekkürler, hesabınız artık güvence altında.', '<a class="btn" href="/">Siteye Dön</a>');
   } catch (e) { hata(e, 'Yeni bir doğrulama maili isteyebilirsiniz.'); }
 } else if (mode === 'resetPassword') {
   try {

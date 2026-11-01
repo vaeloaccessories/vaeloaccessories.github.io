@@ -73,7 +73,7 @@
     bg.querySelector('.ek-x').onclick = kapat;
     bg.querySelector('.ek-btn').onclick = function () {
       kapat();
-      var h = document.getElementById('signature'); if (h && h.scrollIntoView) h.scrollIntoView({ behavior: 'smooth' });
+      var a = document.getElementById('nav-sig'); if (a) a.click(); else location.href = '/#signature';
     };
     bg.addEventListener('click', function (e) { if (e.target === bg) kapat(); });
     document.addEventListener('keydown', esc);

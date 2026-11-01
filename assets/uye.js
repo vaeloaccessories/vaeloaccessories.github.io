@@ -218,7 +218,7 @@ function ciz() {
       <label for="vu-ep">E-posta</label><input id="vu-ep" type="email" name="email" autocomplete="email" required>
       <label for="vu-sf">Şifre</label><input id="vu-sf" type="password" name="sifre" autocomplete="${kayit ? 'new-password' : 'current-password'}" required${kayit ? ' minlength="8" placeholder="En az 8 karakter"' : ''}>
       ${kayit ? `<div class="vu-ok"><input id="vu-kvkk" type="checkbox"><label for="vu-kvkk" style="all:unset"><a href="/kvkk-aydinlatma-metni.html" target="_blank">KVKK Aydınlatma Metni</a>’ni okudum; üyeliğim ve siparişlerim için bilgilerimin işleneceğini biliyorum.</label></div>
-      <div class="vu-ok"><input id="vu-izin" type="checkbox"><label for="vu-izin" style="all:unset">Alışveriş deneyimimin geliştirilmesi için sitede gezindiğim sayfaların ve sepetimin kaydedilmesine izin veriyorum. (İsteğe bağlı)</label></div>
+      <div class="vu-ok"><input id="vu-izin" type="checkbox"><label for="vu-izin" style="all:unset">Alışveriş deneyimimin geliştirilmesi için sitede gezindiğim sayfaların ve sepetimin kaydedilmesine, bunun için analiz ve reklam çerezlerinin (Google Analytics, Meta) kullanılmasına izin veriyorum. (İsteğe bağlı)</label></div>
       <div class="vu-ok"><input id="vu-bulten" type="checkbox"><label for="vu-bulten" style="all:unset">Yeni koleksiyon ve kampanyalardan e-posta ile haberdar olmak istiyorum. (İsteğe bağlı)</label></div>` : ''}
       <p class="vu-err" aria-live="polite"></p>
       <button class="vu-go" type="submit">${kayit ? 'Üye Ol' : 'Giriş Yap'}</button>

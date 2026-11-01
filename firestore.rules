@@ -66,7 +66,10 @@ service cloud.firestore {
         && request.resource.data.guncel == request.time
         && request.resource.data.toplam is number
         && metin('ad', 160) && metin('email', 160) && metin('cihaz', 20) && metin('uye', 160)
-        && benim(request.resource.data.uye);
+        && benim(request.resource.data.uye)
+        // Sepetteki e-posta yalnızca giriş yapan üyenin kendi adresi olabilir (başkası adına hatırlatma maili engeli).
+        && (request.resource.data.get('email', null) == null
+            || (request.auth != null && request.resource.data.email == request.auth.token.email));
     }
 
     // Üyeler

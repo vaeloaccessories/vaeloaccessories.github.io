@@ -47,7 +47,7 @@ const graph = {
       email: 'info@vaelo.com.tr',
       telephone: '+905513708320',
       description: 'VAELO; lüks kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört üreten Türk premium giyim markasıdır.',
-      sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.shopier.com/VAELOaccessories'],
+      sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204'],
     },
     { '@type': 'WebSite', '@id': SITE + '#site', url: SITE, name: 'VAELO', inLanguage: 'tr-TR', publisher: { '@id': SITE + '#marka' } },
     {
@@ -85,7 +85,7 @@ const llms = `# VAELO
 - Kapşonlu sweatshirtler: %100 şardonlu pamuk, 380 GSM yüksek gramaj (heavyweight), oversize kesim
 - Bedenler: S, M, L, XL, XXL (unisex oversize)
 - Kargo: tüm siparişlerde ücretsiz; siparişler 2–3 iş günü içinde kargoya verilir
-- Teslimattan itibaren 7 gün içinde iade talebi, iade kargosu ücretsiz; inceleme sonrası onaylanır. Beden değişimi yok.
+- Teslimattan itibaren 7 gün içinde iade talebi, iade kargosu ücretsiz; inceleme sonrası onaylanır. 7 gün içinde beden değişimi de yapılabilir.
 - Yıkama: ters çevirerek, en düşük sıcaklıkta, hassas programda; bu şartlarda baskı atmaz
 
 ## Rehber
