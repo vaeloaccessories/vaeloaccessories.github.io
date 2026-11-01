@@ -1324,17 +1324,22 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 3,
+          "stok": 4,
           "barkod": "2362505873953"
         },
         {
+          "beden": "M",
+          "stok": 3,
+          "barkod": "2362505873960"
+        },
+        {
           "beden": "L",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873977"
         },
         {
           "beden": "XL",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873984"
         }
       ],
