@@ -435,10 +435,21 @@ async function paytrCallback(request, env) {
 
 // ---- Teslimattan sonra "fotoğrafını paylaş, %10 kazan" maili ----
 // Cloudflare'de günde bir kez çalışır (Settings > Triggers > Cron Triggers).
-// Ödemeden 10 gün sonra (ürün eline geçmiş olsun diye) her müşteriye bir kez gider.
+// Ödemeden 10 gün sonra (ürün eline geçmiş olsun diye) bir kez gider.
+// İndirim teklifi içerdiği için (ticari ileti) YALNIZCA üyelikte kampanya iznini (bulten) veren müşteriye gider,
+// mailde "artık almak istemiyorum" bağlantısı bulunur.
 const YORUM_GUN = 10;
+async function izinliUye(env, H, email) {
+  const r = await fetch(FS + ':runQuery', { method: 'POST', headers: H, body: JSON.stringify({ structuredQuery: {
+    from: [{ collectionId: 'uyeler' }], where: { fieldFilter: { field: { fieldPath: 'email' }, op: 'EQUAL', value: { stringValue: email } } }, limit: 1 } }) });
+  if (!r.ok) return null;
+  const s = (await r.json()).find((x) => x.document);
+  if (!s) return null;
+  return fsNesne(s.document.fields).bulten === true ? s.document.name.split('/').pop() : null;
+}
 async function yorumMailleri(env) {
-  if (!env.SIPARISLER || !env.RESEND_API_KEY) return { gonderilen: 0 };
+  if (!env.SIPARISLER || !env.RESEND_API_KEY || !env.FIREBASE_SA) return { gonderilen: 0 };
+  const H = { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' };
   const simdi = Date.now(), gun = 86400000;
   let cursor, gonderilen = 0;
   do {
@@ -450,6 +461,9 @@ async function yorumMailleri(env) {
       if (o.yorumMail || !Array.isArray(o.mail) || !o.mail.includes('musteri')) continue;   // ödenmemiş, denemeler ve zaten gidenler atlanır
       const t = Date.parse(o.odeme || o.odendi || o.created);
       if (!t || simdi - t < YORUM_GUN * gun || simdi - t > (YORUM_GUN + 14) * gun) continue;
+      const uid = await izinliUye(env, H, String(o.email || '').trim());
+      if (!uid) { o.yorumMail = 'izin-yok'; await env.SIPARISLER.put(k.name, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 60 }); continue; }
+      const iptal = `https://vaelo-odeme.vaeloaccessories.workers.dev/abonelik-iptal?u=${encodeURIComponent(uid)}&k=${await iptalImza(env, uid)}`;
       const ad = e(String(o.name || '').split(' ')[0]);
       const urun = o.urunler && o.urunler[0] ? e(String(o.urunler[0].name).replace(/^Vaelo\s+/i, 'VAELO ')) : 'VAELO parçan';
       const wa = 'https://wa.me/905513708320?text=' + encodeURIComponent(`Merhaba, VAELO siparişimin (${k.name}) fotoğrafını gönderiyorum.`);
@@ -459,7 +473,8 @@ async function yorumMailleri(env) {
           `Üzerindeyken bir fotoğrafını bizimle paylaş, <strong>bir sonraki alışverişinde geçerli %10 indirim kodunu</strong> hemen gönderelim.<br><br>` +
           `<strong>Nasıl paylaşırım?</strong><br>• Bu maile fotoğrafınla yanıt ver, ya da<br>• WhatsApp'tan gönder, ya da<br>• Instagram'da <strong>@vaeloaccessories</strong> hesabını etiketle.<br><br>` +
           `<a href="${wa}" style="display:inline-block;background:#0A0A0A;color:#F3F1EC;text-decoration:none;padding:14px 26px;font-size:13px;letter-spacing:2px">FOTOĞRAFIMI GÖNDER</a><br><br>` +
-          `<span style="color:#6B6861;font-size:12px">İstersen birkaç cümlelik yorumunu da ekle; izninle sitemizde paylaşırız. Sipariş no: ${e(k.name)}</span>`), 'info@vaelo.com.tr');
+          `<span style="color:#6B6861;font-size:12px">İstersen birkaç cümlelik yorumunu da ekle; izninle sitemizde paylaşırız. Sipariş no: ${e(k.name)}</span><br><br>` +
+          `<span style="color:#6B6861;font-size:11px">Bu maili, üyeliğinizde kampanyalardan haberdar olmayı seçtiğiniz için aldınız. <a href="${iptal}" style="color:#6B6861">Artık almak istemiyorum</a></span>`), 'info@vaelo.com.tr');
         o.yorumMail = new Date().toISOString();
         await env.SIPARISLER.put(k.name, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 60 });
         gonderilen++;
