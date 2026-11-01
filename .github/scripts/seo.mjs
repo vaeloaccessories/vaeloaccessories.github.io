@@ -47,7 +47,7 @@ const graph = {
       email: 'info@vaelo.com.tr',
       telephone: '+905513708320',
       description: 'VAELO; lüks kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört üreten Türk premium giyim markasıdır.',
-      sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204'],
+      sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.facebook.com/people/VA%C4%96LO-accessories-apparel/61591234456180/', 'https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204'],
     },
     { '@type': 'WebSite', '@id': SITE + '#site', url: SITE, name: 'VAELO', inLanguage: 'tr-TR', publisher: { '@id': SITE + '#marka' } },
     {
@@ -79,6 +79,9 @@ const llms = `# VAELO
 - [Resmî site](${SITE}): VAELO ana sayfası
 - [Online mağaza](${SITE}): sepet ve PayTR güvencesiyle kredi/banka kartı ile güvenli ödeme
 - [Instagram](https://www.instagram.com/vaeloaccessories): @vaeloaccessories
+- [Facebook](https://www.facebook.com/people/VA%C4%96LO-accessories-apparel/61591234456180/): VAĖLO Accessories & Apparel
+- [Kapşonlu sweatshirt koleksiyonu](${SITE}kapsonlu-sweatshirt.html)
+- [Sweatshirt koleksiyonu](${SITE}sweatshirt.html)
 - [WhatsApp](https://wa.me/905513708320): +90 551 370 83 20, e-posta [info@vaelo.com.tr](mailto:info@vaelo.com.tr)
 - [İade ve değişim](${SITE}iade-degisim.html): kargo ve iade koşulları
 - İki seri: Signature Premium (sade, zamansız, V monogramlı) ve VAELO // Street Division (şehir stili, grafik baskılı)

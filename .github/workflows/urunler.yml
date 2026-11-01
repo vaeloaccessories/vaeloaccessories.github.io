@@ -43,10 +43,10 @@ jobs:
 
       - name: Değişiklik varsa kaydet
         run: |
-          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml google-urunler.xml assets/urun assets/video)" ]; then
+          if [ -n "$(git status --porcelain products.json index.html llms.txt urun sitemap.xml google-urunler.xml kapsonlu-sweatshirt.html sweatshirt.html assets/urun assets/video)" ]; then
             git config user.name "vaelo-panel"
             git config user.email "actions@users.noreply.github.com"
-            git add -A products.json index.html llms.txt urun sitemap.xml google-urunler.xml assets/urun assets/video
+            git add -A products.json index.html llms.txt urun sitemap.xml google-urunler.xml kapsonlu-sweatshirt.html sweatshirt.html assets/urun assets/video
             git commit -m "Admin panelinden ürün güncellemesi"
             git pull --rebase -q
             git push

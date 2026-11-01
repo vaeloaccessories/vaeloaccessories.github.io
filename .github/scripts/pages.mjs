@@ -26,6 +26,32 @@ const GRUP = { gunluk: 'Günlük', signature: 'Signature', kadin: 'Kadın' };
 const kind = (n) => /saat/i.test(n) ? 'Saat' : isHoodie(n) ? 'Kapşonlu Sweatshirt (Hoodie)' : /sweat/i.test(n) ? 'Sweatshirt' : /ti[sş][oö]rt/i.test(n) ? 'Tişört' : kadinTur(n) || 'Giyim';
 const kindLow = (n) => /saat/i.test(n) ? 'saat' : isHoodie(n) ? 'kapşonlu sweatshirt' : /sweat/i.test(n) ? 'sweatshirt' : kadinTur(n) ? 'kadın ' + kadinTur(n).toLocaleLowerCase('tr-TR') : 'tişört';
 const fmt = (n) => Number(n).toLocaleString('tr-TR');
+export const FACEBOOK = 'https://www.facebook.com/people/VA%C4%96LO-accessories-apparel/61591234456180/';
+export const TRENDYOL = 'https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204';
+// Google'da görünen kısa açıklama (en fazla ~155 karakter, yarım kelime yok)
+const kes = (t, n = 155) => t.length <= n ? t : t.slice(0, t.lastIndexOf(' ', n - 1)).replace(/[,;:]$/, '') + '…';
+function metaYaz(p, name) {
+  if (isWatch(p)) return kes(`VAELO ${name}: quartz mekanizma, 5 ATM su geçirmez, ömür boyu değişim garantili saat. Ücretsiz kargo, 7 gün iade.`);
+  if (isKadin(p)) return kes(`VAELO ${name}: kadın ${(kadinTur(p.name) || 'giyim').toLocaleLowerCase('tr-TR')}. Ücretsiz kargo, 7 gün içinde ücretsiz iade ve beden değişimi.`);
+  if (isHoodie(p.name)) return kes(`VAELO ${name}: %100 şardonlu pamuk, 380 GSM, oversize kapşonlu sweatshirt. S–XXL beden, ücretsiz kargo, 7 gün iade ve değişim.`);
+  return kes(`VAELO ${name}: lüks ${kindLow(p.name)}, oversize kalıp, S–XXL beden. Ücretsiz kargo, 7 gün içinde ücretsiz iade ve beden değişimi.`);
+}
+// Kategori sayfaları (Google'da "kapşonlu sweatshirt" / "sweatshirt" aramaları için)
+const KATEGORILER = [
+  { dosya: 'kapsonlu-sweatshirt.html', ad: 'Kapşonlu Sweatshirt', sec: (p) => !isWatch(p) && !isKadin(p) && isHoodie(p.name),
+    baslik: 'Kapşonlu Sweatshirt (Hoodie) Modelleri | VAELO',
+    aciklama: 'VAELO kapşonlu sweatshirt modelleri: %100 şardonlu pamuk, 380 GSM yüksek gramaj, oversize kalıp. S–XXL beden, ücretsiz kargo, 7 gün iade.',
+    metin: ['VAELO kapşonlu sweatshirtler, günlük rahatlığı premium bir duruşla buluşturmak için tasarlandı. Tüm modellerde %100 şardonlu pamuk ve 380 GSM yüksek gramajlı (heavyweight) kumaş kullanılır; içi yumuşak, dışı formunu koruyan bir doku sunar.',
+      'Oversize kalıp omuzlarda rahat, bedende dengeli bir siluet verir. Signature Premium serisi sade ve zamansız V monogramıyla, Street Division serisi ise şehir stilini yansıtan grafik baskılarıyla öne çıkar. Logolar ve desenler baskıdır; ters çevirip düşük sıcaklıkta yıkandığında solma ya da çatlama yapmaz.',
+      'Tüm siparişlerde kargo ücretsizdir. Teslimattan itibaren 7 gün içinde ücretsiz iade ve beden değişimi yapılabilir. Bedeninizden emin değilseniz <a href="/rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html">kapşonlu sweatshirt seçim rehberimize</a> göz atın.'] },
+  { dosya: 'sweatshirt.html', ad: 'Sweatshirt', sec: (p) => !isWatch(p) && !isKadin(p) && !isHoodie(p.name) && /sweat/i.test(p.name),
+    baslik: 'Sweatshirt Modelleri – Oversize Premium Sweatshirt | VAELO',
+    aciklama: 'VAELO sweatshirt modelleri: oversize kalıp, yumuşak dokulu kumaş, sade V monogram. S–XXL beden, ücretsiz kargo, 7 gün iade ve değişim.',
+    metin: ['VAELO sweatshirtler, kapüşonsuz sade formuyla hem günlük kombinlerde hem katmanlı giyimde rahatça kullanılabilecek temel parçalardır. Oversize kalıp, yumuşak dokulu kumaş ve göğüste küçük, zarif V monogram baskı.',
+      'Siyah, lacivert ve beyaz renk seçenekleriyle her gardıroba uyum sağlar. Kapüşonlu modelleri arıyorsanız <a href="/kapsonlu-sweatshirt.html">kapşonlu sweatshirt koleksiyonumuza</a> göz atın.',
+      'Tüm siparişlerde kargo ücretsizdir. Teslimattan itibaren 7 gün içinde ücretsiz iade ve beden değişimi yapılabilir.'] },
+];
+const kategoriOf = (p) => KATEGORILER.find((k) => k.sec(p));
 // ürünlerdeki logo ve desenler baskıdır, nakış değil
 const fixText = (s) => String(s || '').replace(/Baskı ve nakış detaylarını/gi, 'Baskı detaylarını')
   .replace(/nakış/gi, 'baskı').replace(/Nakış/g, 'Baskı');
@@ -61,19 +87,29 @@ function descHtml(d) {
 }
 
 function page(p) {
-  const name = clean(p.name), title = `VAELO ${name} | Lüks ${kind(p.name)}`;
+  const name = clean(p.name);
+  const kisaTur = kind(p.name).replace(' (Hoodie)', '');
+  const title = (`VAELO ${name} | Lüks ${kisaTur}`.length <= 62) ? `VAELO ${name} | Lüks ${kisaTur}` : `VAELO ${name} | ${kisaTur}`;
   const url = SITE + 'urun/' + slug(p) + '.html';
   const imgs = (p.images || []).filter((u) => /^https:\/\//.test(u));
   const plain = fixText(p.description).replace(/\s+/g, ' ').trim();
-  const meta = (`VAELO ${name}: lüks ${kindLow(p.name)}. ${plain}`).slice(0, 155);
+  const meta = metaYaz(p, name);
   const ld = {
     '@context': 'https://schema.org', '@type': 'Product', name: 'VAELO ' + name, sku: String(p.id),
     category: kind(p.name), image: imgs, description: plain.slice(0, 500), brand: { '@type': 'Brand', name: 'VAELO' },
     offers: { '@type': 'Offer', url, priceCurrency: 'TRY', price: String(p.price), availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: { '@type': 'OfferShippingDetails', shippingRate: { '@type': 'MonetaryAmount', value: String(ship), currency: 'TRY' },
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TR' } } },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TR' } },
+      hasMerchantReturnPolicy: { '@type': 'MerchantReturnPolicy', applicableCountry: 'TR', returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7, returnMethod: 'https://schema.org/ReturnByMail', returnFees: 'https://schema.org/FreeReturn' },
+      seller: { '@id': SITE + '#marka' } },
   };
+  const kat = kategoriOf(p);
+  const bc = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'VAELO', item: SITE },
+    ...(kat ? [{ '@type': 'ListItem', position: 2, name: kat.ad, item: SITE + kat.dosya }] : []),
+    { '@type': 'ListItem', position: kat ? 3 : 2, name: 'VAELO ' + name, item: url }] };
   const variants = colorsOf(p);
   const vIds = new Set(variants.map((v) => v.id));
   const others = list.filter((o) => o.id !== p.id && !vIds.has(o.id) && (o.category || '') === (p.category || '') && (!isWatch(p) && !isKadin(p) || o.grup === p.grup)).slice(0, 4);
@@ -105,6 +141,10 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
+<script type="application/ld+json">${JSON.stringify(bc).replace(/</g, '\\u003c')}</script>
+<meta property="og:site_name" content="VAELO">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root{--black:#0A0A0A;--paper:#F3F1EC;--sand:#DFDBD2;--muted:#6B6861;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -212,7 +252,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
 ${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – lüks ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
 </div></section>` : ''}
-<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a></footer>
+<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a><br><a href="https://www.instagram.com/vaeloaccessories" target="_blank" rel="noopener">Instagram</a> · <a href="${FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${TRENDYOL}" target="_blank" rel="noopener">Trendyol</a></footer>
 <script src="/assets/sepet.js?v=6" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script type="module" src="/assets/yorum.js?v=1"></script>
@@ -227,7 +267,73 @@ const keep = new Set();
 for (const p of list) { const f = slug(p) + '.html'; keep.add(f); fs.writeFileSync('urun/' + f, page(p)); }
 for (const f of fs.readdirSync('urun')) if (f.endsWith('.html') && !keep.has(f)) fs.unlinkSync('urun/' + f);   // satıştan kalkan ürünler
 
-const urls = [SITE, SITE + 'iade-degisim.html', SITE + 'bayi.html', SITE + 'mesafeli-satis-sozlesmesi.html', SITE + 'on-bilgilendirme-formu.html', SITE + 'kvkk-aydinlatma-metni.html', SITE + 'gizlilik-politikasi.html', SITE + 'rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html', ...list.map((p) => SITE + 'urun/' + slug(p) + '.html')];
+for (const k of KATEGORILER) {
+  const ur = list.filter(k.sec);
+  const url = SITE + k.dosya;
+  const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: k.baslik, url, description: k.aciklama,
+      mainEntity: { '@type': 'ItemList', itemListElement: ur.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + 'urun/' + slug(p) + '.html', name: 'VAELO ' + clean(p.name) })) } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'VAELO', item: SITE }, { '@type': 'ListItem', position: 2, name: k.ad, item: url }] }];
+  const img = ur.find((p) => p.images && p.images[0]);
+  fs.writeFileSync(k.dosya, `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(k.baslik)}</title>
+<meta name="description" content="${esc(k.aciklama)}">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VAELO">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="${esc(k.baslik)}">
+<meta property="og:description" content="${esc(k.aciklama)}">
+<meta property="og:url" content="${url}">
+${img ? `<meta property="og:image" content="${esc(img.images[0])}">` : ''}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+${ld.map((x) => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, '\\u003c')}</script>`).join('\n')}
+<style>
+  :root{--black:#0A0A0A;--paper:#F3F1EC;--sand:#DFDBD2;--muted:#6B6861;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--black);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  header{display:flex;justify-content:space-between;align-items:center;padding:22px 16px;max-width:1200px;margin:0 auto}
+  .logo{font-family:var(--serif);font-size:28px;letter-spacing:6px;text-decoration:none}
+  .back{font-size:13px;letter-spacing:1px;text-decoration:none;color:var(--muted)}
+  .intro{max-width:760px;margin:0 auto;padding:24px 16px 8px;text-align:center}
+  .cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:10px 0 18px}
+  .intro p{font-size:.98rem;line-height:1.75;color:var(--muted);margin-top:12px}
+  .grid{max-width:1200px;margin:0 auto;padding:36px 16px 72px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(min-width:860px){.grid{grid-template-columns:repeat(4,1fr);gap:24px}}
+  .grid a{text-decoration:none;font-size:14px;line-height:1.5}
+  .grid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--sand);margin-bottom:10px}
+  .grid b{font-weight:400;display:block}
+  footer{text-align:center;font-size:12px;color:var(--muted);padding:32px 16px;border-top:1px solid var(--sand);line-height:1.9}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/">VAĖLO</a>
+  <a class="back" href="/">← Ana sayfa</a>
+</header>
+<section class="intro">
+  <p class="cat">VAELO Koleksiyon</p>
+  <h1>${esc(k.ad)}</h1>
+  ${k.metin.map((t) => `<p>${t}</p>`).join('\n  ')}
+</section>
+<main class="grid">
+${ur.map((p) => `  <a href="/urun/${slug(p)}.html">${p.images && p.images[0] ? `<img src="${esc(p.images[0])}" alt="VAELO ${esc(clean(p.name))} – ${kindLow(p.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}<b>VAELO ${esc(clean(p.name))}</b>₺${fmt(p.price)}</a>`).join('\n')}
+</main>
+<footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="/iade-degisim.html">İade ve Değişim</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a><br><a href="https://www.instagram.com/vaeloaccessories" target="_blank" rel="noopener">Instagram</a> · <a href="${FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${TRENDYOL}" target="_blank" rel="noopener">Trendyol</a></footer>
+</body>
+</html>
+`);
+}
+
+const urls = [SITE, ...KATEGORILER.map((k) => SITE + k.dosya), SITE + 'iade-degisim.html', SITE + 'bayi.html', SITE + 'mesafeli-satis-sozlesmesi.html', SITE + 'on-bilgilendirme-formu.html', SITE + 'kvkk-aydinlatma-metni.html', SITE + 'gizlilik-politikasi.html', SITE + 'rehber/kaliteli-kapsonlu-sweatshirt-nasil-secilir.html', ...list.map((p) => SITE + 'urun/' + slug(p) + '.html')];
 fs.writeFileSync('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n') + '\n</urlset>\n');
 console.log(list.length + ' ürün sayfası yazıldı');
