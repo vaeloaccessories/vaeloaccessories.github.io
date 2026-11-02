@@ -34,6 +34,14 @@
   var KUPONLAR = null, KKEY = 'vaelo-kupon';
   function kuponKod() { try { return (localStorage.getItem(KKEY) || '').toUpperCase(); } catch (e) { return ''; } }
   function kuponYaz(k) { try { if (k) localStorage.setItem(KKEY, k); else localStorage.removeItem(KKEY); } catch (e) {} }
+  // Kod listesi kasadan gelmez; girilen kod tek tek kasaya sorulur (eski kasa tüm listeyi verirse onu kullanır).
+  function kuponSor(k, cb) {
+    if (!k) return cb(false);
+    if (KUPONLAR && KUPONLAR[k]) return cb(true);
+    fetch(KASA.replace(/\/odeme$/, '/kupon') + '?kod=' + encodeURIComponent(k)).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (d && d.ok) { KUPONLAR = KUPONLAR || {}; KUPONLAR[k] = { oran: d.oran || 0, kargo: !!d.kargo }; cb(true); } else cb(false);
+    }).catch(function () { cb(false); });
+  }
   function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo } : null; }
   // ---- 3'lü paket (yalnızca kasa destekliyorsa açılır; tutar kasada aynı şekilde hesaplanır) ----
   var PAKETLER = null;
@@ -154,8 +162,7 @@
       if (e.type === 'keydown' && e.key !== 'Enter') return;
       var k = inp.value.trim().toUpperCase().replace(/\s+/g, '');
       if (!k) return;
-      if (!KUPONLAR[k]) { sum.querySelector('.vs-kperr').textContent = 'Bu kod geçerli değil.'; return; }
-      kuponYaz(k); ciz();
+      kuponSor(k, function (ok) { if (!ok) { var er = sum.querySelector('.vs-kperr'); if (er) er.textContent = 'Bu kod geçerli değil.'; return; } kuponYaz(k); ciz(); });
     };
   }
   function ozet(t) {
@@ -195,12 +202,13 @@
     if (d.paket) paketAc();
     // Kasa indirim kodlarını destekliyorsa kupon alanı ve hoş geldin çarkı açılır.
     if (d.kuponlar) {
-      KUPONLAR = d.kuponlar;
+      KUPONLAR = typeof d.kuponlar === 'object' ? d.kuponlar : {};
+      if (kuponKod()) kuponSor(kuponKod(), function () { ciz(); });
       if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=2'; sc.defer = true; document.head.appendChild(sc); }
     }
     ciz();
   }).catch(function () {});
-  document.addEventListener('vaelo:kupon', function (e) { if (e.detail && e.detail.kod) { kuponYaz(String(e.detail.kod).toUpperCase()); ciz(); } });
+  document.addEventListener('vaelo:kupon', function (e) { if (e.detail && e.detail.kod) { var kk = String(e.detail.kod).toUpperCase(); kuponYaz(kk); kuponSor(kk, function () { ciz(); }); } });
   function formCiz(t) {
     var g = HEDIYE && form.gift ? HEDIYE : 0; t = { ara: t.ara, paket: t.paket, gruplar: t.gruplar, indirim: t.indirim, kupon: t.kupon, kargo: t.kargo, hediye: g, toplam: t.toplam + g, adet: t.adet };
     body.innerHTML = '<form class="vs-f" novalidate>' +

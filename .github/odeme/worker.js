@@ -267,6 +267,24 @@ async function mailAt(env, to, subject, html, replyTo, from) {
   if (!r.ok) throw new Error('Resend ' + r.status + ' ' + (await r.text()).slice(0, 200));
 }
 
+// Ön bilgilendirme formu ve mesafeli satış sözleşmesinin güncel metni (sitedeki sayfalardan) müşteri mailine eklenir:
+// böylece müşteri sözleşmenin kalıcı bir kopyasını e-postasında saklar.
+async function sozlesmeMetni(sayfa) {
+  try {
+    const r = await fetch(SITE + '/' + sayfa, { cf: { cacheTtl: 3600 } });
+    if (!r.ok) return '';
+    const h = await r.text();
+    const m = h.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+    if (!m) return '';
+    return m[1]
+      .replace(/<(script|style)[\s\S]*?<\/\1>/gi, '')
+      .replace(/<h1[^>]*>([\s\S]*?)<\/h1>/gi, '<p style="font-family:Georgia,serif;font-size:18px;margin:18px 0 6px">$1</p>')
+      .replace(/<h2[^>]*>([\s\S]*?)<\/h2>/gi, '<p style="font-weight:bold;margin:14px 0 4px">$1</p>')
+      .replace(/<(?!\/?(p|br|strong|ul|li|a)\b)[^>]+>/gi, '')
+      .replace(/href="(?!https?:|mailto:)\/?/g, 'href="' + SITE + '/');
+  } catch (err) { console.log('Sözleşme metni alınamadı:', sayfa, err.message); return ''; }
+}
+
 async function siparisMailleri(env, oid, deneme) {
   if (!env.SIPARISLER || !env.RESEND_API_KEY) return;
   const raw = await env.SIPARISLER.get(oid);
@@ -276,11 +294,15 @@ async function siparisMailleri(env, oid, deneme) {
   const sahip = env.MAIL_SAHIBI || 'vaeloaccessories@gmail.com';
   const sonuc = [];
   if (!deneme) {
+    const [obf, mss] = await Promise.all([sozlesmeMetni('on-bilgilendirme-formu.html'), sozlesmeMetni('mesafeli-satis-sozlesmesi.html')]);
+    const ek = (obf || mss) ? `<div style="border-top:1px solid #DFDBD2;margin-top:28px;padding-top:12px;font-size:12px;line-height:1.6;color:#6B6861">` +
+      `<p><strong>Ön Bilgilendirme Formu ve Mesafeli Satış Sözleşmesi</strong><br>Siparişinize ait sözleşme metinleri aşağıdadır; bu e-postayı saklamanızı öneririz. Alıcı: ${e(o.name)} · Sipariş no: ${e(oid)} · Toplam: ${tl(o.total)} (KDV dahil)</p>` +
+      obf + mss + `</div>` : '';
     try {
       await mailAt(env, o.email, 'Siparişiniz alındı · VAELO', mailSablon('Teşekkürler, siparişiniz alındı.',
-        `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. ${o.urunler.every((u) => u.maxi) ? 'Ürününüz hazırlanıp <strong>2–4 iş günü</strong> içinde' : 'Ürününüz sizin için özel olarak üretilecek ve <strong>2–3 iş günü</strong> içinde'} kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
+        `Merhaba ${e(o.name.split(' ')[0])},<br><br>Siparişiniz bize ulaştı. ${o.urunler.every((u) => u.maxi) ? 'Ürününüz hazırlanıp <strong>2–4 iş günü</strong> içinde' : 'Ürününüz sizin için özel olarak üretilecek ve <strong>2–4 iş günü</strong> içinde'} kargoya verilecek. Kargoya verildiğinde takip bilgisi ayrıca iletilecektir.` +
         urunTablosu(o) +
-        `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da bize ulaşabilirsiniz.`), sahip);
+        `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br><span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Sorunuz olursa bu maile yanıt verebilir ya da bize ulaşabilirsiniz.` + ek), sahip);
       sonuc.push('musteri');
     } catch (err) { console.log('Müşteri maili gitmedi:', oid, err.message); }
   }
@@ -620,7 +642,14 @@ export default {
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 4, hediye: HEDIYE_PAKETI, kuponlar: KUPONLAR, paket: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 5, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true });
+    if (request.method === 'GET' && url.pathname === '/kupon') {
+      // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
+      if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);
+      const k = String(url.searchParams.get('kod') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 30);
+      const kp = k ? KUPONLAR[k] : null;
+      return kp ? json({ ok: true, oran: kp.oran || 0, kargo: !!kp.kargo }) : json({ ok: false }, 404);
+    }
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },
 };
