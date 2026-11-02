@@ -248,6 +248,11 @@ fbq('track', 'PageView');
 
 
   /* paket + güven şeridi */
+  .kanit { max-width: 70em; margin: 0 auto; padding: 56px 24px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+  .kanit div { padding: 18px 8px; border-top: 1px solid currentColor; border-color: rgba(127,127,127,.25); }
+  .kanit b { display: block; font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1.1; }
+  .kanit span { display: block; margin-top: 6px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 640px) { .kanit { grid-template-columns: repeat(2, 1fr); padding-top: 40px; } .kanit b { font-size: 1.6rem; } }
   .paket { max-width: 70em; margin: 0 auto; padding: 96px 24px 8px; text-align: center; scroll-margin-top: 90px; }
   .paket .pk-kicker { font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
   .paket h2 { margin-top: 10px; }
@@ -673,6 +678,13 @@ fbq('track', 'PageView');
       </a>
     </div>
     <div class="sb-all"><a href="#saat" data-view="saat">Tüm Saatleri Gör</a></div>
+  </section>
+
+  <section class="kanit" aria-label="Rakamlarla VAELO">
+    <div><b>75+</b><span>Mutlu müşteri</span></div>
+    <div><b>150+</b><span>Teslim edilen ürün</span></div>
+    <div><b>9.2</b><span>Hepsiburada satıcı puanı</span></div>
+    <div><b>14 gün</b><span>Ücretsiz iade</span></div>
   </section>
 
   <section class="paket" id="paket" aria-label="3’lü paket">
