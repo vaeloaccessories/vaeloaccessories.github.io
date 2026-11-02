@@ -165,6 +165,7 @@ ${imgs[0] ? `<meta property="og:image" content="${esc(imgs[0])}">` : ''}
   .cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;margin:10px 0 14px}
   .price{font-size:1.4rem;margin-bottom:24px}
+  .price small{font-size:.7rem;opacity:.55;margin-left:8px;letter-spacing:.04em}
   .paket{margin:-12px 0 24px;padding:12px 14px;border:1px solid var(--black);font-size:.95rem;line-height:1.5}
   .paket span{font-size:.8rem;color:var(--muted)}
   .colors{display:flex;gap:10px;margin:10px 0 24px}
@@ -236,7 +237,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
   <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
     <p class="cat" lang="en">${isKadin(p) ? esc('VAELO Kadın · ' + (KGRUP[p.grup] || kind(p.name))) : isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
-    <p class="price">₺${fmt(p.price)}</p>
+    <p class="price">₺${fmt(p.price)}<small>KDV dahil</small></p>
     ${p.rozet ? `<p style="color:#d11a1a;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0">${esc(p.rozet)}</p>` : ''}
     ${paketNotu(p)}
     ${colorHtml}

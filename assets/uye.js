@@ -303,7 +303,7 @@ function sifreCiz() {
   };
 }
 
-const DURUM = { 'odeme-ekrani': 'Ödeme bekleniyor', 'musteri-dondu': 'Ödeme alındı', 'odendi': 'Hazırlanıyor', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal edildi' };
+const DURUM = { 'odeme-ekrani': 'Ödeme bekleniyor', 'musteri-dondu': 'Ödeme kontrol ediliyor', 'odendi': 'Hazırlanıyor', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal edildi' };
 async function hesapCiz() {
   const ad = uye.displayName || '';
   govde.innerHTML = `
