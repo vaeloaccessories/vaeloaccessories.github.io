@@ -553,7 +553,7 @@ async function sepetMailleri(env) {
       await mailAt(env, email, 'Sepetindeki parçalar seni bekliyor · VAELO', mailSablon(`${ad ? ad + ', ' : ''}seçtiklerin hâlâ burada.`,
         `Sepetine eklediğin parçaları senin için ayırdık. Özel üretim olduğu için siparişin bugün verilirse daha erken yola çıkar.` +
         `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">${urunler}</table>` +
-        `Kargo ücretsiz · 7 gün içinde iade ve beden değişimi.` +
+        `Kargo ücretsiz · 14 gün içinde iade ve beden değişimi.` +
         dugme(SITE + '/#sepet', 'Siparişi Tamamla') +
         `<span style="color:#6B6861;font-size:12px">Bu maili, üyelikte kampanya e-postalarına izin verdiğin için aldın. <a href="${iptal}" style="color:#6B6861">Bu e-postaları artık almak istemiyorum</a>.</span>`),
         'info@vaelo.com.tr');
