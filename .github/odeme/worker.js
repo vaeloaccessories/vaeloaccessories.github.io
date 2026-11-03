@@ -17,7 +17,18 @@ const KUPONLAR = {
   KARGOBEDAVA: { kargo: true },
   VAELOHERE: { oran: 10 },
   FOTO10: { oran: 10 },   // fotoğraf paylaşan müşteriye verilen teşekkür kodu
+  // Black Friday: yalnızca 22–28 Kasım 2026, yalnızca VAELO'nun kendi ürünleri (Signature + Street; kadın ve saat hariç)
+  BLACKFRIDAY: { oran: 15, vaelo: true, bas: '2026-11-22T00:00:00+03:00', bit: '2026-11-28T23:59:59+03:00' },
 };
+// Kodu tarih aralığına göre kontrol eder (tarihi geçmiş ya da başlamamış kod geçersiz sayılır).
+function kuponBul(kod) {
+  const kp = kod ? KUPONLAR[kod] : null;
+  if (!kp) return null;
+  const t = Date.now();
+  if (kp.bas && t < Date.parse(kp.bas)) return null;
+  if (kp.bit && t > Date.parse(kp.bit)) return null;
+  return kp;
+}
 
 const cors = {
   'Access-Control-Allow-Origin': SITE,
@@ -109,7 +120,7 @@ async function startPayment(request, env) {
       ...(kadinBeden ? { maxi: true, barkod: kadinBeden.barkod } : {}) });
   }
   const kod = clean(body.kupon, 30).toUpperCase().replace(/\s+/g, '');
-  const kupon = kod ? KUPONLAR[kod] : null;
+  const kupon = kuponBul(kod);
   if (kod && !kupon) return json({ ok: false, error: 'İndirim kodu geçersiz.' }, 400);
 
   // 3'lü paket: aynı paketteki ürünlerden her 3 tanesi paket fiyatından (en pahalılar pakete girer).
@@ -131,6 +142,8 @@ async function startPayment(request, env) {
 
   let araToplam = 0;
   let total = 0;
+  // vaelo: true olan kodlar yalnızca 3'lü paketlerde yer alan VAELO ürünlerine uygulanır.
+  const vaeloIds = new Set((catalog.paketler || []).flatMap((pk) => (pk.urunler || []).map(String)));
   satirlar.forEach((x, i) => {
     araToplam += Number(x.p.price) * x.qty;
     const kalan = x.qty - kullan[i];
@@ -138,7 +151,7 @@ async function startPayment(request, env) {
     let fiyat = Number(x.p.price);
     let ad = `${x.p.name.replace(/^Vaelo\s+/i, 'VAELO ')} ${x.size === 'Standart' ? '' : ' (Beden: ' + x.size + ')'}`;
     // Yüzde indirim paket dışındaki ürünlerin birim fiyatına yansıtılır; PayTR sepeti ile tutar birebir tutar.
-    if (kupon && kupon.oran) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
+    if (kupon && kupon.oran && (!kupon.vaelo || vaeloIds.has(String(x.p.id)))) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
     basket.push([ad, fiyat.toFixed(2), kalan]);
     total += fiyat * kalan;
   });
@@ -647,8 +660,8 @@ export default {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);
       const k = String(url.searchParams.get('kod') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 30);
-      const kp = k ? KUPONLAR[k] : null;
-      return kp ? json({ ok: true, oran: kp.oran || 0, kargo: !!kp.kargo }) : json({ ok: false }, 404);
+      const kp = kuponBul(k);
+      return kp ? json({ ok: true, oran: kp.oran || 0, kargo: !!kp.kargo, vaelo: !!kp.vaelo }) : json({ ok: false }, 404);
     }
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },

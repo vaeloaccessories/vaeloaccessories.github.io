@@ -39,10 +39,10 @@
     if (!k) return cb(false);
     if (KUPONLAR && KUPONLAR[k]) return cb(true);
     fetch(KASA.replace(/\/odeme$/, '/kupon') + '?kod=' + encodeURIComponent(k)).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      if (d && d.ok) { KUPONLAR = KUPONLAR || {}; KUPONLAR[k] = { oran: d.oran || 0, kargo: !!d.kargo }; cb(true); } else cb(false);
+      if (d && d.ok) { KUPONLAR = KUPONLAR || {}; KUPONLAR[k] = { oran: d.oran || 0, kargo: !!d.kargo, vaelo: !!d.vaelo }; cb(true); } else cb(false);
     }).catch(function () { cb(false); });
   }
-  function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo } : null; }
+  function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo, vaelo: !!KUPONLAR[k].vaelo } : null; }
   // ---- 3'lü paket (yalnızca kasa destekliyorsa açılır; tutar kasada aynı şekilde hesaplanır) ----
   var PAKETLER = null;
   function paketle(s) {
@@ -62,7 +62,8 @@
     var pk = paketle(s), paket = pk.gruplar.reduce(function (t, g) { return t + g.normal - g.fiyat * g.adet; }, 0);
     var k = aktifKupon(), indirim = 0;
     // yüzde indirim paket dışındaki ürünlere uygulanır
-    if (k && k.oran) indirim = s.reduce(function (t, x, i) { return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
+    var vIds = {}; (PAKETLER || []).forEach(function (pk) { (pk.urunler || []).forEach(function (u) { vIds[String(u)] = 1; }); });
+    if (k && k.oran) indirim = s.reduce(function (t, x, i) { if (k.vaelo && !vIds[String(x.id)]) return t; return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
     indirim = Math.round(indirim * 100) / 100;
     var kargo = ara === 0 || ara >= UCRETSIZ_KARGO || pk.gruplar.length || (k && k.kargo) ? 0 : KARGO;
     return { ara: ara, paket: paket, gruplar: pk.gruplar, indirim: indirim, kupon: k, kargo: kargo, toplam: ara - paket - indirim + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
