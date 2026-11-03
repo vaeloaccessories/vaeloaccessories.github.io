@@ -44,7 +44,7 @@
   }
   function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo, vaelo: !!KUPONLAR[k].vaelo } : null; }
   // ---- 3'lü paket (yalnızca kasa destekliyorsa açılır; tutar kasada aynı şekilde hesaplanır) ----
-  var PAKETLER = null;
+  var PAKETLER = null, SAATLER = {};
   function paketle(s) {
     var birim = [], kullan = s.map(function () { return 0; }), gruplar = [];
     s.forEach(function (x, i) { for (var j = 0; j < x.qty; j++) birim.push({ i: i, id: String(x.id), price: x.price, ok: false }); });
@@ -62,8 +62,7 @@
     var pk = paketle(s), paket = pk.gruplar.reduce(function (t, g) { return t + g.normal - g.fiyat * g.adet; }, 0);
     var k = aktifKupon(), indirim = 0;
     // yüzde indirim paket dışındaki ürünlere uygulanır
-    var vIds = {}; (PAKETLER || []).forEach(function (pk) { (pk.urunler || []).forEach(function (u) { vIds[String(u)] = 1; }); });
-    if (k && k.oran) indirim = s.reduce(function (t, x, i) { if (k.vaelo && !vIds[String(x.id)]) return t; return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
+        if (k && k.oran) indirim = s.reduce(function (t, x, i) { if (k.vaelo && SAATLER[String(x.id)]) return t; return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
     indirim = Math.round(indirim * 100) / 100;
     var kargo = ara === 0 || ara >= UCRETSIZ_KARGO || pk.gruplar.length || (k && k.kargo) ? 0 : KARGO;
     return { ara: ara, paket: paket, gruplar: pk.gruplar, indirim: indirim, kupon: k, kargo: kargo, toplam: ara - paket - indirim + kargo, adet: s.reduce(function (t, x) { return t + x.qty; }, 0) };
@@ -189,7 +188,7 @@
     fetch('/products.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
       if (!d.paketler || !d.paketler.length) return;
       PAKETLER = d.paketler;
-      var fiyat = {}; (d.products || []).forEach(function (p) { fiyat[String(p.id)] = Number(p.price); });
+      var fiyat = {}; (d.products || []).forEach(function (p) { fiyat[String(p.id)] = Number(p.price); if (p.category === 'Saat') SAATLER[String(p.id)] = 1; });
       var s = oku(), degisti = false;
       s.forEach(function (x) { var f = fiyat[String(x.id)]; if (f && f !== x.price) { x.price = f; degisti = true; } });
       if (degisti) yaz(s); else ciz();

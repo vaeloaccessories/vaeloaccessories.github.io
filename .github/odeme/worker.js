@@ -17,7 +17,7 @@ const KUPONLAR = {
   KARGOBEDAVA: { kargo: true },
   VAELOHERE: { oran: 10 },
   FOTO10: { oran: 10 },   // fotoğraf paylaşan müşteriye verilen teşekkür kodu
-  // Black Friday: yalnızca 22–28 Kasım 2026, yalnızca VAELO'nun kendi ürünleri (Signature + Street; kadın ve saat hariç)
+  // Black Friday: yalnızca 22–28 Kasım 2026; saatler hariç tüm ürünlerde (Signature, Street, Kadın)
   BLACKFRIDAY: { oran: 15, vaelo: true, bas: '2026-11-22T00:00:00+03:00', bit: '2026-11-28T23:59:59+03:00' },
 };
 // Kodu tarih aralığına göre kontrol eder (tarihi geçmiş ya da başlamamış kod geçersiz sayılır).
@@ -142,8 +142,7 @@ async function startPayment(request, env) {
 
   let araToplam = 0;
   let total = 0;
-  // vaelo: true olan kodlar yalnızca 3'lü paketlerde yer alan VAELO ürünlerine uygulanır.
-  const vaeloIds = new Set((catalog.paketler || []).flatMap((pk) => (pk.urunler || []).map(String)));
+  // vaelo: true olan kodlar saatlere uygulanmaz (giyimin tamamında geçerli).
   satirlar.forEach((x, i) => {
     araToplam += Number(x.p.price) * x.qty;
     const kalan = x.qty - kullan[i];
@@ -151,7 +150,7 @@ async function startPayment(request, env) {
     let fiyat = Number(x.p.price);
     let ad = `${x.p.name.replace(/^Vaelo\s+/i, 'VAELO ')} ${x.size === 'Standart' ? '' : ' (Beden: ' + x.size + ')'}`;
     // Yüzde indirim paket dışındaki ürünlerin birim fiyatına yansıtılır; PayTR sepeti ile tutar birebir tutar.
-    if (kupon && kupon.oran && (!kupon.vaelo || vaeloIds.has(String(x.p.id)))) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
+    if (kupon && kupon.oran && (!kupon.vaelo || x.p.category !== 'Saat')) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
     basket.push([ad, fiyat.toFixed(2), kalan]);
     total += fiyat * kalan;
   });
