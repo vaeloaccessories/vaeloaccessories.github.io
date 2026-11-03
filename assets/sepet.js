@@ -188,7 +188,7 @@
     fetch('/products.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
       if (!d.paketler || !d.paketler.length) return;
       PAKETLER = d.paketler;
-      var fiyat = {}; (d.products || []).forEach(function (p) { fiyat[String(p.id)] = Number(p.price); if (p.category === 'Saat') SAATLER[String(p.id)] = 1; });
+      var fiyat = {}; (d.products || []).forEach(function (p) { fiyat[String(p.id)] = Number(p.price); if (p.category === 'Saat' && Number(p.price) < 5500) SAATLER[String(p.id)] = 1; });
       var s = oku(), degisti = false;
       s.forEach(function (x) { var f = fiyat[String(x.id)]; if (f && f !== x.price) { x.price = f; degisti = true; } });
       if (degisti) yaz(s); else ciz();

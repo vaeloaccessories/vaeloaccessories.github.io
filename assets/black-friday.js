@@ -67,7 +67,7 @@
         '<button class="bf-x" aria-label="Kapat">&times;</button>' +
         '<img class="bf-img" src="/assets/black-friday.webp" alt="VAELO Black Friday, 22–28 Kasım, BLACKFRIDAY koduyla yüzde 15 indirim" width="810" height="1013">' +
         '<button class="bf-btn">Kodu Uygula · Alışverişe Başla</button>' +
-        '<div class="bf-note">%15 indirim saatler hariç tüm giyimde geçerlidir · Kargo ücretsiz</div>' +
+        '<div class="bf-note">%15 indirim tüm giyimde ve 5.500 TL üstü saatlerde geçerlidir · Kargo ücretsiz</div>' +
       '</div>';
     document.body.appendChild(bg);
     requestAnimationFrame(function () { requestAnimationFrame(function () { bg.classList.add('on'); }); });
