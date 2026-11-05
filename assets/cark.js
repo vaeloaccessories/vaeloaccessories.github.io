@@ -1,20 +1,22 @@
 /* VAELO hoş geldin çarkı
  * Her ziyarette (yeni oturumda) bir kez açılır; çevirme hakkı yine tek seferdir. Çıkan kod sepete otomatik uygulanır.
  * Kodların geçerliliği ve indirim ödeme kasasında (worker.js) hesaplanır.
- * Dilimler eşit olasılıklıdır.
+ * Ne çıkacağına ödeme kasası (worker.js /cark) karar verir; olasılıklar orada yazar.
+ * TL ödülleri kişiye özel, tek kullanımlık kodla gelir. Kasaya ulaşılamazsa yalnızca %5 / %10 çıkar.
  */
 (function () {
   'use strict';
-  var GORULDU = 'vaelo-cark';
+  var GORULDU = 'vaelo-cark', DILIM = 'vaelo-cark-dilim';
+  var KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev';
   var DILIMLER = [
-    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: '%7', alt: 'İNDİRİM', kod: 'HOSGELDIN7', mesaj: '%7 indirim' },
-    { yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' },
-    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
-    { yazi: '%7', alt: 'İNDİRİM', kod: 'HOSGELDIN7', mesaj: '%7 indirim' },
-    { yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' }
+    { id: 'y5', yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
+    { id: 'y10', yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' },
+    { id: 't200', yazi: '200 TL', alt: 'İNDİRİM', mesaj: '200 TL indirim (1.000 TL ve üzeri alışverişte)' },
+    { id: 'y5', yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
+    { id: 't1000', yazi: '1000 TL', alt: 'İNDİRİM', mesaj: '1.000 TL indirim (3.500 TL ve üzeri alışverişte)' },
+    { id: 'y10', yazi: '%10', alt: 'İNDİRİM', kod: 'HOSGELDIN10', mesaj: '%10 indirim' },
+    { id: 'y5', yazi: '%5', alt: 'İNDİRİM', kod: 'HOSGELDIN5', mesaj: '%5 indirim' },
+    { id: 't500', yazi: '500 TL', alt: 'İNDİRİM', mesaj: '500 TL indirim (2.000 TL ve üzeri alışverişte)' }
   ];
   function al(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function koy(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -78,14 +80,15 @@
   }
   function ac() {
     if (tab) { tab.remove(); tab = null; }
-    var kazanilan = DILIMLER.filter(function (d) { return d.kod === durum; })[0];
+    var kazanilan = null, kid = al(DILIM);
+    if (durum && durum !== 'kapatti') { var dd = DILIMLER.filter(function (d) { return kid ? d.id === kid : d.kod === durum; })[0]; if (dd) kazanilan = { yazi: dd.yazi, mesaj: dd.mesaj, kod: durum }; }
     bg = document.createElement('div'); bg.className = 'vk-bg';
     bg.innerHTML = '<div class="vk" role="dialog" aria-modal="true" aria-label="Hoş geldin hediyesi"><button class="vk-x" type="button" aria-label="Kapat">×</button><div class="vk-in">' +
       (kazanilan ? kodHtml(kazanilan) :
-        '<small>VAELO · Hoş geldin</small><h2>Çarkı çevir,<br>hediyeni kap.</h2><p>İlk alışverişine özel indirim ya da ücretsiz kargo seni bekliyor.</p>' +
+        '<small>VAELO · Hoş geldin</small><h2>Çarkı çevir,<br>hediyeni kap.</h2><p>İlk alışverişine özel indirim seni bekliyor.</p>' +
         '<div class="vk-w"><span class="vk-pin"></span>' + carkSvg() + '<span class="vk-hub">V</span></div>' +
         '<button type="button" class="vk-go vk-spin">Çarkı Çevir</button><button type="button" class="vk-no">Teşekkürler, istemiyorum</button>' +
-        '<p class="vk-fine">Her ziyaretçi bir kez çevirebilir. İndirim ürünlere uygulanır, kargo ve hediye paketine uygulanmaz.</p>') +
+        '<p class="vk-fine">Her ziyaretçi bir kez çevirebilir. İndirim ürünlere uygulanır, kargo ve hediye paketine uygulanmaz. TL indirimleri tek kullanımlıktır, 30 gün geçerlidir; 200 TL 1.000 TL, 500 TL 2.000 TL, 1.000 TL 3.500 TL ve üzeri alışverişte geçerlidir (3\'lü paket hariç).</p>') +
       '</div></div>';
     document.body.appendChild(bg);
     requestAnimationFrame(function () { requestAnimationFrame(function () { bg.classList.add('on'); }); });
@@ -107,13 +110,22 @@
   function cevir() {
     var btn = bg.querySelector('.vk-spin'); btn.disabled = true; btn.textContent = 'Çevriliyor…';
     var no = bg.querySelector('.vk-no'); if (no) no.style.visibility = 'hidden';
-    var n = DILIMLER.length, i = Math.floor(Math.random() * n), d = DILIMLER[i];
+    function yedek() { return { id: Math.random() < 0.69 ? 'y5' : 'y10' }; } // kasaya ulaşılamazsa
+    fetch(KASA + '/cark', { method: 'POST' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+      .then(function (s) { don(s && s.ok ? s : yedek()); });
+  }
+  function don(s) {
+    if (!bg) return;
+    var n = DILIMLER.length, uyan = [];
+    DILIMLER.forEach(function (d, j) { if (d.id === s.id) uyan.push(j); });
+    var i = uyan.length ? uyan[Math.floor(Math.random() * uyan.length)] : 0, dl = DILIMLER[i];
+    var d = { yazi: dl.yazi, mesaj: dl.mesaj, kod: s.kod || dl.kod };
     var aci = 360 * 6 + (360 - ((i + 0.5) / n) * 360) + (Math.random() * 0.6 - 0.3) * (360 / n);
-    durum = d.kod; koy(GORULDU, d.kod); // yenileyip tekrar çevirmek olmasın
+    durum = d.kod; koy(GORULDU, d.kod); koy(DILIM, dl.id); // yenileyip tekrar çevirmek olmasın
     bg.querySelector('.vk-w svg').style.transform = 'rotate(' + aci + 'deg)';
     setTimeout(function () {
       try { document.dispatchEvent(new CustomEvent('vaelo:kupon', { detail: { kod: d.kod } })); } catch (e) {}
-      if (window.gtag) gtag('event', 'cark_kazandi', { kupon: d.kod });
+      if (window.gtag) gtag('event', 'cark_kazandi', { kupon: dl.id });
       if (!bg) return;
       bg.querySelector('.vk-in').innerHTML = kodHtml(d);
       baglaKod();

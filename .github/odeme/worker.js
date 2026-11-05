@@ -20,8 +20,36 @@ const KUPONLAR = {
   // Black Friday: yalnızca 22–28 Kasım 2026; tüm giyimde + 5.500 TL ve üstü saatlerde (saat geliş fiyatı 4.100 TL, ucuz saatler zarar etmesin)
   BLACKFRIDAY: { oran: 15, vaelo: true, bas: '2026-11-22T00:00:00+03:00', bit: '2026-11-28T23:59:59+03:00' },
 };
+// Hoş geldin çarkı: ödülün ne çıkacağına kasa karar verir (olasılıklar toplamı 1).
+// TL ödülleri kişiye özel, tek kullanımlık ve 30 gün geçerli kodla verilir; min = gereken en az sepet tutarı.
+const CARK = [
+  { id: 'y5', kod: 'HOSGELDIN5', p: 0.66927 },
+  { id: 'y10', kod: 'HOSGELDIN10', p: 0.30 },
+  { id: 't200', tutar: 200, min: 1000, p: 0.03 },
+  { id: 't500', tutar: 500, min: 2000, p: 0.0007 },
+  { id: 't1000', tutar: 1000, min: 3500, p: 0.00003 },
+];
+async function carkCevir(request, env) {
+  if (await cokIstek(env, request, 'cark', 2, 86400)) return json({ ok: false }, 429);
+  const r = crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296;
+  let t = 0, d = CARK[0];
+  for (const c of CARK) { t += c.p; if (r < t) { d = c; break; } }
+  if (d.tutar && !env.SIPARISLER) d = CARK[0];
+  if (!d.tutar) return json({ ok: true, id: d.id, kod: d.kod });
+  const harf = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', rb = crypto.getRandomValues(new Uint8Array(6));
+  const kod = 'CARK' + d.tutar + Array.from(rb, (b) => harf[b % harf.length]).join('');
+  await env.SIPARISLER.put('cark:' + kod, JSON.stringify({ tutar: d.tutar, min: d.min, created: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 30 });
+  console.log('Çark büyük ödül:', kod);
+  return json({ ok: true, id: d.id, kod, tutar: d.tutar, min: d.min });
+}
+
 // Kodu tarih aralığına göre kontrol eder (tarihi geçmiş ya da başlamamış kod geçersiz sayılır).
-function kuponBul(kod) {
+async function kuponBul(kod, env) {
+  if (kod && /^CARK\d+[A-Z0-9]{6}$/.test(kod)) {
+    const raw = env && env.SIPARISLER ? await env.SIPARISLER.get('cark:' + kod) : null;
+    const c = raw ? JSON.parse(raw) : null;
+    return c && !c.kullanildi ? { tutar: c.tutar, min: c.min } : null;
+  }
   const kp = kod ? KUPONLAR[kod] : null;
   if (!kp) return null;
   const t = Date.now();
@@ -120,7 +148,7 @@ async function startPayment(request, env) {
       ...(kadinBeden ? { maxi: true, barkod: kadinBeden.barkod } : {}) });
   }
   const kod = clean(body.kupon, 30).toUpperCase().replace(/\s+/g, '');
-  const kupon = kuponBul(kod);
+  const kupon = await kuponBul(kod, env);
   if (kod && !kupon) return json({ ok: false, error: 'İndirim kodu geçersiz.' }, 400);
 
   // 3'lü paket: aynı paketteki ürünlerden her 3 tanesi paket fiyatından (en pahalılar pakete girer).
@@ -140,6 +168,13 @@ async function startPayment(request, env) {
     paketIndirim += normal - Number(pk.fiyat) * n;
   }
 
+  // TL indirim (çark): paket dışı ürünlere oranlı dağıtılır; sepet en az kupon.min olmalı.
+  let tlOran = 0;
+  if (kupon && kupon.tutar) {
+    const uygun = satirlar.reduce((t, x, i) => t + Number(x.p.price) * (x.qty - kullan[i]), 0);
+    if (uygun < kupon.min || uygun <= kupon.tutar) return json({ ok: false, error: `Bu kod ${kupon.min.toLocaleString('tr-TR')} TL ve üzeri alışverişte geçerlidir (3'lü paket hariç).` }, 400);
+    tlOran = kupon.tutar / uygun;
+  }
   let araToplam = 0;
   let total = 0;
   // vaelo: true olan kodlar 5.500 TL altındaki saatlere uygulanmaz.
@@ -151,6 +186,7 @@ async function startPayment(request, env) {
     let ad = `${x.p.name.replace(/^Vaelo\s+/i, 'VAELO ')} ${x.size === 'Standart' ? '' : ' (Beden: ' + x.size + ')'}`;
     // Yüzde indirim paket dışındaki ürünlerin birim fiyatına yansıtılır; PayTR sepeti ile tutar birebir tutar.
     if (kupon && kupon.oran && (!kupon.vaelo || x.p.category !== 'Saat' || Number(x.p.price) >= 5500)) { fiyat = Math.round(fiyat * (100 - kupon.oran)) / 100; ad += ` · ${kod} %${kupon.oran}`; }
+    if (tlOran) { fiyat = Math.round(fiyat * (1 - tlOran) * 100) / 100; ad += ` · ${kod}`; }
     basket.push([ad, fiyat.toFixed(2), kalan]);
     total += fiyat * kalan;
   });
@@ -460,6 +496,16 @@ async function paytrCallback(request, env) {
   if (status === 'success' && A.test !== '1') {
     try { await printiturkeGonder(env, merchant_oid); } catch (e) { console.log('Printitürk hata:', merchant_oid, e.message); }
   }
+  if (status === 'success' && env.SIPARISLER) {
+    // Çark TL kodu tek kullanımlık: ödeme tamamlanınca kapatılır.
+    try {
+      const o = JSON.parse((await env.SIPARISLER.get(merchant_oid)) || '{}');
+      if (/^CARK/.test(o.kupon || '')) {
+        const raw = await env.SIPARISLER.get('cark:' + o.kupon);
+        if (raw) await env.SIPARISLER.put('cark:' + o.kupon, JSON.stringify({ ...JSON.parse(raw), kullanildi: merchant_oid }), { expirationTtl: 60 * 60 * 24 * 90 });
+      }
+    } catch (e3) { console.log('Çark kodu kapatılamadı:', merchant_oid, e3.message); }
+  }
   if (status === 'success') {
     try { await siparisMailleri(env, merchant_oid, A.test === '1'); } catch (e2) { console.log('Mail hata:', merchant_oid, e2.message); }
   }
@@ -653,14 +699,15 @@ export default {
     if (request.method === 'POST' && url.pathname === '/paytr-bildirim') return paytrCallback(request, env);
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
+    if (request.method === 'POST' && url.pathname === '/cark') return carkCevir(request, env);
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 5, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 6, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
     if (request.method === 'GET' && url.pathname === '/kupon') {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);
       const k = String(url.searchParams.get('kod') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 30);
-      const kp = kuponBul(k);
-      return kp ? json({ ok: true, oran: kp.oran || 0, kargo: !!kp.kargo, vaelo: !!kp.vaelo }) : json({ ok: false }, 404);
+      const kp = await kuponBul(k, env);
+      return kp ? json({ ok: true, oran: kp.oran || 0, kargo: !!kp.kargo, vaelo: !!kp.vaelo, tutar: kp.tutar || 0, min: kp.min || 0 }) : json({ ok: false }, 404);
     }
     return new Response('VAELO ödeme servisi çalışıyor.', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
   },
