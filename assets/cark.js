@@ -25,7 +25,7 @@
   if (al('vaelo-kupon') && !durum) return; // zaten kodu var
 
   var css = '' +
-    '.vk-bg{position:fixed;inset:0;z-index:99997;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .4s}' +
+    '.vk-bg{position:fixed;inset:0;z-index:99997;background:rgba(10,10,10,.72);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .4s}' +
     '.vk-bg.on{opacity:1}' +
     '.vk{position:relative;width:min(420px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#F3F1EC;color:#0A0A0A;text-align:center;padding:34px 26px 26px;font-family:Jost,Helvetica,Arial,sans-serif;font-weight:300;transform:translateY(16px) scale(.97);transition:transform .5s cubic-bezier(.16,.84,.24,1);box-shadow:0 30px 80px rgba(0,0,0,.35)}' +
     '.vk-bg.on .vk{transform:none}' +
@@ -34,7 +34,7 @@
     '.vk h2{font:500 2rem/1.1 "Cormorant Garamond",Georgia,serif;margin:10px 0 6px;letter-spacing:.01em}' +
     '.vk p{font-size:.88rem;line-height:1.55;color:#3a3833;margin:0 0 18px}' +
     '.vk-w{position:relative;width:min(290px,78vw);aspect-ratio:1;margin:0 auto 20px}' +
-    '.vk-w svg{width:100%;height:100%;display:block;transition:transform 5.2s cubic-bezier(.12,.72,.12,1);filter:drop-shadow(0 10px 24px rgba(0,0,0,.18))}' +
+    '.vk-w svg{width:100%;height:100%;display:block;transition:transform 5.2s cubic-bezier(.12,.72,.12,1);will-change:transform;border-radius:50%;box-shadow:0 10px 24px rgba(0,0,0,.18)}' +
     '.vk-pin{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid #0A0A0A;z-index:2;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}' +
     '.vk-hub{position:absolute;inset:0;margin:auto;width:24%;height:24%;border-radius:50%;background:#0A0A0A;color:#F3F1EC;display:flex;align-items:center;justify-content:center;font:500 1.5rem/1 "Cormorant Garamond",Georgia,serif;border:3px solid #F3F1EC;box-shadow:0 0 0 1px #B8A88A}' +
     '.vk-go{display:block;width:100%;padding:16px;background:#0A0A0A;color:#F3F1EC;border:0;font:400 13px Jost,Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}' +

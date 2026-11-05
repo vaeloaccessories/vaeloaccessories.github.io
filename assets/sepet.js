@@ -210,7 +210,7 @@
     if (d.kuponlar) {
       KUPONLAR = typeof d.kuponlar === 'object' ? d.kuponlar : {};
       if (kuponKod()) kuponSor(kuponKod(), function () { ciz(); });
-      if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=3'; sc.defer = true; document.head.appendChild(sc); }
+      if (!/\/(admin|odeme-|hesap-)/.test(location.pathname)) { var sc = document.createElement('script'); sc.src = '/assets/cark.js?v=4'; sc.defer = true; document.head.appendChild(sc); }
     }
     ciz();
   }).catch(function () {});
