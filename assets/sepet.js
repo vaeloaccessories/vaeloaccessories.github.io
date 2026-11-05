@@ -2,6 +2,25 @@
  * Şimdilik yalnızca deneme için açık: siteye ?odeme=test ile girildiğinde görünür.
  * PayTR onayı gelince CANLI = true yapılır ve herkese açılır.
  */
+// Hafif mod: ekran kartını kullanamayan cihazlarda (yazılımla çizim) ağır efektleri kapatır, site kasmaz.
+(function () {
+  try {
+    var c = document.createElement('canvas'), g = c.getContext('webgl') || c.getContext('experimental-webgl'), soft = !g;
+    if (g) {
+      var d = g.getExtension('WEBGL_debug_renderer_info'), r = d ? String(g.getParameter(d.UNMASKED_RENDERER_WEBGL)) : '';
+      soft = /swiftshader|llvmpipe|software|basic render/i.test(r);
+      var lc = g.getExtension('WEBGL_lose_context'); if (lc) lc.loseContext();
+    }
+    if (!soft) return;
+    document.documentElement.classList.add('lite');
+    var st = document.createElement('style');
+    st.textContent = 'html.lite *,html.lite *::before,html.lite *::after{mix-blend-mode:normal!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;filter:none!important}' +
+      'html.lite header{background:#0A0A0A;box-shadow:0 1px 0 rgba(243,241,236,.12)}' +
+      'html.lite .vv-item.yan{opacity:.35}';
+    document.head.appendChild(st);
+  } catch (e) {}
+})();
+
 (function () {
   'use strict';
   var CANLI = true;
