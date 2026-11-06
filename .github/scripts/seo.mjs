@@ -46,7 +46,7 @@ const graph = {
       url: SITE,
       email: 'info@vaelo.com.tr',
       telephone: '+905513708320',
-      description: 'VAELO; lüks kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört üreten Türk premium giyim markasıdır.',
+      description: 'VAELO; premium kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört üreten Türk premium giyim markasıdır.',
       sameAs: ['https://www.instagram.com/vaeloaccessories', 'https://www.facebook.com/people/VA%C4%96LO-accessories-apparel/61591234456180/', 'https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204'],
     },
     { '@type': 'WebSite', '@id': SITE + '#site', url: SITE, name: 'VAELO', inLanguage: 'tr-TR', publisher: { '@id': SITE + '#marka' } },
@@ -73,7 +73,7 @@ const saat = list.filter((p) => p.category === 'Saat');
 const street = list.filter((p) => /street/i.test(p.category || ''));
 const llms = `# VAELO
 
-> VAELO, Türkiye merkezli lüks ve premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Saat koleksiyonu da mevcuttur; yakında çanta ve parfüm koleksiyonları gelecek.
+> VAELO, Türkiye merkezli premium giyim markasıdır. Kapşonlu sweatshirt (hoodie), oversize sweatshirt ve tişört satar. Saat koleksiyonu da mevcuttur; yakında çanta ve parfüm koleksiyonları gelecek.
 
 ## Marka hakkında
 - [Resmî site](${SITE}): VAELO ana sayfası

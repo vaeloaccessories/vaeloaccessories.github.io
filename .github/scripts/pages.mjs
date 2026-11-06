@@ -34,7 +34,7 @@ function metaYaz(p, name) {
   if (isWatch(p)) return kes(`VAELO ${name}: quartz mekanizma, 5 ATM su geçirmez, 2 yıl garantili saat. Ücretsiz kargo, 14 gün iade.`);
   if (isKadin(p)) return kes(`VAELO ${name}: kadın ${(kadinTur(p.name) || 'giyim').toLocaleLowerCase('tr-TR')}. Ücretsiz kargo, 14 gün içinde ücretsiz iade ve beden değişimi.`);
   if (isHoodie(p.name)) return kes(`VAELO ${name}: %100 şardonlu pamuk, 380 GSM, oversize kapşonlu sweatshirt. S–XXL beden, ücretsiz kargo, 14 gün iade ve değişim.`);
-  return kes(`VAELO ${name}: lüks ${kindLow(p.name)}, oversize kalıp, S–XXL beden. Ücretsiz kargo, 14 gün içinde ücretsiz iade ve beden değişimi.`);
+  return kes(`VAELO ${name}: premium ${kindLow(p.name)}, oversize kalıp, S–XXL beden. Ücretsiz kargo, 14 gün içinde ücretsiz iade ve beden değişimi.`);
 }
 // Kategori sayfaları (Google'da "kapşonlu sweatshirt" / "sweatshirt" aramaları için)
 const KATEGORILER = [
@@ -89,7 +89,7 @@ function descHtml(d) {
 function page(p) {
   const name = clean(p.name);
   const kisaTur = kind(p.name).replace(' (Hoodie)', '');
-  const title = (`VAELO ${name} | Lüks ${kisaTur}`.length <= 62) ? `VAELO ${name} | Lüks ${kisaTur}` : `VAELO ${name} | ${kisaTur}`;
+  const title = (`VAELO ${name} | Premium ${kisaTur}`.length <= 62) ? `VAELO ${name} | Premium ${kisaTur}` : `VAELO ${name} | ${kisaTur}`;
   const url = SITE + 'urun/' + slug(p) + '.html';
   const imgs = (p.images || []).filter((u) => /^https:\/\//.test(u));
   const plain = fixText(p.description).replace(/\s+/g, ' ').trim();
@@ -232,7 +232,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
 </header>
 <main>
   <div class="gallery">
-    ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – lüks ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">` + (i === 0 && p.video ? `\n    <video src="${esc(p.video)}" poster="${esc(imgs[1] || u)}" muted autoplay loop playsinline preload="metadata" aria-label="VAELO ${esc(name)} ürün videosu"></video>` : '')).join('\n    ')}
+    ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – premium ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">` + (i === 0 && p.video ? `\n    <video src="${esc(p.video)}" poster="${esc(imgs[1] || u)}" muted autoplay loop playsinline preload="metadata" aria-label="VAELO ${esc(name)} ürün videosu"></video>` : '')).join('\n    ')}
   </div>
   <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
     <p class="cat" lang="en">${isKadin(p) ? esc('VAELO Kadın · ' + (KGRUP[p.grup] || kind(p.name))) : isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
@@ -251,7 +251,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
   </div>
 </main>
 ${others.length ? `<section class="more"><h2>Bunları da beğenebilirsin</h2><div class="row">
-${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – lüks ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
+${others.map((o) => `  <a href="${slug(o)}.html">${o.images && o.images[0] ? `<img src="${esc(o.images[0])}" alt="VAELO ${esc(clean(o.name))} – premium ${kindLow(o.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}${esc(clean(o.name))}<br>₺${fmt(o.price)}</a>`).join('\n')}
 </div></section>` : ''}
 <footer>© ${new Date().getFullYear()} VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a><br><a href="https://www.instagram.com/vaeloaccessories" target="_blank" rel="noopener">Instagram</a> · <a href="${FACEBOOK}" target="_blank" rel="noopener">Facebook</a> · <a href="${TRENDYOL}" target="_blank" rel="noopener">Trendyol</a></footer>
 <script src="/assets/sepet.js?v=7" defer></script>
@@ -347,8 +347,8 @@ const items = [];
 for (const p of list) {
   const name = clean(p.name), imgs = (p.images || []).filter((u) => /^https:\/\//.test(u));
   if (!imgs.length) continue;
-  const desc = fixText(p.description).replace(/\s+/g, ' ').trim().slice(0, 4900) || `VAELO lüks ${kindLow(p.name)}`;
-  const title = (isKadin(p) ? `VAELO ${name} | Kadın ${kind(p.name)}` : isWatch(p) ? `VAELO ${name} | Lüks Kol Saati` : `VAELO ${name.replace(/\bHoodie\b/i, 'Kapşonlu Sweatshirt Hoodie')} | Oversize Unisex`).slice(0, 150);
+  const desc = fixText(p.description).replace(/\s+/g, ' ').trim().slice(0, 4900) || `VAELO premium ${kindLow(p.name)}`;
+  const title = (isKadin(p) ? `VAELO ${name} | Kadın ${kind(p.name)}` : isWatch(p) ? `VAELO ${name} | Şık Kol Saati` : `VAELO ${name.replace(/\bHoodie\b/i, 'Kapşonlu Sweatshirt Hoodie')} | Oversize Unisex`).slice(0, 150);
   for (const size of (isWatch(p) ? ['Standart'] : isKadin(p) ? (p.bedenler || []).map((b) => b.beden) : ['S', 'M', 'L', 'XL', 'XXL'])) {
     items.push(`<item>
 <g:id>${p.id}-${size}</g:id>
@@ -378,7 +378,7 @@ fs.writeFileSync('google-urunler.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <channel>
 <title>VAELO</title>
 <link>${SITE}</link>
-<description>VAELO lüks kapşonlu sweatshirt, sweatshirt ve tişört</description>
+<description>VAELO premium kapşonlu sweatshirt, sweatshirt ve tişört</description>
 ${items.join('\n')}
 </channel>
 </rss>
