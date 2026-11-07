@@ -227,10 +227,10 @@ fbq('track', 'PageView');
   .more:hover { background-size: 0 1px; }
   .shop-btn { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 46px; margin-top: 14px; border: 1px solid currentColor; color: inherit; text-decoration: none; font-family: var(--sans); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; transition: color .5s var(--ease); }
   .shop-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--black); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease); }
-  #koleksiyon .shop-btn { color: #7A1F2B; }
-  #koleksiyon .shop-btn::before { background: #7A1F2B; }
-  #koleksiyon .item:hover .shop-btn, #koleksiyon .shop-btn:focus-visible, #koleksiyon .shop-btn:active { color: #fff; }
-  .street { --neon: #D62B2B; --powder: #C1DFF3; }
+  :is(#koleksiyon, #saat, #kadin) .shop-btn { color: #7A1F2B; }
+  :is(#koleksiyon, #saat, #kadin) .shop-btn::before { background: #7A1F2B; }
+  :is(#koleksiyon, #saat, #kadin) .item:hover .shop-btn, :is(#koleksiyon, #saat, #kadin) .shop-btn:focus-visible, :is(#koleksiyon, #saat, #kadin) .shop-btn:active { color: #fff; }
+  .street { --neon: #E63946; --powder: #C1DFF3; }
   .street .shop-btn { color: var(--neon); }
   .street .shop-btn::before { background: var(--neon); }
   .shop-btn .ar { display: inline-block; transition: transform .5s var(--ease); }
@@ -542,8 +542,8 @@ fbq('track', 'PageView');
   .vitrin-sig .vv-btn { border-color: #7A1F2B; background: #7A1F2B; color: #fff; }
   .vitrin-sig .vv-btn:hover { background: transparent; color: #7A1F2B; }
   .vitrin-street { --vfg: #C1DFF3; --vmut: #8FAABD; }
-  .vitrin-street .vv-btn { border-color: #D62B2B; background: #D62B2B; color: #fff; }
-  .vitrin-street .vv-btn:hover { background: transparent; color: #D62B2B; }
+  .vitrin-street .vv-btn { border-color: #E63946; background: #E63946; color: #fff; }
+  .vitrin-street .vv-btn:hover { background: transparent; color: #E63946; }
   .vv-count { position: absolute; left: 50%; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 14px;
     font-family: var(--sans); font-size: .74rem; letter-spacing: .24em; font-variant-numeric: tabular-nums; z-index: 5; }
   .vv-bar { width: 90px; height: 1px; background: rgba(128,128,128,.35); position: relative; overflow: hidden; }
@@ -1631,7 +1631,7 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
   });
 });
 </script>
-<script src="/assets/sepet.js?v=14" defer></script>
+<script src="/assets/sepet.js?v=15" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script src="/assets/erken-kasim.js?v=2" defer></script>
 <script src="/assets/black-friday.js?v=3" defer></script>
