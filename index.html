@@ -230,7 +230,7 @@ fbq('track', 'PageView');
   #koleksiyon .shop-btn { color: #7A1F2B; }
   #koleksiyon .shop-btn::before { background: #7A1F2B; }
   #koleksiyon .item:hover .shop-btn, #koleksiyon .shop-btn:focus-visible, #koleksiyon .shop-btn:active { color: #fff; }
-  .street { --neon: #FF2E93; }
+  .street { --neon: #D62B2B; --powder: #C1DFF3; }
   .street .shop-btn { color: var(--neon); }
   .street .shop-btn::before { background: var(--neon); }
   .shop-btn .ar { display: inline-block; transition: transform .5s var(--ease); }
@@ -459,9 +459,9 @@ fbq('track', 'PageView');
   .wipe { position: fixed; inset: 0; z-index: 90; pointer-events: none; transform: translateX(100%); }
 
   /* second collection: VAELO // STREET DIVISION (dark) */
-  .street { background: var(--black); color: var(--paper); }
+  .street { background: var(--black); color: #C1DFF3; }
   .street h2 { font-family: var(--sans); font-weight: 400; letter-spacing: 0.06em; font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
-  .street .head p, .street .item .desc { color: var(--sand); }
+  .street .head p, .street .item .desc { color: #8FAABD; }
   .street .ph { background: #171717; }
   .street .item h3 { font-family: var(--sans); font-weight: 400; letter-spacing: 0.02em; font-size: 0.98rem; }
   .shipbar { padding: 56px 5vw 10vh; }
@@ -541,8 +541,9 @@ fbq('track', 'PageView');
   .vv-btn:hover { background: var(--vfg); color: var(--vbg); }
   .vitrin-sig .vv-btn { border-color: #7A1F2B; background: #7A1F2B; color: #fff; }
   .vitrin-sig .vv-btn:hover { background: transparent; color: #7A1F2B; }
-  .vitrin-street .vv-btn { border-color: #FF2E93; background: #FF2E93; color: #fff; }
-  .vitrin-street .vv-btn:hover { background: transparent; color: #FF2E93; }
+  .vitrin-street { --vfg: #C1DFF3; --vmut: #8FAABD; }
+  .vitrin-street .vv-btn { border-color: #D62B2B; background: #D62B2B; color: #fff; }
+  .vitrin-street .vv-btn:hover { background: transparent; color: #D62B2B; }
   .vv-count { position: absolute; left: 50%; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 14px;
     font-family: var(--sans); font-size: .74rem; letter-spacing: .24em; font-variant-numeric: tabular-nums; z-index: 5; }
   .vv-bar { width: 90px; height: 1px; background: rgba(128,128,128,.35); position: relative; overflow: hidden; }
@@ -1630,7 +1631,7 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
   });
 });
 </script>
-<script src="/assets/sepet.js?v=13" defer></script>
+<script src="/assets/sepet.js?v=14" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script src="/assets/erken-kasim.js?v=2" defer></script>
 <script src="/assets/black-friday.js?v=3" defer></script>
