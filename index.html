@@ -257,18 +257,17 @@ fbq('track', 'PageView');
   .kanit div { padding: 18px 8px; border-top: 1px solid currentColor; border-color: rgba(127,127,127,.25); }
   .kanit b { display: block; font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1.1; }
   .kanit span { display: block; margin-top: 6px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-  @media (max-width: 640px) { .kanit { grid-template-columns: repeat(2, 1fr); padding-top: 40px; } .kanit b { font-size: 1.6rem; } }
-  .paket { max-width: 70em; margin: 0 auto; padding: 96px 24px 8px; text-align: center; scroll-margin-top: 90px; }
+  @media (max-width: 640px) { .kanit { gap: 6px; padding: 32px 12px 0; } .kanit div { padding: 12px 2px; } .kanit b { font-size: 1.2rem; } .kanit span { font-size: 0.56rem; letter-spacing: 0.06em; } }
+  .paket { max-width: 60em; margin: 0 auto; padding: 48px 20px 8px; text-align: center; scroll-margin-top: 90px; }
   .paket .pk-kicker { font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
-  .paket h2 { margin-top: 10px; }
-  .paket .pk-sub { margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
-  .pk-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
-  @media (min-width: 700px) { .pk-grid { grid-template-columns: repeat(3, 1fr); } }
-  .pk-card { border: 1px solid rgba(0,0,0,.16); padding: 22px 16px; }
-  .pk-card b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
-  .pk-card .pk-price { display: block; margin-top: 6px; font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
-  .pk-card .pk-save { display: block; margin-top: 4px; font-size: 0.8rem; color: var(--muted); }
-  .pk-note { margin-top: 16px; font-size: 0.82rem; color: var(--muted); }
+  .paket h2 { margin-top: 8px; font-size: clamp(1.25rem, 2.4vw, 1.7rem); }
+  .paket .pk-sub { margin-top: 8px; color: var(--muted); font-size: 0.82rem; }
+  .pk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+  .pk-card { border: 1px solid rgba(0,0,0,.16); padding: 12px 6px; }
+  .pk-card b { display: block; font-family: var(--serif); font-weight: 500; font-size: 0.9rem; line-height: 1.2; }
+  .pk-card .pk-price { display: block; margin-top: 6px; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
+  .pk-card .pk-save { display: block; margin-top: 2px; font-size: 0.66rem; line-height: 1.3; color: var(--muted); }
+  .pk-note { margin-top: 10px; font-size: 0.72rem; color: var(--muted); }
   .guven-strip { max-width: 70em; margin: 28px auto 0; padding: 18px 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; border-top: 1px solid rgba(0,0,0,.12); border-bottom: 1px solid rgba(0,0,0,.12); font-size: 0.85rem; }
   .guven-strip a { color: var(--black); text-decoration: underline; text-underline-offset: 2px; }
   /* trust: exchange policy + size chart */
@@ -696,34 +695,6 @@ fbq('track', 'PageView');
     <div class="sb-all"><a href="#saat" data-view="saat">Tüm Saatleri Gör</a></div>
   </section>
 
-  <section class="kanit" aria-label="Rakamlarla VAELO">
-    <div><b>75+</b><span>Mutlu müşteri</span></div>
-    <div><b>150+</b><span>Teslim edilen ürün</span></div>
-    <div><b>9.2</b><span>Hepsiburada satıcı puanı</span></div>
-    <div><b>14 gün</b><span>Ücretsiz iade</span></div>
-  </section>
-
-  <section class="paket" id="paket" aria-label="3’lü paket">
-    <div class="pk-kicker">3’lü Paket</div>
-    <h2>3 parça al, daha az öde. Kargo bedava.</h2>
-    <p class="pk-sub">Aynı seriden istediğin 3 parçayı (renk ve beden serbest) sepete ekle, paket fiyatı otomatik uygulanır.</p>
-    <div class="pk-grid">
-      <div class="pk-card"><b>Signature Hoodie / Sweatshirt</b><span class="pk-price">3.599 TL</span><span class="pk-save">3 × 1.299 TL yerine · 298 TL avantaj</span></div>
-      <div class="pk-card"><b>Street Division Hoodie</b><span class="pk-price">3.899 TL</span><span class="pk-save">3’lü paket fiyatı</span></div>
-      <div class="pk-card"><b>Tişört</b><span class="pk-price">2.399 TL</span><span class="pk-save">3’lü paket fiyatı</span></div>
-    </div>
-    <p class="pk-note">Ürünler sana özel üretilir · teslim ortalama 3–7 iş günü</p>
-    <div class="guven-strip">
-      <span>14 gün iade, iade kargosu bizden</span>
-      <span>14 gün içinde beden değişimi</span>
-      <span>PayTR ile 256-bit SSL güvenli ödeme</span>
-      <span>380 GSM ağır gramajlı pamuk · beden tablosu aşağıda</span>
-      <span>TÜRKPATENT tescilli marka</span>
-      <span><a href="https://wa.me/905513708320" target="_blank" rel="noopener">WhatsApp ile hızlı destek</a></span>
-      <span><a href="iade-degisim.html">İade politikası</a></span>
-    </div>
-  </section>
-
   <section class="vitrin vitrin-sig vt-light" id="vitrin-sig" aria-label="Signature Premium vitrini">
     <div class="vv-stage">
       <div class="vv-head">
@@ -1099,6 +1070,34 @@ fbq('track', 'PageView');
   <div class="shipbar">
     <p class="ship rv">Tüm siparişlerde kargo ücretsizdir. Siparişler 2–4 iş günü içinde Aras Kargo ile gönderilir.</p>
   </div>
+
+  <section class="kanit" aria-label="Rakamlarla VAELO">
+    <div><b>75+</b><span>Mutlu müşteri</span></div>
+    <div><b>150+</b><span>Teslim edilen ürün</span></div>
+    <div><b>9.2</b><span>Hepsiburada satıcı puanı</span></div>
+    <div><b>14 gün</b><span>Ücretsiz iade</span></div>
+  </section>
+
+  <section class="paket" id="paket" aria-label="3’lü paket">
+    <div class="pk-kicker">3’lü Paket</div>
+    <h2>3 parça al, daha az öde. Kargo bedava.</h2>
+    <p class="pk-sub">Aynı seriden istediğin 3 parçayı (renk ve beden serbest) sepete ekle, paket fiyatı otomatik uygulanır.</p>
+    <div class="pk-grid">
+      <div class="pk-card"><b>Signature Hoodie / Sweat</b><span class="pk-price">3.599 TL</span><span class="pk-save">298 TL avantaj</span></div>
+      <div class="pk-card"><b>Street Division Hoodie</b><span class="pk-price">3.899 TL</span><span class="pk-save">3’lü paket fiyatı</span></div>
+      <div class="pk-card"><b>Tişört</b><span class="pk-price">2.399 TL</span><span class="pk-save">3’lü paket fiyatı</span></div>
+    </div>
+    <p class="pk-note">Ürünler sana özel üretilir · teslim ortalama 3–7 iş günü</p>
+    <div class="guven-strip">
+      <span>14 gün iade, iade kargosu bizden</span>
+      <span>14 gün içinde beden değişimi</span>
+      <span>PayTR ile 256-bit SSL güvenli ödeme</span>
+      <span>380 GSM ağır gramajlı pamuk · beden tablosu aşağıda</span>
+      <span>TÜRKPATENT tescilli marka</span>
+      <span><a href="https://wa.me/905513708320" target="_blank" rel="noopener">WhatsApp ile hızlı destek</a></span>
+      <span><a href="iade-degisim.html">İade politikası</a></span>
+    </div>
+  </section>
 
   <section id="hikaye" class="story">
     <div class="story-inner">
