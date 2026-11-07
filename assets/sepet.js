@@ -129,6 +129,8 @@
     '.vs-pay{position:fixed;inset:0;z-index:99999;background:#F3F1EC;display:none;flex-direction:column}.vs-pay.on{display:flex}' +
     '.vs-pay .vs-head{background:#F3F1EC}.vs-pay iframe{flex:1;width:100%;border:0;background:#fff}' +
     '.vs-test{background:#0A0A0A;color:#F3F1EC;font-size:.72rem;letter-spacing:.08em;text-align:center;padding:6px}' +
+    '.vs-add.vs-sig{background:#7A1F2B;color:#fff}' +
+    '.vs-add.vs-street{background:#FF2E93;color:#fff}' +
     '.vs-add{display:block;width:100%;margin:22px 0 10px;padding:17px;background:#0A0A0A;color:#F3F1EC;border:0;font:400 13px Jost,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}' +
     '.vs-sizes span{cursor:pointer;user-select:none}.vs-sizes span.on{background:#0A0A0A;color:#F3F1EC;border-color:#0A0A0A}' +
     '.vs-hint{font-size:.8rem;color:#9b2c2c;min-height:1em;margin:0}' +
@@ -297,7 +299,7 @@
     });
     if (sizes.querySelector('span[data-std]')) secili = 'Standart';   // saatlerde beden yok
     var ipucu = document.createElement('p'); ipucu.className = 'vs-hint'; ipucu.setAttribute('aria-live', 'polite');
-    var ekleBtn = document.createElement('button'); ekleBtn.type = 'button'; ekleBtn.className = 'vs-add'; ekleBtn.textContent = 'Sepete Ekle';
+    var ekleBtn = document.createElement('button'); ekleBtn.type = 'button'; ekleBtn.className = 'vs-add' + (/Street Division/i.test(info.dataset.name || '') ? ' vs-street' : /Signature (Hoodie|Sweatshirt|Ti)/i.test(info.dataset.name || '') ? ' vs-sig' : ''); ekleBtn.textContent = 'Sepete Ekle';
     var buy = info.querySelector('.buy');
     info.insertBefore(ekleBtn, buy); info.insertBefore(ipucu, buy);
     if (buy) buy.style.display = 'none';

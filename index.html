@@ -227,10 +227,15 @@ fbq('track', 'PageView');
   .more:hover { background-size: 0 1px; }
   .shop-btn { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 46px; margin-top: 14px; border: 1px solid currentColor; color: inherit; text-decoration: none; font-family: var(--sans); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; transition: color .5s var(--ease); }
   .shop-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--black); transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease); }
-  .street .shop-btn::before { background: var(--paper); }
+  #koleksiyon .shop-btn { color: #7A1F2B; }
+  #koleksiyon .shop-btn::before { background: #7A1F2B; }
+  #koleksiyon .item:hover .shop-btn, #koleksiyon .shop-btn:focus-visible, #koleksiyon .shop-btn:active { color: #fff; }
+  .street { --neon: #FF2E93; }
+  .street .shop-btn { color: var(--neon); }
+  .street .shop-btn::before { background: var(--neon); }
   .shop-btn .ar { display: inline-block; transition: transform .5s var(--ease); }
   .item:hover .shop-btn, .shop-btn:focus-visible, .shop-btn:active { color: var(--paper); }
-  .street .item:hover .shop-btn, .street .shop-btn:focus-visible, .street .shop-btn:active { color: var(--black); }
+  .street .item:hover .shop-btn, .street .shop-btn:focus-visible, .street .shop-btn:active { color: #fff; }
   .item:hover .shop-btn::before, .shop-btn:focus-visible::before, .shop-btn:active::before { transform: scaleY(1); }
   .item:hover .shop-btn .ar { transform: translateX(5px); }
   .grid.list-view .shop-btn { max-width: 240px; }
@@ -534,6 +539,10 @@ fbq('track', 'PageView');
   .vv-btn { display: inline-block; margin-top: 18px; padding: 13px 28px; border: 1px solid currentColor; color: inherit; text-decoration: none;
     font-family: var(--sans); font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; transition: background .35s, color .35s; }
   .vv-btn:hover { background: var(--vfg); color: var(--vbg); }
+  .vitrin-sig .vv-btn { border-color: #7A1F2B; background: #7A1F2B; color: #fff; }
+  .vitrin-sig .vv-btn:hover { background: transparent; color: #7A1F2B; }
+  .vitrin-street .vv-btn { border-color: #FF2E93; background: #FF2E93; color: #fff; }
+  .vitrin-street .vv-btn:hover { background: transparent; color: #FF2E93; }
   .vv-count { position: absolute; left: 50%; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 14px;
     font-family: var(--sans); font-size: .74rem; letter-spacing: .24em; font-variant-numeric: tabular-nums; z-index: 5; }
   .vv-bar { width: 90px; height: 1px; background: rgba(128,128,128,.35); position: relative; overflow: hidden; }
@@ -1621,7 +1630,7 @@ document.querySelectorAll('.sizetab').forEach(function (b) {
   });
 });
 </script>
-<script src="/assets/sepet.js?v=12" defer></script>
+<script src="/assets/sepet.js?v=13" defer></script>
 <script src="/assets/cerez.js" defer></script>
 <script src="/assets/erken-kasim.js?v=2" defer></script>
 <script src="/assets/black-friday.js?v=3" defer></script>
