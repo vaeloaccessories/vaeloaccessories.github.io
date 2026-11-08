@@ -2475,11 +2475,6 @@
           "barkod": "2362505873922"
         },
         {
-          "beden": "L",
-          "stok": 1,
-          "barkod": "2362505873939"
-        },
-        {
           "beden": "XL",
           "stok": 5,
           "barkod": "2362505873946"
@@ -2509,7 +2504,7 @@
         },
         {
           "beden": "M",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505873960"
         },
         {
@@ -2542,7 +2537,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362505873991"
         },
         {
@@ -2552,12 +2547,12 @@
         },
         {
           "beden": "L",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362505874011"
         },
         {
           "beden": "XL",
-          "stok": 3,
+          "stok": 1,
           "barkod": "2362505874028"
         }
       ],
@@ -3329,7 +3324,7 @@
     {
       "id": "mm16967",
       "name": "Yumuşak Dokulu Triko Hırka – Antrasit",
-      "price": 799,
+      "price": 699,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-98/2455281afb6a1fb25aca9abb9182bf5f19e03ac9.jpg",
         "https://api.sakans.com/storage/maximodena/p-98/c141b5f91a72bcec42820191420c809502670e9e.jpg",
