@@ -1,0 +1,140 @@
+{
+"a00": {
+"name": "Globe Archive",
+"light": true,
+"w": 1548,
+"h": 1115
+},
+"a01": {
+"name": "Supply Circle",
+"light": true,
+"w": 1263,
+"h": 1269
+},
+"a02": {
+"name": "Botanical",
+"light": false,
+"w": 1371,
+"h": 1284
+},
+"a10": {
+"name": "Astronomical",
+"light": true,
+"w": 889,
+"h": 734
+},
+"a11": {
+"name": "Maison Renaissance",
+"light": false,
+"w": 1312,
+"h": 888
+},
+"a12": {
+"name": "Nocturne",
+"light": true,
+"w": 899,
+"h": 881
+},
+"a21": {
+"name": "Club Nautique",
+"light": false,
+"w": 1046,
+"h": 1321
+},
+"a23": {
+"name": "Gold Minimal",
+"light": true,
+"w": 1130,
+"h": 358
+},
+"a31": {
+"name": "Maritime",
+"light": true,
+"w": 1032,
+"h": 998
+},
+"a32": {
+"name": "Waves",
+"light": true,
+"w": 1043,
+"h": 992
+},
+"a40": {
+"name": "Equestrian Heritage",
+"light": true,
+"w": 1022,
+"h": 1040
+},
+"a41": {
+"name": "Geometric Wave",
+"light": true,
+"w": 1135,
+"h": 1152
+},
+"a50": {
+"name": "Ankara Skyline",
+"light": false,
+"w": 1058,
+"h": 1090
+},
+"a53": {
+"name": "Global Network",
+"light": true,
+"w": 1070,
+"h": 1131
+},
+"b01": {
+"name": "Supply Club",
+"light": true,
+"w": 940,
+"h": 1214
+},
+"b02": {
+"name": "Equestrian Trio",
+"light": false,
+"w": 1341,
+"h": 1134
+},
+"b03": {
+"name": "Equestrian Noir",
+"light": true,
+"w": 1098,
+"h": 1261
+},
+"b11": {
+"name": "Maison Silent Luxury",
+"light": false,
+"w": 1272,
+"h": 683
+},
+"b12": {
+"name": "Line Art",
+"light": true,
+"w": 1103,
+"h": 881
+},
+"b20": {
+"name": "Equestrian Duo",
+"light": false,
+"w": 1308,
+"h": 1312
+},
+"b23": {
+"name": "Architectural",
+"light": true,
+"w": 1097,
+"h": 680
+},
+"b31": {
+"name": "Speed & Form",
+"light": false,
+"w": 1312,
+"h": 1016
+},
+"b33": {
+"name": "Deep Focus",
+"light": true,
+"w": 1167,
+"h": 781
+}
+}
