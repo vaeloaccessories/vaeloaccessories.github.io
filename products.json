@@ -6183,11 +6183,6 @@
           "barkod": "2362505873953"
         },
         {
-          "beden": "M",
-          "stok": 2,
-          "barkod": "2362505873960"
-        },
-        {
           "beden": "L",
           "stok": 2,
           "barkod": "2362505873977"
@@ -6270,7 +6265,7 @@
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362505874066"
         }
       ],
@@ -6982,7 +6977,7 @@
     {
       "id": "mm16432",
       "name": "Oversize Triko Kazak – Ekru",
-      "price": 799,
+      "price": 549,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-100/9243e8c8e803f6206cf2aa85d96a534aa8f9aeba.jpg",
         "https://api.sakans.com/storage/maximodena/p-100/2bda329811eee09a9fe504cf1bb02371e7485c2e.jpg",
