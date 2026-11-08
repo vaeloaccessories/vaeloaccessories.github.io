@@ -1,13 +1,12 @@
 /* VAELO 11.11 kampanyası
- * 9–10 Kasım 2026: üstteki şeritte "11.11 geliyor" duyurusu.
- * 11 Kasım 2026 (00:00–23:59): şeritte kod + açılış penceresi. "Kodu Uygula" denince VAELO1111 sepete eklenir.
+ * 8 Kasım 2026 21:00 – 11 Kasım 2026 23:59: şeritte kod + açılış penceresi. "Kodu Uygula" denince VAELO1111 sepete eklenir.
  * Öncesinde ve sonrasında kendiliğinden kapalıdır. Test için adresin sonuna ?k11=1 (gün) ya da ?k11=0 (duyuru) eklenebilir.
  * Pencere, hoş geldin çarkı kapandıktan sonra açılır.
  */
 (function () {
   'use strict';
-  var DUYURU = new Date('2026-11-09T00:00:00+03:00').getTime();
-  var BASLA = new Date('2026-11-11T00:00:00+03:00').getTime();
+  var DUYURU = new Date('2026-11-08T00:00:00+03:00').getTime();
+  var BASLA = new Date('2026-11-08T21:00:00+03:00').getTime();
   var BITIS = new Date('2026-11-11T23:59:59+03:00').getTime();
   var m = location.search.match(/[?&]k11=([01])/);
   var simdi = Date.now();
@@ -20,7 +19,7 @@
   function koy() { try { sessionStorage.setItem(ANAHTAR, '1'); } catch (e) {} }
 
   function seride() {
-    var yazi = gun ? '11.11 · Sadece bugün · VAELO1111 koduyla %11 indirim' : '11.11 geliyor · 11 Kasım’da tek günlük kod · Takipte kal';
+    var yazi = gun ? '11.11 başladı · VAELO1111 koduyla %11 indirim · 11 Kasım 23:59’a kadar' : '11.11 geliyor · 11 Kasım’da tek günlük kod · Takipte kal';
     var tracks = document.querySelectorAll('.promo .track');
     for (var i = 0; i < tracks.length; i++) {
       var t = tracks[i];
@@ -58,7 +57,7 @@
     bg.innerHTML = '' +
       '<div class="k11">' +
         '<button class="k11-x" aria-label="Kapat">&times;</button>' +
-        '<img class="k11-img" src="/assets/1111.webp" alt="VAELO 11.11, sadece 11 Kasım, VAELO1111 koduyla yüzde 11 indirim" width="810" height="1013">' +
+        '<img class="k11-img" src="/assets/1111.webp?v=2" alt="VAELO 11.11, sadece 11 Kasım, VAELO1111 koduyla yüzde 11 indirim" width="810" height="1013">' +
         '<button class="k11-btn">Kodu Uygula · Alışverişe Başla</button>' +
         '<div class="k11-note">%11 indirim tüm giyimde ve 5.500 TL üstü saatlerde geçerlidir · Kargo ücretsiz</div>' +
       '</div>';
