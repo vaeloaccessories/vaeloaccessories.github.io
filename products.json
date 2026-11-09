@@ -6137,7 +6137,7 @@
         "https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg",
         "https://api.sakans.com/storage/media/34/products/2wSzFVDDctMBw5SNmscb.jpg",
         "https://api.sakans.com/storage/media/34/products/m3ZLHaz0K82VnqPytjgK.jpg",
-        "https://api.sakans.com/storage/media/34/products/Rbn8xj4ZyUIn9qjRdf2l.png"
+        "https://api.sakans.com/api/storefront/feed-img?src=https%3A%2F%2Fapi.sakans.com%2Fstorage%2Fmedia%2F34%2Fproducts%2FRbn8xj4ZyUIn9qjRdf2l.png&fit=oran&w=1000"
       ],
       "description": "Kürk yakalı, kemerli ve uzun kesimiyle dikkat çeken bu siyah kaşe kaban, sonbahar ve kış aylarının vazgeçilmezi olmaya aday. Zarif duruşu ve feminen detaylarıyla hem günlük hem de özel kombinlerde rahatlıkla kullanılabilir.\nMateryal ve Kalite\nKaşe dokulu kumaştan üretilen kaban, dolgun ve yumuşak dokulu kürk yaka detayıyla şıklığını tamamlıyor. Yaka kısmındaki bu doku, kabanın en dikkat çekici özelliklerinden biri.\nKalıp ve Beden Önerisi\nBelden kuşaklı, aşağı doğru genişleyen bir kalıba sahip olan kaban, vücut hatlarını zarifçe vurgulayan bir siluet sunuyor. S, M, L ve XL bedenleri arasından kendi ölçünüze uygun bedeni tercih edebilirsiniz.\nKullanım Alanı\nGünlük kullanımın yanı sıra ofis kombinlerinde ve özel günlerde de tercih edilebilecek bu kaban, çok yönlü bir kullanım alanına sahip.\nKimlere Uygun\nFeminen ve zarif bir görünüm arayan, kürk yaka detaylı şık bir kaban ile kombinlerine fark katmak isteyen kadınlar için ideal bir seçim.\nKombin Önerisi\nElbise, etek veya pantolonla kolayca kombinlenebilen kaban, çizmelerle tamamlandığında sonbahar-kış sezonuna uygun şık bir görünüm yakalamanıza yardımcı olur.\nÖne Çıkan Özellikler\nDolgun ve yumuşak dokulu kürk yaka\nBelden bağlamalı kuşak kemer detayı\nÖnü düğmeli kapama şekli\nKol uçlarında düğmeli ve kemer detaylı manşetler\nYan cep detayı\nUzun ve geniş yaka formuyla feminen kesim\nSık Sorulan Sorular\nKabanın yakası gerçek kürk mü?\nÜrün açıklamasında yaka, dolgun ve yumuşak dokulu kürk detaylı olarak belirtilmiştir.\nKaban hangi mevsimlerde kullanılabilir?\nSonbahar ve kış sezonuna uygun bir kaban modelidir.\nKabanın kemeri ayarlanabilir mi?\nEvet, belden bağlamalı kuşak kemer sayesinde beden hatlarına göre ayarlama yapabilirsiniz.\nHangi kombinlerle giyilebilir?\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilir.\nÜrün Bilgileri\nÜrün Tipi: Kadın kaşe kaban\nModel: Uzun kaban\nYaka Tipi: Kürk detaylı geniş yaka\nKürk Dokusu: Dolgun ve yumuşak\nKumaş Görünümü: Kaşe dokulu\nKalıp: Belden kuşaklı, aşağı doğru genişleyen kesim\nKapama Şekli: Önü düğmeli\nKemer: Bağlamalı kuşak kemer\nKol Tipi: Uzun kol\nManşet: Düğmeli ve kemer detaylı\nCep: Yan cepler\nKullanım Alanı: Günlük, ofis ve özel gün kombinleri\nSezon: Sonbahar / Kış",
       "url": "",
@@ -6146,13 +6146,18 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 1,
+          "stok": 5,
           "barkod": "2362505873915"
         },
         {
           "beden": "M",
-          "stok": 1,
+          "stok": 5,
           "barkod": "2362505873922"
+        },
+        {
+          "beden": "L",
+          "stok": 5,
+          "barkod": "2362505873939"
         },
         {
           "beden": "XL",
@@ -6170,7 +6175,7 @@
         "https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg",
         "https://api.sakans.com/storage/media/34/products/MZEYU4hsyRiyObnzrZ13.jpg",
         "https://api.sakans.com/storage/media/34/products/v5fa8nvyIaawd7J8HxB8.jpg",
-        "https://api.sakans.com/storage/media/34/products/gtIOVbxy6M3bj0cE4ZBZ.png"
+        "https://api.sakans.com/api/storefront/feed-img?src=https%3A%2F%2Fapi.sakans.com%2Fstorage%2Fmedia%2F34%2Fproducts%2FgtIOVbxy6M3bj0cE4ZBZ.png&fit=oran&w=1000"
       ],
       "description": "Kürk yakalı, kemerli ve uzun kesimiyle dikkat çeken bu kaşe kaban, sonbahar ve kış aylarında şık bir seçenek arıyorsanız tam size göre. Zarif tasarımı ve feminen duruşuyla hem günlük hem de özel günlerde rahatlıkla tercih edebileceğiniz bir parça.\nMateryal ve Kalite\nKaşe dokulu kumaşıyla kaliteli bir görünüm sunan kaban, yakasındaki dolgun ve yumuşak kürk detayıyla dikkat çekiyor. Bu doku, kabanın en belirgin ve şık detaylarından biri olarak öne çıkıyor.\nKalıp ve Beden Önerisi\nBelden kuşaklı ve aşağı doğru genişleyen bir kalıba sahip olan kaban, vücut hatlarını zarifçe vurgulayan bir siluet oluşturuyor. Ürün S, M, L ve XL bedenlerinde sunuluyor; kemer sayesinde bel ölçünüzü ayarlayarak rahat bir kullanım sağlayabilirsiniz.\nKullanım Alanı\nGünlük kombinlerden ofis stiline, özel gün şıklığından kışlık dış giyim ihtiyaçlarına kadar geniş bir kullanım alanına sahip bu kaban, sonbahar ve kış sezonları için tasarlanmış.\nKimlere Uygun\nFeminen ve zarif bir görünüm arayan, uzun kaban kesimini seven ve kürk yaka detayıyla kombinlerine şıklık katmak isteyen kadınlar için uygun bir seçim.\nKombin Önerisi\nElbise, etek, pantolon ve çizmelerle kolayca kombinleyebileceğiniz bu kaban, hem günlük hem de daha özel kombinlerde rahatlıkla kullanılabilir.\nÖne Çıkan Özellikler\nDolgun ve yumuşak kürk detaylı geniş yaka\nKaşe dokulu kumaş görünümü\nBelden kuşaklı, aşağı doğru genişleyen kalıp\nÖnü düğmeli kapama şekli\nKol uçlarında düğmeli ve kemer detaylı manşetler\nYan cep detayı\nSık Sorulan Sorular\nKabanın yaka kısmında kürk var mı?\nEvet, kabanın yaka kısmı dolgun ve yumuşak dokulu kürk detayına sahiptir.\nKaban hangi mevsimlerde kullanılabilir?\nSonbahar ve kış sezonları için uygun bir tasarıma sahiptir.\nKabanın kemeri ayarlanabilir mi?\nEvet, belden bağlamalı kuşak kemer sayesinde bel ölçünüzü ayarlayabilirsiniz.\nHangi kombinlerle kullanılabilir?\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilir.\nÜrün Bilgileri\nÜrün Tipi: Kadın kaşe kaban\nModel: Uzun kaban\nYaka Tipi: Kürk detaylı geniş yaka\nKürk Dokusu: Dolgun ve yumuşak\nKumaş Görünümü: Kaşe dokulu\nKalıp: Belden kuşaklı, aşağı doğru genişleyen kesim\nKapama Şekli: Önü düğmeli\nKemer: Bağlamalı kuşak kemer\nKol Tipi: Uzun kol\nManşet: Düğmeli ve kemer detaylı\nCep: Yan cepler\nKullanım Alanı: Günlük, ofis ve özel gün kombinleri\nSezon: Sonbahar / Kış",
       "url": "",
@@ -6179,13 +6184,23 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 2,
+          "stok": 5,
           "barkod": "2362505873953"
         },
         {
+          "beden": "M",
+          "stok": 7,
+          "barkod": "2362505873960"
+        },
+        {
           "beden": "L",
-          "stok": 2,
+          "stok": 5,
           "barkod": "2362505873977"
+        },
+        {
+          "beden": "XL",
+          "stok": 5,
+          "barkod": "2362505873984"
         }
       ],
       "tedarik": "maxi"
@@ -6198,7 +6213,7 @@
         "https://api.sakans.com/storage/media/34/products/GHGmPayG5CKpUWJyhW5z.jpg",
         "https://api.sakans.com/storage/media/34/products/cfwGR6AN7esJURjzpCKY.jpg",
         "https://api.sakans.com/storage/media/34/products/oTt7VENfz3dyaJ74op0j.jpg",
-        "https://api.sakans.com/storage/media/34/products/WhRKUD96Ii6Ol7mYeVDt.png"
+        "https://api.sakans.com/api/storefront/feed-img?src=https%3A%2F%2Fapi.sakans.com%2Fstorage%2Fmedia%2F34%2Fproducts%2FWhRKUD96Ii6Ol7mYeVDt.png&fit=oran&w=1000"
       ],
       "description": "Kürk yakalı uzun kaşe kaban, zarif tasarımı ve modern kesimiyle sonbahar-kış kombinlerinize şık bir dokunuş katıyor. Dolgun kürk yaka detayı ve belden bağlamalı kuşak kemeri ile feminen bir siluet sunan bu kaban, gardırobunuzun dikkat çeken parçalarından biri olmaya aday.\nMateryal ve Kalite\nKaşe dokulu kumaşıyla şık ve kaliteli bir görünüm sunan kaban, dolgun ve yumuşak dokulu kürk yaka detayıyla tasarıma özel bir hava katıyor.\nKalıp ve Beden Önerisi\nBelden kuşaklı, aşağı doğru genişleyen kalıbıyla vücut hatlarını zarifçe vurgulayan bu kaban, S, M, L ve XL bedenlerde sunuluyor. Kemer detayı sayesinde kalıbı normal beden tercihinize göre rahatlıkla ayarlayabilirsiniz.\nKullanım Alanı\nGünlük kullanımdan ofis kombinlerine, özel gün şıklığına kadar farklı alanlarda tercih edilebilecek çok yönlü bir kaban modeli.\nKimlere Uygun\nZarif ve feminen bir tarz arayan, uzun kaban kesimini seven ve kürk yaka detayıyla dikkat çekici bir görünüm isteyen kadınlar için uygun bir seçim.\nKombin Önerisi\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilen kaban, hem günlük hem de özel gün şıklığına uyum sağlıyor.\nÖne Çıkan Özellikler\nDolgun ve yumuşak dokulu kürk yaka detayı\nBelden bağlamalı kuşak kemer ile vurgulu bel hattı\nÖnü düğmeli kapama şekli\nKol uçlarında düğmeli ve kemer detaylı manşetler\nYan cep detayı\nUzun ve geniş yaka formuyla feminen görünüm\nSık Sorulan Sorular\nKabanın yaka kısmı kürk mü?\nEvet, kabanın yaka kısmında dolgun ve yumuşak dokulu kürk detayı bulunuyor.\nKaban hangi mevsimde kullanılabilir?\nKaşe dokulu yapısıyla sonbahar ve kış mevsimlerinde kullanıma uygundur.\nKabanın kapama şekli nasıl?\nÖnden düğmeli kapama şekline sahiptir ve belden bağlamalı kuşak kemeri bulunur.\nHangi kombinlerle kullanılabilir?\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilir; günlük, ofis ve özel gün kullanımına uygundur.\nÜrün Bilgileri\nÜrün Tipi: Kadın kaşe kaban\nModel: Uzun kaban\nYaka Tipi: Kürk detaylı geniş yaka\nKürk Dokusu: Dolgun ve yumuşak\nKumaş Görünümü: Kaşe dokulu\nKalıp: Belden kuşaklı, aşağı doğru genişleyen kesim\nKapama Şekli: Önü düğmeli\nKemer: Bağlamalı kuşak kemer\nKol Tipi: Uzun kol\nManşet: Düğmeli ve kemer detaylı\nCep: Yan cepler\nKullanım Alanı: Günlük, ofis ve özel gün kombinleri\nSezon: Sonbahar / Kış",
       "url": "",
@@ -6207,22 +6222,22 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505873991"
         },
         {
           "beden": "M",
-          "stok": 1,
+          "stok": 5,
           "barkod": "2362505874004"
         },
         {
           "beden": "L",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505874011"
         },
         {
           "beden": "XL",
-          "stok": 1,
+          "stok": 5,
           "barkod": "2362505874028"
         }
       ],
@@ -6236,7 +6251,7 @@
         "https://api.sakans.com/storage/media/34/products/2RTGCoRWZyqcYpRuIocI.jpg",
         "https://api.sakans.com/storage/media/34/products/ZAljNBodsx5giZ9oQTQk.jpg",
         "https://api.sakans.com/storage/media/34/products/NniL5MYCIuadPUF7cm5F.jpg",
-        "https://api.sakans.com/storage/media/34/products/suW6owJzFsAydH0H30at.png"
+        "https://api.sakans.com/api/storefront/feed-img?src=https%3A%2F%2Fapi.sakans.com%2Fstorage%2Fmedia%2F34%2Fproducts%2FsuW6owJzFsAydH0H30at.png&fit=oran&w=1000"
       ],
       "description": "Kürk yakalı, kemerli uzun kaşe kaban; zarif tasarımı ve modern kesimiyle sonbahar ve kış kombinlerinize şık bir dokunuş katar. Dolgun ve yumuşak dokulu kürk yakası, kabanın en dikkat çekici detaylarından biri olarak öne çıkar. Kahverengi tonuyla pek çok parçayla uyum sağlayan feminen bir seçenek sunar.\nMateryal ve Kalite\nKaşe dokulu kumaşıyla hazırlanan kaban, geniş yakasındaki dolgun ve yumuşak kürk detayıyla dokusal bir zenginlik sunar. Kaşe dokusu ile kürk yakanın birleşimi, kabana hem sıcak hem de şık bir karakter kazandırır.\nKalıp ve Beden Önerisi\nBelden kuşaklı, aşağı doğru genişleyen bir kalıba sahip olan kaban S, M, L ve XL bedenlerde sunulur. Kuşak kemeri sayesinde bel hattı istediğiniz gibi ayarlanabildiğinden, kendi bedeninize uygun ölçüyü tercih etmeniz yeterlidir.\nKullanım Alanı\nGünlük kullanımda, ofis kombinlerinde ve özel günlerde rahatlıkla tercih edilebilen bu kaban, sonbahar ve kış sezonuna uygun bir parça olarak öne çıkar.\nKombin Önerisi\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilen kaban, feminen bir görünüm arayan kombinler için tamamlayıcı bir seçenek sunar.\nÖne Çıkan Özellikler\nDolgun ve yumuşak dokulu kürk yaka\nBelden bağlamalı kuşak kemer\nÖnü düğmeli kapama\nKol uçlarında dekoratif kemer görünümlü manşetler\nYan cepler\nUzun ve geniş yaka formu\nSık Sorulan Sorular\nKabanın yaka detayı nasıl?\nYaka kısmında dolgun ve yumuşak dokulu kürk detayı bulunur; geniş yaka formuyla feminen bir görünüm sunar.\nKabanın kalıbı nasıl, bol mu dar mı?\nBelden kuşaklı, aşağı doğru genişleyen bir kalıba sahiptir; kuşak kemeri ile bel hattı ayarlanabilir.\nHangi mevsimde kullanılabilir?\nSonbahar ve kış sezonuna uygun bir kaban modelidir.\nHangi kombinlerle kullanılabilir?\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilir; günlük, ofis ve özel gün kullanımına uygundur.\nÜrün Bilgileri\nÜrün Tipi: Kadın kaşe kaban\nModel: Uzun kaban\nYaka Tipi: Kürk detaylı geniş yaka\nKürk Dokusu: Dolgun ve yumuşak\nKumaş Görünümü: Kaşe dokulu\nKalıp: Belden kuşaklı, aşağı doğru genişleyen kesim\nKapama Şekli: Önü düğmeli\nKemer: Bağlamalı kuşak kemer\nKol Tipi: Uzun kol\nManşet: Düğmeli ve kemer detaylı\nCep: Yan cepler\nKullanım Alanı: Günlük, ofis ve özel gün kombinleri\nSezon: Sonbahar / Kış",
       "url": "",
@@ -6250,17 +6265,17 @@
         },
         {
           "beden": "M",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505874042"
         },
         {
           "beden": "L",
-          "stok": 1,
+          "stok": 5,
           "barkod": "2362505874059"
         },
         {
           "beden": "XL",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505874066"
         }
       ],
@@ -6274,7 +6289,7 @@
         "https://api.sakans.com/storage/media/34/products/51br5flae2ZUXXBNX95y.jpg",
         "https://api.sakans.com/storage/media/34/products/9GuFVQZ9H1RlabSOcOGI.jpg",
         "https://api.sakans.com/storage/media/34/products/iIV3EzLPfjoxXHCdwVNN.jpg",
-        "https://api.sakans.com/storage/media/34/products/pHGfY8IHNPeJdFEcGYWq.png"
+        "https://api.sakans.com/api/storefront/feed-img?src=https%3A%2F%2Fapi.sakans.com%2Fstorage%2Fmedia%2F34%2Fproducts%2FpHGfY8IHNPeJdFEcGYWq.png&fit=oran&w=1000"
       ],
       "description": "Kürk yakalı, kemerli ve uzun kesimiyle dikkat çeken bu kiremit kaşe kaban, sonbahar ve kış aylarının vazgeçilmezi olmaya aday. Zarif tasarımı ve feminen duruşuyla hem günlük hem de özel kombinlere şıklık katar.\nMateryal ve Kalite\nKaşe dokulu kumaştan üretilen kaban, dolgun ve yumuşak dokulu kürk yaka detayıyla tamamlanıyor. Bu doku, kabana hem görsel hem de dokunsal açıdan kaliteli bir his katarak zarif bir görünüm sunuyor.\nKalıp ve Beden Önerisi\nKaban, belden kuşaklı ve aşağıya doğru genişleyen bir kalıpla tasarlanmış. Bu kesim sayesinde vücut hatları zarifçe vurgulanırken, alt kısımda rahat bir hareket alanı sağlanıyor. Kuşak kemer ile kaban istenilen sıkılıkta bağlanabildiği için farklı duruşlara kolayca uyum gösterir.\nKullanım Alanı\nGünlük kombinlerden ofis şıklığına, özel gün davetlerine kadar geniş bir kullanım alanına sahiptir. Sonbahar ve kış sezonunda katman giyim için ideal bir seçenek olarak öne çıkar.\nKimlere Uygun\nFeminen ve zarif bir görünüm arayan, belini vurgulayan uzun kabanları seven ve kürk detaylı şık parçalara yönelen kadınlar için uygun bir tasarımdır.\nKombin Önerisi\nElbise, etek, pantolon ve çizmelerle kolayca kombinlenebilen kaban, hem günlük hem de özel gün kıyafetlerinin üzerine rahatlıkla giyilebilir.\nÖne Çıkan Özellikler\nDolgun ve yumuşak dokulu kürk yaka\nBelden bağlamalı kuşak kemer detayı\nÖnü düğmeli kapama şekli\nKol uçlarında düğmeli ve kemer detaylı manşetler\nYan cep detayı\nUzun ve belden kuşaklı, aşağı doğru genişleyen kalıp\nSık Sorulan Sorular\nKaban hangi mevsimde kullanılabilir?\nKaşe kumaş yapısıyla sonbahar ve kış sezonu için uygundur.\nKabanın kalıbı nasıldır?\nBelden kuşaklı, aşağı doğru genişleyen bir kesime sahiptir.\nKabanı hangi kıyafetlerle kombinleyebilirim?\nElbise, etek, pantolon ve çizmelerle rahatlıkla kombinlenebilir.\nKemer nasıl bağlanıyor?\nBel kısmındaki bağlamalı kuşak kemer ile istenilen sıkılıkta bağlanabilir.\nÜrün Bilgileri\nÜrün Tipi: Kadın kaşe kaban\nModel: Uzun kaban\nYaka Tipi: Kürk detaylı geniş yaka\nKürk Dokusu: Dolgun ve yumuşak\nKumaş Görünümü: Kaşe dokulu\nKalıp: Belden kuşaklı, aşağı doğru genişleyen kesim\nKapama Şekli: Önü düğmeli\nKemer: Bağlamalı kuşak kemer\nKol Tipi: Uzun kol\nManşet: Düğmeli ve kemer detaylı\nCep: Yan cepler\nKullanım Alanı: Günlük, ofis ve özel gün kombinleri\nSezon: Sonbahar / Kış",
       "url": "",
@@ -6288,12 +6303,12 @@
         },
         {
           "beden": "M",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505951644"
         },
         {
           "beden": "L",
-          "stok": 3,
+          "stok": 5,
           "barkod": "2362505951651"
         },
         {
@@ -6473,7 +6488,7 @@
         },
         {
           "beden": "M",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362506919018"
         },
         {
