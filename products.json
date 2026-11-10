@@ -7834,38 +7834,6 @@
       "tedarik": "maxi"
     },
     {
-      "id": "mm92477",
-      "name": "Lastikli Deri Pantolon – Camel",
-      "price": 949,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/xml2-6485/1a0488bf3ecdd139.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6485/30e47fb38fa2d859.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6485/c82dacd89e644c90.jpg"
-      ],
-      "description": "Camel Lastikli Deri Pantolon\nMateryal ve Kalite\nPantolon deri malzemeden üretilmiştir. Deri yapısı sayesinde şık ve dikkat çekici bir görünüm sağlar.\nKalıp ve Beden Önerisi\nÜründe kullanılan numune S/36 bedendir ve mankenin üzerinde bu beden gösterilmektedir. Beden standartları Avrupa ölçülerine göre belirlenmiştir, bu nedenle beden seçiminizi Avrupa beden tablosuna göre yapmanız önerilir.\nÖne Çıkan Özellikler\nCamel renk deri yapı\nBelde lastikli, rahat kullanım sağlayan detay\nAvrupa beden standardına uygun kalıp\nSık Sorulan Sorular\nPantolonun bedeni nasıl seçilir?\nÜrün Avrupa beden standartlarına göre üretilmiştir. Mankendeki numune S/36 bedendir, bu bilgiyi referans alarak kendi bedeninize uygun seçimi yapabilirsiniz.\nPantolon nasıl temizlenmelidir?\nÜrünün deri yapısı nedeniyle kuru temizleme yapılması önerilir.\nEtiketi çıkarılan üründe sorun yaşarsam ne olur?\nEtiketi sökülmüş ve kullanım hatası oluşmuş ürünlerden firma sorumlu tutulmamaktadır, bu nedenle etiketi kontrol ettikten sonra çıkarmanız önerilir.\nÜrün Bilgileri\nCamel Lastikli Deri Pantolon\nMankenin üzerindeki numune S/36 bedendir\nÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir\nKURU TEMİZLEME YAPINIZ",
-      "url": "",
-      "category": "Kadın",
-      "grup": "alt",
-      "bedenler": [
-        {
-          "beden": "S",
-          "stok": 5,
-          "barkod": "2362506895381"
-        },
-        {
-          "beden": "M",
-          "stok": 5,
-          "barkod": "2362506895374"
-        },
-        {
-          "beden": "L",
-          "stok": 5,
-          "barkod": "2362506895367"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
       "id": "mm92302",
       "name": "Geniş Paça Jean – Siyah",
       "price": 1549,
