@@ -7992,6 +7992,18 @@
         }
       ],
       "tedarik": "maxi"
+    },
+    {
+      "id": "TEST2",
+      "name": "VAELO Ödeme Testi",
+      "price": 2,
+      "images": [
+        "https://www.vaelo.com.tr/assets/logo.png"
+      ],
+      "description": "Kredi kartı ödeme denemesi için gizli test ürünü.",
+      "url": "",
+      "category": "Saat",
+      "gizli": true
     }
   ],
   "kadinGruplar": {
