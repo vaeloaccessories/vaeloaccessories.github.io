@@ -5925,6 +5925,18 @@
       "tedarik": "vaelo"
     },
     {
+      "id": "TEST2",
+      "name": "VAELO Ödeme Testi",
+      "price": 2,
+      "images": [
+        "https://www.vaelo.com.tr/assets/logo.png"
+      ],
+      "description": "Kredi kartı ödeme denemesi için gizli test ürünü.",
+      "url": "",
+      "category": "Saat",
+      "gizli": true
+    },
+    {
       "id": "mm92626",
       "name": "Kuşgözlü Kaşe Kaban – Gri",
       "price": 2399,
@@ -6146,7 +6158,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 3,
+          "stok": 4,
           "barkod": "2362505873915"
         },
         {
@@ -6186,11 +6198,6 @@
           "beden": "M",
           "stok": 5,
           "barkod": "2362505873960"
-        },
-        {
-          "beden": "L",
-          "stok": 1,
-          "barkod": "2362505873977"
         },
         {
           "beden": "XL",
@@ -6785,7 +6792,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362506922384"
         },
         {
@@ -7992,18 +7999,6 @@
         }
       ],
       "tedarik": "maxi"
-    },
-    {
-      "id": "TEST2",
-      "name": "VAELO Ödeme Testi",
-      "price": 2,
-      "images": [
-        "https://www.vaelo.com.tr/assets/logo.png"
-      ],
-      "description": "Kredi kartı ödeme denemesi için gizli test ürünü.",
-      "url": "",
-      "category": "Saat",
-      "gizli": true
     }
   ],
   "kadinGruplar": {
