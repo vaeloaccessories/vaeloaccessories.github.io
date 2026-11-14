@@ -6170,11 +6170,6 @@
           "beden": "L",
           "stok": 1,
           "barkod": "2362505873939"
-        },
-        {
-          "beden": "XL",
-          "stok": 1,
-          "barkod": "2362505873946"
         }
       ],
       "tedarik": "maxi"
@@ -6196,7 +6191,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 5,
+          "stok": 3,
           "barkod": "2362505873953"
         },
         {
@@ -6934,7 +6929,7 @@
       "bedenler": [
         {
           "beden": "Standart",
-          "stok": 6,
+          "stok": 4,
           "barkod": "2362501576513"
         }
       ],
