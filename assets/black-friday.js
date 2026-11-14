@@ -65,7 +65,7 @@
     bg.innerHTML = '' +
       '<div class="bf">' +
         '<button class="bf-x" aria-label="Kapat">&times;</button>' +
-        '<img class="bf-img" src="/assets/black-friday.webp" alt="VAELO Black Friday, 22–28 Kasım, BLACKFRIDAY koduyla yüzde 30 indirim" width="810" height="1013">' +
+        '<img class="bf-img" src="/assets/black-friday.webp?v=30" alt="VAELO Black Friday, 22–28 Kasım, BLACKFRIDAY koduyla yüzde 30 indirim" width="810" height="1013">' +
         '<button class="bf-btn">Kodu Uygula · Alışverişe Başla</button>' +
         '<div class="bf-note">%30 indirim tüm giyimde ve 5.500 TL üstü saatlerde geçerlidir · Kargo ücretsiz</div>' +
       '</div>';
