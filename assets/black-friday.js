@@ -23,7 +23,7 @@
       var t = tracks[i];
       if (t.getAttribute('data-bf')) continue;
       t.setAttribute('data-bf', '1');
-      t.insertAdjacentHTML('afterbegin', '<span>Black Friday · 22–28 Kasım · BLACKFRIDAY koduyla %30 indirim</span><i></i>');
+      t.insertAdjacentHTML('afterbegin', '<span>Black Friday · 22–28 Kasım · BLACKFRIDAY koduyla 3 üründe %30 · 2 üründe %20 · 1 üründe %10</span><i></i>');
     }
   }
 
@@ -65,9 +65,9 @@
     bg.innerHTML = '' +
       '<div class="bf">' +
         '<button class="bf-x" aria-label="Kapat">&times;</button>' +
-        '<img class="bf-img" src="/assets/black-friday.webp?v=30" alt="VAELO Black Friday, 22–28 Kasım, BLACKFRIDAY koduyla yüzde 30 indirim" width="810" height="1013">' +
+        '<img class="bf-img" src="/assets/black-friday.webp?v=31" alt="VAELO Black Friday, 22–28 Kasım, BLACKFRIDAY koduyla 3 üründe yüzde 30'a varan indirim" width="810" height="1013">' +
         '<button class="bf-btn">Kodu Uygula · Alışverişe Başla</button>' +
-        '<div class="bf-note">%30 indirim tüm giyimde ve 5.500 TL üstü saatlerde geçerlidir · Kargo ücretsiz</div>' +
+        '<div class="bf-note">3 üründe %30 · 2 üründe %20 · 1 üründe %10 · Tüm giyimde ve 5.500 TL üstü saatlerde · Kargo ücretsiz</div>' +
       '</div>';
     document.body.appendChild(bg);
     requestAnimationFrame(function () { requestAnimationFrame(function () { bg.classList.add('on'); }); });

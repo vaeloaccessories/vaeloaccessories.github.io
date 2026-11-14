@@ -58,16 +58,16 @@
     if (!k) return cb(false);
     if (KUPONLAR && KUPONLAR[k]) return cb(true);
     fetch(KASA.replace(/\/odeme$/, '/kupon') + '?kod=' + encodeURIComponent(k)).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      if (d && d.ok) { KUPONLAR = KUPONLAR || {}; KUPONLAR[k] = { oran: d.oran || 0, kargo: !!d.kargo, vaelo: !!d.vaelo, tutar: d.tutar || 0, min: d.min || 0 }; cb(true); } else cb(false);
+      if (d && d.ok) { KUPONLAR = KUPONLAR || {}; KUPONLAR[k] = { oran: d.oran || 0, kargo: !!d.kargo, vaelo: !!d.vaelo, kademe: !!d.kademe, tutar: d.tutar || 0, min: d.min || 0 }; cb(true); } else cb(false);
     }).catch(function () { cb(false); });
   }
-  function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo, vaelo: !!KUPONLAR[k].vaelo, tutar: KUPONLAR[k].tutar || 0, min: KUPONLAR[k].min || 0 } : null; }
+  function aktifKupon() { var k = kuponKod(); return KUPONLAR && KUPONLAR[k] ? { kod: k, oran: KUPONLAR[k].oran || 0, kargo: !!KUPONLAR[k].kargo, vaelo: !!KUPONLAR[k].vaelo, kademe: !!KUPONLAR[k].kademe, tutar: KUPONLAR[k].tutar || 0, min: KUPONLAR[k].min || 0 } : null; }
   // ---- 3'lü paket (yalnızca kasa destekliyorsa açılır; tutar kasada aynı şekilde hesaplanır) ----
   var PAKETLER = null, SAATLER = {};
   function paketle(s) {
     var birim = [], kullan = s.map(function () { return 0; }), gruplar = [];
     s.forEach(function (x, i) { for (var j = 0; j < x.qty; j++) birim.push({ i: i, id: String(x.id), price: x.price, ok: false }); });
-    (PAKETLER || []).forEach(function (pk) {
+    var kk = aktifKupon(); ((kk && kk.kademe) ? [] : (PAKETLER || [])).forEach(function (pk) {
       var uy = birim.filter(function (b) { return !b.ok && (pk.urunler || []).indexOf(b.id) >= 0; }).sort(function (a, b) { return b.price - a.price; });
       var n = Math.floor(uy.length / 3); if (!n) return;
       var normal = 0;
@@ -81,6 +81,7 @@
     var pk = paketle(s), paket = pk.gruplar.reduce(function (t, g) { return t + g.normal - g.fiyat * g.adet; }, 0);
     var k = aktifKupon(), indirim = 0;
     // yüzde indirim paket dışındaki ürünlere uygulanır
+    if (k && k.kademe) { var ad = s.reduce(function (t, x) { return t + (k.vaelo && SAATLER[String(x.id)] ? 0 : x.qty); }, 0); k.oran = ad >= 3 ? 30 : ad === 2 ? 20 : 10; }
         if (k && k.oran) indirim = s.reduce(function (t, x, i) { if (k.vaelo && SAATLER[String(x.id)]) return t; return t + (x.price - Math.round(x.price * (100 - k.oran)) / 100) * pk.kalan[i]; }, 0);
     // TL indirim (çark): paket dışı ürünlere oranlı; sepet en az k.min olmalı (kasa aynı hesabı yapar)
     if (k && k.tutar) {
