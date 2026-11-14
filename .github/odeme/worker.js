@@ -20,7 +20,7 @@ const KUPONLAR = {
   // Black Friday: yalnızca 22–28 Kasım 2026; tüm giyimde + 5.500 TL ve üstü saatlerde (saat geliş fiyatı 4.100 TL, ucuz saatler zarar etmesin)
   // 11.11: 8 Kasım 2026 21:00 – 11 Kasım 2026 23:59; tüm giyimde + 5.500 TL ve üstü saatlerde %11
   VAELO1111: { oran: 11, vaelo: true, bas: '2026-11-08T21:00:00+03:00', bit: '2026-11-11T23:59:59+03:00' },
-  BLACKFRIDAY: { oran: 15, vaelo: true, bas: '2026-11-22T00:00:00+03:00', bit: '2026-11-28T23:59:59+03:00' },
+  BLACKFRIDAY: { oran: 30, vaelo: true, bas: '2026-11-22T00:00:00+03:00', bit: '2026-11-28T23:59:59+03:00' },
 };
 // Hoş geldin çarkı: ödülün ne çıkacağına kasa karar verir (olasılıklar toplamı 1).
 // TL ödülleri kişiye özel, tek kullanımlık ve 30 gün geçerli kodla verilir; min = gereken en az sepet tutarı.
