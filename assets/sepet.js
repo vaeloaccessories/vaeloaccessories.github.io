@@ -2,6 +2,8 @@
  * Şimdilik yalnızca deneme için açık: siteye ?odeme=test ile girildiğinde görünür.
  * PayTR onayı gelince CANLI = true yapılır ve herkese açılır.
  */
+// Güvenli adres: site http:// veya www'suz açılırsa https://www.vaelo.com.tr'ye yönlendir (ödeme sunucusu sadece bu adresi kabul ediyor).
+if(/(^|\.)vaelo\.com\.tr$/.test(location.hostname)&&(location.protocol!=='https:'||location.hostname!=='www.vaelo.com.tr'))location.replace('https://www.vaelo.com.tr'+location.pathname+location.search+location.hash);
 // Hafif mod: ekran kartını kullanamayan cihazlarda (yazılımla çizim) ağır efektleri kapatır, site kasmaz.
 (function () {
   try {
