@@ -6309,7 +6309,7 @@
     {
       "id": "mm93329",
       "name": "Yakası Örgü Detaylı Mont – Kahverengi",
-      "price": 3349,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7573/1ae9f3e23d3a245d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7573/6bc932e5e40c79a4.jpg",
@@ -6323,23 +6323,18 @@
       "grup": "dis",
       "bedenler": [
         {
-          "beden": "S",
-          "stok": 3,
-          "barkod": "2362506922469"
-        },
-        {
           "beden": "M",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362506922452"
         },
         {
           "beden": "L",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362506922445"
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362506922476"
         }
       ],
@@ -6762,7 +6757,7 @@
     {
       "id": "mm93327",
       "name": "Koyun Yünü Yakalı Süet Ceket – Lacivert",
-      "price": 4599,
+      "price": 3849,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7571/add552cee1f92657.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7571/1c5bd9d89b419f7e.jpg",
@@ -6776,23 +6771,18 @@
       "grup": "ceket",
       "bedenler": [
         {
-          "beden": "S",
-          "stok": 3,
-          "barkod": "2362506922384"
-        },
-        {
           "beden": "M",
-          "stok": 5,
+          "stok": 1,
           "barkod": "2362506922377"
         },
         {
           "beden": "L",
-          "stok": 5,
+          "stok": 1,
           "barkod": "2362506922360"
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 1,
           "barkod": "2362506922391"
         }
       ],
