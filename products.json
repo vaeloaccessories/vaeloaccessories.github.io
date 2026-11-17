@@ -6057,7 +6057,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 5,
+          "stok": 4,
           "barkod": "2362506897279"
         },
         {
@@ -6158,7 +6158,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 2,
+          "stok": 1,
           "barkod": "2362505873915"
         },
         {
@@ -6304,7 +6304,7 @@
     {
       "id": "mm93329",
       "name": "Yakası Örgü Detaylı Mont – Kahverengi",
-      "price": 2999,
+      "price": 2699,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7573/1ae9f3e23d3a245d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7573/6bc932e5e40c79a4.jpg",
@@ -6752,7 +6752,7 @@
     {
       "id": "mm93327",
       "name": "Koyun Yünü Yakalı Süet Ceket – Lacivert",
-      "price": 3849,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7571/add552cee1f92657.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7571/1c5bd9d89b419f7e.jpg",
@@ -7939,7 +7939,7 @@
     {
       "id": "mm93292",
       "name": "Ekoseli Etek – Haki",
-      "price": 1649,
+      "price": 1349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7536/75aae69477a8ecf5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7536/cf3d0c15932a7d4a.jpg",
@@ -7954,17 +7954,17 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362506921042"
         },
         {
           "beden": "M",
-          "stok": 4,
+          "stok": 1,
           "barkod": "2362506921035"
         },
         {
           "beden": "L",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362506921028"
         }
       ],
