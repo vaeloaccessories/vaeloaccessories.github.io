@@ -19,6 +19,7 @@ function baslat() {
   css.textContent = `
   .yz-mini{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:-6px 0 16px}
   .yz-mini a{color:var(--black);text-underline-offset:3px}
+  .yz-mini:empty{display:none}
   .yz-s{width:15px;height:15px;fill:var(--sand)} .yz-s.on{fill:var(--black)}
   .yz{max-width:1200px;margin:0 auto;padding:40px 16px 64px;border-top:1px solid var(--sand)}
   .yz h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:24px}
@@ -97,7 +98,7 @@ function baslat() {
     const ort = n ? liste.reduce((a, r) => a + r.puan, 0) / n : 0;
     mini.innerHTML = n
       ? `<span>${yildiz(ort, 'yz-s')}</span><span>${virgul(ort)} (${n} yorum)</span> · <a href="#yorumlar">Yorumları gör</a>`
-      : `<span>${yildiz(0, 'yz-s')}</span><span>Henüz yorum yok</span> · <a href="#yorumlar">Yorum yaz</a>`;
+      : '';
     sec.querySelector('#yzAvg').textContent = n ? virgul(ort) : '–';
     sec.querySelector('#yzStars').innerHTML = yildiz(ort, 'yz-s');
     sec.querySelector('#yzSay').textContent = n ? n + ' yorum' : 'Henüz yorum yok';

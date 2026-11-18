@@ -63,6 +63,9 @@
   .buy:hover{opacity:.88}
   .wa{display:block;text-align:center;border:1px solid var(--black);text-decoration:none;padding:15px;margin-top:10px;font-size:13px;letter-spacing:2px;text-transform:uppercase}
   .note{font-size:13px;color:var(--muted);line-height:1.7;margin-top:18px}
+  .note summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:var(--black)}
+  .hizli{display:flex;flex-wrap:wrap;gap:6px 14px;margin:-14px 0 22px;font-size:12px;letter-spacing:.04em;color:var(--black)}
+  .hizli span::before{content:'\2713';margin-right:5px}
   .desc{margin-top:34px;border-top:1px solid var(--sand);padding-top:26px}
   .desc h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;margin:20px 0 8px}
   .desc h3:first-child{margin-top:0}
@@ -113,6 +116,7 @@ fbq('track', 'ViewContent', { content_ids: ['vk007'], content_type: 'product_gro
     <p class="cat" lang="en">VAELO Kadın · Outlet</p>
     <h1>VAELO Şardonlu Bomber Takım – Pembe</h1>
     <p class="price">₺950<small>KDV dahil</small></p>
+    <p class="hizli"><span>Ücretsiz kargo</span><span>14 gün ücretsiz iade · değişim</span><span>PayTR güvenli ödeme</span></p>
     <p style="color:#d11a1a;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:6px 0 0">Son adet</p>
     
     
@@ -121,7 +125,7 @@ fbq('track', 'ViewContent', { content_ids: ['vk007'], content_type: 'product_gro
     
     <a class="buy" href="/#kadin" rel="noopener">Satın Al</a>
     <a class="wa" href="https://wa.me/905513708320?text=Merhaba%2C%20VAELO%20%C5%9Eardonlu%20Bomber%20Tak%C4%B1m%20%E2%80%93%20Pembe%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">Bize Ulaşın</a>
-    <p class="note">Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-4 iş günü içinde kargoya verilir. Teslimattan itibaren 14 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 14 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></p>
+    <details class="note"><summary>Kargo, iade ve ödeme detayları</summary>Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-4 iş günü içinde kargoya verilir. Teslimattan itibaren 14 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 14 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></details>
     <ul class="guven" style="list-style:none;padding:14px 16px;margin:16px 0;border:1px solid #DFDBD2;font-size:13px;line-height:1.9">
       <li>✓ TÜRKPATENT tescilli marka</li>
       <li>✓ Mağazamızdan 750+ müşteriye 15.000+ ürün teslim edildi · <a href="https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204" target="_blank" rel="noopener">Yorumlara bak</a></li>
@@ -141,7 +145,7 @@ fbq('track', 'ViewContent', { content_ids: ['vk007'], content_type: 'product_gro
 <footer>© 2026 VAĖLO · Ecevit Yıldırım – VAELO Accessories &amp; Apparel · <a href="/">vaelo.com.tr</a> · <a href="mailto:info@vaelo.com.tr">info@vaelo.com.tr</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a> · <a href="/gizlilik-politikasi.html">Gizlilik</a> · <a href="/kvkk-aydinlatma-metni.html">KVKK</a><br><a href="https://www.instagram.com/vaeloaccessories" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/people/VA%C4%96LO-accessories-apparel/61591234456180/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.trendyol.com/magaza/vaelo-accessories-apparel-m-1296204" target="_blank" rel="noopener">Trendyol</a></footer>
 <script src="/assets/sepet.js?v=8" defer></script>
 <script src="/assets/cerez.js" defer></script>
-<script type="module" src="/assets/yorum.js?v=1"></script>
+<script type="module" src="/assets/yorum.js?v=2"></script>
 <script>/* üyelik sistemi sayfa açıldıktan sonra yüklenir (site hızlı açılsın) */(function(){function y(){var s=document.createElement('script');s.type='module';s.src='/assets/uye.js?v=3';document.body.appendChild(s)}function g(){'requestIdleCallback' in window?requestIdleCallback(y,{timeout:2500}):setTimeout(y,1200)}document.readyState==='complete'?g():addEventListener('load',g)})();</script>
 </body>
 </html>
