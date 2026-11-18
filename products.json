@@ -6144,7 +6144,7 @@
     {
       "id": "mm73405",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah",
-      "price": 3249,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg",
         "https://api.sakans.com/storage/media/34/products/2wSzFVDDctMBw5SNmscb.jpg",
@@ -6158,7 +6158,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873915"
         },
         {
@@ -6172,7 +6172,7 @@
     {
       "id": "mm73406",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej",
-      "price": 3249,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg",
         "https://api.sakans.com/storage/media/34/products/MZEYU4hsyRiyObnzrZ13.jpg",
@@ -6186,22 +6186,12 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873953"
         },
         {
-          "beden": "M",
-          "stok": 3,
-          "barkod": "2362505873960"
-        },
-        {
-          "beden": "L",
-          "stok": 1,
-          "barkod": "2362505873977"
-        },
-        {
           "beden": "XL",
-          "stok": 5,
+          "stok": 4,
           "barkod": "2362505873984"
         }
       ],
@@ -6210,7 +6200,7 @@
     {
       "id": "mm73407",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Haki",
-      "price": 3249,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/media/34/products/GHGmPayG5CKpUWJyhW5z.jpg",
         "https://api.sakans.com/storage/media/34/products/cfwGR6AN7esJURjzpCKY.jpg",
@@ -6224,8 +6214,18 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505873991"
+        },
+        {
+          "beden": "M",
+          "stok": 1,
+          "barkod": "2362505874004"
+        },
+        {
+          "beden": "XL",
+          "stok": 1,
+          "barkod": "2362505874028"
         }
       ],
       "tedarik": "maxi"
@@ -6233,7 +6233,7 @@
     {
       "id": "mm73408",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kahverengi",
-      "price": 3249,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/media/34/products/2RTGCoRWZyqcYpRuIocI.jpg",
         "https://api.sakans.com/storage/media/34/products/ZAljNBodsx5giZ9oQTQk.jpg",
@@ -6247,18 +6247,23 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 2,
+          "stok": 5,
           "barkod": "2362505874035"
         },
         {
           "beden": "M",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505874042"
         },
         {
           "beden": "L",
-          "stok": 6,
+          "stok": 3,
           "barkod": "2362505874059"
+        },
+        {
+          "beden": "XL",
+          "stok": 2,
+          "barkod": "2362505874066"
         }
       ],
       "tedarik": "maxi"
@@ -6266,7 +6271,7 @@
     {
       "id": "mm73409",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kiremit",
-      "price": 3249,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/media/34/products/51br5flae2ZUXXBNX95y.jpg",
         "https://api.sakans.com/storage/media/34/products/9GuFVQZ9H1RlabSOcOGI.jpg",
@@ -6280,22 +6285,22 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 4,
+          "stok": 1,
           "barkod": "2362505951637"
         },
         {
           "beden": "M",
-          "stok": 3,
+          "stok": 1,
           "barkod": "2362505951644"
         },
         {
           "beden": "L",
-          "stok": 3,
+          "stok": 1,
           "barkod": "2362505951651"
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 2,
           "barkod": "2362505951668"
         }
       ],
@@ -6377,7 +6382,7 @@
     {
       "id": "mm93236",
       "name": "Uzun Şişme Mont – Siyah",
-      "price": 5749,
+      "price": 4599,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7463/ec2265ae28cd58aa.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7463/4e55d322612fe0c0.jpg",
@@ -6391,24 +6396,9 @@
       "grup": "dis",
       "bedenler": [
         {
-          "beden": "S",
-          "stok": 4,
-          "barkod": "2362506919025"
-        },
-        {
-          "beden": "M",
-          "stok": 3,
-          "barkod": "2362506919018"
-        },
-        {
           "beden": "L",
-          "stok": 5,
+          "stok": 1,
           "barkod": "2362506919001"
-        },
-        {
-          "beden": "XL",
-          "stok": 3,
-          "barkod": "2362506919032"
         }
       ],
       "tedarik": "maxi"
