@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VAELO Coin</title>
+<meta name="description" content="VAELO sadakat coini: alışverişte kazan, indirimde kullan.">
+<link rel="icon" href="coin/vaelo-coin.png">
+<style>
+  :root{--bg:#fff;--fg:#111;--mut:#6b6b6b;--line:#e6e6e6;--card:#fafafa;--ok:#1d7a3a;--err:#b42318;--btn:#111;--btnfg:#fff}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0e;--fg:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#161616;--ok:#4cc27a;--err:#ff6b5b;--btn:#f2f2f2;--btnfg:#111}}
+  :root[data-theme="dark"]{--bg:#0e0e0e;--fg:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#161616;--ok:#4cc27a;--err:#ff6b5b;--btn:#f2f2f2;--btnfg:#111}
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  main{max-width:640px;margin:0 auto;padding:40px 16px 64px}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  header img{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff}
+  h1{font:600 28px/1.2 Georgia,"Times New Roman",serif;margin:0;letter-spacing:.5px}
+  .lead{color:var(--mut);margin:0 0 28px}
+  .badge{display:inline-block;font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:99px;color:var(--mut);margin-left:6px;vertical-align:middle}
+  section{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px;margin-bottom:16px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:1px;margin:0 0 12px;color:var(--mut);font-weight:600}
+  button{appearance:none;border:0;background:var(--btn);color:var(--btnfg);font:600 15px/1 inherit;padding:13px 18px;border-radius:10px;cursor:pointer;width:100%}
+  button[disabled]{opacity:.45;cursor:not-allowed}
+  button.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:0}
+  .big{font:600 34px/1.1 Georgia,serif}
+  .mut{color:var(--mut);font-size:14px}
+  .addr{font-family:ui-monospace,Menlo,monospace;font-size:13px;word-break:break-all}
+  input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);font:inherit;margin:4px 0 14px}
+  ul.rules{margin:0;padding-left:18px}
+  ul.rules li{margin:4px 0}
+  .msg{margin-top:12px;font-size:14px;word-break:break-word}
+  .msg.ok{color:var(--ok)} .msg.err{color:var(--err)}
+  .stack{display:grid;gap:10px}
+  a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="coin/vaelo-coin.png" alt="VAELO Coin logosu">
+    <h1>VAELO Coin <span class="badge">Test ağı (devnet)</span></h1>
+  </header>
+  <p class="lead">Alışverişlerinizde coin kazanın, sonraki siparişinizde indirim olarak kullanın.</p>
+
+  <section>
+    <h2>Nasıl çalışır</h2>
+    <ul class="rules">
+      <li>Her <b>100 TL</b>'lik alışverişte <b>10 VAELO</b> kazanırsınız.</li>
+      <li><b>10 VAELO = 1 TL</b> indirim.</li>
+      <li>Bir siparişte en fazla <b>%10</b> indirim kullanılabilir.</li>
+      <li>VAELO Coin yalnızca vaelo.com.tr'de kazanılır ve kullanılır, borsada alınıp satılmaz.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Cüzdanım</h2>
+    <div id="disconnected" class="stack">
+      <button id="connectBtn">Phantom cüzdanını bağla</button>
+      <p class="mut" id="noPhantom" hidden>Phantom bulunamadı. <a href="https://phantom.app" target="_blank" rel="noopener">phantom.app</a> adresinden tarayıcı eklentisini kurun.</p>
+    </div>
+    <div id="connected" hidden>
+      <div class="row"><span class="mut">Cüzdan</span><span class="addr" id="addr"></span></div>
+      <div class="row"><span class="mut">Bakiye</span><span><span class="big" id="bal">–</span> VAELO</span></div>
+      <div class="row"><span class="mut">İndirim değeri</span><span id="balTl">–</span></div>
+      <div class="stack" style="margin-top:12px">
+        <button class="ghost" id="refreshBtn">Bakiyeyi yenile</button>
+        <button class="ghost" id="disconnectBtn">Bağlantıyı kes</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>İndirim hesapla</h2>
+    <label class="mut" for="total">Sepet tutarı (TL)</label>
+    <input id="total" type="number" min="0" step="1" inputmode="numeric" placeholder="Örn. 4650">
+    <div class="row"><span class="mut">Bu siparişten kazanacağınız</span><span id="earn">0 VAELO</span></div>
+    <div class="row"><span class="mut">En fazla indirim (%10)</span><span id="maxDisc">0 TL</span></div>
+    <div class="row"><span class="mut">Kullanabileceğiniz coin</span><span id="usable">0 VAELO</span></div>
+    <div class="row"><span class="mut">İndirim</span><span id="disc"><b>0 TL</b></span></div>
+    <div style="margin-top:14px"><button id="useBtn" disabled>Coinlerimi bu siparişte kullan</button></div>
+    <div class="msg" id="msg"></div>
+  </section>
+
+  <p class="mut">Coin kullandığınızda size bir işlem kodu verilir. Bu kodu sipariş notuna yazmanız yeterlidir.</p>
+</main>
+
+<script src="https://unpkg.com/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+<script>
+const CONFIG = {
+  RPC: "https://api.devnet.solana.com",        // SADECE devnet
+  MINT: "7Wgz8pHSfDa39an1WBfUguQypNxBDkSvXFjwdnwccu8x",                          // 1-coin-olustur.sh sonrası doldurulur
+  TREASURY: "3otCAW6wqvCW23zMi4HrkLBq6jtrhgaJbUqgQwTbcy62",
+  DECIMALS: 2,
+  EARN_PER_100TL: 10,
+  COINS_PER_TL: 10,
+  MAX_DISCOUNT_RATE: 0.10
+};
+const TOKEN_2022 = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb";
+const ATA_PROGRAM = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
+
+const $ = id => document.getElementById(id);
+const web3 = window.solanaWeb3;
+const conn = new web3.Connection(CONFIG.RPC, "confirmed");
+let wallet = null, owner = null, balance = 0, tokenAccount = null;
+
+// --- Kurallar (saf fonksiyonlar) ---
+function earnedCoins(totalTl){ return Math.floor(totalTl / 100) * CONFIG.EARN_PER_100TL; }
+function maxDiscountTl(totalTl){ return Math.floor(totalTl * CONFIG.MAX_DISCOUNT_RATE); }
+function usableCoins(totalTl, bal){
+  const cap = maxDiscountTl(totalTl) * CONFIG.COINS_PER_TL;
+  const whole = Math.floor(bal / CONFIG.COINS_PER_TL) * CONFIG.COINS_PER_TL; // 1 TL'lik katlar
+  return Math.max(0, Math.min(cap, whole));
+}
+const fmt = n => n.toLocaleString("tr-TR");
+
+function provider(){
+  const p = window.phantom?.solana || window.solana;
+  return p && p.isPhantom ? p : null;
+}
+
+async function connect(){
+  const p = provider();
+  if (!p){ $("noPhantom").hidden = false; return; }
+  try{
+    const res = await p.connect();
+    wallet = p; owner = res.publicKey;
+    $("addr").textContent = owner.toBase58();
+    $("disconnected").hidden = true; $("connected").hidden = false;
+    await refresh();
+  }catch(e){ showMsg("Bağlantı iptal edildi.", true); }
+}
+
+async function disconnect(){
+  try{ await wallet?.disconnect(); }catch(e){}
+  wallet = owner = tokenAccount = null; balance = 0;
+  $("disconnected").hidden = false; $("connected").hidden = true;
+  recalc();
+}
+
+async function refresh(){
+  if (!owner) return;
+  $("bal").textContent = "…";
+  try{
+    const r = await conn.getParsedTokenAccountsByOwner(owner, { mint: new web3.PublicKey(CONFIG.MINT) });
+    tokenAccount = r.value[0]?.pubkey || null;
+    balance = r.value.reduce((s, a) => s + (a.account.data.parsed.info.tokenAmount.uiAmount || 0), 0);
+  }catch(e){ balance = 0; tokenAccount = null; showMsg("Bakiye okunamadı: " + e.message, true); }
+  $("bal").textContent = fmt(balance);
+  $("balTl").textContent = fmt(Math.floor(balance / CONFIG.COINS_PER_TL)) + " TL";
+  recalc();
+}
+
+function recalc(){
+  const total = Math.max(0, Number($("total").value) || 0);
+  const use = usableCoins(total, balance);
+  $("earn").textContent = fmt(earnedCoins(total)) + " VAELO";
+  $("maxDisc").textContent = fmt(maxDiscountTl(total)) + " TL";
+  $("usable").textContent = fmt(use) + " VAELO";
+  $("disc").innerHTML = "<b>" + fmt(use / CONFIG.COINS_PER_TL) + " TL</b>";
+  $("useBtn").disabled = !(owner && tokenAccount && use > 0);
+}
+
+function ata(ownerPk, mintPk){
+  return web3.PublicKey.findProgramAddressSync(
+    [ownerPk.toBuffer(), new web3.PublicKey(TOKEN_2022).toBuffer(), mintPk.toBuffer()],
+    new web3.PublicKey(ATA_PROGRAM))[0];
+}
+
+// Token-2022 TransferChecked talimatı (kod 12): miktar u64 + ondalık
+function transferChecked(src, mint, dst, auth, rawAmount, decimals){
+  const data = new Uint8Array(10);
+  data[0] = 12;
+  new DataView(data.buffer).setBigUint64(1, BigInt(rawAmount), true);
+  data[9] = decimals;
+  return new web3.TransactionInstruction({
+    programId: new web3.PublicKey(TOKEN_2022),
+    keys: [
+      { pubkey: src,  isSigner: false, isWritable: true },
+      { pubkey: mint, isSigner: false, isWritable: false },
+      { pubkey: dst,  isSigner: false, isWritable: true },
+      { pubkey: auth, isSigner: true,  isWritable: false }
+    ],
+    data
+  });
+}
+
+async function useCoins(){
+  const total = Math.max(0, Number($("total").value) || 0);
+  const use = usableCoins(total, balance);
+  if (!use) return;
+  $("useBtn").disabled = true; showMsg("Cüzdanınızda onay bekleniyor…");
+  try{
+    const mint = new web3.PublicKey(CONFIG.MINT);
+    const dst = ata(new web3.PublicKey(CONFIG.TREASURY), mint);
+    const raw = use * 10 ** CONFIG.DECIMALS;
+    const tx = new web3.Transaction().add(transferChecked(tokenAccount, mint, dst, owner, raw, CONFIG.DECIMALS));
+    tx.feePayer = owner;
+    const { blockhash, lastValidBlockHeight } = await conn.getLatestBlockhash();
+    tx.recentBlockhash = blockhash;
+    const signed = await wallet.signTransaction(tx);          // işlem her zaman devnet'e gönderilir
+    const sig = await conn.sendRawTransaction(signed.serialize());
+    await conn.confirmTransaction({ signature: sig, blockhash, lastValidBlockHeight }, "confirmed");
+    showMsg(`${fmt(use)} VAELO kullanıldı, ${fmt(use / CONFIG.COINS_PER_TL)} TL indirim. Sipariş notuna yazın: ${sig.slice(0, 12)}… ` +
+      `(<a href="https://explorer.solana.com/tx/${sig}?cluster=devnet" target="_blank" rel="noopener">işlemi gör</a>)`, false, true);
+    await refresh();
+  }catch(e){
+    showMsg("İşlem tamamlanmadı: " + (e.message || e), true);
+    recalc();
+  }
+}
+
+function showMsg(t, err = false, html = false){
+  const m = $("msg"); m.className = "msg " + (err ? "err" : "ok");
+  if (html) m.innerHTML = t; else m.textContent = t;
+}
+
+$("connectBtn").onclick = connect;
+$("disconnectBtn").onclick = disconnect;
+$("refreshBtn").onclick = refresh;
+$("useBtn").onclick = useCoins;
+$("total").oninput = recalc;
+window.addEventListener("load", () => {
+  const p = provider();
+  if (p) p.connect({ onlyIfTrusted: true }).then(r => { wallet = p; owner = r.publicKey;
+    $("addr").textContent = owner.toBase58(); $("disconnected").hidden = true; $("connected").hidden = false; refresh(); }).catch(() => {});
+});
+recalc();
+</script>
+</body>
+</html>
