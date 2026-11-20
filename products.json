@@ -6247,7 +6247,7 @@
         },
         {
           "beden": "M",
-          "stok": 2,
+          "stok": 3,
           "barkod": "2362505874042"
         },
         {
@@ -6750,11 +6750,6 @@
       "category": "Kadın",
       "grup": "ceket",
       "bedenler": [
-        {
-          "beden": "M",
-          "stok": 1,
-          "barkod": "2362506922377"
-        },
         {
           "beden": "L",
           "stok": 1,
