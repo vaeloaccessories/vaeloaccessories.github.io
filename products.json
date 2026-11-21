@@ -6040,40 +6040,6 @@
       "tedarik": "maxi"
     },
     {
-      "id": "mm92538",
-      "name": "Uzun Kaban – Ekru",
-      "price": 2999,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/xml2-6558/6b6a951ee0bf9243.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6558/3acdda318cd7ab70.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6558/042e63e4caf3f4f4.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6558/f49cfa02a31ff015.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6558/3b8bfcfa36d8ccf4.jpg"
-      ],
-      "description": "Kalıp ve Beden Önerisi\nMankenin üzerindeki numune S/36 bedendir. Ürün, Avrupa beden standartlarına göre üretilmiştir; beden seçiminizi bu standartlara göre yapmanızı öneririz.\nÖne Çıkan Özellikler\nEkru renk\nUzun kaban kesimi\nAvrupa beden standardına uygun üretim\nKuru temizleme ile bakım gerektirir\nSık Sorulan Sorular\nBedenim için hangi ölçüyü seçmeliyim?\nÜründeki numune S/36 bedendir ve bedenler Avrupa standartlarına göre belirlenmiştir, buna göre seçim yapabilirsiniz.\nKabanın bakımını nasıl yapmalıyım?\nÜrünün uzun ömürlü olması için kuru temizleme yöntemiyle temizlenmesi önerilir.\nEtiketi çıkardıktan sonra ürünü iade edebilir miyim?\nEtiketi sökülmüş ve kullanım hatası oluşmuş ürünlerden firmamız sorumlu değildir, bu nedenle etiketi çıkarmadan önce ürünü kontrol etmenizi öneririz.\nÜrün Bilgileri\nMankenin üzerindeki numune S/36 bedendir\nÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir\nKuru temizleme yapınız",
-      "url": "",
-      "category": "Kadın",
-      "grup": "dis",
-      "bedenler": [
-        {
-          "beden": "S",
-          "stok": 4,
-          "barkod": "2362506897279"
-        },
-        {
-          "beden": "M",
-          "stok": 5,
-          "barkod": "2362506897262"
-        },
-        {
-          "beden": "L",
-          "stok": 5,
-          "barkod": "2362506897255"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
       "id": "mm92539",
       "name": "Uzun Kaban – Camel",
       "price": 2999,
@@ -6252,7 +6218,7 @@
         },
         {
           "beden": "L",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505874059"
         },
         {
@@ -7085,7 +7051,7 @@
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 4,
           "barkod": "2362508504533"
         }
       ],
