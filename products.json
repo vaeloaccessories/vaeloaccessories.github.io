@@ -6126,11 +6126,6 @@
           "beden": "S",
           "stok": 1,
           "barkod": "2362505873915"
-        },
-        {
-          "beden": "M",
-          "stok": 1,
-          "barkod": "2362505873922"
         }
       ],
       "tedarik": "maxi"
@@ -6152,7 +6147,7 @@
       "bedenler": [
         {
           "beden": "XL",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505873984"
         }
       ],
@@ -6213,18 +6208,13 @@
         },
         {
           "beden": "M",
-          "stok": 2,
+          "stok": 1,
           "barkod": "2362505874042"
         },
         {
           "beden": "L",
           "stok": 2,
           "barkod": "2362505874059"
-        },
-        {
-          "beden": "XL",
-          "stok": 1,
-          "barkod": "2362505874066"
         }
       ],
       "tedarik": "maxi"
