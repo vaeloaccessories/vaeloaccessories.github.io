@@ -6110,7 +6110,7 @@
     {
       "id": "mm73405",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg",
         "https://api.sakans.com/storage/media/34/products/2wSzFVDDctMBw5SNmscb.jpg",
@@ -6133,7 +6133,7 @@
     {
       "id": "mm73406",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg",
         "https://api.sakans.com/storage/media/34/products/MZEYU4hsyRiyObnzrZ13.jpg",
@@ -6156,7 +6156,7 @@
     {
       "id": "mm73407",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Haki",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/media/34/products/GHGmPayG5CKpUWJyhW5z.jpg",
         "https://api.sakans.com/storage/media/34/products/cfwGR6AN7esJURjzpCKY.jpg",
@@ -6189,7 +6189,7 @@
     {
       "id": "mm73408",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kahverengi",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/media/34/products/2RTGCoRWZyqcYpRuIocI.jpg",
         "https://api.sakans.com/storage/media/34/products/ZAljNBodsx5giZ9oQTQk.jpg",
@@ -6207,13 +6207,8 @@
           "barkod": "2362505874035"
         },
         {
-          "beden": "M",
-          "stok": 1,
-          "barkod": "2362505874042"
-        },
-        {
           "beden": "L",
-          "stok": 2,
+          "stok": 1,
           "barkod": "2362505874059"
         }
       ],
@@ -6222,7 +6217,7 @@
     {
       "id": "mm73409",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kiremit",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/media/34/products/51br5flae2ZUXXBNX95y.jpg",
         "https://api.sakans.com/storage/media/34/products/9GuFVQZ9H1RlabSOcOGI.jpg",
