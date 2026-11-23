@@ -6126,6 +6126,11 @@
           "beden": "S",
           "stok": 1,
           "barkod": "2362505873915"
+        },
+        {
+          "beden": "XL",
+          "stok": 1,
+          "barkod": "2362505873946"
         }
       ],
       "tedarik": "maxi"
@@ -6175,12 +6180,17 @@
         },
         {
           "beden": "M",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505874004"
         },
         {
+          "beden": "L",
+          "stok": 4,
+          "barkod": "2362505874011"
+        },
+        {
           "beden": "XL",
-          "stok": 1,
+          "stok": 3,
           "barkod": "2362505874028"
         }
       ],
@@ -6203,7 +6213,7 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505874035"
         },
         {
@@ -7053,7 +7063,7 @@
         "https://api.sakans.com/storage/maximodena/xml2-7591/a4e864740f4bec53.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7591/c67eafac48befcbd.jpg"
       ],
-      "description": "Haki Jakarlı Balon Kollu Elbise\nKUMAŞ İÇERİĞİ\n%100 PolyesterMODEL ÖLÇÜLERİ\nBoyKiloKol UzunluğuGöğüsBelKalça163 cm51 kg56 cm84 cm63 cm96 cmMankenin üzerindeki numune S/36 bedendirÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir.\nKURU TEMİZLEME YAPINIZ",
+      "description": "Haki Jakarlı Balon Kollu Elbise\nMateryal ve Kalite\nElbise %100 polyester kumaştan üretilmiştir. Jakarlı dokusu sayesinde yüzeyinde belirgin bir desen ve dolgun bir his bırakır; bu da elbiseye kendine özgü bir duruş kazandırır.\nKalıp ve Beden Önerisi\nÜrünlerin bedenleri Avrupa beden standartlarındadır. Fotoğraflardaki numune S/36 bedendir ve 163 cm boyunda, 51 kg ağırlığındaki manken üzerinde sunulmuştur. Model ölçüleri olarak kol uzunluğu 56 cm, göğüs 84 cm, bel 63 cm ve kalça 96 cm'dir. Kendi ölçülerinizi bu değerlerle karşılaştırarak size en uygun bedeni seçebilirsiniz.\nKullanım Alanı\nBalon kol detayı ve jakarlı dokusuyla hem günlük kullanımda hem de şık bir görünüm gerektiren davetlerde rahatlıkla tercih edebileceğiniz çok yönlü bir elbisedir.\nKombin Önerisi\nHaki tonu, nötr ve toprak renklerle kolayca uyum sağlar. Topuklu ayakkabı ve zarif aksesuarlarla şık bir davet görünümü oluşturabilir; sade bir ceket eşliğinde daha rahat bir kombin tercih edebilirsiniz.\nÖne Çıkan Özellikler\nHaki renk\nJakarlı doku\nBalon kol detayı\n%100 polyester kumaş\nAvrupa beden standardı\nSık Sorulan Sorular\nElbisenin kumaş içeriği nedir?\nElbise %100 polyester kumaştan üretilmiştir.\nNasıl temizlenmelidir?\nÜrüne kuru temizleme yapılması önerilmektedir.\nHangi bedeni seçmeliyim?\nBedenler Avrupa beden standartlarındadır. Numune S/36 bedendir; model ölçülerini kendi ölçülerinizle karşılaştırarak uygun bedeni belirleyebilirsiniz.\nFotoğraftaki beden hangisi?\nMankenin üzerindeki numune S/36 bedendir.\nÜrün Bilgileri\nHaki Jakarlı Balon Kollu Elbise\nKUMAŞ İÇERİĞİ %100 Polyester\nMODEL ÖLÇÜLERİ: Boy 163 cm, Kilo 51 kg, Kol Uzunluğu 56 cm, Göğüs 84 cm, Bel 63 cm, Kalça 96 cm\nMankenin üzerindeki numune S/36 bedendir\nÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir.\nKURU TEMİZLEME YAPINIZ",
       "url": "",
       "category": "Kadın",
       "grup": "elbise",
