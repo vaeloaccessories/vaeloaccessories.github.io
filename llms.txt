@@ -347,7 +347,6 @@
 - [Kemerli Pelerin Kaban – Ekru](https://www.vaelo.com.tr/urun/kemerli-pelerin-kaban-ekru-vk005.html): Kadın kaban, 999 TL
 - [Püsküllü Triko Elbise – Bej](https://www.vaelo.com.tr/urun/puskullu-triko-elbise-bej-vk006.html): Kadın elbise, 999 TL
 - [Şardonlu Bomber Takım – Pembe](https://www.vaelo.com.tr/urun/sardonlu-bomber-takim-pembe-vk007.html): Kadın takım, 950 TL
-- [Kuşgözlü Kaşe Kaban – Gri](https://www.vaelo.com.tr/urun/kusgozlu-kase-kaban-gri-mm92626.html): Kadın kaban, 2399 TL
 - [Kuşgözlü Kaşe Kaban – Camel](https://www.vaelo.com.tr/urun/kusgozlu-kase-kaban-camel-mm92627.html): Kadın kaban, 2399 TL
 - [İki Düğmeli Manto – Camel](https://www.vaelo.com.tr/urun/iki-dugmeli-manto-camel-mm92632.html): Kadın manto, 2899 TL
 - [Uzun Kaban – Camel](https://www.vaelo.com.tr/urun/uzun-kaban-camel-mm92539.html): Kadın kaban, 2999 TL
@@ -364,9 +363,7 @@
 - [Tonaton Düğmeli Uzun Trençkot – Bej](https://www.vaelo.com.tr/urun/tonaton-dugmeli-uzun-trenckot-bej-mm93238.html): Kadın trençkot, 4699 TL
 - [Uzun Deri Trençkot – Siyah](https://www.vaelo.com.tr/urun/uzun-deri-trenckot-siyah-mm93240.html): Kadın trençkot, 4499 TL
 - [Uzun Deri Trençkot – Kahverengi](https://www.vaelo.com.tr/urun/uzun-deri-trenckot-kahverengi-mm93241.html): Kadın trençkot, 4499 TL
-- [Uzun Kemerli Trençkot – Camel](https://www.vaelo.com.tr/urun/uzun-kemerli-trenckot-camel-mm92623.html): Kadın trençkot, 3349 TL
 - [Uzun Kemerli Trençkot – Bej](https://www.vaelo.com.tr/urun/uzun-kemerli-trenckot-bej-mm92624.html): Kadın trençkot, 3349 TL
-- [Uzun Kemerli Trençkot – Haki](https://www.vaelo.com.tr/urun/uzun-kemerli-trenckot-haki-mm92625.html): Kadın trençkot, 3349 TL
 - [Yakası Çıtçıtlı Deri Ceket – Siyah](https://www.vaelo.com.tr/urun/yakasi-citcitli-deri-ceket-siyah-mm93317.html): Kadın ceket, 3349 TL
 - [Yakası Çıtçıtlı Deri Ceket – Kahverengi](https://www.vaelo.com.tr/urun/yakasi-citcitli-deri-ceket-kahverengi-mm93318.html): Kadın ceket, 3349 TL
 - [Koyun Yünü Yakalı Süet Ceket – Lacivert](https://www.vaelo.com.tr/urun/koyun-yunu-yakali-suet-ceket-lacivert-mm93327.html): Kadın ceket, 3749 TL
