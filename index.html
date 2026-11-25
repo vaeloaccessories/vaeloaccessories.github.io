@@ -576,6 +576,19 @@ fbq('track', 'PageView');
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var vcz=null;try{vcz=localStorage.getItem('vaelo-cerez')}catch(e){}var vcg=vcz==='kabul'?'granted':'denied';gtag('consent','default',{ad_storage:vcg,analytics_storage:vcg,ad_user_data:vcg,ad_personalization:vcg});</script>
 <script>(function(){function y(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-KW2TETDD7C';document.head.appendChild(s)}var c=null;try{c=localStorage.getItem('vaelo-cerez')}catch(e){}if(c==='kabul')y();else document.addEventListener('vaelo:cerez',y,{once:true})})();</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KW2TETDD7C');</script>
+<style id="urun-grid">
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:40px 14px!important}
+@media(min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:64px 32px!important}}
+@media(min-width:1700px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+.grid:not(.list-view) .item{margin-top:0!important;display:flex;flex-direction:column}
+.grid:not(.list-view) .ph{aspect-ratio:4/5;background:#fff}
+.grid:not(.list-view) .ph-inner{height:100%}
+.grid:not(.list-view) .ph img:first-child{width:100%;height:100%;object-fit:cover}
+.grid:not(.list-view) .item h3{font-size:1.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:18px}
+.grid:not(.list-view) .item .price{font-size:1.25rem}
+.grid:not(.list-view) .item .desc{-webkit-line-clamp:2;min-height:3em;font-size:.88rem;margin-bottom:16px}
+.grid:not(.list-view) .shop-btn{margin-top:auto}
+</style>
 </head>
 <body>
 
