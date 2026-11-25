@@ -288,7 +288,7 @@ if(/(^|\.)vaelo\.com\.tr$/.test(location.hostname)&&(location.protocol!=='https:
 
   // ---- ürün sayfası: beden seç + sepete ekle ----
   var info = document.querySelector('.info[data-id]');
-  if (info) {
+  if (info && !info.dataset.tukendi) {
     var secili = '', sizes = info.querySelector('.sizes');
     sizes.classList.add('vs-sizes');
     sizes.querySelectorAll('span').forEach(function (sp) {

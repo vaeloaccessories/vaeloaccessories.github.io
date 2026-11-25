@@ -1280,9 +1280,9 @@ function productCard(p, idx) {
   return '<article class="item" data-price="' + price + '" data-sold="' + sold + '" data-idx="' + (idx || 0) + '"' + (p.grup ? ' data-grup="' + esc(p.grup) + '"' : '') + '><a class="ph" href="' + esc(url) + '" tabindex="-1" aria-hidden="true"><div class="ph-inner">' +
     imgs.slice(0, 2).map(function (u) { return '<img src="' + esc(u) + '" alt="' + esc(altText(name)) + '" loading="lazy" referrerpolicy="no-referrer">'; }).join('') +
     '</div></a>' + (p.rozet ? '<p class="rozet">' + esc(p.rozet) + '</p>' : '') + '<h3>' + esc(name) + '</h3>' +
-    (price ? '<p class="price"><span class="cur">₺</span>' + fmtPrice(price) + '</p>' : '') +
+    (price ? '<p class="price"><span class="cur">₺</span>' + fmtPrice(price) + (p.tukendi ? ' <b style="color:#d11a1a;font-size:.75em;letter-spacing:.08em">SOLD OUT</b>' : '') + '</p>' : '') +
     (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
-    '<a class="shop-btn" href="' + esc(url) + '">Satın Al <span class="ar" aria-hidden="true">→</span></a></article>';
+    '<a class="shop-btn" href="' + esc(url) + '">' + (p.tukendi ? 'Sold Out' : 'Satın Al <span class="ar" aria-hidden="true">→</span>') + '</a></article>';
 }
 
 // ---- pages: gateway (home) / Signature / Street Division ----

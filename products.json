@@ -5619,7 +5619,8 @@
       "description": "Tamamı beyaz, sekizgen formlu, minimal ve cesur bir saat.\nSade rakamlı kadranı ve bütünleşik bilekliğiyle çağdaş bir ifade; beyaz kombinlerin tamamlayıcısı.\nKadran ve Tasarım\nKadran rengi: beyaz · kadranda VAELO V imzası.\nSekizgen kasa ve bütünleşik bileklik.\nKasa ve Bileklik\nSade rakamlı kadran.\nMekanizma ve Garanti\nPilli (quartz) mekanizma.\nSu geçirmezlik: 5 ATM (50 metre); günlük kullanımda el yıkama ve yağmura dayanıklıdır.\n2 yıl garanti.\nÖne Çıkanlar\nHafif ve rahat kullanım.\nÖzel üretimdir; teslimat süresi 4–7 iş günüdür.\nTüm siparişlerde kargo ücretsiz, 14 gün iade.",
       "category": "Saat",
       "grup": "signature",
-      "sold": 17
+      "sold": 17,
+      "tukendi": true
     },
     {
       "id": "71962",

@@ -97,7 +97,7 @@ function page(p) {
   const ld = {
     '@context': 'https://schema.org', '@type': 'Product', name: 'VAELO ' + name, sku: String(p.id),
     category: kind(p.name), image: imgs, description: plain.slice(0, 500), brand: { '@type': 'Brand', name: 'VAELO' },
-    offers: { '@type': 'Offer', url, priceCurrency: 'TRY', price: String(p.price), availability: 'https://schema.org/InStock',
+    offers: { '@type': 'Offer', url, priceCurrency: 'TRY', price: String(p.price), availability: p.tukendi ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       shippingDetails: { '@type': 'OfferShippingDetails', shippingRate: { '@type': 'MonetaryAmount', value: String(ship), currency: 'TRY' },
         shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'TR' } },
@@ -236,7 +236,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
   <div class="gallery">
     ${imgs.map((u, i) => `<img src="${esc(u)}" alt="VAELO ${esc(name)} – premium ${kindLow(p.name)}${i ? ' (' + (i + 1) + ')' : ''}" ${i ? 'loading="lazy" ' : ''}referrerpolicy="no-referrer">` + (i === 0 && p.video ? `\n    <video src="${esc(p.video)}" poster="${esc(imgs[1] || u)}" muted autoplay loop playsinline preload="metadata" aria-label="VAELO ${esc(name)} ürün videosu"></video>` : '')).join('\n    ')}
   </div>
-  <div class="info" data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
+  <div class="info"${p.tukendi ? ' data-tukendi="1"' : ''} data-id="${esc(p.id)}" data-name="VAELO ${esc(name)}" data-price="${Number(p.price)}" data-img="${esc(imgs[0] || '')}">
     <p class="cat" lang="en">${isKadin(p) ? esc('VAELO Kadın · ' + (KGRUP[p.grup] || kind(p.name))) : isWatch(p) ? esc('VAELO Saat · ' + (GRUP[p.grup] || 'Koleksiyon')) : esc(/street/i.test(p.category || '') ? 'VAELO // Street Division' : 'Signature Premium') + ' · ' + kind(p.name)}</p>
     <h1>VAELO ${esc(name)}</h1>
     <p class="price">₺${fmt(p.price)}<small>KDV dahil</small></p>
@@ -246,7 +246,7 @@ fbq('track', 'ViewContent', { content_ids: ['${esc(p.id)}'], content_type: 'prod
     ${colorHtml}
     ${sizesHtml}
     ${sizeTable(p.name)}
-    <a class="buy" href="/#${back(p)}" rel="noopener">Satın Al</a>
+    ${p.tukendi ? `<p class="buy" style="opacity:.45;cursor:not-allowed">Sold Out</p>` : `<a class="buy" href="/#${back(p)}" rel="noopener">Satın Al</a>`}
     <a class="wa" href="https://wa.me/905513708320?text=${encodeURIComponent('Merhaba, VAELO ' + name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">Bize Ulaşın</a>
     ${isKadin(p) ? `<details class="note"><summary>Kargo, iade ve ödeme detayları</summary>Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2-4 iş günü içinde kargoya verilir. Teslimattan itibaren 14 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 14 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></details>` : isWatch(p) ? `<details class="note"><summary>Kargo, iade ve ödeme detayları</summary>Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Saatler sınırlı sayıda ve siparişinize özel hazırlanır; teslimat süresi 4–7 iş günüdür. Hediye olacaksa yetişmesi gereken tarihi bize iletebilirsiniz. Teslimattan itibaren 14 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış ve orijinal durumundaysa iade onaylanır. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></details>` : `<details class="note"><summary>Kargo, iade ve ödeme detayları</summary>Ödeme PayTR güvencesiyle yapılır. Tüm siparişlerde kargo ücretsiz. Siparişler 2–4 iş günü içinde kargoya verilir. Ürünler siparişe özel üretilir. Teslimattan itibaren 14 gün içinde iade talebi oluşturabilirsiniz, iade kargosu ücretsizdir; ürün bize ulaştıktan sonra incelenir, kullanılmamış, yıkanmamış ve etiketi sökülmemişse iade onaylanır. 14 gün içinde beden değişimi de yapılabilir. <a href="/iade-degisim.html">İade Politikası</a> · <a href="/mesafeli-satis-sozlesmesi.html">Mesafeli Satış Sözleşmesi</a></details>`}
     <ul class="guven" style="list-style:none;padding:14px 16px;margin:16px 0;border:1px solid #DFDBD2;font-size:13px;line-height:1.9">
@@ -367,7 +367,7 @@ for (const p of list) {
 <g:link>${SITE}urun/${slug(p)}.html</g:link>
 <g:image_link>${x(imgs[0])}</g:image_link>
 ${imgs.slice(1, 10).map((u) => `<g:additional_image_link>${x(u)}</g:additional_image_link>`).join('\n')}
-<g:availability>in_stock</g:availability>
+<g:availability>${p.tukendi ? 'out_of_stock' : 'in_stock'}</g:availability>
 <g:price>${Number(p.price).toFixed(2)} TRY</g:price>
 <g:brand>VAELO</g:brand>
 <g:condition>new</g:condition>
