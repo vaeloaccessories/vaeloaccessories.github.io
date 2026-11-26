@@ -845,8 +845,44 @@ async function yonetim(request, env, yol) {
   return json({ ok: false }, 404);
 }
 
+// ---- Trendyol siparişleri → yönetim uygulaması (26 Kasım 2026) ----
+// 5 dakikada bir (Cron "*/5 * * * *") son 2 günün Trendyol siparişlerine bakar; yeni sipariş gelince bildirim atar
+// ve Firestore'a "TY<sipariş no>" olarak yazar. Ayarlar (gizli): TRENDYOL_SATICI_ID, TRENDYOL_API_KEY, TRENDYOL_API_SECRET.
+const TY_DURUM = { Created: 'odendi', Picking: 'odendi', Invoiced: 'odendi', Shipped: 'kargoda', AtCollectionPoint: 'kargoda', Delivered: 'teslim', Cancelled: 'iptal', UnSupplied: 'iptal', UnDelivered: 'iptal', Returned: 'iptal' };
+async function trendyolKontrol(env) {
+  const id = String(env.TRENDYOL_SATICI_ID || '').trim();
+  if (!id || !env.TRENDYOL_API_KEY || !env.TRENDYOL_API_SECRET || !env.SIPARISLER || !env.FIREBASE_SA) return;
+  const r = await fetch(`https://apigw.trendyol.com/integration/order/sellers/${id}/orders?startDate=${Date.now() - 2 * 86400000}&endDate=${Date.now()}&orderByField=PackageLastModifiedDate&orderByDirection=DESC&size=100`, {
+    headers: { 'Authorization': 'Basic ' + btoa(String(env.TRENDYOL_API_KEY).trim() + ':' + String(env.TRENDYOL_API_SECRET).trim()), 'User-Agent': id + ' - SelfIntegration' } });
+  if (!r.ok) { console.log('Trendyol hata:', r.status, (await r.text()).slice(0, 200)); return; }
+  const H = { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' };
+  const s = (x) => ({ stringValue: String(x ?? '') });
+  for (const p of (await r.json()).content || []) {
+    const no = 'TY' + p.orderNumber, durum = TY_DURUM[p.status] || 'odendi';
+    const once = await env.SIPARISLER.get('ty:' + no);
+    if (once === p.status) continue;
+    const adres = `${FS}/siparisler/${no}`;
+    if (!once) {
+      const a = p.shipmentAddress || {};
+      const w = await fetch(adres, { method: 'PATCH', headers: H, body: JSON.stringify({ fields: {
+        t: { timestampValue: new Date(p.orderDate || Date.now()).toISOString() }, durum: s(durum), kaynak: s('trendyol'),
+        toplam: { doubleValue: Number(p.totalPrice) || 0 }, ad: s(`${p.customerFirstName || ''} ${p.customerLastName || ''}`.trim()),
+        email: s(''), tel: s(''), il: s(a.city), ilce: s(a.district), adres: s(a.fullAddress || a.address1), hediye: { booleanValue: false }, uid: { nullValue: null },
+        urunler: { arrayValue: { values: (p.lines || []).map((l) => ({ mapValue: { fields: { id: s(l.merchantSku || l.barcode), ad: s(l.productName), beden: s(l.productSize), adet: { integerValue: String(l.quantity || 1) }, fiyat: { doubleValue: Number(l.price) || 0 } } } })) } },
+      } }) });
+      if (!w.ok) { console.log('Trendyol Firestore:', no, w.status); continue; }
+      if (['odendi'].includes(durum)) await bildirimGonder(env, { baslik: `Trendyol siparişi · ${tl(p.totalPrice)}`, metin: `${p.customerFirstName || 'Müşteri'} · ${(p.lines || []).reduce((t, l) => t + (l.quantity || 1), 0)} ürün${(p.shipmentAddress || {}).city ? ' · ' + p.shipmentAddress.city : ''}`, url: '/yonetim/' });
+    } else {
+      await fetch(adres + '?updateMask.fieldPaths=durum', { method: 'PATCH', headers: H, body: JSON.stringify({ fields: { durum: s(durum) } }) });
+    }
+    await env.SIPARISLER.put('ty:' + no, p.status, { expirationTtl: 60 * 60 * 24 * 30 });
+  }
+}
+
 export default {
-  async scheduled(event, env, ctx) { ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message)), yarimOdemeMailleri(env).catch((err) => console.log('Yarım ödeme mailleri:', err.message))])); },
+  async scheduled(event, env, ctx) {
+    if (event.cron === '*/5 * * * *') { ctx.waitUntil(trendyolKontrol(env).catch((err) => console.log('Trendyol:', err.message))); return; }
+    ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message)), yarimOdemeMailleri(env).catch((err) => console.log('Yarım ödeme mailleri:', err.message))])); },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
@@ -857,7 +893,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/cark') return carkCevir(request, env);
     if (request.method === 'POST' && url.pathname.startsWith('/yonetim/')) return yonetim(request, env, url.pathname.slice(9));
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 8, yonetim: true, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 9, yonetim: true, trendyol: !!env.TRENDYOL_API_KEY, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
     if (request.method === 'GET' && url.pathname === '/kupon') {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);
