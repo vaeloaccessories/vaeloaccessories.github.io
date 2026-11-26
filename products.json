@@ -4,7 +4,7 @@
     {
       "kod": "SIG3",
       "ad": "Signature 3'lü Paket",
-      "fiyat": 3599,
+      "fiyat": 4149,
       "urunler": [
         "50995025",
         "50995013",
@@ -17,7 +17,7 @@
     {
       "kod": "STR3",
       "ad": "Street Division Hoodie 3'lü Paket",
-      "fiyat": 3899,
+      "fiyat": 4499,
       "urunler": [
         "51195056",
         "51194901",
@@ -30,7 +30,7 @@
     {
       "kod": "TIS3",
       "ad": "Tişört 3'lü Paket",
-      "fiyat": 2399,
+      "fiyat": 2799,
       "urunler": [
         "50994670",
         "50994608",
@@ -44,7 +44,7 @@
     {
       "id": "50995025",
       "name": "Vaelo Signature Sweatshirt – Beyaz",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50995025_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50995025_model.webp",
@@ -57,7 +57,7 @@
     {
       "id": "50995013",
       "name": "Vaelo Signature Sweatshirt – Lacivert",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50995013_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50995013_model.webp",
@@ -70,7 +70,7 @@
     {
       "id": "50994943",
       "name": "Vaelo Signature Sweatshirt – Siyah",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50994943_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50994943_model.webp",
@@ -83,7 +83,7 @@
     {
       "id": "50994670",
       "name": "Vaelo Signature Tişört – Beyaz",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50994670_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50994670_model.webp",
@@ -96,7 +96,7 @@
     {
       "id": "50994608",
       "name": "Vaelo Signature Tişört – Siyah",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50994608_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50994608_model.webp",
@@ -109,7 +109,7 @@
     {
       "id": "50979137",
       "name": "Vaelo Signature Hoodie – Lacivert",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50979137_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50979137_model.webp",
@@ -122,7 +122,7 @@
     {
       "id": "50979120",
       "name": "Vaelo Signature Hoodie – Beyaz",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50979120_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50979120_model.webp",
@@ -135,7 +135,7 @@
     {
       "id": "50979076",
       "name": "Vaelo Signature Hoodie – Siyah",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/50979076_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/50979076_model.webp",
@@ -148,7 +148,7 @@
     {
       "id": "51195056",
       "name": "Vaelo Street Division Hoodie – Lacivert / Etiket Logo",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/51195056_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/51195056_model.webp",
@@ -161,7 +161,7 @@
     {
       "id": "51194906",
       "name": "Vaelo Street Division Tişört – Beyaz / Grafik Baskı",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_df98479b60edff14aeeb6b6865056158.png",
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_ebbfc7fc684859a558f747cfdc723a82.jpg"
@@ -173,7 +173,7 @@
     {
       "id": "51194901",
       "name": "Vaelo Street Division Hoodie – Lacivert / Oval Logo",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_790d2db627bb039f02c1c390b6d496ed.png",
         "https://www.vaelo.com.tr/assets/urun/51194901_model.webp",
@@ -186,7 +186,7 @@
     {
       "id": "51194726",
       "name": "Vaelo Street Division Hoodie – Siyah / Oval Logo",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_50f6ee0fd4d6fc5f892898525a7a5e83.png",
         "https://www.vaelo.com.tr/assets/urun/51194726_model.webp",
@@ -199,7 +199,7 @@
     {
       "id": "51194538",
       "name": "Vaelo Street Division Tişört – Siyah / V Logo",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/51194538_0.png",
         "https://www.vaelo.com.tr/assets/urun/51194538_1.png"
@@ -211,7 +211,7 @@
     {
       "id": "51195135",
       "name": "Vaelo Street Division Hoodie – Siyah / Etiket Logo",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/51195135_0.jpg",
         "https://www.vaelo.com.tr/assets/urun/51195135_model.webp",
@@ -224,7 +224,7 @@
     {
       "id": "51281543",
       "name": "Vaelo Street Division Hoodie – Lacivert / Altın Grafik",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_c6af483e20ee4fd5e1a2cc8aae0ee3d8.png",
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_15cbfcd0c79aec0cd166fc387bf24881.png"
@@ -236,7 +236,7 @@
     {
       "id": "51196509",
       "name": "Vaelo Street Division Tişört – Siyah / Grafik Baskı",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_edc6b982a66547534b06c4c9d70ad8b9.png",
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_fcafbe316be4c1b3630b4e56e3d05878.png"
@@ -248,7 +248,7 @@
     {
       "id": "51315446",
       "name": "Vaelo Street Division Hoodie – Siyah / Altın Grafik",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_ea4795d1b2e7ea96501ccf42678dc3fe.png",
         "https://cdn.shopier.app/pictures_large/VAELOaccessories_703c44e3ebfab6956cc4fa140b2f01a9.png"
@@ -260,7 +260,7 @@
     {
       "id": "VR025",
       "name": "Vaelo Signature Hoodie – Siyah / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160075_6af0b5cb31255.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -280,7 +280,7 @@
     {
       "id": "VR026",
       "name": "Vaelo Signature Hoodie – Lacivert / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160075_6af0b5cb786dd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -300,7 +300,7 @@
     {
       "id": "VR027",
       "name": "Vaelo Signature Hoodie – Beyaz / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160075_6af0b5cbc41a0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -320,7 +320,7 @@
     {
       "id": "VR028",
       "name": "Vaelo Signature Sweatshirt – Siyah / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160076_6af0b5cc02bb4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -340,7 +340,7 @@
     {
       "id": "VR029",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160076_6af0b5cc35b68.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -360,7 +360,7 @@
     {
       "id": "VR030",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Astronomical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160076_6af0b5cc6a8cf.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -380,7 +380,7 @@
     {
       "id": "VR031",
       "name": "Vaelo Signature Tişört – Siyah / Astronomical",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160076_6af0b5cc9b483.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -400,7 +400,7 @@
     {
       "id": "VR032",
       "name": "Vaelo Signature Tişört – Beyaz / Astronomical",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160076_6af0b5ccd67b5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -420,7 +420,7 @@
     {
       "id": "VR041",
       "name": "Vaelo Signature Hoodie – Siyah / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160082_6af0b5d2e37d4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -440,7 +440,7 @@
     {
       "id": "VR042",
       "name": "Vaelo Signature Hoodie – Lacivert / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160083_6af0b5d32782a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -460,7 +460,7 @@
     {
       "id": "VR043",
       "name": "Vaelo Signature Hoodie – Beyaz / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160083_6af0b5d36f065.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -480,7 +480,7 @@
     {
       "id": "VR044",
       "name": "Vaelo Signature Sweatshirt – Siyah / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160083_6af0b5d3ac6d0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -500,7 +500,7 @@
     {
       "id": "VR045",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160083_6af0b5d3dd9b4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -520,7 +520,7 @@
     {
       "id": "VR046",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Nocturne",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160084_6af0b5d4299ed.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -540,7 +540,7 @@
     {
       "id": "VR047",
       "name": "Vaelo Signature Tişört – Siyah / Nocturne",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160084_6af0b5d474fec.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -560,7 +560,7 @@
     {
       "id": "VR048",
       "name": "Vaelo Signature Tişört – Beyaz / Nocturne",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160084_6af0b5d4a8172.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -580,7 +580,7 @@
     {
       "id": "VR057",
       "name": "Vaelo Signature Hoodie – Siyah / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160093_6af0b5ddcae0d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -600,7 +600,7 @@
     {
       "id": "VR058",
       "name": "Vaelo Signature Hoodie – Lacivert / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160094_6af0b5de0db09.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -620,7 +620,7 @@
     {
       "id": "VR059",
       "name": "Vaelo Signature Hoodie – Beyaz / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160094_6af0b5de45975.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -640,7 +640,7 @@
     {
       "id": "VR060",
       "name": "Vaelo Signature Sweatshirt – Siyah / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160094_6af0b5de75f0b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -660,7 +660,7 @@
     {
       "id": "VR061",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160094_6af0b5deb57e7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -680,7 +680,7 @@
     {
       "id": "VR062",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Gold Minimal",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160095_6af0b5df08e22.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -700,7 +700,7 @@
     {
       "id": "VR063",
       "name": "Vaelo Signature Tişört – Siyah / Gold Minimal",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160095_6af0b5df45e12.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -720,7 +720,7 @@
     {
       "id": "VR064",
       "name": "Vaelo Signature Tişört – Beyaz / Gold Minimal",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160095_6af0b5df7c958.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -740,7 +740,7 @@
     {
       "id": "VR113",
       "name": "Vaelo Signature Hoodie – Siyah / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160127_6af0b5ff4609a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -760,7 +760,7 @@
     {
       "id": "VR114",
       "name": "Vaelo Signature Hoodie – Lacivert / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160127_6af0b5ff7d7af.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -780,7 +780,7 @@
     {
       "id": "VR115",
       "name": "Vaelo Signature Hoodie – Beyaz / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160127_6af0b5ffb83c9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -800,7 +800,7 @@
     {
       "id": "VR116",
       "name": "Vaelo Signature Sweatshirt – Siyah / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160128_6af0b600266be.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -820,7 +820,7 @@
     {
       "id": "VR117",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160128_6af0b60086bfd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -840,7 +840,7 @@
     {
       "id": "VR118",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Supply Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160128_6af0b600bfbb0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -860,7 +860,7 @@
     {
       "id": "VR119",
       "name": "Vaelo Signature Tişört – Siyah / Supply Club",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160129_6af0b60111af6.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -880,7 +880,7 @@
     {
       "id": "VR120",
       "name": "Vaelo Signature Tişört – Beyaz / Supply Club",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160129_6af0b6014777d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -900,7 +900,7 @@
     {
       "id": "VR137",
       "name": "Vaelo Signature Hoodie – Siyah / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160143_6af0b60f76c81.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -920,7 +920,7 @@
     {
       "id": "VR138",
       "name": "Vaelo Signature Hoodie – Lacivert / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160144_6af0b61005b4a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -940,7 +940,7 @@
     {
       "id": "VR139",
       "name": "Vaelo Signature Hoodie – Beyaz / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160144_6af0b6109b4a1.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -960,7 +960,7 @@
     {
       "id": "VR140",
       "name": "Vaelo Signature Sweatshirt – Siyah / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160144_6af0b610e1d1e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -980,7 +980,7 @@
     {
       "id": "VR141",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160145_6af0b61121728.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1000,7 +1000,7 @@
     {
       "id": "VR142",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Maison Silent Luxury",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160145_6af0b611899e9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -1020,7 +1020,7 @@
     {
       "id": "VR143",
       "name": "Vaelo Signature Tişört – Siyah / Maison Silent Luxury",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160145_6af0b611d5cba.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1040,7 +1040,7 @@
     {
       "id": "VR144",
       "name": "Vaelo Signature Tişört – Beyaz / Maison Silent Luxury",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160146_6af0b61214ed8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1060,7 +1060,7 @@
     {
       "id": "VR145",
       "name": "Vaelo Signature Hoodie – Siyah / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160147_6af0b613d8670.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1080,7 +1080,7 @@
     {
       "id": "VR146",
       "name": "Vaelo Signature Hoodie – Lacivert / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160148_6af0b6142bbec.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -1100,7 +1100,7 @@
     {
       "id": "VR147",
       "name": "Vaelo Signature Hoodie – Beyaz / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160148_6af0b61471144.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -1120,7 +1120,7 @@
     {
       "id": "VR148",
       "name": "Vaelo Signature Sweatshirt – Siyah / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160148_6af0b614a808d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1140,7 +1140,7 @@
     {
       "id": "VR149",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160148_6af0b614dbcc9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1160,7 +1160,7 @@
     {
       "id": "VR150",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Line Art",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160149_6af0b6151db6a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -1180,7 +1180,7 @@
     {
       "id": "VR151",
       "name": "Vaelo Signature Tişört – Siyah / Line Art",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160149_6af0b6154dfd3.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1200,7 +1200,7 @@
     {
       "id": "VR152",
       "name": "Vaelo Signature Tişört – Beyaz / Line Art",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160149_6af0b61580b1b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1220,7 +1220,7 @@
     {
       "id": "VR161",
       "name": "Vaelo Signature Hoodie – Siyah / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160157_6af0b61d669f7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1240,7 +1240,7 @@
     {
       "id": "VR162",
       "name": "Vaelo Signature Hoodie – Lacivert / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160157_6af0b61d9a9d8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -1260,7 +1260,7 @@
     {
       "id": "VR163",
       "name": "Vaelo Signature Hoodie – Beyaz / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160157_6af0b61de42b3.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -1280,7 +1280,7 @@
     {
       "id": "VR164",
       "name": "Vaelo Signature Sweatshirt – Siyah / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160158_6af0b61e25507.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1300,7 +1300,7 @@
     {
       "id": "VR165",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160158_6af0b61e59aef.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1320,7 +1320,7 @@
     {
       "id": "VR166",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Architectural",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160158_6af0b61e8d61f.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -1340,7 +1340,7 @@
     {
       "id": "VR167",
       "name": "Vaelo Signature Tişört – Siyah / Architectural",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160158_6af0b61ebd30e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1360,7 +1360,7 @@
     {
       "id": "VR168",
       "name": "Vaelo Signature Tişört – Beyaz / Architectural",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160158_6af0b61eede1a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1380,7 +1380,7 @@
     {
       "id": "VD2601",
       "name": "Vaelo Signature Hoodie – Lacivert / Social Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160405_6af0b715332f4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -1400,7 +1400,7 @@
     {
       "id": "VD2602",
       "name": "Vaelo Signature Hoodie – Beyaz / Maison",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160406_6af0b7169edd0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -1420,7 +1420,7 @@
     {
       "id": "VD2603",
       "name": "Vaelo Signature Hoodie – Siyah / Country Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160407_6af0b717d24b2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1440,7 +1440,7 @@
     {
       "id": "VD2604",
       "name": "Vaelo Signature Hoodie – Siyah / Grand Hotel",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160408_6af0b718c1578.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1460,7 +1460,7 @@
     {
       "id": "VD2605",
       "name": "Vaelo Signature Hoodie – Beyaz / Riviera",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160409_6af0b71990149.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -1480,7 +1480,7 @@
     {
       "id": "VD2606",
       "name": "Vaelo Signature Hoodie – Siyah / Old Soul",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160410_6af0b71a5e8a9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1500,7 +1500,7 @@
     {
       "id": "VD2607",
       "name": "Vaelo Signature Hoodie – Lacivert / Racquet Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160411_6af0b71b3f53a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972350f5.jpg"
@@ -1520,7 +1520,7 @@
     {
       "id": "VD2608",
       "name": "Vaelo Signature Hoodie – Beyaz / Big V",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160412_6af0b71c3151c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972a4cdf.jpg"
@@ -1540,7 +1540,7 @@
     {
       "id": "VD2609",
       "name": "Vaelo Signature Hoodie – Siyah / Members Only",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160413_6af0b71d1ec9a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1560,7 +1560,7 @@
     {
       "id": "VD2610",
       "name": "Vaelo Signature Hoodie – Siyah / Après Ski",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160414_6af0b71e21468.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161009_6af0b971f1162.jpg"
@@ -1580,7 +1580,7 @@
     {
       "id": "VD2611",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Academy",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160415_6af0b71f72da9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1600,7 +1600,7 @@
     {
       "id": "VD2612",
       "name": "Vaelo Signature Sweatshirt – Siyah / World Tour",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160416_6af0b720a8886.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1620,7 +1620,7 @@
     {
       "id": "VD2613",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Less But Better",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160417_6af0b721d7988.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -1640,7 +1640,7 @@
     {
       "id": "VD2614",
       "name": "Vaelo Signature Sweatshirt – Siyah / Olive Branch",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160418_6af0b722c9573.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1660,7 +1660,7 @@
     {
       "id": "VD2615",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Hotel Key",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160419_6af0b723ac992.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1680,7 +1680,7 @@
     {
       "id": "VD2616",
       "name": "Vaelo Signature Sweatshirt – Siyah / Serif Name",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160420_6af0b7247efdc.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1700,7 +1700,7 @@
     {
       "id": "VD2617",
       "name": "Vaelo Signature Sweatshirt – Beyaz / Yacht Club",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160421_6af0b7259eb06.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97361f66.jpg"
@@ -1720,7 +1720,7 @@
     {
       "id": "VD2618",
       "name": "Vaelo Signature Sweatshirt – Siyah / Bon Vivant",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160422_6af0b7266e1a9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1740,7 +1740,7 @@
     {
       "id": "VD2619",
       "name": "Vaelo Signature Sweatshirt – Siyah / Private Member",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160423_6af0b727471e8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161010_6af0b972e001c.jpg"
@@ -1760,7 +1760,7 @@
     {
       "id": "VD2620",
       "name": "Vaelo Signature Sweatshirt – Lacivert / Weekend",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160424_6af0b7281ba59.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b97324935.jpg"
@@ -1780,7 +1780,7 @@
     {
       "id": "VD2621",
       "name": "Vaelo Signature Tişört – Beyaz / Wellness Club",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160425_6af0b72922c35.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1800,7 +1800,7 @@
     {
       "id": "VD2622",
       "name": "Vaelo Signature Tişört – Siyah / Est Stack",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160426_6af0b72a20119.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1820,7 +1820,7 @@
     {
       "id": "VD2623",
       "name": "Vaelo Signature Tişört – Beyaz / With Love",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160426_6af0b72af08eb.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1840,7 +1840,7 @@
     {
       "id": "VD2624",
       "name": "Vaelo Signature Tişört – Beyaz / Greetings",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160427_6af0b72bc28c1.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1860,7 +1860,7 @@
     {
       "id": "VD2625",
       "name": "Vaelo Signature Tişört – Siyah / Espresso Martini",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160428_6af0b72c94c9d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1880,7 +1880,7 @@
     {
       "id": "VD2626",
       "name": "Vaelo Signature Tişört – Beyaz / Golf",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160429_6af0b72d74abb.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1900,7 +1900,7 @@
     {
       "id": "VD2627",
       "name": "Vaelo Signature Tişört – Siyah / Calm",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160430_6af0b72ea8676.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973945b4.jpg"
@@ -1920,7 +1920,7 @@
     {
       "id": "VD2628",
       "name": "Vaelo Signature Tişört – Beyaz / Monogram Seal",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160432_6af0b7302be1e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1940,7 +1940,7 @@
     {
       "id": "VD2630",
       "name": "Vaelo Signature Tişört – Beyaz / Signature Script",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160433_6af0b731131a5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161011_6af0b973c6beb.jpg"
@@ -1960,7 +1960,7 @@
     {
       "id": "VR001",
       "name": "Vaelo Street Division Hoodie – Siyah / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160058_6af0b5ba868a2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -1980,7 +1980,7 @@
     {
       "id": "VR002",
       "name": "Vaelo Street Division Hoodie – Lacivert / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160058_6af0b5bac06b9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2000,7 +2000,7 @@
     {
       "id": "VR003",
       "name": "Vaelo Street Division Hoodie – Beyaz / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160059_6af0b5bb0e518.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2020,7 +2020,7 @@
     {
       "id": "VR004",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160059_6af0b5bb5a2b7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2040,7 +2040,7 @@
     {
       "id": "VR005",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160059_6af0b5bb96e8c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2060,7 +2060,7 @@
     {
       "id": "VR006",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Globe Archive",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160059_6af0b5bbd141c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2080,7 +2080,7 @@
     {
       "id": "VR007",
       "name": "Vaelo Street Division Tişört – Siyah / Globe Archive",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160060_6af0b5bc19393.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2100,7 +2100,7 @@
     {
       "id": "VR008",
       "name": "Vaelo Street Division Tişört – Beyaz / Globe Archive",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160060_6af0b5bc6acdf.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2120,7 +2120,7 @@
     {
       "id": "VR009",
       "name": "Vaelo Street Division Hoodie – Siyah / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160067_6af0b5c36443c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2140,7 +2140,7 @@
     {
       "id": "VR010",
       "name": "Vaelo Street Division Hoodie – Lacivert / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160067_6af0b5c3b9198.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2160,7 +2160,7 @@
     {
       "id": "VR011",
       "name": "Vaelo Street Division Hoodie – Beyaz / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160068_6af0b5c423cc5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2180,7 +2180,7 @@
     {
       "id": "VR012",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160068_6af0b5c45d61b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2200,7 +2200,7 @@
     {
       "id": "VR013",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160068_6af0b5c49c56a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2220,7 +2220,7 @@
     {
       "id": "VR014",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Supply Circle",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160068_6af0b5c4d0f37.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2240,7 +2240,7 @@
     {
       "id": "VR015",
       "name": "Vaelo Street Division Tişört – Siyah / Supply Circle",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160069_6af0b5c51242a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2260,7 +2260,7 @@
     {
       "id": "VR016",
       "name": "Vaelo Street Division Tişört – Beyaz / Supply Circle",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160069_6af0b5c548223.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2280,7 +2280,7 @@
     {
       "id": "VR017",
       "name": "Vaelo Street Division Hoodie – Siyah / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160072_6af0b5c873821.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2300,7 +2300,7 @@
     {
       "id": "VR018",
       "name": "Vaelo Street Division Hoodie – Lacivert / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160072_6af0b5c8ac44c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2320,7 +2320,7 @@
     {
       "id": "VR019",
       "name": "Vaelo Street Division Hoodie – Beyaz / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160072_6af0b5c8f2df5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2340,7 +2340,7 @@
     {
       "id": "VR020",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160073_6af0b5c9300ac.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2360,7 +2360,7 @@
     {
       "id": "VR021",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160073_6af0b5c9670b8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2380,7 +2380,7 @@
     {
       "id": "VR022",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Botanical",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160073_6af0b5c99dfc1.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2400,7 +2400,7 @@
     {
       "id": "VR023",
       "name": "Vaelo Street Division Tişört – Siyah / Botanical",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160073_6af0b5c9d5fe7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2420,7 +2420,7 @@
     {
       "id": "VR024",
       "name": "Vaelo Street Division Tişört – Beyaz / Botanical",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160074_6af0b5ca18213.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2440,7 +2440,7 @@
     {
       "id": "VR033",
       "name": "Vaelo Street Division Hoodie – Siyah / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160079_6af0b5cf85343.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2460,7 +2460,7 @@
     {
       "id": "VR034",
       "name": "Vaelo Street Division Hoodie – Lacivert / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160079_6af0b5cfbbd9e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2480,7 +2480,7 @@
     {
       "id": "VR035",
       "name": "Vaelo Street Division Hoodie – Beyaz / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160080_6af0b5d0096f4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2500,7 +2500,7 @@
     {
       "id": "VR036",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160080_6af0b5d04ad0b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2520,7 +2520,7 @@
     {
       "id": "VR037",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160080_6af0b5d088bee.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2540,7 +2540,7 @@
     {
       "id": "VR038",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Maison Renaissance",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160080_6af0b5d0c92fc.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2560,7 +2560,7 @@
     {
       "id": "VR039",
       "name": "Vaelo Street Division Tişört – Siyah / Maison Renaissance",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160081_6af0b5d109aba.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2580,7 +2580,7 @@
     {
       "id": "VR040",
       "name": "Vaelo Street Division Tişört – Beyaz / Maison Renaissance",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160081_6af0b5d14080d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2600,7 +2600,7 @@
     {
       "id": "VR049",
       "name": "Vaelo Street Division Hoodie – Siyah / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160090_6af0b5da0ef17.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2620,7 +2620,7 @@
     {
       "id": "VR050",
       "name": "Vaelo Street Division Hoodie – Lacivert / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160090_6af0b5da421b6.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2640,7 +2640,7 @@
     {
       "id": "VR051",
       "name": "Vaelo Street Division Hoodie – Beyaz / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160090_6af0b5da7f2c8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2660,7 +2660,7 @@
     {
       "id": "VR052",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160090_6af0b5dab5da4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2680,7 +2680,7 @@
     {
       "id": "VR053",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160090_6af0b5daf16ed.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2700,7 +2700,7 @@
     {
       "id": "VR054",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Club Nautique",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160091_6af0b5db3b80b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2720,7 +2720,7 @@
     {
       "id": "VR055",
       "name": "Vaelo Street Division Tişört – Siyah / Club Nautique",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160091_6af0b5db6e5de.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2740,7 +2740,7 @@
     {
       "id": "VR056",
       "name": "Vaelo Street Division Tişört – Beyaz / Club Nautique",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160091_6af0b5dbae019.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2760,7 +2760,7 @@
     {
       "id": "VR065",
       "name": "Vaelo Street Division Hoodie – Siyah / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160097_6af0b5e19a20d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2780,7 +2780,7 @@
     {
       "id": "VR066",
       "name": "Vaelo Street Division Hoodie – Lacivert / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160097_6af0b5e1cca98.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2800,7 +2800,7 @@
     {
       "id": "VR067",
       "name": "Vaelo Street Division Hoodie – Beyaz / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160098_6af0b5e218639.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2820,7 +2820,7 @@
     {
       "id": "VR068",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160098_6af0b5e24c5e7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -2840,7 +2840,7 @@
     {
       "id": "VR069",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160098_6af0b5e286e2d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -2860,7 +2860,7 @@
     {
       "id": "VR070",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Maritime",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160098_6af0b5e2bb76c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -2880,7 +2880,7 @@
     {
       "id": "VR071",
       "name": "Vaelo Street Division Tişört – Siyah / Maritime",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160098_6af0b5e2eb076.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -2900,7 +2900,7 @@
     {
       "id": "VR072",
       "name": "Vaelo Street Division Tişört – Beyaz / Maritime",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160099_6af0b5e32a32e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -2920,7 +2920,7 @@
     {
       "id": "VR073",
       "name": "Vaelo Street Division Hoodie – Siyah / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160102_6af0b5e6c1931.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -2940,7 +2940,7 @@
     {
       "id": "VR074",
       "name": "Vaelo Street Division Hoodie – Lacivert / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160103_6af0b5e70946e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -2960,7 +2960,7 @@
     {
       "id": "VR075",
       "name": "Vaelo Street Division Hoodie – Beyaz / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160103_6af0b5e74817d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -2980,7 +2980,7 @@
     {
       "id": "VR076",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160103_6af0b5e77d61c.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3000,7 +3000,7 @@
     {
       "id": "VR077",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160103_6af0b5e7b49fe.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3020,7 +3020,7 @@
     {
       "id": "VR078",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Waves",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160103_6af0b5e7eabbc.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3040,7 +3040,7 @@
     {
       "id": "VR079",
       "name": "Vaelo Street Division Tişört – Siyah / Waves",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160104_6af0b5e841724.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3060,7 +3060,7 @@
     {
       "id": "VR080",
       "name": "Vaelo Street Division Tişört – Beyaz / Waves",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160104_6af0b5e877752.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3080,7 +3080,7 @@
     {
       "id": "VR081",
       "name": "Vaelo Street Division Hoodie – Siyah / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160106_6af0b5ea9a815.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3100,7 +3100,7 @@
     {
       "id": "VR082",
       "name": "Vaelo Street Division Hoodie – Lacivert / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160106_6af0b5eae1109.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3120,7 +3120,7 @@
     {
       "id": "VR083",
       "name": "Vaelo Street Division Hoodie – Beyaz / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160107_6af0b5eb29082.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3140,7 +3140,7 @@
     {
       "id": "VR084",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160107_6af0b5eb5fa32.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3160,7 +3160,7 @@
     {
       "id": "VR085",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160107_6af0b5eb973ba.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3180,7 +3180,7 @@
     {
       "id": "VR086",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Equestrian Heritage",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160107_6af0b5ebd155e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3200,7 +3200,7 @@
     {
       "id": "VR087",
       "name": "Vaelo Street Division Tişört – Siyah / Equestrian Heritage",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160108_6af0b5ec141a7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3220,7 +3220,7 @@
     {
       "id": "VR088",
       "name": "Vaelo Street Division Tişört – Beyaz / Equestrian Heritage",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160108_6af0b5ec4db94.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3240,7 +3240,7 @@
     {
       "id": "VR089",
       "name": "Vaelo Street Division Hoodie – Siyah / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160114_6af0b5f2ed85b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3260,7 +3260,7 @@
     {
       "id": "VR090",
       "name": "Vaelo Street Division Hoodie – Lacivert / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160115_6af0b5f3322bd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3280,7 +3280,7 @@
     {
       "id": "VR091",
       "name": "Vaelo Street Division Hoodie – Beyaz / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160115_6af0b5f39a913.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3300,7 +3300,7 @@
     {
       "id": "VR092",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160115_6af0b5f3e3e4b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3320,7 +3320,7 @@
     {
       "id": "VR093",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160116_6af0b5f43a7bb.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3340,7 +3340,7 @@
     {
       "id": "VR094",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Geometric Wave",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160116_6af0b5f47677a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3360,7 +3360,7 @@
     {
       "id": "VR095",
       "name": "Vaelo Street Division Tişört – Siyah / Geometric Wave",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160116_6af0b5f4aedaa.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3380,7 +3380,7 @@
     {
       "id": "VR096",
       "name": "Vaelo Street Division Tişört – Beyaz / Geometric Wave",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160116_6af0b5f4f2c48.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3400,7 +3400,7 @@
     {
       "id": "VR097",
       "name": "Vaelo Street Division Hoodie – Siyah / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160119_6af0b5f71ad77.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3420,7 +3420,7 @@
     {
       "id": "VR098",
       "name": "Vaelo Street Division Hoodie – Lacivert / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160119_6af0b5f7507f7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3440,7 +3440,7 @@
     {
       "id": "VR099",
       "name": "Vaelo Street Division Hoodie – Beyaz / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160119_6af0b5f78d122.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3460,7 +3460,7 @@
     {
       "id": "VR100",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160119_6af0b5f7c9914.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3480,7 +3480,7 @@
     {
       "id": "VR101",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160120_6af0b5f80c7e4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3500,7 +3500,7 @@
     {
       "id": "VR102",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Ankara Skyline",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160120_6af0b5f84d9cf.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3520,7 +3520,7 @@
     {
       "id": "VR103",
       "name": "Vaelo Street Division Tişört – Siyah / Ankara Skyline",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160120_6af0b5f883b40.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3540,7 +3540,7 @@
     {
       "id": "VR104",
       "name": "Vaelo Street Division Tişört – Beyaz / Ankara Skyline",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160120_6af0b5f8b5692.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3560,7 +3560,7 @@
     {
       "id": "VR105",
       "name": "Vaelo Street Division Hoodie – Siyah / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160122_6af0b5fae78b0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3580,7 +3580,7 @@
     {
       "id": "VR106",
       "name": "Vaelo Street Division Hoodie – Lacivert / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160123_6af0b5fb275d3.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3600,7 +3600,7 @@
     {
       "id": "VR107",
       "name": "Vaelo Street Division Hoodie – Beyaz / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160123_6af0b5fb6b9ae.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3620,7 +3620,7 @@
     {
       "id": "VR108",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160123_6af0b5fba65da.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3640,7 +3640,7 @@
     {
       "id": "VR109",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160124_6af0b5fc149e0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3660,7 +3660,7 @@
     {
       "id": "VR110",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Global Network",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160124_6af0b5fc53e8d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3680,7 +3680,7 @@
     {
       "id": "VR111",
       "name": "Vaelo Street Division Tişört – Siyah / Global Network",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160124_6af0b5fc854bb.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3700,7 +3700,7 @@
     {
       "id": "VR112",
       "name": "Vaelo Street Division Tişört – Beyaz / Global Network",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160124_6af0b5fcc01c2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3720,7 +3720,7 @@
     {
       "id": "VR121",
       "name": "Vaelo Street Division Hoodie – Siyah / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160132_6af0b604eac74.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3740,7 +3740,7 @@
     {
       "id": "VR122",
       "name": "Vaelo Street Division Hoodie – Lacivert / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160133_6af0b6052ab78.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3760,7 +3760,7 @@
     {
       "id": "VR123",
       "name": "Vaelo Street Division Hoodie – Beyaz / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160133_6af0b60569234.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3780,7 +3780,7 @@
     {
       "id": "VR124",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160133_6af0b605a142d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3800,7 +3800,7 @@
     {
       "id": "VR125",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160133_6af0b605ecc15.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3820,7 +3820,7 @@
     {
       "id": "VR126",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Equestrian Trio",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160134_6af0b6062a2a8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -3840,7 +3840,7 @@
     {
       "id": "VR127",
       "name": "Vaelo Street Division Tişört – Siyah / Equestrian Trio",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160135_6af0b6073bdba.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -3860,7 +3860,7 @@
     {
       "id": "VR128",
       "name": "Vaelo Street Division Tişört – Beyaz / Equestrian Trio",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160135_6af0b60777ebd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -3880,7 +3880,7 @@
     {
       "id": "VR129",
       "name": "Vaelo Street Division Hoodie – Siyah / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160138_6af0b60aca1a6.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -3900,7 +3900,7 @@
     {
       "id": "VR130",
       "name": "Vaelo Street Division Hoodie – Lacivert / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160139_6af0b60b39703.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -3920,7 +3920,7 @@
     {
       "id": "VR131",
       "name": "Vaelo Street Division Hoodie – Beyaz / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160139_6af0b60b76b52.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -3940,7 +3940,7 @@
     {
       "id": "VR132",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160139_6af0b60bab8c3.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -3960,7 +3960,7 @@
     {
       "id": "VR133",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160140_6af0b60c3c43d.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -3980,7 +3980,7 @@
     {
       "id": "VR134",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Equestrian Noir",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160140_6af0b60c6f5c5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -4000,7 +4000,7 @@
     {
       "id": "VR135",
       "name": "Vaelo Street Division Tişört – Siyah / Equestrian Noir",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160140_6af0b60c9ffd4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4020,7 +4020,7 @@
     {
       "id": "VR136",
       "name": "Vaelo Street Division Tişört – Beyaz / Equestrian Noir",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160141_6af0b60d22b38.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -4040,7 +4040,7 @@
     {
       "id": "VR153",
       "name": "Vaelo Street Division Hoodie – Siyah / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160153_6af0b61968851.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4060,7 +4060,7 @@
     {
       "id": "VR154",
       "name": "Vaelo Street Division Hoodie – Lacivert / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160153_6af0b6199edc2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -4080,7 +4080,7 @@
     {
       "id": "VR155",
       "name": "Vaelo Street Division Hoodie – Beyaz / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160154_6af0b61a18b8a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -4100,7 +4100,7 @@
     {
       "id": "VR156",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160154_6af0b61a4f4ae.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4120,7 +4120,7 @@
     {
       "id": "VR157",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160154_6af0b61a84a6a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -4140,7 +4140,7 @@
     {
       "id": "VR158",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Equestrian Duo",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160154_6af0b61ab97d2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -4160,7 +4160,7 @@
     {
       "id": "VR159",
       "name": "Vaelo Street Division Tişört – Siyah / Equestrian Duo",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160154_6af0b61aebffd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4180,7 +4180,7 @@
     {
       "id": "VR160",
       "name": "Vaelo Street Division Tişört – Beyaz / Equestrian Duo",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160155_6af0b61b6cc2a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -4200,7 +4200,7 @@
     {
       "id": "VR169",
       "name": "Vaelo Street Division Hoodie – Siyah / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160163_6af0b6235f7ec.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4220,7 +4220,7 @@
     {
       "id": "VR170",
       "name": "Vaelo Street Division Hoodie – Lacivert / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160163_6af0b62399406.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -4240,7 +4240,7 @@
     {
       "id": "VR171",
       "name": "Vaelo Street Division Hoodie – Beyaz / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160163_6af0b623d63f5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -4260,7 +4260,7 @@
     {
       "id": "VR172",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160164_6af0b6241882b.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4280,7 +4280,7 @@
     {
       "id": "VR173",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160164_6af0b62450537.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -4300,7 +4300,7 @@
     {
       "id": "VR174",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Speed & Form",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160164_6af0b62488ec3.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -4320,7 +4320,7 @@
     {
       "id": "VR175",
       "name": "Vaelo Street Division Tişört – Siyah / Speed & Form",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160164_6af0b624bbf19.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4340,7 +4340,7 @@
     {
       "id": "VR176",
       "name": "Vaelo Street Division Tişört – Beyaz / Speed & Form",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160164_6af0b624f2e20.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -4360,7 +4360,7 @@
     {
       "id": "VR177",
       "name": "Vaelo Street Division Hoodie – Siyah / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160169_6af0b629853c8.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4380,7 +4380,7 @@
     {
       "id": "VR178",
       "name": "Vaelo Street Division Hoodie – Lacivert / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160169_6af0b629ba6d7.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -4400,7 +4400,7 @@
     {
       "id": "VR179",
       "name": "Vaelo Street Division Hoodie – Beyaz / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160169_6af0b629f3470.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -4420,7 +4420,7 @@
     {
       "id": "VR180",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160170_6af0b62a3c978.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4440,7 +4440,7 @@
     {
       "id": "VR181",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160170_6af0b62a72a4f.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -4460,7 +4460,7 @@
     {
       "id": "VR182",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Deep Focus",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160170_6af0b62aa59ff.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -4480,7 +4480,7 @@
     {
       "id": "VR183",
       "name": "Vaelo Street Division Tişört – Siyah / Deep Focus",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160170_6af0b62ad8521.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4500,7 +4500,7 @@
     {
       "id": "VR184",
       "name": "Vaelo Street Division Tişört – Beyaz / Deep Focus",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160171_6af0b62b17390.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -4520,7 +4520,7 @@
     {
       "id": "VD2631",
       "name": "Vaelo Street Division Hoodie – Siyah / VAELO Giant",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160434_6af0b732b0345.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4540,7 +4540,7 @@
     {
       "id": "VD2632",
       "name": "Vaelo Street Division Hoodie – Siyah / Gothic Arc",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160435_6af0b733921a5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4560,7 +4560,7 @@
     {
       "id": "VD2633",
       "name": "Vaelo Street Division Hoodie – Lacivert / Ankara 06",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160436_6af0b734c7adc.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -4580,7 +4580,7 @@
     {
       "id": "VD2634",
       "name": "Vaelo Street Division Hoodie – Siyah / No Days Off",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160437_6af0b735ab8cc.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4600,7 +4600,7 @@
     {
       "id": "VD2635",
       "name": "Vaelo Street Division Hoodie – Siyah / Hellfire",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160438_6af0b736a69f5.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4620,7 +4620,7 @@
     {
       "id": "VD2636",
       "name": "Vaelo Street Division Hoodie – Beyaz / Motorsport",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160440_6af0b7382fd98.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -4640,7 +4640,7 @@
     {
       "id": "VD2637",
       "name": "Vaelo Street Division Hoodie – Siyah / Night Shift",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160441_6af0b73918efa.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4660,7 +4660,7 @@
     {
       "id": "VD2638",
       "name": "Vaelo Street Division Hoodie – Beyaz / Wild West",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160442_6af0b73a8e051.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974875b9.jpg"
@@ -4680,7 +4680,7 @@
     {
       "id": "VD2639",
       "name": "Vaelo Street Division Hoodie – Lacivert / Worldwide",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160443_6af0b73bd239a.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97451127.jpg"
@@ -4700,7 +4700,7 @@
     {
       "id": "VD2640",
       "name": "Vaelo Street Division Hoodie – Siyah / Paradise Lost",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160444_6af0b73cb06dd.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b97416278.jpg"
@@ -4720,7 +4720,7 @@
     {
       "id": "VD2641",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Varsity V",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160445_6af0b73dd2555.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -4740,7 +4740,7 @@
     {
       "id": "VD2642",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Hypno",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160447_6af0b73f92ba1.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4760,7 +4760,7 @@
     {
       "id": "VD2643",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Built Different",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160448_6af0b7408ebaf.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4780,7 +4780,7 @@
     {
       "id": "VD2644",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Gothic Ankara",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160449_6af0b741841f2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4800,7 +4800,7 @@
     {
       "id": "VD2645",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Systems",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160450_6af0b7425237e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4820,7 +4820,7 @@
     {
       "id": "VD2646",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Army",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160451_6af0b743334af.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4840,7 +4840,7 @@
     {
       "id": "VD2647",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Repeat Fade",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160452_6af0b744194f9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4860,7 +4860,7 @@
     {
       "id": "VD2648",
       "name": "Vaelo Street Division Sweatshirt – Lacivert / Sunset 06",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160453_6af0b7451a652.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974f207a.jpg"
@@ -4880,7 +4880,7 @@
     {
       "id": "VD2649",
       "name": "Vaelo Street Division Sweatshirt – Beyaz / Loves You",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160454_6af0b7464ea0e.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b97530702.jpg"
@@ -4900,7 +4900,7 @@
     {
       "id": "VD2650",
       "name": "Vaelo Street Division Sweatshirt – Siyah / Chrome",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160455_6af0b747415d2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161012_6af0b974be134.jpg"
@@ -4920,7 +4920,7 @@
     {
       "id": "VD2651",
       "name": "Vaelo Street Division Tişört – Beyaz / Admit One",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160456_6af0b748464a0.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -4940,7 +4940,7 @@
     {
       "id": "VD2652",
       "name": "Vaelo Street Division Tişört – Siyah / Plate 06",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160457_6af0b74970ddf.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4960,7 +4960,7 @@
     {
       "id": "VD2653",
       "name": "Vaelo Street Division Tişört – Siyah / Glitch",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160458_6af0b74a53ea9.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -4980,7 +4980,7 @@
     {
       "id": "VD2654",
       "name": "Vaelo Street Division Tişört – Beyaz / Big 06",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160459_6af0b74b36a29.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -5000,7 +5000,7 @@
     {
       "id": "VD2655",
       "name": "Vaelo Street Division Tişört – Siyah / Manifesto",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160460_6af0b74c296c2.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -5020,7 +5020,7 @@
     {
       "id": "VD2656",
       "name": "Vaelo Street Division Tişört – Siyah / High Voltage",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160461_6af0b74d0c9b4.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -5040,7 +5040,7 @@
     {
       "id": "VD2657",
       "name": "Vaelo Street Division Tişört – Siyah / Evil Eye",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160461_6af0b74de9436.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -5060,7 +5060,7 @@
     {
       "id": "VD2658",
       "name": "Vaelo Street Division Tişört – Siyah / Moto Club",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160462_6af0b74ed5024.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -5080,7 +5080,7 @@
     {
       "id": "VD2659",
       "name": "Vaelo Street Division Tişört – Beyaz / Stars",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160463_6af0b74fe4e35.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b975929a7.jpg"
@@ -5100,7 +5100,7 @@
     {
       "id": "VD2660",
       "name": "Vaelo Street Division Tişört – Siyah / Street Division Gothic",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://www.printiturk.com/uploads/users/55044/designs/1794160464_6af0b750de6de.jpg",
         "https://www.printiturk.com/uploads/users/55044/designs/1794161013_6af0b9755dcd8.jpg"
@@ -5120,7 +5120,7 @@
     {
       "id": "71926",
       "name": "Vaelo Marina Saat",
-      "price": 3849,
+      "price": 4449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1926.webp"
       ],
@@ -5132,7 +5132,7 @@
     {
       "id": "71927",
       "name": "Vaelo Cadiz Saat",
-      "price": 4449,
+      "price": 5149,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1927.webp"
       ],
@@ -5144,7 +5144,7 @@
     {
       "id": "71928",
       "name": "Vaelo Ivory Saat",
-      "price": 3149,
+      "price": 3649,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1928.webp"
       ],
@@ -5156,7 +5156,7 @@
     {
       "id": "71929",
       "name": "Vaelo Rouge Saat",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1929.webp"
       ],
@@ -5168,7 +5168,7 @@
     {
       "id": "71930",
       "name": "Vaelo Azur Saat",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1930.webp"
       ],
@@ -5180,7 +5180,7 @@
     {
       "id": "71931",
       "name": "Vaelo Glacier Saat",
-      "price": 4399,
+      "price": 5099,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1931.webp"
       ],
@@ -5192,7 +5192,7 @@
     {
       "id": "71932",
       "name": "Vaelo Polar Saat",
-      "price": 3549,
+      "price": 4099,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1932.webp"
       ],
@@ -5204,7 +5204,7 @@
     {
       "id": "71934",
       "name": "Vaelo Opal Saat",
-      "price": 2999,
+      "price": 3449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1934.webp"
       ],
@@ -5216,7 +5216,7 @@
     {
       "id": "71936",
       "name": "Vaelo Atlantic Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1936.webp"
       ],
@@ -5228,7 +5228,7 @@
     {
       "id": "71937",
       "name": "Vaelo Jade Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1937.webp"
       ],
@@ -5240,7 +5240,7 @@
     {
       "id": "71938",
       "name": "Vaelo Sierra Saat",
-      "price": 3849,
+      "price": 4449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1938.webp"
       ],
@@ -5252,7 +5252,7 @@
     {
       "id": "71941",
       "name": "Vaelo Solar Saat",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1941.webp"
       ],
@@ -5264,7 +5264,7 @@
     {
       "id": "71942",
       "name": "Vaelo Oliva Saat",
-      "price": 4049,
+      "price": 4699,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1942.webp"
       ],
@@ -5276,7 +5276,7 @@
     {
       "id": "71943",
       "name": "Vaelo Midnight Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1943.webp"
       ],
@@ -5288,7 +5288,7 @@
     {
       "id": "71944",
       "name": "Vaelo Onyx Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1944.webp"
       ],
@@ -5300,7 +5300,7 @@
     {
       "id": "71945",
       "name": "Vaelo Verde Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1945.webp"
       ],
@@ -5312,7 +5312,7 @@
     {
       "id": "71946",
       "name": "Vaelo Graphite Saat",
-      "price": 4349,
+      "price": 5049,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1946.webp"
       ],
@@ -5324,7 +5324,7 @@
     {
       "id": "71953",
       "name": "Vaelo Evergreen Saat",
-      "price": 4749,
+      "price": 5499,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1953.webp"
       ],
@@ -5336,7 +5336,7 @@
     {
       "id": "71955",
       "name": "Vaelo Lagoon Saat",
-      "price": 4049,
+      "price": 4699,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1955.webp"
       ],
@@ -5348,7 +5348,7 @@
     {
       "id": "71956",
       "name": "Vaelo Slate Saat",
-      "price": 4149,
+      "price": 4799,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1956.webp"
       ],
@@ -5360,7 +5360,7 @@
     {
       "id": "71957",
       "name": "Vaelo Champagne Saat",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1957.webp"
       ],
@@ -5372,7 +5372,7 @@
     {
       "id": "71958",
       "name": "Vaelo Menthe Saat",
-      "price": 3149,
+      "price": 3649,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1958.webp"
       ],
@@ -5384,7 +5384,7 @@
     {
       "id": "71961",
       "name": "Vaelo Moss Saat",
-      "price": 4799,
+      "price": 5549,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1961.webp"
       ],
@@ -5396,7 +5396,7 @@
     {
       "id": "71963",
       "name": "Vaelo Urban Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1963.webp"
       ],
@@ -5408,7 +5408,7 @@
     {
       "id": "71964",
       "name": "Vaelo Octa Forest Saat",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1964.webp"
       ],
@@ -5420,7 +5420,7 @@
     {
       "id": "71974",
       "name": "Vaelo Octa Aqua Saat",
-      "price": 4499,
+      "price": 5199,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1974.webp"
       ],
@@ -5432,7 +5432,7 @@
     {
       "id": "71976",
       "name": "Vaelo Octa Bordeaux Saat",
-      "price": 3549,
+      "price": 4099,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1976.webp"
       ],
@@ -5444,7 +5444,7 @@
     {
       "id": "71933",
       "name": "Vaelo Aurelia Saat",
-      "price": 4549,
+      "price": 5249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1933.webp"
       ],
@@ -5456,7 +5456,7 @@
     {
       "id": "71935",
       "name": "Vaelo Imperial Saat",
-      "price": 4199,
+      "price": 4849,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1935.webp"
       ],
@@ -5468,7 +5468,7 @@
     {
       "id": "71940",
       "name": "Vaelo Bordeaux Saat",
-      "price": 4449,
+      "price": 5149,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1940.webp"
       ],
@@ -5480,7 +5480,7 @@
     {
       "id": "71954",
       "name": "Vaelo Noir Or Saat",
-      "price": 4349,
+      "price": 5049,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1954.webp"
       ],
@@ -5492,7 +5492,7 @@
     {
       "id": "71960",
       "name": "Vaelo Royal Gold Saat",
-      "price": 4649,
+      "price": 5349,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1960.webp"
       ],
@@ -5504,7 +5504,7 @@
     {
       "id": "71965",
       "name": "Vaelo Chrono Rose Saat",
-      "price": 4149,
+      "price": 4799,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1965.webp"
       ],
@@ -5516,7 +5516,7 @@
     {
       "id": "71975",
       "name": "Vaelo Velocity Chrono Saat",
-      "price": 4649,
+      "price": 5349,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1975.webp"
       ],
@@ -5528,7 +5528,7 @@
     {
       "id": "71977",
       "name": "Vaelo Obsidian Saat",
-      "price": 4449,
+      "price": 5149,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1977.webp"
       ],
@@ -5540,7 +5540,7 @@
     {
       "id": "71947",
       "name": "Vaelo GMT Emerald Saat",
-      "price": 3499,
+      "price": 4049,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1947.webp"
       ],
@@ -5552,7 +5552,7 @@
     {
       "id": "71948",
       "name": "Vaelo GMT Cobalt Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1948.webp"
       ],
@@ -5564,7 +5564,7 @@
     {
       "id": "71949",
       "name": "Vaelo GMT Sunset Saat",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1949.webp"
       ],
@@ -5576,7 +5576,7 @@
     {
       "id": "71950",
       "name": "Vaelo GMT Crimson Saat",
-      "price": 4249,
+      "price": 4899,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1950.webp"
       ],
@@ -5588,7 +5588,7 @@
     {
       "id": "71951",
       "name": "Vaelo GMT Merlot Saat",
-      "price": 3999,
+      "price": 4599,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1951.webp"
       ],
@@ -5600,7 +5600,7 @@
     {
       "id": "71952",
       "name": "Vaelo GMT Aurora Saat",
-      "price": 4449,
+      "price": 5149,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1952.webp"
       ],
@@ -5612,7 +5612,7 @@
     {
       "id": "71959",
       "name": "Vaelo Blanc Saat",
-      "price": 4499,
+      "price": 5199,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1959.webp"
       ],
@@ -5625,7 +5625,7 @@
     {
       "id": "71962",
       "name": "Vaelo Phantom Saat",
-      "price": 2899,
+      "price": 3349,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1962.webp"
       ],
@@ -5637,7 +5637,7 @@
     {
       "id": "71966",
       "name": "Vaelo Rose Gem Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1966.webp"
       ],
@@ -5649,7 +5649,7 @@
     {
       "id": "71967",
       "name": "Vaelo Noir Gem Saat",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1967.webp"
       ],
@@ -5661,7 +5661,7 @@
     {
       "id": "71968",
       "name": "Vaelo Emeraude Saat",
-      "price": 3699,
+      "price": 4299,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1968.webp"
       ],
@@ -5673,7 +5673,7 @@
     {
       "id": "71969",
       "name": "Vaelo Nuit Gem Saat",
-      "price": 4199,
+      "price": 4849,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1969.webp"
       ],
@@ -5685,7 +5685,7 @@
     {
       "id": "71970",
       "name": "Vaelo Bleu Gem Saat",
-      "price": 2999,
+      "price": 3449,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1970.webp"
       ],
@@ -5697,7 +5697,7 @@
     {
       "id": "71971",
       "name": "Vaelo Rubis Saat",
-      "price": 4499,
+      "price": 5199,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1971.webp"
       ],
@@ -5709,7 +5709,7 @@
     {
       "id": "71972",
       "name": "Vaelo Perle Saat",
-      "price": 3449,
+      "price": 3999,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1972.webp"
       ],
@@ -5721,7 +5721,7 @@
     {
       "id": "71973",
       "name": "Vaelo Cristal Saat",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1973.webp"
       ],
@@ -5733,7 +5733,7 @@
     {
       "id": "71939",
       "name": "Vaelo Lilas Saat",
-      "price": 3049,
+      "price": 3549,
       "images": [
         "https://www.vaelo.com.tr/assets/saat/1939.webp"
       ],
@@ -5745,7 +5745,7 @@
     {
       "id": "vk001",
       "name": "Paris Yıldızlı Crop Sweatshirt – Pembe",
-      "price": 849,
+      "price": 999,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk001_0.webp"
       ],
@@ -5775,7 +5775,7 @@
     {
       "id": "vk002",
       "name": "New York Crop Sweatshirt – Pembe Kırmızı",
-      "price": 849,
+      "price": 999,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk002_0.webp"
       ],
@@ -5805,7 +5805,7 @@
     {
       "id": "vk003",
       "name": "Çizgili Crop Sweatshirt – Kahverengi",
-      "price": 849,
+      "price": 999,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk003_0.webp"
       ],
@@ -5835,7 +5835,7 @@
     {
       "id": "vk004",
       "name": "Püsküllü Süet Ceket – Siyah",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk004_0.webp"
       ],
@@ -5856,7 +5856,7 @@
     {
       "id": "vk005",
       "name": "Kemerli Pelerin Kaban – Ekru",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk005_0.webp"
       ],
@@ -5877,7 +5877,7 @@
     {
       "id": "vk006",
       "name": "Püsküllü Triko Elbise – Bej",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk006_0.webp"
       ],
@@ -5907,7 +5907,7 @@
     {
       "id": "vk007",
       "name": "Şardonlu Bomber Takım – Pembe",
-      "price": 950,
+      "price": 1099,
       "images": [
         "https://www.vaelo.com.tr/assets/urun/vk007_0.webp"
       ],
@@ -5940,7 +5940,7 @@
     {
       "id": "mm92627",
       "name": "Kuşgözlü Kaşe Kaban – Camel",
-      "price": 2399,
+      "price": 2799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6661/823bdfa4f982beda.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6661/d5964bc2ab0fa188.jpg",
@@ -5975,7 +5975,7 @@
     {
       "id": "mm92632",
       "name": "İki Düğmeli Manto – Camel",
-      "price": 2899,
+      "price": 3349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6669/0122c59824cd6dab.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6669/ed225e6c2011e5de.jpg",
@@ -6011,7 +6011,7 @@
     {
       "id": "mm92539",
       "name": "Uzun Kaban – Camel",
-      "price": 2999,
+      "price": 3449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6559/591bde8e4d9ca88f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6559/2c8198155d8436c5.jpg",
@@ -6046,7 +6046,7 @@
     {
       "id": "mm92459",
       "name": "Kuşaklı Midi Kaban – Camel",
-      "price": 2899,
+      "price": 3349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6463/f299343ac3284d57.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6463/5db2a19cfa84ae72.jpg",
@@ -6081,7 +6081,7 @@
     {
       "id": "mm73405",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg",
         "https://api.sakans.com/storage/media/34/products/2wSzFVDDctMBw5SNmscb.jpg",
@@ -6120,7 +6120,7 @@
     {
       "id": "mm73406",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg",
         "https://api.sakans.com/storage/media/34/products/MZEYU4hsyRiyObnzrZ13.jpg",
@@ -6144,7 +6144,7 @@
     {
       "id": "mm73407",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Haki",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/media/34/products/GHGmPayG5CKpUWJyhW5z.jpg",
         "https://api.sakans.com/storage/media/34/products/cfwGR6AN7esJURjzpCKY.jpg",
@@ -6178,7 +6178,7 @@
     {
       "id": "mm73408",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kahverengi",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/media/34/products/2RTGCoRWZyqcYpRuIocI.jpg",
         "https://api.sakans.com/storage/media/34/products/ZAljNBodsx5giZ9oQTQk.jpg",
@@ -6202,7 +6202,7 @@
     {
       "id": "mm73409",
       "name": "Kürk Yakalı Kemerli Uzun Kaşe Kaban – Kiremit",
-      "price": 3249,
+      "price": 3749,
       "images": [
         "https://api.sakans.com/storage/media/34/products/51br5flae2ZUXXBNX95y.jpg",
         "https://api.sakans.com/storage/media/34/products/9GuFVQZ9H1RlabSOcOGI.jpg",
@@ -6241,7 +6241,7 @@
     {
       "id": "mm93329",
       "name": "Yakası Örgü Detaylı Mont – Kahverengi",
-      "price": 2699,
+      "price": 3149,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7573/1ae9f3e23d3a245d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7573/6bc932e5e40c79a4.jpg",
@@ -6276,7 +6276,7 @@
     {
       "id": "mm93330",
       "name": "Yakası Örgü Detaylı Mont – Gri",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7574/ea3ee917a7dda08e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7574/b4f1c49f0393d874.jpg",
@@ -6316,7 +6316,7 @@
     {
       "id": "mm93236",
       "name": "Uzun Şişme Mont – Siyah",
-      "price": 4599,
+      "price": 5299,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7463/ec2265ae28cd58aa.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7463/4e55d322612fe0c0.jpg",
@@ -6341,7 +6341,7 @@
     {
       "id": "mm93237",
       "name": "Tonaton Düğmeli Uzun Trençkot – Kahverengi",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7464/c64d579a418ec3c7.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7464/47dc8ae7997e27d6.jpg",
@@ -6381,7 +6381,7 @@
     {
       "id": "mm93238",
       "name": "Tonaton Düğmeli Uzun Trençkot – Bej",
-      "price": 4699,
+      "price": 5449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7465/ddf9e2ab1f538d45.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7465/20d3073c2d2be01a.jpg",
@@ -6421,7 +6421,7 @@
     {
       "id": "mm93240",
       "name": "Uzun Deri Trençkot – Siyah",
-      "price": 4499,
+      "price": 5199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7467/ab45d013037aaf67.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7467/d37db32427e0d5b9.jpg",
@@ -6461,7 +6461,7 @@
     {
       "id": "mm93241",
       "name": "Uzun Deri Trençkot – Kahverengi",
-      "price": 4499,
+      "price": 5199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7468/0148f9a721f4d0c4.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7468/41e1a3f0ba5d7bbe.jpg",
@@ -6501,7 +6501,7 @@
     {
       "id": "mm92624",
       "name": "Uzun Kemerli Trençkot – Bej",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6657/79592908f67e2ac2.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6657/c6cbb56dfb182e9e.jpg",
@@ -6536,7 +6536,7 @@
     {
       "id": "mm93317",
       "name": "Yakası Çıtçıtlı Deri Ceket – Siyah",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7561/83ec0aec3011510e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7561/d4a15694962251cb.jpg",
@@ -6576,7 +6576,7 @@
     {
       "id": "mm93318",
       "name": "Yakası Çıtçıtlı Deri Ceket – Kahverengi",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7562/4380f8ec76b5f945.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7562/dc5029ff7080f8f6.jpg",
@@ -6616,7 +6616,7 @@
     {
       "id": "mm93327",
       "name": "Koyun Yünü Yakalı Süet Ceket – Lacivert",
-      "price": 3749,
+      "price": 4349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7571/add552cee1f92657.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7571/1c5bd9d89b419f7e.jpg",
@@ -6646,7 +6646,7 @@
     {
       "id": "mm16963",
       "name": "Kruvaze Yelek – Antrasit",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-94/813f0da62f1ee4d0674f65fb8d1892d60769a443.jpg",
         "https://api.sakans.com/storage/maximodena/p-94/85f4e8197fd5a9227c5832318ddac1093157d24c.jpg",
@@ -6679,7 +6679,7 @@
     {
       "id": "mm16964",
       "name": "Kruvaze Yelek – Camel",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-95/eeab9dddf88def0eab675af3f6e39217aaed9036.jpg",
         "https://api.sakans.com/storage/maximodena/p-95/18910d739f3ee382b09a8aa67ad50150403eea85.jpg",
@@ -6707,7 +6707,7 @@
     {
       "id": "mm92293",
       "name": "Boğazlı Örgülü Triko Kazak – Siyah",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6253/e025129d93a26667.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6253/5f5c58bfee612683.jpg",
@@ -6731,7 +6731,7 @@
     {
       "id": "mm92296",
       "name": "Boğazlı Örgülü Triko Kazak – Ekru",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6256/805ace976a23382e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6256/0e388dbf33692d74.jpg",
@@ -6755,7 +6755,7 @@
     {
       "id": "mm16432",
       "name": "Oversize Triko Kazak – Ekru",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-100/9243e8c8e803f6206cf2aa85d96a534aa8f9aeba.jpg",
         "https://api.sakans.com/storage/maximodena/p-100/2bda329811eee09a9fe504cf1bb02371e7485c2e.jpg",
@@ -6778,7 +6778,7 @@
     {
       "id": "mm16967",
       "name": "Yumuşak Dokulu Triko Hırka – Antrasit",
-      "price": 699,
+      "price": 849,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-98/2455281afb6a1fb25aca9abb9182bf5f19e03ac9.jpg",
         "https://api.sakans.com/storage/maximodena/p-98/c141b5f91a72bcec42820191420c809502670e9e.jpg",
@@ -6801,7 +6801,7 @@
     {
       "id": "mm92468",
       "name": "Kazayağı Garnili Hırka – Siyah",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6473/c0b3f11faa524bd3.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6473/081428f017066ccb.jpg",
@@ -6835,7 +6835,7 @@
     {
       "id": "mm93246",
       "name": "Kaşe Gold Düğmeli Gömlek – Siyah",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7476/f2eafaa0057bc27b.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7476/4d825d92dbe644a4.jpg",
@@ -6870,7 +6870,7 @@
     {
       "id": "mm93247",
       "name": "Kaşe Gold Düğmeli Gömlek – Lacivert",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7477/446d23046c86e09c.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7477/22f4f24d92b70c75.jpg",
@@ -6905,7 +6905,7 @@
     {
       "id": "mm100305",
       "name": "Jakarlı Balon Kollu Elbise – Siyah",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7588/ac07ced5ef7afa84.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7588/f71c05c06d47cecb.jpg",
@@ -6945,7 +6945,7 @@
     {
       "id": "mm100307",
       "name": "Jakarlı Balon Kollu Elbise – Kahverengi",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7590/d22a76380f33cd64.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7590/7a0ffb30e7d944d1.jpg",
@@ -6985,7 +6985,7 @@
     {
       "id": "mm100308",
       "name": "Jakarlı Balon Kollu Elbise – Haki",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7591/8ce1319068a93648.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7591/03fb01aafa9cb520.jpg",
@@ -7025,7 +7025,7 @@
     {
       "id": "mm93312",
       "name": "Pelerinli Elbise – Siyah",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7556/f8262d99ef8a4009.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7556/8518b339be701c54.jpg",
@@ -7065,7 +7065,7 @@
     {
       "id": "mm93313",
       "name": "Pelerinli Elbise – Kahverengi",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7557/cdc0683d424155ee.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7557/ced474b16b633d02.jpg",
@@ -7105,7 +7105,7 @@
     {
       "id": "mm98134",
       "name": "İkili Örme Takım – Kahverengi",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7583/f67933a5c7376be3.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7583/36e7db5e24199078.jpg",
@@ -7140,7 +7140,7 @@
     {
       "id": "mm98135",
       "name": "İkili Örme Takım – Haki",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7584/c1d0ddd13b1bc92d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7584/9fa1ee871abaa344.jpg",
@@ -7175,7 +7175,7 @@
     {
       "id": "mm100315",
       "name": "İkili Örme Takım – Vizon",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7598/ae7dbb99e01c5cc9.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7598/c7872d481416356e.jpg",
@@ -7210,7 +7210,7 @@
     {
       "id": "mm100309",
       "name": "Garnili İkili Takım – Siyah",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7592/fc9ca506e7c148f8.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7592/b050b9c373bc1f5b.jpg",
@@ -7250,7 +7250,7 @@
     {
       "id": "mm100310",
       "name": "Garnili İkili Takım – Ekru",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7593/2af825fb7a0a9321.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7593/a2c19edbf3d55dd1.jpg",
@@ -7290,7 +7290,7 @@
     {
       "id": "mm16825",
       "name": "Sakallı Dokulu Triko Hırka – Siyah",
-      "price": 499,
+      "price": 599,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-34/e4c57b2bc785e3c9cc7b9babd32e397205210f1f.jpg",
         "https://api.sakans.com/storage/maximodena/p-34/f0f5a01f77bafc35a99182c7ea255c11861fcc14.jpg",
@@ -7317,7 +7317,7 @@
     {
       "id": "mm16836",
       "name": "Sakallı Dokulu Triko Hırka – Ekru",
-      "price": 499,
+      "price": 599,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-35/b718d139a5f1802d071acb768214bd03496ded4a.jpg",
         "https://api.sakans.com/storage/maximodena/p-35/99a03b64699fea515f5c23e575acdfcc8fe8c869.jpg",
@@ -7344,7 +7344,7 @@
     {
       "id": "mm16720",
       "name": "Madonna Yaka Triko Bluz – Siyah",
-      "price": 499,
+      "price": 599,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-27/e277a7ed65f6ce48526e6899a59610895d222edd.jpg",
         "https://api.sakans.com/storage/maximodena/p-27/4ff3045121192fc5d79a4876fb045325bc74ec77.jpg",
@@ -7371,7 +7371,7 @@
     {
       "id": "mm16701",
       "name": "Madonna Yaka Triko Bluz – Mürdüm",
-      "price": 499,
+      "price": 599,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-26/e62bd60017aa8f26b70d983e4b20296e4487c2e0.jpg",
         "https://api.sakans.com/storage/maximodena/p-26/801b251cb22f7dbf5a6b837700e8741c9cb4abf9.jpg",
@@ -7398,7 +7398,7 @@
     {
       "id": "mm16755",
       "name": "Kısa Ceket Etek Takım – Lacivert",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-2842/67383488331c54a6827c0332f3fe110550f042df.jpg",
         "https://api.sakans.com/storage/maximodena/p-2842/22dda27370a41532084cdee272ab2e660ad56f2e.jpg",
@@ -7435,7 +7435,7 @@
     {
       "id": "mm16930",
       "name": "Kısa Ceket Etek Takım – Mürdüm",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-6210/e72edb0bc3878b5baac5c97530681f5aeb9a3cb2.jpg",
         "https://api.sakans.com/storage/maximodena/p-6210/e2b2395f0e2a0ae9aff70b97a99c063dcd1ebbdb.jpg",
@@ -7472,7 +7472,7 @@
     {
       "id": "mm16612",
       "name": "Kemerli Balon Kollu Elbise – Ekru",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-2148/e15a8c2382cc6b7d2c9043818544a7f658888c3c.jpg",
         "https://api.sakans.com/storage/maximodena/p-2148/18ce2243420f3b7b18133745bd65a8f78ff87c6b.jpg",
@@ -7508,7 +7508,7 @@
     {
       "id": "mm16933",
       "name": "Vatkalı Kemer Detaylı Uzun Elbise – Siyah",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-6213/deaf342d18ca42e115de177f256cf19d80332668.jpg",
         "https://api.sakans.com/storage/maximodena/p-6213/d33106d0023627fc82090930776e5a2a5bff4e53.jpg",
@@ -7539,7 +7539,7 @@
     {
       "id": "mm16888",
       "name": "Saten Degaje Yaka Elbise – Siyah",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-5843/518dfa1460d82cb17852c178ae7f15852cb70b75.jpg",
         "https://api.sakans.com/storage/maximodena/p-5843/c46a65db621c9b083feb5b72cc731fdd323160d2.jpg",
@@ -7565,7 +7565,7 @@
     {
       "id": "mm16887",
       "name": "Saten Degaje Yaka Elbise – Kahverengi",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-5842/3bca26e8d7a425f445ce7f4712efef7c33e31e8b.jpg",
         "https://api.sakans.com/storage/maximodena/p-5842/58a87be95c3b8176f4834b59e518ee86f20b4dd0.jpg",
@@ -7595,7 +7595,7 @@
     {
       "id": "mm92637",
       "name": "Pileli Comfort Pantolon – Füme",
-      "price": 1499,
+      "price": 1749,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6677/7c1c77352c46a641.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6677/926ed90fa1844f1c.jpg",
@@ -7630,7 +7630,7 @@
     {
       "id": "mm92302",
       "name": "Geniş Paça Jean – Siyah",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6264/9d4e4177825d5f80.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6264/adb80b922c75d546.jpg",
@@ -7675,7 +7675,7 @@
     {
       "id": "mm92303",
       "name": "Geniş Paça Jean – Lacivert",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6265/cd2fb6a11600fddc.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6265/7a60038e6d41cf57.jpg",
@@ -7720,7 +7720,7 @@
     {
       "id": "mm92304",
       "name": "Boru Paça Jean – Siyah",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6267/ce456bd0109f41ee.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6267/f23d91129a04b35c.jpg",
@@ -7764,7 +7764,7 @@
     {
       "id": "mm93290",
       "name": "Ekoseli Etek – Lacivert",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7534/dd47dd799cbb541e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7534/424fbf6151d820d2.jpg",
@@ -7799,7 +7799,7 @@
     {
       "id": "mm93291",
       "name": "Ekoseli Etek – Kahverengi",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7535/785293c8a062bb7a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7535/9abbc290afca7e33.jpg",
@@ -7834,7 +7834,7 @@
     {
       "id": "mm93292",
       "name": "Ekoseli Etek – Haki",
-      "price": 1349,
+      "price": 1599,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7536/75aae69477a8ecf5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7536/cf3d0c15932a7d4a.jpg",
@@ -7869,7 +7869,7 @@
     {
       "id": "mm93273",
       "name": "Kısa Kürk Kaban – Ekru",
-      "price": 3849,
+      "price": 4449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7516/f0a3e35e86de58e5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7516/a0db5ab7156f4391.jpg",
@@ -7909,7 +7909,7 @@
     {
       "id": "mm92619",
       "name": "Pelerinli Kaban – Leopar",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6652/e4d837c9935192b6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6652/5e320171a1ec247b.jpg",
@@ -7948,7 +7948,7 @@
     {
       "id": "mm92519",
       "name": "Tüylü Yumoş Kaban – Ekru",
-      "price": 3449,
+      "price": 3999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6536/5bdf7c34b74e9da4.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6536/c4d0e672a261aed3.jpg",
@@ -7983,7 +7983,7 @@
     {
       "id": "mm92520",
       "name": "Tüylü Yumoş Kaban – Camel",
-      "price": 3449,
+      "price": 3999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6537/dbadf60f1f8cc38c.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6537/23884ed231da1b86.jpg",
@@ -8018,7 +8018,7 @@
     {
       "id": "mm16847",
       "name": "Kuşaklı Kürk Detaylı Kısa Kaşe Kaban – Bordo",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-36/6ae5c568f55492b2221f67050a58ded32b621a24.jpg",
         "https://api.sakans.com/storage/maximodena/p-36/ff726f52072f6d122d1e5ca3dcea3b4a033b0a85.jpg",
@@ -8053,7 +8053,7 @@
     {
       "id": "mm16858",
       "name": "Kuşaklı Kürk Detaylı Kısa Kaşe Kaban – Siyah",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-37/4a7019fd7d074d725cd0407702f9482a14cb919a.jpg",
         "https://api.sakans.com/storage/maximodena/p-37/321aa5f70b09c54e3f0241ab9f5d6c55e7d7ca71.jpg",
@@ -8078,7 +8078,7 @@
     {
       "id": "mm16869",
       "name": "Kuşaklı Kürk Detaylı Kısa Kaşe Kaban – Bej",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-38/9b1782e82234d79fcd7034818a0a28492ed343fb.jpg",
         "https://api.sakans.com/storage/maximodena/p-38/33ce572fe8f134e0e037972eb2ae45b649219961.jpg",
@@ -8108,7 +8108,7 @@
     {
       "id": "mm118706",
       "name": "Süs Dikiş Detaylı Mont – Lacivert",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7632/cfc644abdf186d9c.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7632/5106ec2e36a644e5.jpg",
@@ -8148,7 +8148,7 @@
     {
       "id": "mm93331",
       "name": "Süs Dikiş Detaylı Mont – Kahverengi",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7576/3643e6eaa1183a2a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7576/479de13db21a26d4.jpg",
@@ -8188,7 +8188,7 @@
     {
       "id": "mm93332",
       "name": "Süs Dikiş Detaylı Mont – Bordo",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7577/f3a987e9326ed4d5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7577/3423ee79cc987529.jpg",
@@ -8228,7 +8228,7 @@
     {
       "id": "mm93245",
       "name": "Kapüşonlu Şişme Yelek – Bej",
-      "price": 3299,
+      "price": 3799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7473/555eaffe1840ed23.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7473/cae996731c6c8086.jpg",
@@ -8268,7 +8268,7 @@
     {
       "id": "mm16448",
       "name": "Kürk Detaylı Kemerli Ceket – Gri",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-111/fac07dbbeb9466bc74e7132b3f222392d51ebc58.jpg",
         "https://api.sakans.com/storage/maximodena/p-111/bb79902001668c2181147a99e96ab25372001c2e.jpg",
@@ -8308,7 +8308,7 @@
     {
       "id": "mm92294",
       "name": "Boğazlı Örgülü Triko Kazak – Mavi",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6254/47b47a525291b50a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6254/60f9dfb6808de086.jpg",
@@ -8333,7 +8333,7 @@
     {
       "id": "mm92295",
       "name": "Boğazlı Örgülü Triko Kazak – Yeşil",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6255/daca6bbaec33beb8.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6255/c0f6eec6d29e0553.jpg",
@@ -8358,7 +8358,7 @@
     {
       "id": "mm92291",
       "name": "Fermuarlı Boğazlı Triko Kazak – Fuşya",
-      "price": 1299,
+      "price": 1499,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6249/932fa665a9c07c1f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6249/bbdac3d4589739d2.jpg",
@@ -8383,7 +8383,7 @@
     {
       "id": "mm92297",
       "name": "Boncuklu Triko Kazak – Camel",
-      "price": 1149,
+      "price": 1349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6257/309ff3c28a659338.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6257/667d2c3b3df3bddf.jpg",
@@ -8406,7 +8406,7 @@
     {
       "id": "mm92298",
       "name": "Boncuklu Triko Kazak – Mavi",
-      "price": 1149,
+      "price": 1349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6258/5465067c194f0805.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6258/450e9facca27e4b0.jpg"
@@ -8428,7 +8428,7 @@
     {
       "id": "mm16507",
       "name": "Polo Yaka Çizgili Triko Kazak – Mavi",
-      "price": 399,
+      "price": 499,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-146/76a5f172981c9cd96a53e89dfc5eb48aac489493.jpg",
         "https://api.sakans.com/storage/maximodena/p-146/a763823ddca12313ffc67de18f7b533089db28f1.jpg"
@@ -8450,7 +8450,7 @@
     {
       "id": "mm16517",
       "name": "Polo Yaka Çizgili Triko Kazak – Yeşil",
-      "price": 399,
+      "price": 499,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-147/b79c92a8b8b9c3839f0d8543d2cdb11e98ea6c8e.jpg",
         "https://api.sakans.com/storage/maximodena/p-147/c507772e87ae762c96231183e4653c0ac888db0a.jpg",
@@ -8474,7 +8474,7 @@
     {
       "id": "mm16459",
       "name": "Baklava Desenli Triko Kazak – Kırmızı",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-118/3cb166a2ec7bf0c07a3f22e50de0f6b6883c8cf4.jpg",
         "https://api.sakans.com/storage/maximodena/p-118/b438a5fb2b344f4f1853581be59b33db263353c5.jpg",
@@ -8508,7 +8508,7 @@
     {
       "id": "mm16463",
       "name": "Yumuşak Dokulu Triko Kazak – Gri",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-121/586aacf47b0ac321172007d8bba477f2e502599b.jpg",
         "https://api.sakans.com/storage/maximodena/p-121/0a77949dfde5377483c188b49c46045f69082941.jpg",
@@ -8541,7 +8541,7 @@
     {
       "id": "mm16464",
       "name": "Yumuşak Dokulu Triko Kazak – Kahverengi",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-122/506a9a9ac635b62e25b552cf5dc93054ad5099d0.jpg",
         "https://api.sakans.com/storage/maximodena/p-122/057ed60d3d2d059e572bb61c5de502865c8fdfc7.jpg"
@@ -8573,7 +8573,7 @@
     {
       "id": "mm92653",
       "name": "Triko Hırka – Mavi",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6700/49e71e11a1cfb706.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6700/bc20afabccae016f.jpg",
@@ -8597,7 +8597,7 @@
     {
       "id": "mm92290",
       "name": "Düğmeli Triko Hırka – Lila",
-      "price": 1399,
+      "price": 1649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6248/387b544ab5e3a501.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6248/192b2473899e0005.jpg",
@@ -8622,7 +8622,7 @@
     {
       "id": "mm16968",
       "name": "Peluş Dokulu Kısa Hırka – Beyaz",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-99/11149ffac1d849165679ebe1178256fc95baa349.jpg",
         "https://api.sakans.com/storage/maximodena/p-99/d974f70d52c7789d1301c7185513c107a6361c4b.jpg",
@@ -8645,7 +8645,7 @@
     {
       "id": "mm16455",
       "name": "Püskül Detaylı Oversize Triko Hırka – Gri",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-114/4c46452a809d02a3f1d18354a4fc1ecc2fa3fbb9.jpg",
         "https://api.sakans.com/storage/maximodena/p-114/6fe9b0f3aff5a68ab5ab17e046607acb3fbfa9dd.jpg",
@@ -8668,7 +8668,7 @@
     {
       "id": "mm16456",
       "name": "Püskül Detaylı Oversize Triko Hırka – Ekru",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-115/d8d4f42beb53f95547543129c2fd645f56530a47.jpg",
         "https://api.sakans.com/storage/maximodena/p-115/100a2228d215b8343987c9dcab6e197c4a7eb58a.jpg",
@@ -8691,7 +8691,7 @@
     {
       "id": "mm16469",
       "name": "V Yaka Triko Hırka – Siyah",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-127/4e22c06c1abb3c9da7df1b53d29d0d21ec8f9950.jpg",
         "https://api.sakans.com/storage/maximodena/p-127/3b0fe106cb314642eb7fafd9ede2330d2811bf5d.jpg",
@@ -8714,7 +8714,7 @@
     {
       "id": "mm16470",
       "name": "V Yaka Triko Hırka – Bej",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-128/25772eedc9316aa6757efa5d8f37fd6d16727a68.jpg",
         "https://api.sakans.com/storage/maximodena/p-128/4d7bd7df442a98070637c023540703a283ddd886.jpg",
@@ -8737,7 +8737,7 @@
     {
       "id": "mm16471",
       "name": "V Yaka Triko Hırka – Beyaz",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-129/3b897eada8b86166c3a1867f0e11e85212396d97.jpg",
         "https://api.sakans.com/storage/maximodena/p-129/7084009a6bcdd8360173b109048c54a42f3115b4.jpg",
@@ -8760,7 +8760,7 @@
     {
       "id": "mm16436",
       "name": "Altın Düğmeli Triko Hırka – Altın Rengi",
-      "price": 699,
+      "price": 849,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-104/d5b42b54605fdcc15bbd536f2b43236a3788a61c.jpg",
         "https://api.sakans.com/storage/maximodena/p-104/dcf579437ca27fd2456e8262c7b71da98afad640.jpg",
@@ -8784,7 +8784,7 @@
     {
       "id": "mm16877",
       "name": "Ajurlu Püsküllü Uzun Hırka – Krem",
-      "price": 199,
+      "price": 249,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-52/82cc24f5de40b2e4ddcdfc1b2cc295aa29fee8a2.jpg",
         "https://api.sakans.com/storage/maximodena/p-52/94d5be796cf5a1cd62fb7dad12fe1ccb800a33ff.jpg",
@@ -8808,7 +8808,7 @@
     {
       "id": "mm120168",
       "name": "Üç İplik İkili Takım – Siyah",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7638/0e064db55ad0979b.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7638/ba2cdae312bab191.jpg",
@@ -8848,7 +8848,7 @@
     {
       "id": "mm120169",
       "name": "Üç İplik İkili Takım – Kahverengi",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7639/6398b3467a10618f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7639/fe17af4fd6f9f5dd.jpg",
@@ -8888,7 +8888,7 @@
     {
       "id": "mm120170",
       "name": "Üç İplik İkili Takım – Gri",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7640/d9f355f252f018d6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7640/8004613214e1941a.jpg",
@@ -8928,7 +8928,7 @@
     {
       "id": "mm121408",
       "name": "Çin Düğmeli Takım – Lacivert",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7644/8c4b62b60674cbd5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7644/f2fa0282b7cec12f.jpg",
@@ -8968,7 +8968,7 @@
     {
       "id": "mm121409",
       "name": "Çin Düğmeli Takım – Mürdüm",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7645/b276012eda2bd3b0.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7645/bb318b783406bd4a.jpg",
@@ -9008,7 +9008,7 @@
     {
       "id": "mm121410",
       "name": "Çin Düğmeli Takım – Kahverengi",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7646/2a9840cf8e079c6f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7646/3274f0e10e518f2c.jpg",
@@ -9048,7 +9048,7 @@
     {
       "id": "mm121411",
       "name": "Çin Düğmeli Takım – Haki",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7647/64459e1ce993b335.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7647/31dbdfc3f78b97d6.jpg",
@@ -9088,7 +9088,7 @@
     {
       "id": "mm121412",
       "name": "Çin Düğmeli Takım – Camel",
-      "price": 3649,
+      "price": 4199,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7648/d3036e5976ffc84e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7648/7d210a565ea99b02.jpg",
@@ -9128,7 +9128,7 @@
     {
       "id": "mm111059",
       "name": "Ön Yırtmaçlı Uzun Kot Etek – Mavi",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7619/c7a6b6c3643cf07a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7619/b10588d08d3b3e37.jpg",
@@ -9163,7 +9163,7 @@
     {
       "id": "mm93111",
       "name": "Saten Çiçekli Etek – Ekru",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7313/ea72f6a40e5f1eac.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7313/9d4a42b3515235ff.jpg",
@@ -9199,7 +9199,7 @@
     {
       "id": "mm92932",
       "name": "Desenli Şifon Dilimli Etek – Siyah",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7099/956917afc4481650.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7099/1b7a643cbb4f81f7.jpg",
@@ -9234,7 +9234,7 @@
     {
       "id": "mm92933",
       "name": "Desenli Şifon Dilimli Etek – Lacivert",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7100/d6ce817d9f251be3.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7100/c902886bb6bf1984.jpg",
@@ -9269,7 +9269,7 @@
     {
       "id": "mm92951",
       "name": "Volanlı Kat Kat Etek – Beyaz",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7126/b11fc79d1322424a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7126/5cd7e14ddaff0039.jpg",
@@ -9304,7 +9304,7 @@
     {
       "id": "mm92765",
       "name": "Dantelli Kat Kat Etek – Siyah",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6890/6bfa8fe2f8742c8b.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6890/13306b9bceb7bd0c.jpg",
@@ -9339,7 +9339,7 @@
     {
       "id": "mm92766",
       "name": "Dantelli Kat Kat Etek – Bordo",
-      "price": 1549,
+      "price": 1799,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6891/8ab11f67def69b14.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6891/d71b476c97dc22c7.jpg",
@@ -9374,7 +9374,7 @@
     {
       "id": "mm92507",
       "name": "Summer Şort – Mavi",
-      "price": 649,
+      "price": 749,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6523/c5261d2afe31113d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6523/c3c8db31a41f4a77.jpg",
@@ -9409,7 +9409,7 @@
     {
       "id": "mm92508",
       "name": "Yazlık Kot Şort – Mavi",
-      "price": 749,
+      "price": 899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6524/d00dae93ea614692.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6524/29b90c18f00a46ae.jpg",
@@ -9444,7 +9444,7 @@
     {
       "id": "mm92574",
       "name": "Beli Lastikli Etek Şort – Siyah",
-      "price": 699,
+      "price": 849,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6599/059913bea5fe4cf3.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6599/90e7519ccda31f2d.jpg",
@@ -9479,7 +9479,7 @@
     {
       "id": "mm92713",
       "name": "Paçası Fırfırlı Keten Pantolon – Bej",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6790/20aecce8270a35d6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6790/bf6d0a5f80aa1394.jpg",
@@ -9515,7 +9515,7 @@
     {
       "id": "mm100374",
       "name": "Pileli Atlas Pantolon – Kırmızı",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7251/dc9f98bd07e43db3.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7251/d6c1dd898561998f.jpg",
@@ -9555,7 +9555,7 @@
     {
       "id": "mm93062",
       "name": "Pileli Atlas Pantolon – Ekru",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7252/abd57025e2b6cc2e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7252/62591a952622d540.jpg",
@@ -9595,7 +9595,7 @@
     {
       "id": "mm92432",
       "name": "Yüksek Bel Wide Leg Pantolon – Pembe",
-      "price": 849,
+      "price": 999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6430/53878854bb162a4c.jpg"
       ],
@@ -9616,7 +9616,7 @@
     {
       "id": "mm92434",
       "name": "Yüksek Bel Pantolon – Fuşya",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6433/b460a8fb9e2aa020.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6433/3db7825ada06aa13.jpg"
@@ -9648,7 +9648,7 @@
     {
       "id": "mm16589",
       "name": "Yüksek Bel Palazzo Pantolon – Kırmızı",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-200/adbd3adb1867e40671a5682f5c1a8f1cec770e18.jpg",
         "https://api.sakans.com/storage/maximodena/p-200/adb8c9d3c2728d43845a6fa802f87270cf7c8194.jpg"
@@ -9670,7 +9670,7 @@
     {
       "id": "mm16590",
       "name": "Yüksek Bel Palazzo Pantolon – siyah",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-201/72706c0eec10f3179b8b661380314667f9b6d912.jpg",
         "https://api.sakans.com/storage/maximodena/p-201/9a65a3b23546d1b99b6b104467f4baa9d17a8d90.jpg"
@@ -9702,7 +9702,7 @@
     {
       "id": "mm16592",
       "name": "Yüksek Bel Palazzo Pantolon – Taba",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-202/5707d1a34cc8eb611d19d3c1d5e6922ea70e475e.jpg",
         "https://api.sakans.com/storage/maximodena/p-202/834326e37a02c359b45270164ea7dd4a458dbcbe.jpg"
@@ -9729,7 +9729,7 @@
     {
       "id": "mm16598",
       "name": "Yüksek Bel Palazzo Pantolon – Bej",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-204/54c52065d57a15139f7ebafd52a24711d540dc3a.jpg",
         "https://api.sakans.com/storage/maximodena/p-204/9658c43d77f890b7f9477436ae822a0d628e9a5e.jpg"
@@ -9766,7 +9766,7 @@
     {
       "id": "mm16586",
       "name": "Geniş Paça Yüksek Bel Pantolon – Bej",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-199/76d5f5c29a897518451ab2d90f4142bad8dd0e4a.jpeg",
         "https://api.sakans.com/storage/maximodena/p-199/63f61b1de721b79f5e3fd62f2cbd78b182f96430.jpeg",
@@ -9794,7 +9794,7 @@
     {
       "id": "mm16564",
       "name": "Leopar Desenli Bol Paça Pantolon – Leopar",
-      "price": 349,
+      "price": 449,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-180/6a1a203f462742e60dfca44d6054dddb3d561cb4.jpg",
         "https://api.sakans.com/storage/maximodena/p-180/cda130a9fe996a70d3ec56c8dbe19f33fd754133.jpg",
@@ -9827,7 +9827,7 @@
     {
       "id": "mm121923",
       "name": "Pileli Balon Kol Elbise – Sarı",
-      "price": 2149,
+      "price": 2499,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6780/4fc6a5a9957b2b9d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6780/37fc33be81c31e7f.jpg",
@@ -9862,7 +9862,7 @@
     {
       "id": "mm121922",
       "name": "Omzu Lastikli Brode Elbise – Yeşil",
-      "price": 2049,
+      "price": 2399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6604/1aa8799625cd3b84.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6604/77279b82aca9f0af.jpg",
@@ -9897,7 +9897,7 @@
     {
       "id": "mm120242",
       "name": "Valonlu Şeritli Uzun Elbise – Bej",
-      "price": 2799,
+      "price": 3249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7106/cc49f1fe4e97cc6c.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7106/cc3b28aa10dc3e77.jpg",
@@ -9933,7 +9933,7 @@
     {
       "id": "mm118697",
       "name": "Omuzdan Bağlamalı Çizgili Elbise – Mint",
-      "price": 1349,
+      "price": 1599,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6818/0e371971b3c949e2.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6818/d13398efab19343b.jpg",
@@ -9967,7 +9967,7 @@
     {
       "id": "mm118696",
       "name": "Dantel Detaylı Brode Elbise – Bej",
-      "price": 2299,
+      "price": 2649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6810/0149f5022627047e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6810/6bdefd5727fdad98.jpg",
@@ -10002,7 +10002,7 @@
     {
       "id": "mm118088",
       "name": "Kısa Kot Kupşı Elbise – Mavi",
-      "price": 1799,
+      "price": 2099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7615/0a23a4c94ecc513b.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7615/23a43318edfac773.jpg",
@@ -10038,7 +10038,7 @@
     {
       "id": "mm93106",
       "name": "Sırt Dekolteli Bluz – Ekru",
-      "price": 749,
+      "price": 899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7306/157b92cca326b45e.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7306/141e31e157cf6ca3.jpg",
@@ -10073,7 +10073,7 @@
     {
       "id": "mm93109",
       "name": "Saten Çiçekli Bağlamalı Bluz – Ekru",
-      "price": 749,
+      "price": 899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7311/2ca818aaf7ca1ce5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7311/c370260521b3f7d6.jpg",
@@ -10108,7 +10108,7 @@
     {
       "id": "mm93033",
       "name": "Belden Bağlamalı Bluz – Pembe",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7214/df380c4e34cb6cfa.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7214/47ef618485305bc7.jpg",
@@ -10143,7 +10143,7 @@
     {
       "id": "mm93034",
       "name": "Belden Bağlamalı Bluz – Siyah",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7215/33038d5439ee7b68.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7215/a9f2541fa3ad0bd2.jpg",
@@ -10178,7 +10178,7 @@
     {
       "id": "mm93035",
       "name": "Belden Bağlamalı Bluz – Sarı",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7216/37cc0e1959c38590.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7216/146f5467d742e5b6.jpg",
@@ -10213,7 +10213,7 @@
     {
       "id": "mm93036",
       "name": "Belden Bağlamalı Bluz – Mint",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7217/103b5cb75070c414.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7217/acb6f6e219f88d08.jpg",
@@ -10248,7 +10248,7 @@
     {
       "id": "mm93037",
       "name": "Belden Bağlamalı Bluz – Mavi",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7218/f662f29a64c170ed.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7218/051effd05fe946b2.jpg",
@@ -10283,7 +10283,7 @@
     {
       "id": "mm92558",
       "name": "Askılı Degaje Bluz – Gümüş",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6583/c0a4ff1da9e7687c.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6583/a13e7e9e983282ed.jpg",
@@ -10319,7 +10319,7 @@
     {
       "id": "mm92559",
       "name": "Askılı Degaje Bluz – Saks",
-      "price": 549,
+      "price": 649,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6584/0376b107ab158ccc.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6584/61d3c0c4c6d91527.jpg",
@@ -10355,7 +10355,7 @@
     {
       "id": "mm92503",
       "name": "Altı Zincirli Bluz – Mavi",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6519/3f0499474d110fd1.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6519/06d075089154f017.jpg",
@@ -10390,7 +10390,7 @@
     {
       "id": "mm92654",
       "name": "Kot Bluz – Mavi",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6701/aea8c0b6a822bded.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6701/4c238882d25d58b7.jpg",
@@ -10425,7 +10425,7 @@
     {
       "id": "mm92943",
       "name": "Fırfırlı Balenli Bluz – Beyaz",
-      "price": 1049,
+      "price": 1249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7111/8651983372b1f891.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7111/0319781f31ba0fe8.jpg",
@@ -10460,7 +10460,7 @@
     {
       "id": "mm16585",
       "name": "Desenli Oversize Tişört – Beyaz",
-      "price": 199,
+      "price": 249,
       "images": [
         "https://api.sakans.com/storage/maximodena/p-198/016faaddaa292e0af772c4660a24d0f257283100.jpeg",
         "https://api.sakans.com/storage/maximodena/p-198/1b52e2b2cd0602c678d7da9de3e980e3574c496f.jpeg",
@@ -10483,7 +10483,7 @@
     {
       "id": "mm93266",
       "name": "Saten Etek – Kahverengi",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7508/baa61239bd3b8dab.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7508/ba1757e187214e5b.jpg",
@@ -10518,7 +10518,7 @@
     {
       "id": "mm92910",
       "name": "Ekose Desen Tül Etek – Lacivert",
-      "price": 1449,
+      "price": 1699,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7065/966ffeb0930f737d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7065/32404507ed165d77.jpg",
@@ -10553,7 +10553,7 @@
     {
       "id": "mm92911",
       "name": "Ekose Desen Tül Etek – Kahverengi",
-      "price": 1449,
+      "price": 1699,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7066/f7dacdf085bce5f9.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7066/264db3d70403e3a3.jpg",
@@ -10588,7 +10588,7 @@
     {
       "id": "mm106105",
       "name": "Yırtmaçlı Süs Patlı Etek – Siyah",
-      "price": 899,
+      "price": 1049,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6570/230930c3db304748.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6570/75e62dd16903b4cd.jpg",
@@ -10622,7 +10622,7 @@
     {
       "id": "mm120164",
       "name": "Fırfırlı Elbise – Siyah",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7633/5480931e3225048a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7633/4bcbb725aee216af.jpg",
@@ -10662,7 +10662,7 @@
     {
       "id": "mm120165",
       "name": "Fırfırlı Elbise – Kahverengi",
-      "price": 2599,
+      "price": 2999,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7634/ca29477608812862.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7634/7c4eaf255c6ed851.jpg",
@@ -10702,7 +10702,7 @@
     {
       "id": "mm111015",
       "name": "Vatkalı Yakası Kuşaklı Elbise – Kahverengi",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7607/1ca6bf652dca717d.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7607/de24296383675376.jpg",
@@ -10736,7 +10736,7 @@
     {
       "id": "mm111016",
       "name": "Vatkalı Yakası Kuşaklı Elbise – Bordo",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7608/fc4f5ce752b7ccf4.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7608/725c2f926128377b.jpg",
@@ -10771,7 +10771,7 @@
     {
       "id": "mm111018",
       "name": "Vatkalı Yakası Kuşaklı Elbise – Lacivert",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7611/c2f928a8f0bafa9f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7611/9031522ac1383c60.jpg",
@@ -10806,7 +10806,7 @@
     {
       "id": "mm111019",
       "name": "Büzgülü Elbise – Siyah",
-      "price": 3549,
+      "price": 4099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7612/9f7ed503601c8be5.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7612/a5c035b88dedd0bf.jpg",
@@ -10846,7 +10846,7 @@
     {
       "id": "mm111021",
       "name": "Büzgülü Elbise – Kahverengi",
-      "price": 3549,
+      "price": 4099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7614/b4a683db246d451b.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7614/359a0149004579b0.jpg",
@@ -10886,7 +10886,7 @@
     {
       "id": "mm111024",
       "name": "Büzgülü Elbise – Ekru",
-      "price": 3549,
+      "price": 4099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7618/1a09b392d9cc6950.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7618/59dd9b8c836a9e06.jpg",
@@ -10925,7 +10925,7 @@
     {
       "id": "mm111060",
       "name": "Fırfırlı Büzgülü Elbise – Siyah",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7620/47fdf82049126b30.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7620/452478e3425499b3.jpg",
@@ -10965,7 +10965,7 @@
     {
       "id": "mm113304",
       "name": "Fırfırlı Büzgülü Elbise – Ekru",
-      "price": 3349,
+      "price": 3899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7631/30dbd527d5b07f16.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7631/0dadc10279c6e5bc.jpg",
@@ -11005,7 +11005,7 @@
     {
       "id": "mm111022",
       "name": "Güpür Detaylı Dantel Elbise – Kırmızı",
-      "price": 1949,
+      "price": 2249,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7616/bccc4c3e58930687.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7616/34d9a94a751083be.jpg",
@@ -11045,7 +11045,7 @@
     {
       "id": "mm92823",
       "name": "Düğme Detaylı Saten Bluz – Zümrüt",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6963/05a0f5a2731c007f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6963/ff6500c3b570c031.jpg",
@@ -11080,7 +11080,7 @@
     {
       "id": "mm92824",
       "name": "Düğme Detaylı Saten Bluz – Yeşil",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6964/b79c3d8c832b8bf4.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6964/e8cc6def31ecae43.jpg",
@@ -11115,7 +11115,7 @@
     {
       "id": "mm92825",
       "name": "Düğme Detaylı Saten Bluz – Siyah",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6965/24f3a806b4733f71.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6965/b94e7a30f2301f43.jpg",
@@ -11150,7 +11150,7 @@
     {
       "id": "mm92826",
       "name": "Düğme Detaylı Saten Bluz – Kahverengi",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6966/1ac0d7ab1b167dd1.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6966/02cf0cf1c9e02947.jpg",
@@ -11185,7 +11185,7 @@
     {
       "id": "mm92827",
       "name": "Düğme Detaylı Saten Bluz – Gri",
-      "price": 1199,
+      "price": 1399,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-6967/937a22bcc6c1109a.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-6967/8dc44db196a5bb50.jpg",
@@ -11220,7 +11220,7 @@
     {
       "id": "mm93071",
       "name": "Güllü Bluz – Siyah",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7261/06ae0ed22c077262.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7261/0e3f3c64b9464a58.jpg",
@@ -11255,7 +11255,7 @@
     {
       "id": "mm93072",
       "name": "Güllü Bluz – Bej",
-      "price": 999,
+      "price": 1149,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7267/25b151365289d33f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7267/e6ea9aaa2ef929e2.jpg",
@@ -11290,7 +11290,7 @@
     {
       "id": "mm93073",
       "name": "Bel Lastikli Balon Kollu Bluz – Lacivert",
-      "price": 1099,
+      "price": 1299,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7268/aa54e63907842e23.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7268/5698a7262a0b58a9.jpg",
@@ -11325,7 +11325,7 @@
     {
       "id": "mm93172",
       "name": "Saten Fırfırlı Gömlek – Siyah",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7385/c63efa9538bb64b8.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7385/1f29b552b2ac4926.jpg",
@@ -11350,7 +11350,7 @@
     {
       "id": "mm93173",
       "name": "Saten Fırfırlı Gömlek – Kırmızı",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7386/e66befb4a454b773.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7386/eba9d0611520ba9e.jpg",
@@ -11375,7 +11375,7 @@
     {
       "id": "mm93174",
       "name": "Saten Fırfırlı Gömlek – Kahverengi",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7387/f1b72a0fe7ff2ff6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7387/4f67ac3ec2d4305b.jpg",
@@ -11400,7 +11400,7 @@
     {
       "id": "mm93175",
       "name": "Saten Fırfırlı Gömlek – Ekru",
-      "price": 1649,
+      "price": 1899,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7388/4365e589b11710c6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7388/019a1e55ef5ed4b9.jpg",
@@ -11425,7 +11425,7 @@
     {
       "id": "mm120156",
       "name": "Pileli Gömlek – Kırmızı",
-      "price": 949,
+      "price": 1099,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7526/959b642d8d4f9316.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7526/dba84bc56be58aea.jpg",
@@ -11460,7 +11460,7 @@
     {
       "id": "mm93146",
       "name": "Pileli Gömlek – Kahverengi",
-      "price": 799,
+      "price": 949,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7354/80a312f96eb16d13.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7354/c885333ee67dff6a.jpg",
@@ -11485,7 +11485,7 @@
     {
       "id": "mm93176",
       "name": "Çizgili Gömlek – Vizon",
-      "price": 1249,
+      "price": 1449,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7389/dc8d8062b5f2b164.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7389/e956bfcdb94d3eb8.jpg",
@@ -11520,7 +11520,7 @@
     {
       "id": "mm93181",
       "name": "Çizgili Gömlek – Mürdüm",
-      "price": 1149,
+      "price": 1349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7395/56cbe6963e13e0f6.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7395/d2165c878c45f0bd.jpg",
@@ -11555,7 +11555,7 @@
     {
       "id": "mm93182",
       "name": "Çizgili Gömlek – Kahverengi",
-      "price": 1149,
+      "price": 1349,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7396/f111b049d6c57ee2.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7396/3ff42157e2a57918.jpg",
@@ -11590,7 +11590,7 @@
     {
       "id": "mm120178",
       "name": "İşlemeli Pelerinli Çizgili Gömlek – Mavi",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7636/940a1e15fd6bddce.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7636/47dcaa37460c511c.jpg",
@@ -11625,7 +11625,7 @@
     {
       "id": "mm120167",
       "name": "İşlemeli Pelerinli Çizgili Gömlek – Kahverengi",
-      "price": 2199,
+      "price": 2549,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7637/c5ae7000f14ce608.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7637/a8a641c1d743e390.jpg",
@@ -11660,7 +11660,7 @@
     {
       "id": "mm103849",
       "name": "Triko Bluzlu Gömlek – Mint",
-      "price": 1349,
+      "price": 1599,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7601/3fc1f5a555e1734f.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7601/98e95fb0e43d2eee.jpg",
@@ -11695,7 +11695,7 @@
     {
       "id": "mm103850",
       "name": "Triko Bluzlu Gömlek – Kahverengi",
-      "price": 1349,
+      "price": 1599,
       "images": [
         "https://api.sakans.com/storage/maximodena/xml2-7602/f6ac3b75cc347302.jpg",
         "https://api.sakans.com/storage/maximodena/xml2-7602/6a6dddc6cbbc47b7.jpg",

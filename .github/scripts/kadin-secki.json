@@ -1,6 +1,7 @@
 {
   "_not": "VAELO Kadın koleksiyonu: Maxi Modena (Sakans) bayi feed'inden çekilecek ürünler. id = feed'deki ProductId. Ürün eklemek/çıkarmak için bu listeyi düzenle. Alternatif: kod = maximodena.com.tr ürün adresinin sonundaki kod (ör. x7516, p-37).",
   "kar": 0.53,
+  "zam": 0.15,
   "gruplar": {
     "dis": "Kaban & Mont",
     "ceket": "Ceket & Trençkot",
