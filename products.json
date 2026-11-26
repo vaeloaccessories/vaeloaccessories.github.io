@@ -6159,7 +6159,7 @@
       "bedenler": [
         {
           "beden": "M",
-          "stok": 2,
+          "stok": 1,
           "barkod": "2362505874004"
         },
         {
@@ -7941,41 +7941,6 @@
           "beden": "XL",
           "stok": 5,
           "barkod": "2362506899747"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
-      "id": "mm92633",
-      "name": "Kürklü Kısa Manto – Ekru",
-      "price": 3099,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/xml2-6671/1784078ecd690bf3.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6671/5fda38029f7787fe.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6671/8b3ca9256336f9bb.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6671/878b00f8306fa1fd.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-6671/299e9768b44a3662.jpg"
-      ],
-      "description": "Ekru Kürklü Kısa Manto\nMateryal ve Kalite\nÜrün kürklü detayıyla dikkat çeker. Kumaşın özel bakım gerektirdiği belirtilmiş olup, uzun ömürlü kullanım için kuru temizleme önerilmektedir.\nKalıp ve Beden Önerisi\nMankenin üzerindeki numune S/36 bedendir. Ürün bedenleri Avrupa beden standartlarına göre hazırlanmıştır, bu nedenle beden seçimi yapılırken Avrupa ölçü tablosu referans alınmalıdır.\nÖne Çıkan Özellikler\nEkru renk\nKürklü detay\nKısa manto formu\nAvrupa beden standardına uygun kalıp\nKuru temizleme ile bakım gerektirir\nSık Sorulan Sorular\nManto hangi bedenlerde mevcut?\nÜrün Avrupa beden standartlarına göre üretilmiştir, mankenin üzerindeki numune S/36 bedendir.\nMantoyu nasıl temizlemeliyim?\nÜrünün uzun ömürlü kalması için kuru temizleme yapılması önerilmektedir.\nEtiketi çıkarırsam ürünü iade edebilir miyim?\nEtiketi sökülmüş ve kullanım hatası oluşmuş ürünlerden firma sorumlu değildir, bu nedenle etiketi çıkarmadan önce ürünü dikkatlice kontrol etmeniz önerilir.\nÜrün Bilgileri\nEkru Kürklü Kısa Manto\nMankenin üzerindeki numune S/36 bedendir\nÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir\nKURU TEMİZLEME YAPINIZ",
-      "url": "",
-      "category": "Kadın",
-      "grup": "dis",
-      "sezon": "kis",
-      "bedenler": [
-        {
-          "beden": "S",
-          "stok": 5,
-          "barkod": "2362506900160"
-        },
-        {
-          "beden": "M",
-          "stok": 5,
-          "barkod": "2362506900153"
-        },
-        {
-          "beden": "L",
-          "stok": 5,
-          "barkod": "2362506900146"
         }
       ],
       "tedarik": "maxi"
