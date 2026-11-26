@@ -454,6 +454,10 @@ fbq('track', 'PageView');
     .saat-tab, .kadin-tab { flex: none; white-space: nowrap; }
   }
   .saat-tab, .kadin-tab { background: none; border: 0; padding: 4px 0; font: inherit; font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; color: inherit; opacity: .45; cursor: pointer; border-bottom: 1px solid transparent; transition: opacity .3s; }
+  .kadin-sezon { display: flex; gap: 8px; width: 100%; margin-bottom: 18px; }
+  .kadin-sz { flex: 1 1 0; max-width: 180px; padding: 12px 0; background: none; border: 1px solid currentColor; font: inherit; font-size: .85rem; letter-spacing: .24em; text-transform: uppercase; color: inherit; cursor: pointer; opacity: .5; transition: opacity .3s, background .3s, color .3s; }
+  .kadin-sz.active { opacity: 1; background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+  .kadin-tab[hidden] { display: none; }
   .saat-tab:hover, .kadin-tab:hover { opacity: .85; }
   .saat-tab.active, .kadin-tab.active { opacity: 1; border-bottom-color: currentColor; }
   .saat-note { margin-top: 40px; font-size: .92rem; color: var(--muted); max-width: 44em; }
@@ -663,6 +667,7 @@ fbq('track', 'PageView');
     <nav class="kb-cats rv" aria-label="Kadın kategorileri">
       <a href="#kadin" data-view="kadin" data-grup="dis">Kaban &amp; Mont</a>
       <a href="#kadin" data-view="kadin" data-grup="ceket">Trençkot &amp; Ceket</a>
+      <a href="#kadin" data-view="kadin" data-grup="kazak">Kazak &amp; Hırka</a>
       <a href="#kadin" data-view="kadin" data-grup="ust">Üst Giyim</a>
       <a href="#kadin" data-view="kadin" data-grup="elbise">Elbise &amp; Takım</a>
       <a href="#kadin" data-view="kadin" data-grup="alt">Alt Giyim</a>
@@ -1057,15 +1062,21 @@ fbq('track', 'PageView');
   <section id="kadin" class="saat" aria-label="VAELO Kadın koleksiyonu" hidden>
     <div class="head rv">
       <h2>VAĖLO Kadın</h2>
-      <p>Kaban, trençkot, triko ve kışlık parçalarla sezonun sade şıklığı. Siparişler 2-4 iş günü içinde kargoya verilir.</p>
+      <p>Kışlık ve yazlık parçalarla her sezonun sade şıklığı. Siparişler 2-4 iş günü içinde kargoya verilir.</p>
     </div>
     <div class="grid-toolbar">
+      <div class="kadin-sezon" role="group" aria-label="Sezon">
+        <button type="button" class="kadin-sz active" data-sezon="kis">Kış</button>
+        <button type="button" class="kadin-sz" data-sezon="yaz">Yaz</button>
+      </div>
       <div class="kadin-tabs" role="group" aria-label="Kategori">
         <button type="button" class="kadin-tab active" data-grup="all">Tümü</button>
         <button type="button" class="kadin-tab" data-grup="dis">Kaban &amp; Mont</button>
-        <button type="button" class="kadin-tab" data-grup="ceket">Trençkot &amp; Ceket</button>
+        <button type="button" class="kadin-tab" data-grup="ceket">Ceket &amp; Trençkot</button>
+        <button type="button" class="kadin-tab" data-grup="kazak">Kazak &amp; Hırka</button>
         <button type="button" class="kadin-tab" data-grup="ust">Üst Giyim</button>
-        <button type="button" class="kadin-tab" data-grup="elbise">Elbise &amp; Takım</button>
+        <button type="button" class="kadin-tab" data-grup="elbise">Elbise</button>
+        <button type="button" class="kadin-tab" data-grup="takim">Takım</button>
         <button type="button" class="kadin-tab" data-grup="alt">Alt Giyim</button>
         <button type="button" class="kadin-tab" data-grup="outlet" style="color:#d11a1a;font-weight:700">Outlet</button>
       </div>
@@ -1295,7 +1306,7 @@ function productCard(p, idx) {
   var name = String(p.name || '').replace(/^vaelo\s+/i, '');
   var desc = String(p.description || '').split('\n').map(function (l) { return l.trim(); })
     .filter(function (l) { return l.length >= 32; }).slice(0, 2).join(' ');
-  return '<article class="item" data-price="' + price + '" data-sold="' + sold + '" data-idx="' + (idx || 0) + '"' + (p.grup ? ' data-grup="' + esc(p.grup) + '"' : '') + '><a class="ph" href="' + esc(url) + '" tabindex="-1" aria-hidden="true"><div class="ph-inner">' +
+  return '<article class="item" data-price="' + price + '" data-sold="' + sold + '" data-idx="' + (idx || 0) + '"' + (p.grup ? ' data-grup="' + esc(p.grup) + '"' : '') + (p.sezon ? ' data-sezon="' + esc(p.sezon) + '"' : '') + '><a class="ph" href="' + esc(url) + '" tabindex="-1" aria-hidden="true"><div class="ph-inner">' +
     imgs.slice(0, 2).map(function (u) { return '<img src="' + esc(u) + '" alt="' + esc(altText(name)) + '" loading="lazy" referrerpolicy="no-referrer">'; }).join('') +
     '</div></a>' + (p.rozet ? '<p class="rozet">' + esc(p.rozet) + '</p>' : '') + '<h3>' + esc(name) + '</h3>' +
     (price ? '<p class="price"><span class="cur">₺</span>' + fmtPrice(price) + (p.tukendi ? ' <b style="color:#d11a1a;font-size:.75em;letter-spacing:.08em">SOLD OUT</b>' : '') + '</p>' : '') +
@@ -1426,11 +1437,25 @@ function syncProducts() {            // products.json is refreshed automatically
 }
 var gridState = { 'grid-premium': { sort: 'recommended', view: 'grid' }, 'grid-street': { sort: 'recommended', view: 'grid' }, 'grid-saat': { sort: 'recommended', view: 'grid' }, 'grid-kadin': { sort: 'recommended', view: 'grid' } };
 var saatGrup = 'all', kadinGrup = 'all';
-function setKadinFilter(g) {                      // Kadın sayfası: Tümü / Kaban & Mont / Trençkot & Ceket / ...
+var kadinSezon = 'kis';
+function setKadinSezon(z) {                       // Kadın sayfası: Kış / Yaz
+  kadinSezon = z === 'yaz' ? 'yaz' : 'kis';
+  document.querySelectorAll('.kadin-sz').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-sezon') === kadinSezon); });
+  setKadinFilter(kadinGrup);
+}
+function setKadinFilter(g) {                      // Kadın sayfası alt kategoriler (sezona göre)
   kadinGrup = g || 'all';
-  document.querySelectorAll('.kadin-tab').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-grup') === kadinGrup); });
   var gr = document.getElementById('grid-kadin'); if (!gr) return;
-  Array.prototype.forEach.call(gr.children, function (it) { it.hidden = kadinGrup !== 'all' && it.getAttribute('data-grup') !== kadinGrup; });
+  var var_ = {};
+  var sezonda = function (it) { var z = it.getAttribute('data-sezon'); return !z || z === kadinSezon; };
+  Array.prototype.forEach.call(gr.children, function (it) { if (sezonda(it)) var_[it.getAttribute('data-grup')] = 1; });
+  if (kadinGrup !== 'all' && !var_[kadinGrup] && gr.children.length) kadinGrup = 'all';
+  document.querySelectorAll('.kadin-tab').forEach(function (b) {
+    var k = b.getAttribute('data-grup');
+    b.hidden = k !== 'all' && gr.children.length > 0 && !var_[k];
+    b.classList.toggle('active', k === kadinGrup);
+  });
+  Array.prototype.forEach.call(gr.children, function (it) { it.hidden = !sezonda(it) || (kadinGrup !== 'all' && it.getAttribute('data-grup') !== kadinGrup); });
 }
 function setSaatFilter(g) {                       // Saat sayfası: Tümü / Günlük / Signature / Kadın
   saatGrup = g || 'all';
@@ -1469,6 +1494,7 @@ function initGridControls() {
   });
   document.querySelectorAll('.saat-tab').forEach(function (b) { b.addEventListener('click', function () { setSaatFilter(b.getAttribute('data-grup')); }); });
   document.querySelectorAll('.kadin-tab').forEach(function (b) { b.addEventListener('click', function () { setKadinFilter(b.getAttribute('data-grup')); }); });
+  document.querySelectorAll('.kadin-sz').forEach(function (b) { b.addEventListener('click', function () { setKadinSezon(b.getAttribute('data-sezon')); }); });
   applyGridState('grid-saat');
   applyGridState('grid-premium'); applyGridState('grid-street');   // apply default order to the built-in fallback cards too
 }

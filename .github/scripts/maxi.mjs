@@ -28,7 +28,7 @@ const kodBul = (k) => byKod.get(/^x\d+$/i.test(k) ? 'xml2-' + k.slice(1) : k);
 const goruldu = new Set();
 
 // 1562.69 × 1.53 = 2390.9 → 2399
-const fiyat = (alis) => { const v = alis * (1 + cfg.kar), b = Math.floor(v / 100) * 100; return v <= b + 49 ? b + 49 : b + 99; };
+const fiyat = (alis, kar = cfg.kar) => { const v = alis * (1 + kar), b = Math.floor(v / 100) * 100; return v <= b + 49 ? b + 49 : b + 99; };
 const RENK = { kahverengi: 'Kahverengi', kahve: 'Kahverengi', 'altın': 'Altın Rengi', altin: 'Altın Rengi' };
 const renkAdi = (c) => { const s = String(c || '').trim(); return RENK[s.toLocaleLowerCase('tr-TR')] || s; };
 const BEDEN_SIRA = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', '50', 'Standart'];
@@ -59,12 +59,13 @@ for (const u of cfg.urunler) {
     yeni.push({
       id: 'mm' + x.ProductId,
       name: `${u.ad} – ${renkAdi(x.Color)}`,
-      price: fiyat(alis),
+      price: fiyat(alis, u.sezon === 'yaz' ? (cfg.karYaz ?? cfg.kar) : cfg.kar),
       images,
       description: aciklama(x.FullDescription),
       url: '',
       category: 'Kadın',
       grup: u.grup,
+      sezon: u.sezon || 'kis',
       bedenler,
       ...(/^https:\/\/.+\.mp4$/i.test(x.Video || '') ? { video: x.Video } : {}),
       tedarik: 'maxi',
@@ -76,5 +77,6 @@ const data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const once = (data.products || []).filter((p) => p.category === 'Kadın' && p.tedarik === 'maxi');
 data.products = (data.products || []).filter((p) => !(p.category === 'Kadın' && p.tedarik === 'maxi')).concat(yeni);  // elle eklenen Kadın ürünleri (tedarik: vaelo) korunur
 data.kadinGruplar = cfg.gruplar;
+data.kadinSezonlar = cfg.sezonlar;
 fs.writeFileSync('products.json', JSON.stringify(data, null, 2) + '\n');
 console.log(`Kadın koleksiyonu: ${yeni.length} ürün (önce ${once.length}).`);

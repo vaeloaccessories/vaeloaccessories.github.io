@@ -3,9 +3,11 @@
   "kar": 0.53,
   "gruplar": {
     "dis": "Kaban & Mont",
-    "ceket": "Trençkot & Ceket",
-    "ust": "Üst Giyim",
-    "elbise": "Elbise & Takım",
+    "ceket": "Ceket & Trençkot",
+    "kazak": "Kazak & Hırka",
+    "ust": "Bluz & Gömlek",
+    "elbise": "Elbise",
+    "takim": "Takım",
     "alt": "Alt Giyim",
     "outlet": "Outlet"
   },
@@ -16,14 +18,16 @@
       "id": [
         "92626",
         "92627"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "İki Düğmeli Manto",
       "grup": "dis",
       "id": [
         "92632"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Uzun Kaban",
@@ -31,14 +35,16 @@
       "id": [
         "92538",
         "92539"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kuşaklı Midi Kaban",
       "grup": "dis",
       "id": [
         "92459"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kürk Yakalı Kemerli Uzun Kaşe Kaban",
@@ -49,7 +55,8 @@
         "73407",
         "73408",
         "73409"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Deri Kuşak Garnili Kaban",
@@ -57,7 +64,8 @@
       "id": [
         "92861",
         "92867"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Yakası Örgü Detaylı Mont",
@@ -65,14 +73,16 @@
       "id": [
         "93329",
         "93330"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Uzun Şişme Mont",
       "grup": "dis",
       "id": [
         "93236"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Tonaton Düğmeli Uzun Trençkot",
@@ -80,7 +90,8 @@
       "id": [
         "93237",
         "93238"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Uzun Deri Trençkot",
@@ -88,7 +99,8 @@
       "id": [
         "93240",
         "93241"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Uzun Kemerli Trençkot",
@@ -97,7 +109,8 @@
         "92623",
         "92624",
         "92625"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Yakası Çıtçıtlı Deri Ceket",
@@ -105,14 +118,16 @@
       "id": [
         "93317",
         "93318"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Koyun Yünü Yakalı Süet Ceket",
       "grup": "ceket",
       "id": [
         "93327"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kruvaze Yelek",
@@ -120,36 +135,41 @@
       "id": [
         "16963",
         "16964"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Boğazlı Örgülü Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "92293",
         "92296"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Oversize Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "16432"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Yumuşak Dokulu Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "16967"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kazayağı Garnili Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "92468"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kaşe Gold Düğmeli Gömlek",
@@ -157,7 +177,8 @@
       "id": [
         "93246",
         "93247"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Jakarlı Balon Kollu Elbise",
@@ -166,7 +187,8 @@
         "100305",
         "100307",
         "100308"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Pelerinli Elbise",
@@ -174,62 +196,70 @@
       "id": [
         "93312",
         "93313"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "İkili Örme Takım",
-      "grup": "elbise",
+      "grup": "takim",
       "id": [
         "98134",
         "98135",
         "100315"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Garnili İkili Takım",
-      "grup": "elbise",
+      "grup": "takim",
       "id": [
         "100309",
         "100310"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Sakallı Dokulu Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "16825",
         "16836"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Madonna Yaka Triko Bluz",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [
         "16720",
         "16701"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kısa Ceket Etek Takım",
-      "grup": "elbise",
+      "grup": "takim",
       "id": [
         "16755",
         "16930"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kemerli Balon Kollu Elbise",
       "grup": "elbise",
       "id": [
         "16612"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Vatkalı Kemer Detaylı Uzun Elbise",
       "grup": "elbise",
       "id": [
         "16933"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Saten Degaje Yaka Elbise",
@@ -237,21 +267,24 @@
       "id": [
         "16888",
         "16887"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Pileli Comfort Pantolon",
       "grup": "alt",
       "id": [
         "92637"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Lastikli Deri Pantolon",
       "grup": "alt",
       "id": [
         "92477"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Geniş Paça Jean",
@@ -259,14 +292,16 @@
       "id": [
         "92302",
         "92303"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Boru Paça Jean",
       "grup": "alt",
       "id": [
         "92304"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Ekoseli Etek",
@@ -275,7 +310,8 @@
         "93290",
         "93291",
         "93292"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kısa Kürk Kaban",
@@ -283,7 +319,8 @@
       "id": [],
       "kod": [
         "x7516"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Pelerinli Kaban",
@@ -291,7 +328,8 @@
       "id": [],
       "kod": [
         "x6652"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kürklü Kısa Manto",
@@ -299,7 +337,8 @@
       "id": [],
       "kod": [
         "x6671"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Tüylü Yumoş Kaban",
@@ -308,7 +347,8 @@
       "kod": [
         "x6536",
         "x6537"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kuşaklı Kürk Detaylı Kısa Kaşe Kaban",
@@ -318,7 +358,8 @@
         "p-36",
         "p-37",
         "p-38"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Süs Dikiş Detaylı Mont",
@@ -328,7 +369,8 @@
         "x7632",
         "x7576",
         "x7577"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kapüşonlu Şişme Yelek",
@@ -336,7 +378,8 @@
       "id": [],
       "kod": [
         "x7473"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Kürk Detaylı Kemerli Ceket",
@@ -344,132 +387,147 @@
       "id": [],
       "kod": [
         "p-111"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Boğazlı Örgülü Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "x6254",
         "x6255"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Fermuarlı Boğazlı Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "x6249"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Boncuklu Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "x6257",
         "x6258"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Polo Yaka Çizgili Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-146",
         "p-147"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Baklava Desenli Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-118"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Yumuşak Dokulu Triko Kazak",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-121",
         "p-122"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "x6700"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Düğmeli Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "x6248"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Peluş Dokulu Kısa Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-99"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Püskül Detaylı Oversize Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-114",
         "p-115"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "V Yaka Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-127",
         "p-128",
         "p-129"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Altın Düğmeli Triko Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-104"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Ajurlu Püsküllü Uzun Hırka",
-      "grup": "ust",
+      "grup": "kazak",
       "id": [],
       "kod": [
         "p-52"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Üç İplik İkili Takım",
-      "grup": "elbise",
+      "grup": "takim",
       "id": [],
       "kod": [
         "x7638",
         "x7639",
         "x7640"
-      ]
+      ],
+      "sezon": "kis"
     },
     {
       "ad": "Çin Düğmeli Takım",
-      "grup": "elbise",
+      "grup": "takim",
       "id": [],
       "kod": [
         "x7644",
@@ -477,7 +535,458 @@
         "x7646",
         "x7647",
         "x7648"
+      ],
+      "sezon": "kis"
+    },
+    {
+      "ad": "Ön Yırtmaçlı Uzun Kot Etek",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7619"
+      ]
+    },
+    {
+      "ad": "Saten Çiçekli Etek",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7313"
+      ]
+    },
+    {
+      "ad": "Desenli Şifon Dilimli Etek",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7099",
+        "x7100"
+      ]
+    },
+    {
+      "ad": "Volanlı Kat Kat Etek",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7126"
+      ]
+    },
+    {
+      "ad": "Dantelli Kat Kat Etek",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6890",
+        "x6891"
+      ]
+    },
+    {
+      "ad": "Summer Şort",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6523"
+      ]
+    },
+    {
+      "ad": "Yazlık Kot Şort",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6524"
+      ]
+    },
+    {
+      "ad": "Beli Lastikli Etek Şort",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6599"
+      ]
+    },
+    {
+      "ad": "Paçası Fırfırlı Keten Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6790"
+      ]
+    },
+    {
+      "ad": "Pileli Atlas Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7251",
+        "x7252"
+      ]
+    },
+    {
+      "ad": "Yüksek Bel Wide Leg Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6430"
+      ]
+    },
+    {
+      "ad": "Yüksek Bel Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6433"
+      ]
+    },
+    {
+      "ad": "Yüksek Bel Palazzo Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "p-200",
+        "p-201",
+        "p-202",
+        "p-204"
+      ]
+    },
+    {
+      "ad": "Geniş Paça Yüksek Bel Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "p-199"
+      ]
+    },
+    {
+      "ad": "Lastikli Paça Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "p-196"
+      ]
+    },
+    {
+      "ad": "Leopar Desenli Bol Paça Pantolon",
+      "grup": "alt",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "p-180"
+      ]
+    },
+    {
+      "ad": "Pileli Balon Kol Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6780"
+      ]
+    },
+    {
+      "ad": "Omzu Lastikli Brode Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6604"
+      ]
+    },
+    {
+      "ad": "Valonlu Şeritli Uzun Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7106"
+      ]
+    },
+    {
+      "ad": "Omuzdan Bağlamalı Çizgili Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6818"
+      ]
+    },
+    {
+      "ad": "Dantel Detaylı Brode Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6810"
+      ]
+    },
+    {
+      "ad": "Kısa Kot Kupşı Elbise",
+      "grup": "elbise",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7615"
+      ]
+    },
+    {
+      "ad": "Sırt Dekolteli Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7306"
+      ]
+    },
+    {
+      "ad": "Saten Çiçekli Bağlamalı Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7311"
+      ]
+    },
+    {
+      "ad": "Belden Bağlamalı Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7214",
+        "x7215",
+        "x7216",
+        "x7217",
+        "x7218"
+      ]
+    },
+    {
+      "ad": "Askılı Degaje Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6583",
+        "x6584"
+      ]
+    },
+    {
+      "ad": "Altı Zincirli Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6519"
+      ]
+    },
+    {
+      "ad": "Kot Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x6701"
+      ]
+    },
+    {
+      "ad": "Fırfırlı Balenli Bluz",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "x7111"
+      ]
+    },
+    {
+      "ad": "Desenli Oversize Tişört",
+      "grup": "ust",
+      "sezon": "yaz",
+      "id": [],
+      "kod": [
+        "p-198"
+      ]
+    },
+    {
+      "ad": "Saten Etek",
+      "grup": "alt",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7508"
+      ]
+    },
+    {
+      "ad": "Ekose Desen Tül Etek",
+      "grup": "alt",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7065",
+        "x7066"
+      ]
+    },
+    {
+      "ad": "Yırtmaçlı Süs Patlı Etek",
+      "grup": "alt",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x6570"
+      ]
+    },
+    {
+      "ad": "Fırfırlı Elbise",
+      "grup": "elbise",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7633",
+        "x7634"
+      ]
+    },
+    {
+      "ad": "Vatkalı Yakası Kuşaklı Elbise",
+      "grup": "elbise",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7607",
+        "x7608",
+        "x7611"
+      ]
+    },
+    {
+      "ad": "Büzgülü Elbise",
+      "grup": "elbise",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7612",
+        "x7614",
+        "x7618"
+      ]
+    },
+    {
+      "ad": "Fırfırlı Büzgülü Elbise",
+      "grup": "elbise",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7620",
+        "x7631"
+      ]
+    },
+    {
+      "ad": "Güpür Detaylı Dantel Elbise",
+      "grup": "elbise",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7616"
+      ]
+    },
+    {
+      "ad": "Düğme Detaylı Saten Bluz",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x6963",
+        "x6964",
+        "x6965",
+        "x6966",
+        "x6967"
+      ]
+    },
+    {
+      "ad": "Güllü Bluz",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7261",
+        "x7267"
+      ]
+    },
+    {
+      "ad": "Bel Lastikli Balon Kollu Bluz",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7268"
+      ]
+    },
+    {
+      "ad": "Saten Fırfırlı Gömlek",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7385",
+        "x7386",
+        "x7387",
+        "x7388"
+      ]
+    },
+    {
+      "ad": "Pileli Gömlek",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7526",
+        "x7354"
+      ]
+    },
+    {
+      "ad": "Çizgili Gömlek",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7389",
+        "x7395",
+        "x7396"
+      ]
+    },
+    {
+      "ad": "İşlemeli Pelerinli Çizgili Gömlek",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7636",
+        "x7637"
+      ]
+    },
+    {
+      "ad": "Triko Bluzlu Gömlek",
+      "grup": "ust",
+      "sezon": "kis",
+      "id": [],
+      "kod": [
+        "x7601",
+        "x7602"
       ]
     }
-  ]
+  ],
+  "karYaz": 0.3,
+  "sezonlar": {
+    "kis": "Kış",
+    "yaz": "Yaz"
+  }
 }
