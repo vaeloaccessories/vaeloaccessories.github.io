@@ -1,5 +1,5 @@
 {
-  "_not": "VAELO Kadın koleksiyonu: Maxi Modena (Sakans) bayi feed'inden çekilecek ürünler. id = feed'deki ProductId. Ürün eklemek/çıkarmak için bu listeyi düzenle.",
+  "_not": "VAELO Kadın koleksiyonu: Maxi Modena (Sakans) bayi feed'inden çekilecek ürünler. id = feed'deki ProductId. Ürün eklemek/çıkarmak için bu listeyi düzenle. Alternatif: kod = maximodena.com.tr ürün adresinin sonundaki kod (ör. x7516, p-37).",
   "kar": 0.53,
   "gruplar": {
     "dis": "Kaban & Mont",
@@ -10,39 +10,474 @@
     "outlet": "Outlet"
   },
   "urunler": [
-    { "ad": "Kuşgözlü Kaşe Kaban", "grup": "dis", "id": ["92626", "92627"] },
-    { "ad": "İki Düğmeli Manto", "grup": "dis", "id": ["92632"] },
-    { "ad": "Uzun Kaban", "grup": "dis", "id": ["92538", "92539"] },
-    { "ad": "Kuşaklı Midi Kaban", "grup": "dis", "id": ["92459"] },
-    { "ad": "Kürk Yakalı Kemerli Uzun Kaşe Kaban", "grup": "dis", "id": ["73405", "73406", "73407", "73408", "73409"] },
-    { "ad": "Deri Kuşak Garnili Kaban", "grup": "dis", "id": ["92861", "92867"] },
-    { "ad": "Yakası Örgü Detaylı Mont", "grup": "dis", "id": ["93329", "93330"] },
-    { "ad": "Uzun Şişme Mont", "grup": "dis", "id": ["93236"] },
-    { "ad": "Tonaton Düğmeli Uzun Trençkot", "grup": "ceket", "id": ["93237", "93238"] },
-    { "ad": "Uzun Deri Trençkot", "grup": "ceket", "id": ["93240", "93241"] },
-    { "ad": "Uzun Kemerli Trençkot", "grup": "ceket", "id": ["92623", "92624", "92625"] },
-    { "ad": "Yakası Çıtçıtlı Deri Ceket", "grup": "ceket", "id": ["93317", "93318"] },
-    { "ad": "Koyun Yünü Yakalı Süet Ceket", "grup": "ceket", "id": ["93327"] },
-    { "ad": "Kruvaze Yelek", "grup": "ceket", "id": ["16963", "16964"] },
-    { "ad": "Boğazlı Örgülü Triko Kazak", "grup": "ust", "id": ["92293", "92296"] },
-    { "ad": "Oversize Triko Kazak", "grup": "ust", "id": ["16432"] },
-    { "ad": "Yumuşak Dokulu Triko Hırka", "grup": "ust", "id": ["16967"] },
-    { "ad": "Kazayağı Garnili Hırka", "grup": "ust", "id": ["92468"] },
-    { "ad": "Kaşe Gold Düğmeli Gömlek", "grup": "ust", "id": ["93246", "93247"] },
-    { "ad": "Jakarlı Balon Kollu Elbise", "grup": "elbise", "id": ["100305", "100307", "100308"] },
-    { "ad": "Pelerinli Elbise", "grup": "elbise", "id": ["93312", "93313"] },
-    { "ad": "İkili Örme Takım", "grup": "elbise", "id": ["98134", "98135", "100315"] },
-    { "ad": "Garnili İkili Takım", "grup": "elbise", "id": ["100309", "100310"] },
-    { "ad": "Sakallı Dokulu Triko Hırka", "grup": "ust", "id": ["16825", "16836"] },
-    { "ad": "Madonna Yaka Triko Bluz", "grup": "ust", "id": ["16720", "16701"] },
-    { "ad": "Kısa Ceket Etek Takım", "grup": "elbise", "id": ["16755", "16930"] },
-    { "ad": "Kemerli Balon Kollu Elbise", "grup": "elbise", "id": ["16612"] },
-    { "ad": "Vatkalı Kemer Detaylı Uzun Elbise", "grup": "elbise", "id": ["16933"] },
-    { "ad": "Saten Degaje Yaka Elbise", "grup": "elbise", "id": ["16888", "16887"] },
-    { "ad": "Pileli Comfort Pantolon", "grup": "alt", "id": ["92637"] },
-    { "ad": "Lastikli Deri Pantolon", "grup": "alt", "id": ["92477"] },
-    { "ad": "Geniş Paça Jean", "grup": "alt", "id": ["92302", "92303"] },
-    { "ad": "Boru Paça Jean", "grup": "alt", "id": ["92304"] },
-    { "ad": "Ekoseli Etek", "grup": "alt", "id": ["93290", "93291", "93292"] }
+    {
+      "ad": "Kuşgözlü Kaşe Kaban",
+      "grup": "dis",
+      "id": [
+        "92626",
+        "92627"
+      ]
+    },
+    {
+      "ad": "İki Düğmeli Manto",
+      "grup": "dis",
+      "id": [
+        "92632"
+      ]
+    },
+    {
+      "ad": "Uzun Kaban",
+      "grup": "dis",
+      "id": [
+        "92538",
+        "92539"
+      ]
+    },
+    {
+      "ad": "Kuşaklı Midi Kaban",
+      "grup": "dis",
+      "id": [
+        "92459"
+      ]
+    },
+    {
+      "ad": "Kürk Yakalı Kemerli Uzun Kaşe Kaban",
+      "grup": "dis",
+      "id": [
+        "73405",
+        "73406",
+        "73407",
+        "73408",
+        "73409"
+      ]
+    },
+    {
+      "ad": "Deri Kuşak Garnili Kaban",
+      "grup": "dis",
+      "id": [
+        "92861",
+        "92867"
+      ]
+    },
+    {
+      "ad": "Yakası Örgü Detaylı Mont",
+      "grup": "dis",
+      "id": [
+        "93329",
+        "93330"
+      ]
+    },
+    {
+      "ad": "Uzun Şişme Mont",
+      "grup": "dis",
+      "id": [
+        "93236"
+      ]
+    },
+    {
+      "ad": "Tonaton Düğmeli Uzun Trençkot",
+      "grup": "ceket",
+      "id": [
+        "93237",
+        "93238"
+      ]
+    },
+    {
+      "ad": "Uzun Deri Trençkot",
+      "grup": "ceket",
+      "id": [
+        "93240",
+        "93241"
+      ]
+    },
+    {
+      "ad": "Uzun Kemerli Trençkot",
+      "grup": "ceket",
+      "id": [
+        "92623",
+        "92624",
+        "92625"
+      ]
+    },
+    {
+      "ad": "Yakası Çıtçıtlı Deri Ceket",
+      "grup": "ceket",
+      "id": [
+        "93317",
+        "93318"
+      ]
+    },
+    {
+      "ad": "Koyun Yünü Yakalı Süet Ceket",
+      "grup": "ceket",
+      "id": [
+        "93327"
+      ]
+    },
+    {
+      "ad": "Kruvaze Yelek",
+      "grup": "ceket",
+      "id": [
+        "16963",
+        "16964"
+      ]
+    },
+    {
+      "ad": "Boğazlı Örgülü Triko Kazak",
+      "grup": "ust",
+      "id": [
+        "92293",
+        "92296"
+      ]
+    },
+    {
+      "ad": "Oversize Triko Kazak",
+      "grup": "ust",
+      "id": [
+        "16432"
+      ]
+    },
+    {
+      "ad": "Yumuşak Dokulu Triko Hırka",
+      "grup": "ust",
+      "id": [
+        "16967"
+      ]
+    },
+    {
+      "ad": "Kazayağı Garnili Hırka",
+      "grup": "ust",
+      "id": [
+        "92468"
+      ]
+    },
+    {
+      "ad": "Kaşe Gold Düğmeli Gömlek",
+      "grup": "ust",
+      "id": [
+        "93246",
+        "93247"
+      ]
+    },
+    {
+      "ad": "Jakarlı Balon Kollu Elbise",
+      "grup": "elbise",
+      "id": [
+        "100305",
+        "100307",
+        "100308"
+      ]
+    },
+    {
+      "ad": "Pelerinli Elbise",
+      "grup": "elbise",
+      "id": [
+        "93312",
+        "93313"
+      ]
+    },
+    {
+      "ad": "İkili Örme Takım",
+      "grup": "elbise",
+      "id": [
+        "98134",
+        "98135",
+        "100315"
+      ]
+    },
+    {
+      "ad": "Garnili İkili Takım",
+      "grup": "elbise",
+      "id": [
+        "100309",
+        "100310"
+      ]
+    },
+    {
+      "ad": "Sakallı Dokulu Triko Hırka",
+      "grup": "ust",
+      "id": [
+        "16825",
+        "16836"
+      ]
+    },
+    {
+      "ad": "Madonna Yaka Triko Bluz",
+      "grup": "ust",
+      "id": [
+        "16720",
+        "16701"
+      ]
+    },
+    {
+      "ad": "Kısa Ceket Etek Takım",
+      "grup": "elbise",
+      "id": [
+        "16755",
+        "16930"
+      ]
+    },
+    {
+      "ad": "Kemerli Balon Kollu Elbise",
+      "grup": "elbise",
+      "id": [
+        "16612"
+      ]
+    },
+    {
+      "ad": "Vatkalı Kemer Detaylı Uzun Elbise",
+      "grup": "elbise",
+      "id": [
+        "16933"
+      ]
+    },
+    {
+      "ad": "Saten Degaje Yaka Elbise",
+      "grup": "elbise",
+      "id": [
+        "16888",
+        "16887"
+      ]
+    },
+    {
+      "ad": "Pileli Comfort Pantolon",
+      "grup": "alt",
+      "id": [
+        "92637"
+      ]
+    },
+    {
+      "ad": "Lastikli Deri Pantolon",
+      "grup": "alt",
+      "id": [
+        "92477"
+      ]
+    },
+    {
+      "ad": "Geniş Paça Jean",
+      "grup": "alt",
+      "id": [
+        "92302",
+        "92303"
+      ]
+    },
+    {
+      "ad": "Boru Paça Jean",
+      "grup": "alt",
+      "id": [
+        "92304"
+      ]
+    },
+    {
+      "ad": "Ekoseli Etek",
+      "grup": "alt",
+      "id": [
+        "93290",
+        "93291",
+        "93292"
+      ]
+    },
+    {
+      "ad": "Kısa Kürk Kaban",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x7516"
+      ]
+    },
+    {
+      "ad": "Pelerinli Kaban",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x6652"
+      ]
+    },
+    {
+      "ad": "Kürklü Kısa Manto",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x6671"
+      ]
+    },
+    {
+      "ad": "Tüylü Yumoş Kaban",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x6536",
+        "x6537"
+      ]
+    },
+    {
+      "ad": "Kuşaklı Kürk Detaylı Kısa Kaşe Kaban",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "p-36",
+        "p-37",
+        "p-38"
+      ]
+    },
+    {
+      "ad": "Süs Dikiş Detaylı Mont",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x7632",
+        "x7576",
+        "x7577"
+      ]
+    },
+    {
+      "ad": "Kapüşonlu Şişme Yelek",
+      "grup": "dis",
+      "id": [],
+      "kod": [
+        "x7473"
+      ]
+    },
+    {
+      "ad": "Kürk Detaylı Kemerli Ceket",
+      "grup": "ceket",
+      "id": [],
+      "kod": [
+        "p-111"
+      ]
+    },
+    {
+      "ad": "Boğazlı Örgülü Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "x6254",
+        "x6255"
+      ]
+    },
+    {
+      "ad": "Fermuarlı Boğazlı Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "x6249"
+      ]
+    },
+    {
+      "ad": "Boncuklu Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "x6257",
+        "x6258"
+      ]
+    },
+    {
+      "ad": "Polo Yaka Çizgili Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-146",
+        "p-147"
+      ]
+    },
+    {
+      "ad": "Baklava Desenli Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-118"
+      ]
+    },
+    {
+      "ad": "Yumuşak Dokulu Triko Kazak",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-121",
+        "p-122"
+      ]
+    },
+    {
+      "ad": "Triko Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "x6700"
+      ]
+    },
+    {
+      "ad": "Düğmeli Triko Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "x6248"
+      ]
+    },
+    {
+      "ad": "Peluş Dokulu Kısa Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-99"
+      ]
+    },
+    {
+      "ad": "Püskül Detaylı Oversize Triko Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-114",
+        "p-115"
+      ]
+    },
+    {
+      "ad": "V Yaka Triko Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-127",
+        "p-128",
+        "p-129"
+      ]
+    },
+    {
+      "ad": "Altın Düğmeli Triko Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-104"
+      ]
+    },
+    {
+      "ad": "Ajurlu Püsküllü Uzun Hırka",
+      "grup": "ust",
+      "id": [],
+      "kod": [
+        "p-52"
+      ]
+    },
+    {
+      "ad": "Üç İplik İkili Takım",
+      "grup": "elbise",
+      "id": [],
+      "kod": [
+        "x7638",
+        "x7639",
+        "x7640"
+      ]
+    },
+    {
+      "ad": "Çin Düğmeli Takım",
+      "grup": "elbise",
+      "id": [],
+      "kod": [
+        "x7644",
+        "x7645",
+        "x7646",
+        "x7647",
+        "x7648"
+      ]
+    }
   ]
 }

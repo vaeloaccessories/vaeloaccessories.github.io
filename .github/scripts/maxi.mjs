@@ -18,6 +18,14 @@ else {
 }
 if (!Array.isArray(feed) || feed.length < 50) throw new Error('Maxi Modena feed beklenenden kısa, dokunulmadı.');
 const byId = new Map(feed.map((x) => [String(x.ProductId), x]));
+// kod = maximodena.com.tr adresinin sonundaki kod (x7516 → xml2-7516, p-37 → p-37); ürün resimlerinin klasöründen bulunur
+const byKod = new Map();
+for (const x of feed) for (const s of x.Pictures || []) {
+  const m = String(s).match(/\/maximodena\/([^/]+)\//);
+  if (m && !byKod.has(m[1])) byKod.set(m[1], x);
+}
+const kodBul = (k) => byKod.get(/^x\d+$/i.test(k) ? 'xml2-' + k.slice(1) : k);
+const goruldu = new Set();
 
 // 1562.69 × 1.53 = 2390.9 → 2399
 const fiyat = (alis) => { const v = alis * (1 + cfg.kar), b = Math.floor(v / 100) * 100; return v <= b + 49 ? b + 49 : b + 99; };
@@ -37,9 +45,10 @@ const aciklama = (h) => unent(unent(h)
 
 const yeni = [];
 for (const u of cfg.urunler) {
-  for (const id of u.id) {
-    const x = byId.get(String(id));
-    if (!x || Number(x.Status) !== 1) continue;
+  const liste = [...(u.id || []).map((id) => byId.get(String(id))), ...(u.kod || []).map(kodBul)];
+  for (const x of liste) {
+    if (!x || Number(x.Status) !== 1 || goruldu.has(String(x.ProductId))) continue;
+    goruldu.add(String(x.ProductId));
     const bedenler = (x.ProductCombinations || [])
       .map((c) => ({ beden: beden(c.Value), stok: Number(c.StockQuantity) || 0, barkod: String(c.Gtin || '') }))
       .filter((b) => b.stok > 0)
