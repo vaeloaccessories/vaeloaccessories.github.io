@@ -659,7 +659,47 @@ async function sepetMailleri(env) {
   return { gonderilen };
 }
 
-// Maildeki "artık almak istemiyorum" bağlantısı: üyenin izni kapatılır.
+// ---- Ödemesi yarım kalan siparişe bilgi maili (11 Kasım 2026) ----
+// // Saatte bir (sepet maili ile aynı Cron). Ödeme ekranına geçip 1–48 saattir ödemesi tamamlanmamış siparişe bir kez gider.
+// Üye olmayana da gider; indirim/kampanya içermez, yalnızca siparişin durumunu bildirir.
+const YARIM_BAS = '2026-11-11T18:30:00+03:00';
+async function yarimOdemeMailleri(env) {
+  if (!env.SIPARISLER || !env.RESEND_API_KEY) return { gonderilen: 0 };
+    const simdi = Date.now(), saat = 3600000, liste = [];
+      let cursor;
+        do {
+            const l = await env.SIPARISLER.list({ prefix: 'VAELO', cursor });
+                for (const k of l.keys) {
+                      const raw = await env.SIPARISLER.get(k.name); if (!raw) continue;
+                            try { liste.push({ oid: k.name, o: JSON.parse(raw) }); } catch {}
+                                }
+                                    cursor = l.list_complete ? null : l.cursor;
+                                      } while (cursor);
+                                        const odeyen = new Set(liste.filter((x) => Array.isArray(x.o.mail) && x.o.email).map((x) => String(x.o.email).toLowerCase()));
+                                          let gonderilen = 0;
+                                            for (const { oid, o } of liste) {
+                                                const email = String(o.email || '').toLowerCase(), t = Date.parse(o.created);
+                                                    if (o.mail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !Array.isArray(o.urunler) || !o.urunler.length) continue;
+                                                        if (!(t >= Date.parse(YARIM_BAS)) || simdi - t < saat || simdi - t > 48 * saat) continue;
+                                                            if (odeyen.has(email) || await env.SIPARISLER.get('yarimmail:' + email) || await env.SIPARISLER.get('sepetmail:' + email)) continue;
+                                                                const ad = e(String(o.name || '').split(' ')[0]);
+                                                                    const satirlar = o.urunler.slice(0, 6).map((u) => `<tr><td style="padding:8px 0;border-bottom:1px solid #eee">${e(String(u.name || '').replace(/^Vaelo\s+/i, 'VAELO '))}<br><span style="color:#6B6861;font-size:12px">${u.size && u.size !== 'Standart' ? 'Beden: ' + e(u.size) + ' · ' : ''}${u.qty || 1} adet</span></td></tr>`).join('');
+                                                                        try {
+                                                                              await mailAt(env, email, 'Ödemen tamamlanmadı · VAELO', mailSablon(`${ad ? ad + ', ' : ''}siparişin seni bekliyor.`,
+                                                                                      `Siparişini oluşturdun ama ödeme adımı tamamlanmadı, bu yüzden siparişin henüz üretime geçmedi.` +
+                                                                                              `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:16px 0;font-size:14px">${satirlar}</table>` +
+                                                                                                      `Ödeme sırasında bir sorun yaşadıysan bu maile yanıt verebilir ya da bize ulaşabilirsin.` +
+                                                                                                              dugme(SITE + '/#sepet', 'Ödemeyi Tamamla') +
+                                                                                                                      `<span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span>`),
+                                                                                                                              'info@vaelo.com.tr');
+                                                                                                                                    await env.SIPARISLER.put('yarimmail:' + email, new Date().toISOString(), { expirationTtl: 7 * 24 * 3600 });
+                                                                                                                                          gonderilen++;
+                                                                                                                                              } catch (err) { console.log('Yarım ödeme maili gitmedi:', email, err.message); }
+                                                                                                                                                }
+                                                                                                                                                  console.log('Yarım ödeme maili gönderilen:', gonderilen);
+                                                                                                                                                    return { gonderilen };
+                                                                                                                                                    }
+                                                                                                                                                    // Maildeki "artık almak istemiyorum" bağlantısı: üyenin izni kapatılır.
 async function abonelikIptal(url, env) {
   const uid = url.searchParams.get('u') || '', k = url.searchParams.get('k') || '';
   const sayfa = (m) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VAELO</title><body style="margin:0;background:#F3F1EC;font-family:Helvetica,Arial,sans-serif;color:#0A0A0A;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px"><div><div style="font-family:Georgia,serif;font-size:28px;letter-spacing:8px">VAĖLO</div><p style="margin-top:24px">${m}</p><a href="${SITE}" style="color:#0A0A0A">vaelo.com.tr</a></div>`, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
@@ -806,7 +846,7 @@ async function yonetim(request, env, yol) {
 }
 
 export default {
-  async scheduled(event, env, ctx) { ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message))])); },
+  async scheduled(event, env, ctx) { ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message)), yarimOdemeMailleri(env).catch((err) => console.log('Yarım ödeme mailleri:', err.message))])); },
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
