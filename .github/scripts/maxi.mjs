@@ -29,7 +29,7 @@ const goruldu = new Set();
 
 // 1562.69 × 1.53 = 2390.9 → 2399
 const fiyat = (alis) => { const v = alis * (1 + cfg.kar), b = Math.floor(v / 100) * 100; return v <= b + 49 ? b + 49 : b + 99; };
-const RENK = { kahverengi: 'Kahverengi', kahve: 'Kahverengi' };
+const RENK = { kahverengi: 'Kahverengi', kahve: 'Kahverengi', 'altın': 'Altın Rengi', altin: 'Altın Rengi' };
 const renkAdi = (c) => { const s = String(c || '').trim(); return RENK[s.toLocaleLowerCase('tr-TR')] || s; };
 const BEDEN_SIRA = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', '50', 'Standart'];
 const beden = (v) => /^(std|standart)$/i.test(String(v).trim()) ? 'Standart' : String(v).trim().toUpperCase();
