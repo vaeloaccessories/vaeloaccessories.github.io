@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>VAELO Yönetim</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="ikon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VAELO">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root{--bg:#0A0A0A;--kart:#151515;--cizgi:#262626;--yazi:#F3F1EC;--soluk:#8C8880;--yesil:#7FB685;--sari:#D9B35C;--kirmizi:#D06A6A;--mavi:#7FA6D0}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--bg);color:var(--yazi);font-family:Jost,system-ui,sans-serif;font-weight:400;font-size:15px}
+  body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 24px)}
+  button,select,input{font:inherit;color:inherit}
+  .gizli{display:none!important}
+  header{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--cizgi)}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:6px}
+  .logo small{font-family:Jost;font-size:10px;letter-spacing:3px;color:var(--soluk);margin-left:6px}
+  .ikonlar{display:flex;gap:8px}
+  .ib{background:none;border:1px solid var(--cizgi);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:16px}
+  main{padding:16px 16px 0;max-width:640px;margin:0 auto}
+  .uyari{border:1px solid var(--sari);color:var(--sari);padding:12px 14px;margin-bottom:14px;font-size:13px;line-height:1.5}
+  .uyari b{color:var(--yazi)}
+  .btn{display:inline-block;background:var(--yazi);color:var(--bg);border:0;padding:13px 18px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;text-align:center}
+  .btn.ghost{background:none;color:var(--yazi);border:1px solid var(--cizgi)}
+  .btn.sm{padding:9px 12px;font-size:11px;letter-spacing:1.5px}
+  .tam{width:100%}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .kpi{background:var(--kart);padding:12px 10px}
+  .kpi span{display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--soluk)}
+  .kpi b{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-top:4px;white-space:nowrap}
+  .sekmeler{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;scrollbar-width:none}
+  .sekmeler button{flex:none;background:none;border:1px solid var(--cizgi);padding:8px 13px;font-size:12px;letter-spacing:1px;border-radius:99px}
+  .sekmeler button.on{background:var(--yazi);color:var(--bg);border-color:var(--yazi)}
+  .sekmeler i{font-style:normal;opacity:.6;margin-left:4px}
+  .kart{background:var(--kart);margin-bottom:10px;padding:14px}
+  .ust{display:flex;justify-content:space-between;gap:10px}
+  .ust b{font-weight:500}
+  .soluk{color:var(--soluk);font-size:12px}
+  .tutar{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;text-align:right}
+  .rozet{display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;margin-top:4px;border:1px solid}
+  .r-odendi{color:var(--yesil)} .r-kargoda{color:var(--mavi)} .r-teslim{color:var(--soluk)} .r-iptal{color:var(--kirmizi)} .r-odeme-ekrani,.r-musteri-dondu{color:var(--sari)}
+  .detay{margin-top:12px;border-top:1px solid var(--cizgi);padding-top:12px}
+  .urun{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:14px}
+  .adres{font-size:13px;line-height:1.5;color:var(--soluk);margin:10px 0}
+  .aksiyon{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  select{background:var(--bg);border:1px solid var(--cizgi);padding:9px 10px;font-size:13px;width:100%;-webkit-appearance:none;border-radius:0}
+  .bos{color:var(--soluk);text-align:center;padding:40px 0}
+  #giris{max-width:360px;margin:12vh auto 0;padding:0 22px;text-align:center}
+  #giris .logo{font-size:38px;letter-spacing:10px}
+  #giris p{color:var(--soluk);font-size:12px;letter-spacing:3px;text-transform:uppercase;margin:6px 0 34px}
+  #giris input{width:100%;background:var(--kart);border:1px solid var(--cizgi);padding:14px;margin-bottom:10px;font-size:16px;border-radius:0}
+  #hata{color:var(--kirmizi);font-size:13px;min-height:20px;margin-top:10px}
+  .yeni{animation:parla 2s ease 2}
+  @keyframes parla{50%{background:#22301f}}
+</style>
+</head>
+<body>
+
+<section id="giris" class="gizli">
+  <div class="logo">VAĖLO</div>
+  <p>Yönetim</p>
+  <form id="gForm">
+    <input id="gEmail" type="email" placeholder="E-posta" autocomplete="username" required>
+    <input id="gSifre" type="password" placeholder="Şifre" autocomplete="current-password" required>
+    <button class="btn tam" type="submit">Giriş yap</button>
+  </form>
+  <div id="hata"></div>
+</section>
+
+<section id="uygulama" class="gizli">
+  <header>
+    <div class="logo">VAĖLO<small>YÖNETİM</small></div>
+    <div class="ikonlar">
+      <button class="ib" id="zil" title="Bildirimler">🔔</button>
+      <button class="ib" id="cikis" title="Çıkış">⎋</button>
+    </div>
+  </header>
+  <main>
+    <div id="kurUyari" class="uyari gizli">Bildirim almak için önce uygulamayı ana ekrana ekle: Safari'de <b>Paylaş</b> düğmesi → <b>Ana Ekrana Ekle</b>. Sonra ana ekrandaki VAELO simgesinden aç.</div>
+    <div id="bildirimUyari" class="uyari gizli">Sipariş gelince telefonuna bildirim gelsin mi?<br><br><button class="btn sm" id="bildirimAc">Bildirimleri aç</button></div>
+    <div class="kpis">
+      <div class="kpi"><span>Bugün</span><b id="kBugun">–</b></div>
+      <div class="kpi"><span>Bu ay</span><b id="kAy">–</b></div>
+      <div class="kpi"><span>Hazırlanacak</span><b id="kBekleyen">–</b></div>
+    </div>
+    <div class="sekmeler" id="sekmeler"></div>
+    <div id="liste"><p class="bos">Yükleniyor…</p></div>
+  </main>
+</section>
+
+<script type="module">
+import { auth, db, ADMIN_EMAIL } from '../assets/fb.js';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+import { collection, query, orderBy, limit, onSnapshot, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js';
+
+const KASA = 'https://vaelo-odeme.vaeloaccessories.workers.dev';
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const tl = (n) => '₺' + Math.round(Number(n) || 0).toLocaleString('tr-TR');
+const DUR = { 'odendi': 'Ödendi · hazırla', 'kargoda': 'Kargoda', 'teslim': 'Teslim edildi', 'iptal': 'İptal', 'odeme-ekrani': 'Ödeme yarım kaldı', 'musteri-dondu': 'Ödeme sayfasından döndü' };
+const ODENEN = ['odendi', 'kargoda', 'teslim'];
+const SEKME = [
+  ['hazirla', 'Hazırlanacak', (o) => o.durum === 'odendi'],
+  ['kargoda', 'Kargoda', (o) => o.durum === 'kargoda'],
+  ['odenen', 'Tüm satışlar', (o) => ODENEN.includes(o.durum)],
+  ['yarim', 'Yarım kalan', (o) => ['odeme-ekrani', 'musteri-dondu'].includes(o.durum)],
+  ['hepsi', 'Hepsi', () => true],
+];
+let sekme = localStorage.getItem('vy-sekme') || 'hazirla';
+let siparisler = [], acik = new Set(), gorulen = null, dinle = null;
+
+const tarih = (t) => t && t.toDate ? t.toDate() : null;
+const gunAnahtar = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul' }).format(d);
+const saat = (d) => d ? new Intl.DateTimeFormat('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(d) : '';
+
+// ---- Giriş ----
+onAuthStateChanged(auth, (u) => {
+  if (u && u.email === ADMIN_EMAIL) { $('#giris').classList.add('gizli'); $('#uygulama').classList.remove('gizli'); basla(); return; }
+  if (u) { signOut(auth); $('#hata').textContent = 'Bu hesabın yönetime girme yetkisi yok.'; }
+  if (dinle) { dinle(); dinle = null; }
+  $('#uygulama').classList.add('gizli'); $('#giris').classList.remove('gizli');
+});
+$('#gForm').onsubmit = async (e) => {
+  e.preventDefault(); $('#hata').textContent = '';
+  try { await signInWithEmailAndPassword(auth, $('#gEmail').value.trim(), $('#gSifre').value); }
+  catch (err) { $('#hata').textContent = 'E-posta ya da şifre hatalı.'; }
+};
+$('#cikis').onclick = () => { if (confirm('Çıkış yapılsın mı?')) signOut(auth); };
+
+// ---- Siparişler (canlı) ----
+function basla() {
+  bildirimDurumu();
+  if (dinle) return;
+  dinle = onSnapshot(query(collection(db, 'siparisler'), orderBy('t', 'desc'), limit(300)), (q) => {
+    const yeniler = [];
+    siparisler = q.docs.map((d) => Object.assign({ no: d.id }, d.data()));
+    if (gorulen) siparisler.forEach((o) => { if (!gorulen.has(o.no + o.durum) && o.durum === 'odendi') yeniler.push(o.no); });
+    gorulen = new Set(siparisler.map((o) => o.no + o.durum));
+    ciz(yeniler);
+  }, (err) => { $('#liste').innerHTML = `<p class="bos">Siparişler okunamadı (${esc(err.code || err.message)}).</p>`; });
+}
+
+function ciz(yeniler = []) {
+  const bugun = gunAnahtar(new Date()), ay = bugun.slice(0, 7);
+  const odenen = siparisler.filter((o) => ODENEN.includes(o.durum) && tarih(o.t));
+  const bg = odenen.filter((o) => gunAnahtar(tarih(o.t)) === bugun);
+  $('#kBugun').textContent = tl(bg.reduce((t, o) => t + (o.toplam || 0), 0));
+  $('#kAy').textContent = tl(odenen.filter((o) => gunAnahtar(tarih(o.t)).startsWith(ay)).reduce((t, o) => t + (o.toplam || 0), 0));
+  $('#kBekleyen').textContent = siparisler.filter((o) => o.durum === 'odendi').length;
+  $('#sekmeler').innerHTML = SEKME.map(([k, ad, f]) => `<button data-s="${k}" class="${k === sekme ? 'on' : ''}">${ad}<i>${siparisler.filter(f).length}</i></button>`).join('');
+  const l = siparisler.filter(SEKME.find((s) => s[0] === sekme)[2]);
+  $('#liste').innerHTML = l.length ? l.map((o) => kart(o, yeniler.includes(o.no))).join('') : '<p class="bos">Burada sipariş yok.</p>';
+}
+
+function kart(o, yeni) {
+  const tel = String(o.tel || '').replace(/\D/g, '').replace(/^0/, '90').replace(/^5/, '905');
+  const adet = (o.urunler || []).reduce((t, x) => t + (Number(x.adet) || 1), 0);
+  return `<div class="kart${yeni ? ' yeni' : ''}" data-no="${esc(o.no)}">
+    <div class="ust"><div><b>${esc(o.ad || 'Müşteri')}</b><br><span class="soluk">${saat(tarih(o.t))} · ${adet} ürün${o.il ? ' · ' + esc(o.il) : ''}</span><br><span class="rozet r-${esc(o.durum)}">${esc(DUR[o.durum] || o.durum)}</span></div>
+    <div class="tutar">${tl(o.toplam)}</div></div>
+    ${acik.has(o.no) ? `<div class="detay">
+      ${(o.urunler || []).map((x) => `<div class="urun"><span>${esc(x.ad)}${x.beden && x.beden !== 'Standart' ? ' · <span class="soluk">' + esc(x.beden) + '</span>' : ''}</span><span>${Number(x.adet) || 1} adet</span></div>`).join('')}
+      ${o.hediye ? '<div class="urun"><span>🎁 Hediye paketi</span></div>' : ''}
+      <p class="adres">${esc(o.adres)}<br>${esc(o.ilce)} / ${esc(o.il)}<br>${esc(o.tel)} · ${esc(o.email)}<br><span style="font-size:11px">No: ${esc(o.no)}</span></p>
+      <select data-dur="${esc(o.no)}">${Object.entries(DUR).map(([k, v]) => `<option value="${k}"${k === o.durum ? ' selected' : ''}>${v}</option>`).join('')}</select>
+      <div class="aksiyon">
+        ${tel ? `<a class="btn ghost sm" href="https://wa.me/${tel}">WhatsApp</a><a class="btn ghost sm" href="tel:${esc(o.tel)}">Ara</a>` : ''}
+        ${o.adres ? `<button class="btn ghost sm" data-kopya="${esc(o.no)}">Adresi kopyala</button>` : ''}
+      </div></div>` : ''}
+  </div>`;
+}
+
+document.addEventListener('click', async (e) => {
+  const s = e.target.closest('[data-s]');
+  if (s) { sekme = s.dataset.s; localStorage.setItem('vy-sekme', sekme); acik.clear(); ciz(); return; }
+  const k = e.target.closest('[data-kopya]');
+  if (k) {
+    const o = siparisler.find((x) => x.no === k.dataset.kopya);
+    try { await navigator.clipboard.writeText(`${o.ad}\n${o.tel}\n${o.adres}\n${o.ilce} / ${o.il}`); k.textContent = 'Kopyalandı ✓'; } catch (err) {}
+    return;
+  }
+  if (e.target.closest('select, a, button')) return;
+  const c = e.target.closest('.kart');
+  if (c) { acik.has(c.dataset.no) ? acik.delete(c.dataset.no) : acik.add(c.dataset.no); ciz(); }
+});
+document.addEventListener('change', async (e) => {
+  const s = e.target.closest('select[data-dur]'); if (!s) return;
+  s.disabled = true;
+  try { await updateDoc(doc(db, 'siparisler', s.dataset.dur), { durum: s.value }); }
+  catch (err) { alert('Kaydedilemedi: ' + (err.code || err.message)); s.disabled = false; }
+});
+
+// ---- Bildirimler ----
+const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+const anaEkranda = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+const destek = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+const swKayit = 'serviceWorker' in navigator ? navigator.serviceWorker.register('sw.js', { scope: './' }) : null;
+
+async function bildirimDurumu() {
+  $('#kurUyari').classList.toggle('gizli', !(ios && !anaEkranda));
+  if (!destek) return;
+  const reg = await swKayit; const abone = reg && await reg.pushManager.getSubscription();
+  const tamam = Notification.permission === 'granted' && abone;
+  $('#bildirimUyari').classList.toggle('gizli', !!tamam || Notification.permission === 'denied');
+  $('#zil').style.borderColor = tamam ? 'var(--yesil)' : '';
+  if (tamam) kaydet(abone);  // her açılışta tazele
+}
+
+const b64 = (s) => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), (c) => c.charCodeAt(0));
+async function kasa(yol, veri) {
+  const r = await fetch(KASA + '/yonetim/' + yol, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(veri || {}) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok || !d.ok) throw new Error(d.error || ('Kasa ' + r.status));
+  return d;
+}
+async function kaydet(abone) {
+  return kasa('abone', { idToken: await auth.currentUser.getIdToken(), abone: abone.toJSON() });
+}
+async function bildirimAc() {
+  if (ios && !anaEkranda) { alert("Önce Safari'de Paylaş → Ana Ekrana Ekle yap, sonra ana ekrandaki VAELO simgesinden aç."); return; }
+  if (!destek) { alert('Bu tarayıcı bildirimi desteklemiyor.'); return; }
+  try {
+    if (await Notification.requestPermission() !== 'granted') { alert('Bildirim izni verilmedi. Telefon Ayarlar → Bildirimler → VAELO kısmından açabilirsin.'); return; }
+    const reg = await swKayit;
+    const { anahtar } = await kasa('anahtar');
+    let abone = await reg.pushManager.getSubscription();
+    if (!abone) abone = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(anahtar) });
+    await kaydet(abone);
+    await kasa('deneme', { idToken: await auth.currentUser.getIdToken() });
+    bildirimDurumu();
+  } catch (err) { alert('Bildirim açılamadı: ' + err.message); }
+}
+$('#bildirimAc').onclick = bildirimAc;
+$('#zil').onclick = async () => {
+  if (destek && Notification.permission === 'granted' && await (await swKayit).pushManager.getSubscription()) {
+    try { const d = await kasa('deneme', { idToken: await auth.currentUser.getIdToken() }); if (!d.giden) alert('Kayıtlı telefon bulunamadı.'); }
+    catch (err) { alert('Deneme bildirimi gitmedi: ' + err.message); }
+  } else bildirimAc();
+};
+</script>
+</body>
+</html>

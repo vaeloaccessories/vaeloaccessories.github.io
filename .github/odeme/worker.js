@@ -515,6 +515,13 @@ async function paytrCallback(request, env) {
   }
   if (status === 'success') {
     try { await siparisMailleri(env, merchant_oid, A.test === '1'); } catch (e2) { console.log('Mail hata:', merchant_oid, e2.message); }
+    try { await siparisOdendi(env, merchant_oid); } catch (e4) { console.log('Firestore hata:', merchant_oid, e4.message); }
+    try {
+      const o = JSON.parse((await env.SIPARISLER.get(merchant_oid)) || '{}');
+      const adet = (o.urunler || []).reduce((t, u) => t + (u.qty || 1), 0);
+      await bildirimGonder(env, { baslik: `${A.test === '1' ? '[DENEME] ' : ''}Yeni sipariş · ${tl(o.total || Number(total_amount) / 100)}`,
+        metin: `${o.name || 'Müşteri'} · ${adet} ürün${o.city ? ' · ' + o.city : ''}`, url: '/yonetim/' });
+    } catch (e5) { console.log('Bildirim hata:', merchant_oid, e5.message); }
   }
   // PayTR her durumda OK bekler; aksi halde bildirimi tekrar tekrar gönderir.
   return new Response('OK');
@@ -697,6 +704,107 @@ async function bayiBasvuru(request, env) {
   return json({ ok: true });
 }
 
+// ---- VAELO Yönetim uygulaması (telefondaki ana ekran uygulaması: vaelo.com.tr/yonetim) ----
+// Ödeme onaylanınca telefona bildirim gönderir (Web Push). Ekstra ayar gerekmez:
+// bildirim anahtarı ilk kullanımda kendiliğinden üretilip SIPARISLER deposunda saklanır.
+const ADMIN_MAIL = 'vaeloaccessories@gmail.com';
+const b64uBytes = (s) => Uint8Array.from(atob(String(s).replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((String(s).length + 3) % 4)), (c) => c.charCodeAt(0));
+const birlestir = (...a) => { const r = new Uint8Array(a.reduce((t, x) => t + x.length, 0)); let i = 0; for (const x of a) { r.set(x, i); i += x.length; } return r; };
+async function hmac(key, data) {
+  const k = await crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return new Uint8Array(await crypto.subtle.sign('HMAC', k, data));
+}
+
+async function vapidAnahtar(env) {
+  const kayit = await env.SIPARISLER.get('vapid');
+  if (kayit) return JSON.parse(kayit);
+  const kp = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+  const v = { ozel: await crypto.subtle.exportKey('jwk', kp.privateKey), acik: b64url(new Uint8Array(await crypto.subtle.exportKey('raw', kp.publicKey))) };
+  await env.SIPARISLER.put('vapid', JSON.stringify(v));
+  return v;
+}
+
+async function yoneticiMi(idToken) {
+  const u = await kimlik(idToken).catch(() => null);
+  return !!(u && u.email === ADMIN_MAIL && u.emailVerified);
+}
+
+// Tek bir telefona şifreli bildirim gönderir (RFC 8291 / 8292).
+async function pushAt(env, abone, mesaj) {
+  const v = await vapidAnahtar(env);
+  const uaAcik = b64uBytes(abone.keys.p256dh), auth = b64uBytes(abone.keys.auth);
+  const gecici = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
+  const asAcik = new Uint8Array(await crypto.subtle.exportKey('raw', gecici.publicKey));
+  const uaKey = await crypto.subtle.importKey('raw', uaAcik, { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+  const ortak = new Uint8Array(await crypto.subtle.deriveBits({ name: 'ECDH', public: uaKey }, gecici.privateKey, 256));
+  const enc = new TextEncoder();
+  const ikm = await hmac(await hmac(auth, ortak), birlestir(enc.encode('WebPush: info\0'), uaAcik, asAcik, new Uint8Array([1])));
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const prk = await hmac(salt, ikm);
+  const cek = (await hmac(prk, birlestir(enc.encode('Content-Encoding: aes128gcm\0'), new Uint8Array([1])))).slice(0, 16);
+  const nonce = (await hmac(prk, birlestir(enc.encode('Content-Encoding: nonce\0'), new Uint8Array([1])))).slice(0, 12);
+  const aes = await crypto.subtle.importKey('raw', cek, 'AES-GCM', false, ['encrypt']);
+  const sifreli = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: nonce }, aes, birlestir(enc.encode(JSON.stringify(mesaj)), new Uint8Array([2]))));
+  const govde = birlestir(salt, new Uint8Array([0, 0, 16, 0, 65]), asAcik, sifreli);
+  const ozel = await crypto.subtle.importKey('jwk', v.ozel, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+  const jwt = b64urlStr(JSON.stringify({ typ: 'JWT', alg: 'ES256' })) + '.' + b64urlStr(JSON.stringify({ aud: new URL(abone.endpoint).origin, exp: Math.floor(Date.now() / 1000) + 12 * 3600, sub: 'mailto:info@vaelo.com.tr' }));
+  const imza = new Uint8Array(await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, ozel, enc.encode(jwt)));
+  return fetch(abone.endpoint, { method: 'POST', body: govde, headers: {
+    'Authorization': `vapid t=${jwt}.${b64url(imza)}, k=${v.acik}`, 'Content-Encoding': 'aes128gcm',
+    'Content-Type': 'application/octet-stream', 'TTL': '86400', 'Urgency': 'high' } });
+}
+
+// Kayıtlı bütün telefonlara bildirim; artık geçersiz olan abonelikleri siler.
+async function bildirimGonder(env, mesaj) {
+  if (!env.SIPARISLER) return 0;
+  const liste = await env.SIPARISLER.list({ prefix: 'push:' });
+  let n = 0;
+  for (const k of liste.keys) {
+    try {
+      const r = await pushAt(env, JSON.parse(await env.SIPARISLER.get(k.name)), mesaj);
+      if (r.status === 404 || r.status === 410) await env.SIPARISLER.delete(k.name);
+      else if (r.ok) n++;
+      else console.log('Bildirim gitmedi:', r.status, (await r.text()).slice(0, 200));
+    } catch (err) { console.log('Bildirim hata:', err.message); }
+  }
+  return n;
+}
+
+// Ödenen siparişi yönetim uygulaması/admin paneli için Firestore'da "Ödendi" yapar
+// (çerezi reddeden müşterinin kaydı yoksa kasadaki bilgilerle oluşturur).
+async function siparisOdendi(env, oid) {
+  if (!env.FIREBASE_SA || !env.SIPARISLER) return;
+  const H = { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' };
+  const adres = `${FS}/siparisler/${encodeURIComponent(oid)}`;
+  let r = await fetch(adres + '?updateMask.fieldPaths=durum&currentDocument.exists=true', { method: 'PATCH', headers: H, body: JSON.stringify({ fields: { durum: { stringValue: 'odendi' } } }) });
+  if (r.ok) return;
+  const o = JSON.parse((await env.SIPARISLER.get(oid)) || 'null');
+  if (!o) return;
+  const s = (x) => ({ stringValue: String(x || '') });
+  r = await fetch(adres + '?currentDocument.exists=false', { method: 'PATCH', headers: H, body: JSON.stringify({ fields: {
+    t: { timestampValue: o.created || new Date().toISOString() }, durum: s('odendi'), toplam: { doubleValue: Number(o.total) || 0 },
+    ad: s(o.name), email: s(o.email), tel: s(o.phone), il: s(o.city), ilce: s(o.district), adres: s(o.address), hediye: { booleanValue: !!o.gift }, uid: { nullValue: null },
+    urunler: { arrayValue: { values: (o.urunler || []).map((u) => ({ mapValue: { fields: { id: s(u.id), ad: s(u.name), beden: s(u.size), adet: { integerValue: String(u.qty || 1) }, fiyat: { doubleValue: 0 } } } })) } },
+  } }) });
+  if (!r.ok) console.log('Firestore sipariş kaydı:', r.status, (await r.text()).slice(0, 200));
+}
+
+async function yonetim(request, env, yol) {
+  if (!env.SIPARISLER) return json({ ok: false, error: 'SIPARISLER yok' }, 503);
+  const d = await request.json().catch(() => ({}));
+  if (yol === 'anahtar') return json({ ok: true, anahtar: (await vapidAnahtar(env)).acik });
+  if (!await yoneticiMi(d.idToken)) return json({ ok: false, error: 'Yetki yok' }, 403);
+  if (yol === 'abone') {
+    const a = d.abone || {};
+    if (!/^https:\/\//.test(a.endpoint || '') || !a.keys || !a.keys.p256dh || !a.keys.auth) return json({ ok: false, error: 'Abonelik hatalı' }, 400);
+    const id = b64url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(a.endpoint)))).slice(0, 32);
+    await env.SIPARISLER.put('push:' + id, JSON.stringify({ endpoint: a.endpoint, keys: { p256dh: a.keys.p256dh, auth: a.keys.auth } }));
+    return json({ ok: true });
+  }
+  if (yol === 'deneme') return json({ ok: true, giden: await bildirimGonder(env, { baslik: 'VAELO Yönetim', metin: 'Bildirimler çalışıyor ✓', url: '/yonetim/' }) });
+  return json({ ok: false }, 404);
+}
+
 export default {
   async scheduled(event, env, ctx) { ctx.waitUntil(Promise.all([yorumMailleri(env), sepetMailleri(env).catch((err) => console.log('Sepet mailleri:', err.message))])); },
   async fetch(request, env) {
@@ -707,8 +815,9 @@ export default {
     if (request.method === 'POST' && url.pathname === '/uye-mail') return uyeMail(request, env);
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
     if (request.method === 'POST' && url.pathname === '/cark') return carkCevir(request, env);
+    if (request.method === 'POST' && url.pathname.startsWith('/yonetim/')) return yonetim(request, env, url.pathname.slice(9));
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 7, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 8, yonetim: true, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
     if (request.method === 'GET' && url.pathname === '/kupon') {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);

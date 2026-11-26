@@ -8,3 +8,4 @@
   - 5377 hoodie siyah altın grafik, 5378 lacivert altın grafik, 5379 tişört siyah V logo (7 Ekim 2026)
   - 17 ürünün hepsi eşleştirildi.
 - Sepet hatırlatma maili (30 Ekim 2026): `sepetMailleri` saatte bir çalışır (Cron "0 * * * *"). Sepetinde 2–48 saattir ürün bekleyen, ödeme yapmamış ve üyelikte kampanya izni (bulten) veren üyeye 7 günde en fazla 1 mail. Mailde "almak istemiyorum" bağlantısı `/abonelik-iptal` → izni kapatır.
+- Yönetim uygulaması (26 Kasım 2026): vaelo.com.tr/yonetim — telefonda Safari → Ana Ekrana Ekle. Ödeme onaylanınca kasa siparişi Firestore'da "Ödendi" yapar ve kayıtlı telefonlara bildirim (Web Push) gönderir. Bildirim anahtarı KV'de `vapid`, telefon abonelikleri `push:*`. Ek ayar gerekmez (FIREBASE_SA zaten var).
