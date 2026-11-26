@@ -6096,22 +6096,22 @@
       "bedenler": [
         {
           "beden": "S",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873915"
         },
         {
           "beden": "M",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873922"
         },
         {
           "beden": "L",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873939"
         },
         {
           "beden": "XL",
-          "stok": 1,
+          "stok": 2,
           "barkod": "2362505873946"
         }
       ],
@@ -6157,11 +6157,6 @@
       "grup": "dis",
       "sezon": "kis",
       "bedenler": [
-        {
-          "beden": "M",
-          "stok": 1,
-          "barkod": "2362505874004"
-        },
         {
           "beden": "L",
           "stok": 4,
@@ -6492,7 +6487,7 @@
         },
         {
           "beden": "XL",
-          "stok": 5,
+          "stok": 4,
           "barkod": "2362506919230"
         }
       ],
@@ -10476,41 +10471,6 @@
           "beden": "S",
           "stok": 1,
           "barkod": "2362501580367"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
-      "id": "mm93266",
-      "name": "Saten Etek – Kahverengi",
-      "price": 1449,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/xml2-7508/baa61239bd3b8dab.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7508/ba1757e187214e5b.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7508/2c69a16144f84d4a.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7508/632142c9d6afdaf3.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7508/53ff5225a5dc43dd.jpg"
-      ],
-      "description": "Materyal ve Kalite\nEtek, %100 polyester kumaştan üretilmiştir. Saten dokusu sayesinde yumuşak bir dokunuş ve ışıltılı bir yüzey sunar.\nKalıp ve Beden Önerisi\nÜründe kullanılan manken 163 cm boyunda, 51 kg ağırlığında olup S/36 beden numunesini giymektedir; göğüs 84 cm, bel 63 cm ve kalça 96 cm ölçülerine sahiptir. Beden seçimi yaparken bu ölçüleri referans alabilirsiniz. Ürün bedenleri Avrupa beden standartlarına göre hazırlanmıştır, bu nedenle sipariş verirken Avrupa beden tablosunu dikkate almanızı öneririz.\nÖne Çıkan Özellikler\nKahverengi saten doku\n%100 polyester kumaş yapısı\nAvrupa beden standardına uygun kalıp\nKuru temizleme ile bakım gerektirir\nSık Sorulan Sorular\nEtek hangi kumaştan üretilmiştir?\nEtek %100 polyester saten kumaştan üretilmiştir.\nBeden seçimini nasıl yapmalıyım?\nMankenin üzerindeki numune S/36 bedendir ve ürün bedenleri Avrupa beden standartlarına göre hazırlanmıştır. Beden seçiminizi bu standartlara göre yapmanızı öneririz.\nEteğin bakımı nasıl yapılmalıdır?\nÜrünün uzun ömürlü kalması için kuru temizleme yöntemiyle temizlenmesi önerilir.\nEtiket söküldüğünde ürün iade edilebilir mi?\nEtiketi sökülmüş ve kullanım hatası oluşmuş ürünlerden firmamız sorumlu değildir, bu nedenle etiketi çıkarmadan önce ürünü kontrol etmenizi öneririz.\nÜrün Bilgileri\nKahverengi Saten Etek\nKumaş İçeriği: %100 Polyester\nModel Ölçüleri: Boy 163 cm, Kilo 51 kg, Kol Uzunluğu 56 cm, Göğüs 84 cm, Bel 63 cm, Kalça 96 cm\nMankenin üzerindeki numune S/36 bedendir\nÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir\nKuru temizleme yapınız",
-      "url": "",
-      "category": "Kadın",
-      "grup": "alt",
-      "sezon": "kis",
-      "bedenler": [
-        {
-          "beden": "S",
-          "stok": 5,
-          "barkod": "2362506920168"
-        },
-        {
-          "beden": "M",
-          "stok": 5,
-          "barkod": "2362506920151"
-        },
-        {
-          "beden": "L",
-          "stok": 5,
-          "barkod": "2362506920144"
         }
       ],
       "tedarik": "maxi"
