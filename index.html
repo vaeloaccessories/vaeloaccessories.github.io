@@ -588,6 +588,11 @@ fbq('track', 'PageView');
 .grid:not(.list-view) .item .price{font-size:1.25rem}
 .grid:not(.list-view) .item .desc{-webkit-line-clamp:2;min-height:3em;font-size:.88rem;margin-bottom:16px}
 .grid:not(.list-view) .shop-btn{margin-top:auto}
+.grid:not(.list-view) .item{position:relative}
+.grid:not(.list-view) .item .rozet{position:absolute;top:10px;left:10px;z-index:2;margin:0;padding:5px 9px;background:#fff;font-size:10.5px;line-height:1;pointer-events:none}
+.grid:not(.list-view) .ph{aspect-ratio:3/4}
+@media(max-width:899px){.grid{gap:36px 10px!important}}
+@media(min-width:1700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 </style>
 </head>
 <body>
