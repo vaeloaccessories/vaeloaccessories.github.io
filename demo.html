@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>VAELO | Yeni Tasarım Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0a0a;--paper:#fff;--soft:#f4f3f0;--mute:#8a8780;--line:#e4e1da;--bordo:#6e1a26}
+body{font-family:Jost,Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper)}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400}
+.demo{background:var(--bordo);color:#fff;text-align:center;font-size:12px;letter-spacing:.14em;padding:8px 12px;text-transform:uppercase}
+.bar{background:var(--ink);color:#d8d5ce;text-align:center;font-size:12px;letter-spacing:.12em;padding:9px 12px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 28px;flex-wrap:wrap}
+.logo{font-size:30px;letter-spacing:.3em}
+.menu{display:flex;gap:30px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;flex-wrap:wrap}
+.menu a{padding:6px 0;border-bottom:1px solid transparent}
+.menu a:hover,.menu a.on{border-color:var(--ink)}
+.menu .n{color:var(--mute);margin-right:6px;font-size:11px}
+.icons{display:flex;gap:18px;font-size:13px;letter-spacing:.1em}
+.hero{background:var(--ink);color:#fff}
+.hero-in{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;min-height:640px;padding:0 28px}
+.hero h1{font-size:clamp(46px,6vw,88px);line-height:1;margin:14px 0 22px}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#a9a59c}
+.hero p{max-width:440px;color:#cfcbc2;line-height:1.7;font-size:16px}
+.btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-block;padding:16px 30px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:1px solid #fff}
+.btn.w{background:#fff;color:var(--ink)}
+.btn.d{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero-img{position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:40px 0}
+.hero-img .disk{width:min(520px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#2a2a2a 0,#121212 62%,#0a0a0a 72%);display:flex;align-items:center;justify-content:center}
+.hero-img img{width:78%;mix-blend-mode:normal;border-radius:50%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.hero-tag{position:absolute;right:6%;bottom:12%;background:#fff;color:var(--ink);padding:14px 18px;font-size:13px;line-height:1.5}
+.hero-tag b{font-weight:500;display:block}
+.trust{border-bottom:1px solid var(--line)}
+.trust-in{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 28px;gap:12px;font-size:13px;letter-spacing:.06em;text-align:center;color:#3c3a36}
+section{padding:90px 28px}
+.wrap{max-width:1360px;margin:0 auto}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:38px;flex-wrap:wrap}
+.head h2{font-size:clamp(36px,4vw,56px);line-height:1.05}
+.head .more{font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.tabs a{border:1px solid var(--line);padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.tabs a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 22px}
+.card .ph{background:var(--soft);aspect-ratio:1;overflow:hidden;position:relative}
+.card .ph img{height:100%;object-fit:contain;padding:8%;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.05)}
+.card h3{font-size:15px;font-weight:400;margin:14px 0 4px;letter-spacing:.04em}
+.card .pr{font-size:15px}
+.card .sub{font-size:12px;color:var(--mute);letter-spacing:.06em;margin-top:2px}
+.rozet{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.16em;padding:6px 9px;text-transform:uppercase}
+.series{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:70px}
+.s{background:var(--ink);color:#fff;padding:34px 30px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+.s.l{background:var(--soft);color:var(--ink)}
+.s h4{font-size:30px}
+.s p{font-size:13px;line-height:1.6;color:inherit;opacity:.75;margin-top:8px}
+.s span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:18px}
+.kadin{background:var(--soft)}
+.kgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px}
+.kcard{position:relative;overflow:hidden;background:#ddd}
+.kcard img{height:100%;object-fit:cover;aspect-ratio:3/4}
+.kcard.big img{aspect-ratio:auto;height:100%}
+.kcard .cap{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff}
+.kcard .cap b{font-weight:400;font-size:15px;display:block}
+.kstack{display:grid;gap:22px}
+.erkek-in{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center}
+.erkek-in .model img{aspect-ratio:4/5;object-fit:cover}
+.egrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px}
+.egrid .ph{aspect-ratio:4/5}
+.egrid .ph img{object-fit:cover;padding:0}
+.lines{display:flex;gap:12px;flex-wrap:wrap}
+.lines a{border:1px solid var(--ink);padding:12px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.bayi{background:var(--ink);color:#fff;text-align:center}
+.bayi h2{font-size:clamp(34px,4vw,52px);margin:12px 0 16px}
+.bayi p{color:#bdb9b0;max-width:560px;margin:0 auto 30px;line-height:1.7}
+footer{border-top:1px solid var(--line);padding:46px 28px;font-size:13px;color:#55524c}
+.f-in{max-width:1360px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){
+.hero-in,.erkek-in,.kgrid{grid-template-columns:1fr}
+.hero-in{padding:40px 22px 0;min-height:0}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.series,.egrid{grid-template-columns:1fr}
+.trust-in{grid-template-columns:repeat(2,minmax(0,1fr))}
+.menu{gap:18px;font-size:12px;order:3;width:100%;justify-content:center}
+section{padding:64px 20px}
+}
+</style>
+</head>
+<body>
+<div class="demo">Demo · Henüz yayında değil · Onaylarsan ana sayfaya uygulanır</div>
+<div class="bar">Tüm siparişlerde ücretsiz kargo · 2 yıl garanti · 14 gün iade</div>
+
+<header>
+  <div class="nav">
+    <a class="logo serif" href="/">VAĖLO</a>
+    <nav class="menu" aria-label="Ana menü">
+      <a class="on" href="#saat"><span class="n">01</span>Saat</a>
+      <a href="#kadin"><span class="n">02</span>Kadın</a>
+      <a href="#erkek"><span class="n">03</span>Erkek</a>
+    </nav>
+    <div class="icons"><a href="/#hesap">Hesap</a><a href="/#sepet">Sepet (0)</a></div>
+  </div>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">VAELO Saat Koleksiyonu</p>
+      <h1 class="serif">Zamanı taşıyan<br>imza.</h1>
+      <p>Paslanmaz çelik kasa, 5 ATM su geçirmezlik ve kadranda VAELO imzası. Günlük, Signature ve Kadın serileriyle her bileğe bir saat.</p>
+      <div class="btns">
+        <a class="btn w" href="/#saat">Saatleri Keşfet</a>
+        <a class="btn" href="#kadin">Kadın Koleksiyonu</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="disk"><img src="https://www.vaelo.com.tr/assets/saat/1960.webp" alt="VAELO Royal Gold Saat" referrerpolicy="no-referrer"></div>
+      <div class="hero-tag"><b>Royal Gold</b>₺5.349 · Signature</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust"><div class="trust-in">
+  <div>Ücretsiz kargo</div><div>2 yıl garanti</div><div>14 gün iade</div><div>PayTR güvenli ödeme</div>
+</div></div>
+
+<section id="saat">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow" style="color:var(--mute)">01 · Öncelikli koleksiyon</p><h2 class="serif">Saatler</h2></div>
+      <a class="more" href="/#saat">Tümünü gör (48)</a>
+    </div>
+    <div class="tabs"><a class="on" href="/#saat">Tümü</a><a href="/#saat">Günlük</a><a href="/#saat">Signature</a><a href="/#saat">Kadın</a></div>
+    <div class="grid">
+      <a class="card" href="/urun/marina-saat-71926.html"><div class="ph"><span class="rozet">Çok satan</span><img src="https://www.vaelo.com.tr/assets/saat/1926.webp" alt="VAELO Marina Saat" loading="lazy"></div><h3>Marina</h3><p class="sub">Günlük · Dalgıç</p><p class="pr">₺4.449</p></a>
+      <a class="card" href="/urun/royal-gold-saat-71960.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1960.webp" alt="VAELO Royal Gold Saat" loading="lazy"></div><h3>Royal Gold</h3><p class="sub">Signature</p><p class="pr">₺5.349</p></a>
+      <a class="card" href="/urun/imperial-saat-71935.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1935.webp" alt="VAELO Imperial Saat" loading="lazy"></div><h3>Imperial</h3><p class="sub">Signature</p><p class="pr">₺4.849</p></a>
+      <a class="card" href="/urun/velocity-chrono-saat-71975.html"><div class="ph"><span class="rozet">Yeni</span><img src="https://www.vaelo.com.tr/assets/saat/1975.webp" alt="VAELO Velocity Chrono Saat" loading="lazy"></div><h3>Velocity Chrono</h3><p class="sub">Signature · Kronograf</p><p class="pr">₺5.349</p></a>
+      <a class="card" href="/urun/gmt-emerald-saat-71947.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1947.webp" alt="VAELO GMT Emerald Saat" loading="lazy"></div><h3>GMT Emerald</h3><p class="sub">Günlük · GMT</p><p class="pr">₺4.049</p></a>
+      <a class="card" href="/urun/champagne-saat-71957.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1957.webp" alt="VAELO Champagne Saat" loading="lazy"></div><h3>Champagne</h3><p class="sub">Günlük</p><p class="pr">₺5.449</p></a>
+      <a class="card" href="/urun/rose-gem-saat-71966.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1966.webp" alt="VAELO Rose Gem Saat" loading="lazy"></div><h3>Rose Gem</h3><p class="sub">Kadın · Taşlı</p><p class="pr">₺3.249</p></a>
+      <a class="card" href="/urun/obsidian-saat-71977.html"><div class="ph"><img src="https://www.vaelo.com.tr/assets/saat/1977.webp" alt="VAELO Obsidian Saat" loading="lazy"></div><h3>Obsidian</h3><p class="sub">Signature</p><p class="pr">₺5.149</p></a>
+    </div>
+    <div class="series">
+      <a class="s" href="/#saat"><div><h4 class="serif">Günlük</h4><p>Dalgıç ve GMT çizgisinde, her gün takılacak sportif modeller.</p></div><span>Seriyi gör →</span></a>
+      <a class="s l" href="/#saat"><div><h4 class="serif">Signature</h4><p>Sekizgen ve kare kasalar, altın ve kronograf detaylar.</p></div><span>Seriyi gör →</span></a>
+      <a class="s" href="/#saat" style="background:var(--bordo)"><div><h4 class="serif">Kadın Saat</h4><p>Taşlı, sedef ve ince kasalı zarif modeller.</p></div><span>Seriyi gör →</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="kadin" class="kadin">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow" style="color:var(--mute)">02 · Kış sezonu</p><h2 class="serif">Kadın</h2></div>
+      <a class="more" href="/#kadin">Tümünü gör (176)</a>
+    </div>
+    <div class="kgrid">
+      <a class="kcard big" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kürk Yakalı Kemerli Kaban</b>₺4.049</div></a>
+      <div class="kstack">
+        <a class="kcard" href="/#kadin"><img src="https://api.sakans.com/storage/maximodena/xml2-6661/823bdfa4f982beda.jpg" alt="Kuşgözlü Kaşe Kaban – Camel" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kuşgözlü Kaşe Kaban</b>₺3.099</div></a>
+      </div>
+      <div class="kstack">
+        <a class="kcard" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kemerli Kaşe Kaban – Bej</b>₺4.049</div></a>
+      </div>
+    </div>
+    <div class="tabs" style="margin:30px 0 0"><a class="on" href="/#kadin">Kış</a><a href="/#kadin">Yaz</a><a href="/#kadin">Üst giyim</a><a href="/#kadin">Alt giyim</a><a href="/#kadin">Outlet</a></div>
+  </div>
+</section>
+
+<section id="erkek">
+  <div class="wrap erkek-in">
+    <div class="model"><img src="https://www.vaelo.com.tr/assets/hero-1.webp" alt="VAELO erkek koleksiyonu" loading="lazy"></div>
+    <div>
+      <p class="eyebrow" style="color:var(--mute)">03 · Erkek giyim</p>
+      <h2 class="serif" style="font-size:clamp(36px,4vw,56px);margin:10px 0 16px">Az logo, çok duruş.</h2>
+      <p style="color:#55524c;line-height:1.7;max-width:480px">Signature Premium ve Street Division serileri. Göğüste küçük V imzası, seçkin kumaş.</p>
+      <div class="lines" style="margin-top:24px"><a href="/#signature">Signature Premium</a><a href="/#street">Street Division</a></div>
+      <div class="egrid">
+        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979076_0.jpg" alt="Signature Hoodie – Siyah" loading="lazy"></div><h3>Signature Hoodie</h3><p class="pr">₺1.499</p></a>
+        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50995013_0.jpg" alt="Signature Sweatshirt – Lacivert" loading="lazy"></div><h3>Signature Sweatshirt</h3><p class="pr">₺1.499</p></a>
+        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979137_0.jpg" alt="Signature Hoodie – Lacivert" loading="lazy"></div><h3>Signature Hoodie</h3><p class="pr">₺1.499</p></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bayi">
+  <p class="eyebrow">Bayilik &amp; toptan saat</p>
+  <h2 class="serif">Vitrininize VAELO ekleyin.</h2>
+  <p>Saatçi ve kuyumcular için toptan fiyat, ilk siparişe ücretsiz tezgâh standı.</p>
+  <a class="btn w" href="/bayi.html">Bayimiz Olun</a>
+</section>
+
+<footer><div class="f-in">
+  <div><div class="serif" style="font-size:24px;letter-spacing:.3em;color:var(--ink)">VAĖLO</div><p style="margin-top:8px">Accessories &amp; Apparel · Ankara</p></div>
+  <div style="display:flex;gap:26px;flex-wrap:wrap"><a href="#saat">Saat</a><a href="#kadin">Kadın</a><a href="#erkek">Erkek</a><a href="/iade-degisim.html">İade</a><a href="https://wa.me/905513708320">Bize Ulaşın</a></div>
+</div></footer>
+</body>
+</html>
