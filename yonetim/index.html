@@ -43,6 +43,7 @@
   .sekmeler button.on{background:var(--yazi);color:var(--bg);border-color:var(--yazi)}
   .sekmeler i{font-style:normal;opacity:.6;margin-left:4px}
   .kart{background:var(--kart);margin-bottom:10px;padding:14px}
+  .kart.tyk{background:#3a1f08;border-left:3px solid #F27A1A}
   .ust{display:flex;justify-content:space-between;gap:10px}
   .ust b{font-weight:500}
   .soluk{color:var(--soluk);font-size:12px}
@@ -167,7 +168,7 @@ function ciz(yeniler = []) {
 function kart(o, yeni) {
   const tel = String(o.tel || '').replace(/\D/g, '').replace(/^0/, '90').replace(/^5/, '905');
   const adet = (o.urunler || []).reduce((t, x) => t + (Number(x.adet) || 1), 0);
-  return `<div class="kart${yeni ? ' yeni' : ''}" data-no="${esc(o.no)}">
+  return `<div class="kart${yeni ? ' yeni' : ''}${o.kaynak === 'trendyol' ? ' tyk' : ''}" data-no="${esc(o.no)}">
     <div class="ust"><div><b>${esc(o.ad || 'Müşteri')}</b> <span class="kaynak${o.kaynak === 'trendyol' ? ' ty' : ''}">${o.kaynak === 'trendyol' ? 'Trendyol' : 'Site'}</span><br><span class="soluk">${saat(tarih(o.t))} · ${adet} ürün${o.il ? ' · ' + esc(o.il) : ''}</span><br><span class="rozet r-${esc(o.durum)}">${esc(DUR[o.durum] || o.durum)}</span></div>
     <div class="tutar">${tl(o.toplam)}</div></div>
     ${acik.has(o.no) ? `<div class="detay">
