@@ -6203,11 +6203,6 @@
           "beden": "M",
           "stok": 1,
           "barkod": "2362505874042"
-        },
-        {
-          "beden": "L",
-          "stok": 2,
-          "barkod": "2362505874059"
         }
       ],
       "tedarik": "maxi"
@@ -11387,41 +11382,6 @@
           "beden": "Standart",
           "stok": 5,
           "barkod": "2362506916888"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
-      "id": "mm120156",
-      "name": "Pileli Gömlek – Kırmızı",
-      "price": 1099,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/xml2-7526/959b642d8d4f9316.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7526/dba84bc56be58aea.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7526/68e6ec34660d85ed.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7526/12a185ae4720edc7.jpg",
-        "https://api.sakans.com/storage/maximodena/xml2-7526/05af672f3c5f4986.jpg"
-      ],
-      "description": "KUMAŞ İÇERİĞİ\n%100 PamukMODEL ÖLÇÜLERİ\nBoyKiloKol UzunluğuGöğüsBelKalça163 cm51 kg56 cm84 cm63 cm96 cmMankenin üzerindeki numune S/36 bedendirÜrünlerimizin bedenleri Avrupa beden standartlarındadır\nEtiketi sökülmüş ve kullanım hatası olan ürünlerden firmamız sorumlu değildir.\nKURU TEMİZLEME YAPINIZ",
-      "url": "",
-      "category": "Kadın",
-      "grup": "ust",
-      "sezon": "kis",
-      "bedenler": [
-        {
-          "beden": "S",
-          "stok": 5,
-          "barkod": "2362512988367"
-        },
-        {
-          "beden": "M",
-          "stok": 5,
-          "barkod": "2362512988350"
-        },
-        {
-          "beden": "L",
-          "stok": 5,
-          "barkod": "2362512988343"
         }
       ],
       "tedarik": "maxi"
