@@ -198,8 +198,21 @@ document.addEventListener('click', async (e) => {
 document.addEventListener('change', async (e) => {
   const s = e.target.closest('select[data-dur]'); if (!s) return;
   s.disabled = true;
+  const o = siparisler.find((x) => x.no === s.dataset.dur);
+  const mailGitsin = s.value === 'kargoda' && o && o.kaynak !== 'trendyol' && o.email;
+  let takip = '';
+  if (mailGitsin) {
+    takip = prompt('Müşteriye "Kargoya verildi" maili gidecek.\nKargo takip no (yoksa boş bırak):', '');
+    if (takip === null) { s.value = o.durum; s.disabled = false; return; }
+  }
   try { await updateDoc(doc(db, 'siparisler', s.dataset.dur), { durum: s.value }); }
-  catch (err) { alert('Kaydedilemedi: ' + (err.code || err.message)); s.disabled = false; }
+  catch (err) { alert('Kaydedilemedi: ' + (err.code || err.message)); s.disabled = false; return; }
+  if (mailGitsin) {
+    try {
+      const d = await kasa('kargo', { idToken: await auth.currentUser.getIdToken(), no: o.no, takip, yedek: { ad: o.ad, email: o.email, urunler: o.urunler } });
+      alert(d.zaten ? 'Bu siparişe kargo maili zaten gitmişti.' : 'Müşteriye kargo maili gitti ✓');
+    } catch (err) { alert('Durum kaydedildi ama mail gitmedi: ' + err.message); }
+  }
 });
 
 // ---- Bildirimler ----

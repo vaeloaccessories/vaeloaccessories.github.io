@@ -842,7 +842,37 @@ async function yonetim(request, env, yol) {
     return json({ ok: true });
   }
   if (yol === 'deneme') return json({ ok: true, giden: await bildirimGonder(env, { baslik: 'VAELO Yönetim', metin: 'Bildirimler çalışıyor ✓', url: '/yonetim/' }) });
+  if (yol === 'kargo') return kargoMaili(env, d);
   return json({ ok: false }, 404);
+}
+
+// ---- Kargoya verildi maili (27 Kasım 2026) ----
+// Yönetim uygulamasında site siparişi "Kargoda" yapılınca müşteriye mail gider. Her siparişe 1 kez (tekrar=true ile yeniden).
+const KARGO_TAKIP = { aras: (n) => 'https://kargotakip.araskargo.com.tr/mainpage.aspx?code=' + encodeURIComponent(n) };
+async function kargoMaili(env, d) {
+  if (!env.RESEND_API_KEY) return json({ ok: false, error: 'RESEND_API_KEY yok' }, 503);
+  const oid = String(d.no || '');
+  const raw = oid ? await env.SIPARISLER.get(oid) : null;
+  const o = raw ? JSON.parse(raw) : null;
+  const y = d.yedek || {};
+  const ad = (o && o.name) || y.ad || '';
+  const email = (o && o.email) || y.email;
+  if (!email) return json({ ok: false, error: 'Müşteri maili bulunamadı' }, 404);
+  if (o && o.kargoMail && !d.tekrar) return json({ ok: true, zaten: true });
+  const urunler = o ? o.urunler : (y.urunler || []).map((u) => ({ name: u.ad || '', size: u.beden || 'Standart', qty: u.adet || 1 }));
+  const takip = String(d.takip || '').trim();
+  const link = takip ? KARGO_TAKIP.aras(takip) : '';
+  const satir = urunler.map((u) => `${e(String(u.name).replace(/^Vaelo\s+/i, 'VAELO '))}${u.size && u.size !== 'Standart' ? ' · Beden: ' + e(u.size) : ''} · ${u.qty} adet`).join('<br>');
+  await mailAt(env, email, 'Siparişiniz kargoya verildi · VAELO', mailSablon('Siparişiniz yola çıktı.',
+    `Merhaba ${e(String(ad).split(' ')[0])},<br><br>Siparişiniz kargoya verildi. Ortalama <strong>1–3 iş günü</strong> içinde adresinize ulaşacaktır.<br><br>` +
+    `<div style="background:#F3F1EC;padding:14px 16px;margin:0 0 16px">${satir}</div>` +
+    (takip ? `<strong>Kargo takip no:</strong> ${e(takip)}<br><br><a href="${link}" style="display:inline-block;background:#0A0A0A;color:#F3F1EC;text-decoration:none;padding:12px 22px;letter-spacing:1px">KARGOMU TAKİP ET</a><br><br>`
+      : `Kargo takip numaranız oluştuğunda ayrıca iletilecektir.<br><br>`) +
+    (o ? `<strong>Teslimat adresi</strong><br>${e(o.address)}<br>${e(o.district)} / ${e(o.city)}<br><br>` : '') +
+    `<span style="color:#6B6861;font-size:12px">Sipariş no: ${e(oid)}</span><br><br>Teslim alırken paketi kontrol etmenizi öneririz. Sorunuz olursa bu maile yanıt verebilir ya da bize ulaşabilirsiniz.`),
+    env.MAIL_SAHIBI || 'vaeloaccessories@gmail.com');
+  if (o) { o.kargoMail = new Date().toISOString(); if (takip) o.takip = takip; await env.SIPARISLER.put(oid, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90 }); }
+  return json({ ok: true });
 }
 
 // ---- Trendyol siparişleri → yönetim uygulaması (26 Kasım 2026) ----
@@ -893,7 +923,7 @@ export default {
     if (request.method === 'POST' && url.pathname === '/cark') return carkCevir(request, env);
     if (request.method === 'POST' && url.pathname.startsWith('/yonetim/')) return yonetim(request, env, url.pathname.slice(9));
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 9, yonetim: true, trendyol: !!env.TRENDYOL_API_KEY, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 10, kargoMail: true, yonetim: true, trendyol: !!env.TRENDYOL_API_KEY, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
     if (request.method === 'GET' && url.pathname === '/kupon') {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);
