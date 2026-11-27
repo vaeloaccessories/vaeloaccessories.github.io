@@ -574,6 +574,96 @@ fbq('track', 'PageView');
   }
   @media (prefers-reduced-motion: reduce) { .vv-info > *, .vv-pix span, .vv-bar i { transition: none !important; } }
 .rozet{color:#d11a1a;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin:10px 0 -4px}
+/* === Yeni ana sayfa: Saat > Kadin > Erkek === */
+#yeniAna{font-family:var(--sans,Jost,sans-serif);font-weight:300;color:#0a0a0a;background:#fff;--ink:#0a0a0a;--paper:#fff;--soft:#f4f3f0;--mute:#8a8780;--line:#e4e1da;--bordo:#6e1a26}
+#yeniAna a{color:inherit;text-decoration:none}
+#yeniAna img{display:block;width:100%}
+#yeniAna .ya-serif{font-family:var(--serif,"Cormorant Garamond",serif);font-weight:400}
+@keyframes ya-kay{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+#gateway,.gate-marquee,#saatbanner,#kadinbanner{display:none!important}
+html:not([data-view="home"]) #yeniAna{display:none}
+#yeniAna *{box-sizing:border-box;margin:0;padding:0}
+#yeniAna .ya-eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#a9a59c}
+#yeniAna .ya-btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+#yeniAna .ya-btn{display:inline-block;padding:16px 30px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:1px solid #fff}
+#yeniAna .ya-btn.ya-w{background:#fff;color:var(--ink)}
+#yeniAna .ya-btn.ya-d{background:var(--ink);color:#fff;border-color:var(--ink)}
+#yeniAna .ya-hero2{background:#fff;color:var(--ink);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#yeniAna .ya-hero2 .ya-big{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-size:clamp(120px,24vw,380px);letter-spacing:.06em;color:#f1efea;white-space:nowrap;line-height:1;pointer-events:none;user-select:none}
+#yeniAna .ya-h2in{position:relative;max-width:1360px;margin:0 auto;padding:56px 28px 0;display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:end;gap:20px;min-height:600px}
+#yeniAna .ya-h2in .ya-txt .ya-eyebrow{color:var(--mute)}
+#yeniAna .ya-h2in .ya-ht{font-size:clamp(40px,4.6vw,68px);line-height:1.02;margin:14px 0 18px}
+#yeniAna .ya-h2in .ya-txt p{color:#5b5852;line-height:1.7;font-size:15px;max-width:330px}
+#yeniAna .ya-h2in .ya-btn{border-color:var(--ink)}
+#yeniAna .ya-h2in .ya-btn.ya-w{background:var(--ink);color:#fff}
+#yeniAna .ya-stage{position:relative;display:flex;justify-content:center;align-items:flex-end;height:100%}
+#yeniAna .ya-stage img{mix-blend-mode:multiply;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+#yeniAna .ya-stage .ya-main{width:min(460px,100%);transform:translateY(10px)}
+#yeniAna .ya-stage:hover .ya-main{transform:translateY(-6px) rotate(-2deg)}
+#yeniAna .ya-side{display:flex;flex-direction:column;gap:18px;align-self:center}
+#yeniAna .ya-mini{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);background:rgba(255,255,255,.7);transition:border-color .3s}
+#yeniAna .ya-mini:hover{border-color:var(--ink)}
+#yeniAna .ya-mini img{mix-blend-mode:multiply}
+#yeniAna .ya-mini b{display:block;font-weight:400;font-size:15px}
+#yeniAna .ya-mini small{color:var(--mute);font-size:13px}
+#yeniAna .ya-spec{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;gap:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+#yeniAna .ya-spec b{color:var(--ink);font-weight:500}
+#yeniAna .ya-ticker{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:16px 0;font-size:13px;letter-spacing:.3em;text-transform:uppercase}
+#yeniAna .ya-ticker div{display:inline-block;animation:ya-kay 38s linear infinite}
+#yeniAna .ya-ticker span{margin:0 26px;opacity:.85}
+#yeniAna .ya-ticker i{font-style:normal;color:#8a8780}
+#yeniAna .ya-card .ya-ph img{mix-blend-mode:multiply}
+#yeniAna section{padding:90px 28px}
+#yeniAna .ya-wrap{max-width:1360px;margin:0 auto}
+#yeniAna .ya-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:38px;flex-wrap:wrap}
+#yeniAna .ya-head h2{font-size:clamp(36px,4vw,56px);line-height:1.05}
+#yeniAna .ya-head .ya-more{font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:4px}
+#yeniAna .ya-tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+#yeniAna .ya-tabs a{border:1px solid var(--line);padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+#yeniAna .ya-tabs a.ya-on{background:var(--ink);color:#fff;border-color:var(--ink)}
+#yeniAna .ya-grid{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 66px)/4);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:thin}
+#yeniAna .ya-grid>a{scroll-snap-align:start}
+#yeniAna .ya-card .ya-ph{background:var(--soft);aspect-ratio:1;overflow:hidden;position:relative}
+#yeniAna .ya-card .ya-ph img{height:100%;object-fit:contain;padding:8%;transition:transform .5s}
+#yeniAna .ya-card:hover .ya-ph img{transform:scale(1.05)}
+#yeniAna .ya-card h3{font-size:15px;font-weight:400;margin:14px 0 4px;letter-spacing:.04em}
+#yeniAna .ya-card .ya-pr{font-size:15px}
+#yeniAna .ya-card .ya-sub{font-size:12px;color:var(--mute);letter-spacing:.06em;margin-top:2px}
+#yeniAna .ya-rozet{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.16em;padding:6px 9px;text-transform:uppercase}
+#yeniAna .ya-series{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:70px}
+#yeniAna .ya-s{background:var(--ink);color:#fff;padding:34px 30px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+#yeniAna .ya-s.ya-l{background:var(--soft);color:var(--ink)}
+#yeniAna .ya-s h4{font-size:30px}
+#yeniAna .ya-s p{font-size:13px;line-height:1.6;color:inherit;opacity:.75;margin-top:8px}
+#yeniAna .ya-s span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:18px}
+#yeniAna .ya-bayi{background:var(--ink);color:#fff;text-align:center}
+#yeniAna .ya-bayi h2{font-size:clamp(34px,4vw,52px);margin:12px 0 16px}
+#yeniAna .ya-bayi p{color:#bdb9b0;max-width:560px;margin:0 auto 30px;line-height:1.7}
+#yeniAna .ya-duo{background:#fff}
+#yeniAna .ya-duo-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+#yeniAna .ya-col .ya-head{margin-bottom:26px}
+#yeniAna .ya-t{position:relative;display:block;overflow:hidden;background:#eee}
+#yeniAna .ya-t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .6s}
+#yeniAna .ya-t:hover img{transform:scale(1.04)}
+#yeniAna .ya-t .ya-c{position:absolute;left:0;right:0;bottom:0;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;font-size:14px}
+#yeniAna .ya-t.ya-big{aspect-ratio:4/5}
+#yeniAna .ya-t.ya-sm{aspect-ratio:1/1}
+#yeniAna .ya-t h3{font-size:clamp(28px,2.6vw,38px);font-weight:400;line-height:1.05}
+#yeniAna .ya-t .ya-c span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #fff;padding-bottom:3px;display:inline-block;margin-top:10px}
+#yeniAna .ya-t b{display:block;font-weight:400;font-size:15px}
+#yeniAna .ya-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+#yeniAna .ya-hero2{padding-top:calc(var(--bar,0px) + 92px)!important}
+@media(max-width:900px){
+#yeniAna .ya-h2in{grid-template-columns:1fr}
+#yeniAna .ya-h2in{padding:36px 20px 0;min-height:0}
+#yeniAna .ya-side{flex-direction:row;overflow-x:auto}
+#yeniAna .ya-mini{min-width:240px}
+#yeniAna .ya-spec{flex-wrap:wrap;gap:14px;white-space:normal}
+#yeniAna .ya-series{grid-template-columns:1fr}
+#yeniAna .ya-grid{grid-auto-columns:72%}
+#yeniAna section{padding:64px 20px}
+#yeniAna .ya-duo-in{grid-template-columns:1fr;gap:64px}
+}
 </style>
 <style>.seo-h1{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 <!-- Google Analytics -->
@@ -634,7 +724,92 @@ fbq('track', 'PageView');
 
 <main>
   <h1 class="seo-h1">VAELO – Premium Kapşonlu Sweatshirt, Hoodie ve Sweatshirt</h1>
-  <div class="gateway" id="gateway">
+  <div id="yeniAna">
+<section class="ya-hero2" style="padding:0">
+  <div class="ya-big ya-serif" aria-hidden="true">VAĖLO</div>
+  <div class="ya-h2in">
+    <div class="ya-txt" style="align-self:center">
+      <p class="ya-eyebrow">Saat Koleksiyonu · 2026</p>
+      <h2 class="ya-serif ya-ht">Zamanı taşıyan imza.</h2>
+      <p>Kadranda VAELO imzası, paslanmaz çelik kasa, 5 ATM su geçirmezlik.</p>
+      <div class="ya-btns">
+        <a class="ya-btn ya-w" href="#saat">Saatleri Keşfet</a>
+        <a class="ya-btn" href="#kadin">Kadın</a>
+      </div>
+    </div>
+    <a class="ya-stage" href="urun/royal-gold-saat-71960.html" aria-label="VAELO Royal Gold Saat">
+      <img class="ya-main" src="assets/saat/1960.webp" alt="VAELO Royal Gold Saat">
+    </a>
+    <div class="ya-side">
+      <a class="ya-mini" href="urun/royal-gold-saat-71960.html"><img src="assets/saat/1960.webp" alt=""><span><b>Royal Gold</b><small>Signature · ₺5.349</small></span></a>
+      <a class="ya-mini" href="urun/velocity-chrono-saat-71975.html"><img src="assets/saat/1975.webp" alt=""><span><b>Velocity Chrono</b><small>Kronograf · ₺5.349</small></span></a>
+      <a class="ya-mini" href="urun/marina-saat-71926.html"><img src="assets/saat/1926.webp" alt=""><span><b>Marina</b><small>Günlük · ₺4.449</small></span></a>
+    </div>
+  </div>
+  <div class="ya-spec" style="position:relative;left:auto;bottom:auto;transform:none;justify-content:center;padding:26px 0 30px"><span><b>5 ATM</b> su geçirmez</span><span><b>2 yıl</b> garanti</span><span><b>14 gün</b> iade</span><span><b>Ücretsiz</b> kargo</span></div>
+</section>
+
+<div class="ya-ticker" aria-hidden="true"><div>
+  <span>Marina</span><i>✦</i><span>Royal Gold</span><i>✦</i><span>Imperial</span><i>✦</i><span>Velocity Chrono</span><i>✦</i><span>GMT Emerald</span><i>✦</i><span>Obsidian</span><i>✦</i><span>Rose Gem</span><i>✦</i><span>Champagne</span><i>✦</i>
+  <span>Marina</span><i>✦</i><span>Royal Gold</span><i>✦</i><span>Imperial</span><i>✦</i><span>Velocity Chrono</span><i>✦</i><span>GMT Emerald</span><i>✦</i><span>Obsidian</span><i>✦</i><span>Rose Gem</span><i>✦</i><span>Champagne</span><i>✦</i>
+</div></div>
+
+<section id="ya-saat">
+  <div class="ya-wrap">
+    <div class="ya-head">
+      <div><p class="ya-eyebrow" style="color:var(--mute)">Öncelikli koleksiyon</p><h2 class="ya-serif">Saatler</h2></div>
+      <a class="ya-more" href="#saat">Tümünü gör (48)</a>
+    </div>
+    <div class="ya-tabs"><a class="ya-on" href="#saat">Tümü</a><a href="#saat">Günlük</a><a href="#saat">Signature</a><a href="#saat">Kadın</a></div>
+    <div class="ya-grid">
+      <a class="ya-card" href="urun/marina-saat-71926.html"><div class="ya-ph"><span class="ya-rozet">Çok satan</span><img src="assets/saat/1926.webp" alt="VAELO Marina Saat" loading="lazy"></div><h3>Marina</h3><p class="ya-sub">Günlük · Dalgıç</p><p class="ya-pr">₺4.449</p></a>
+      <a class="ya-card" href="urun/royal-gold-saat-71960.html"><div class="ya-ph"><img src="assets/saat/1960.webp" alt="VAELO Royal Gold Saat" loading="lazy"></div><h3>Royal Gold</h3><p class="ya-sub">Signature</p><p class="ya-pr">₺5.349</p></a>
+      <a class="ya-card" href="urun/imperial-saat-71935.html"><div class="ya-ph"><img src="assets/saat/1935.webp" alt="VAELO Imperial Saat" loading="lazy"></div><h3>Imperial</h3><p class="ya-sub">Signature</p><p class="ya-pr">₺4.849</p></a>
+      <a class="ya-card" href="urun/velocity-chrono-saat-71975.html"><div class="ya-ph"><span class="ya-rozet">Yeni</span><img src="assets/saat/1975.webp" alt="VAELO Velocity Chrono Saat" loading="lazy"></div><h3>Velocity Chrono</h3><p class="ya-sub">Signature · Kronograf</p><p class="ya-pr">₺5.349</p></a>
+      <a class="ya-card" href="urun/gmt-emerald-saat-71947.html"><div class="ya-ph"><img src="assets/saat/1947.webp" alt="VAELO GMT Emerald Saat" loading="lazy"></div><h3>GMT Emerald</h3><p class="ya-sub">Günlük · GMT</p><p class="ya-pr">₺4.049</p></a>
+      <a class="ya-card" href="urun/champagne-saat-71957.html"><div class="ya-ph"><img src="assets/saat/1957.webp" alt="VAELO Champagne Saat" loading="lazy"></div><h3>Champagne</h3><p class="ya-sub">Günlük</p><p class="ya-pr">₺5.449</p></a>
+      <a class="ya-card" href="urun/rose-gem-saat-71966.html"><div class="ya-ph"><img src="assets/saat/1966.webp" alt="VAELO Rose Gem Saat" loading="lazy"></div><h3>Rose Gem</h3><p class="ya-sub">Kadın · Taşlı</p><p class="ya-pr">₺3.249</p></a>
+      <a class="ya-card" href="urun/obsidian-saat-71977.html"><div class="ya-ph"><img src="assets/saat/1977.webp" alt="VAELO Obsidian Saat" loading="lazy"></div><h3>Obsidian</h3><p class="ya-sub">Signature</p><p class="ya-pr">₺5.149</p></a>
+    </div>
+    <div class="ya-series">
+      <a class="ya-s" href="#saat"><div><h4 class="ya-serif">Günlük</h4><p>Dalgıç ve GMT çizgisinde, her gün takılacak sportif modeller.</p></div><span>Seriyi gör →</span></a>
+      <a class="ya-s ya-l" href="#saat"><div><h4 class="ya-serif">Signature</h4><p>Sekizgen ve kare kasalar, altın ve kronograf detaylar.</p></div><span>Seriyi gör →</span></a>
+      <a class="ya-s" href="#saat" style="background:var(--bordo)"><div><h4 class="ya-serif">Kadın Saat</h4><p>Taşlı, sedef ve ince kasalı zarif modeller.</p></div><span>Seriyi gör →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="ya-duo">
+  <div class="ya-wrap ya-duo-in">
+    <div id="ya-kadin" class="ya-col">
+      <div class="ya-head"><div><p class="ya-eyebrow" style="color:var(--mute)">Kış sezonu</p><h2 class="ya-serif">Kadın</h2></div><a class="ya-more" href="#kadin">Tümünü gör (176)</a></div>
+      <a class="ya-t ya-big" href="#kadin"><img src="https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah" referrerpolicy="no-referrer" loading="lazy"><div class="ya-c"><h3 class="ya-serif">Kaban &amp; Mont</h3><span>Koleksiyonu gör</span></div></a>
+      <div class="ya-pair">
+        <a class="ya-t ya-sm" href="#kadin"><img src="https://api.sakans.com/storage/maximodena/xml2-6661/823bdfa4f982beda.jpg" alt="Kuşgözlü Kaşe Kaban – Camel" referrerpolicy="no-referrer" loading="lazy"><div class="ya-c"><b>Kuşgözlü Kaşe Kaban</b>₺3.099</div></a>
+        <a class="ya-t ya-sm" href="#kadin"><img src="https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej" referrerpolicy="no-referrer" loading="lazy"><div class="ya-c"><b>Kemerli Kaşe Kaban</b>₺4.049</div></a>
+      </div>
+      <div class="ya-tabs" style="margin:22px 0 0"><a class="ya-on" href="#kadin">Kış</a><a href="#kadin">Yaz</a><a href="#kadin">Outlet</a></div>
+    </div>
+    <div id="ya-erkek" class="ya-col">
+      <div class="ya-head"><div><p class="ya-eyebrow" style="color:var(--mute)">Signature &amp; Street</p><h2 class="ya-serif">Erkek</h2></div><a class="ya-more" href="#signature">Tümünü gör</a></div>
+      <a class="ya-t ya-big" href="#signature"><img src="assets/hero-1.webp" alt="VAELO Signature Premium" loading="lazy"><div class="ya-c"><h3 class="ya-serif">Signature Premium</h3><span>Koleksiyonu gör</span></div></a>
+      <div class="ya-pair">
+        <a class="ya-t ya-sm" href="#street"><img src="assets/hero-3.webp" alt="VAELO Street Division" loading="lazy"><div class="ya-c"><b>Street Division</b>Seriyi gör</div></a>
+        <a class="ya-t ya-sm" href="#signature"><img src="assets/hero-2.webp" alt="VAELO Signature Sweatshirt" loading="lazy"><div class="ya-c"><b>Signature Sweatshirt</b>₺1.499</div></a>
+      </div>
+      <div class="ya-tabs" style="margin:22px 0 0"><a class="ya-on" href="#signature">Signature Premium</a><a href="#street">Street Division</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="ya-bayi">
+  <p class="ya-eyebrow">Bayilik &amp; toptan saat</p>
+  <h2 class="ya-serif">Vitrininize VAELO ekleyin.</h2>
+  <p>Saatçi ve kuyumcular için toptan fiyat, ilk siparişe ücretsiz tezgâh standı.</p>
+  <a class="ya-btn ya-w" href="bayi.html">Bayimiz Olun</a>
+</section>
+</div>
+<div class="gateway" id="gateway">
     <div class="gw-photos" aria-hidden="true"><div><img src="assets/hero-1.webp" alt="" fetchpriority="high"></div><div><img src="assets/hero-2.webp" alt=""></div><div><img src="assets/hero-3.webp" alt=""></div></div>
     <div class="gate-word" aria-hidden="true">VAĖLO</div>
     <a class="gate gate-sig" id="gate-sig" href="#signature" data-view="signature">
