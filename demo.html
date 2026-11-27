@@ -23,6 +23,15 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdro
 .menu a{padding:6px 0;border-bottom:1px solid transparent}
 .menu a:hover,.menu a.on{border-color:var(--ink)}
 .menu .n{color:var(--mute);margin-right:6px;font-size:11px}
+.mbtn{background:none;border:0;cursor:pointer;width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:10px}
+.mbtn span{display:block;height:1px;background:var(--ink);width:24px}
+.drawer{position:fixed;inset:0;z-index:50;pointer-events:none}
+.drawer .bg{position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s}
+.drawer nav{position:absolute;top:0;left:0;bottom:0;width:min(360px,86vw);background:#fff;transform:translateX(-100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);padding:28px 30px;display:flex;flex-direction:column;overflow-y:auto}
+.drawer.on{pointer-events:auto}.drawer.on .bg{opacity:1}.drawer.on nav{transform:none}
+.drawer nav a{padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;letter-spacing:.16em;text-transform:uppercase}
+.drawer .x{align-self:flex-end;background:none;border:0;font-size:28px;line-height:1;cursor:pointer;width:44px;height:44px}
+.lft{display:flex;align-items:center;gap:10px}
 .icons{display:flex;gap:18px;font-size:13px;letter-spacing:.1em}
 .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#a9a59c}
 .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
@@ -134,7 +143,7 @@ section{padding:64px 20px}
 
 <header>
   <div class="nav">
-    <a class="logo serif" href="/">VAĖLO</a>
+    <div class="lft"><button class="mbtn" id="mbtn" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button><a class="logo serif" href="/">VAĖLO</a></div>
     <nav class="menu" aria-label="Ana menü">
       <a class="on" href="#saat"><span class="n">01</span>Saat</a>
       <a href="#kadin"><span class="n">02</span>Kadın</a>
@@ -247,5 +256,12 @@ section{padding:64px 20px}
   <div><div class="serif" style="font-size:24px;letter-spacing:.3em;color:var(--ink)">VAĖLO</div><p style="margin-top:8px">Accessories &amp; Apparel · Ankara</p></div>
   <div style="display:flex;gap:26px;flex-wrap:wrap"><a href="#saat">Saat</a><a href="#kadin">Kadın</a><a href="#erkek">Erkek</a><a href="/iade-degisim.html">İade</a><a href="https://wa.me/905513708320">Bize Ulaşın</a></div>
 </div></footer>
+<div class="drawer" id="drawer"><div class="bg" data-close></div><nav aria-label="Menü">
+  <button class="x" data-close aria-label="Menüyü kapat">×</button>
+  <a href="/#signature">Signature</a><a href="/#street">Street Division</a><a href="/#saat">Saat</a><a href="/#kadin">Kadın</a><a href="/#hesap">Hesabım</a><a href="/#hikaye">Hikâyemiz</a><a href="/#iletisim">İletişim</a><a href="/bayi.html">Bayimiz Olun</a><a href="/#sepet">Sepetim</a>
+</nav></div>
+<script>
+(function(){var d=document.getElementById('drawer'),b=document.getElementById('mbtn');function t(o){d.classList.toggle('on',o);b.setAttribute('aria-expanded',o?'true':'false');}b.addEventListener('click',function(){t(true)});d.querySelectorAll('[data-close],nav a').forEach(function(e){e.addEventListener('click',function(){t(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')t(false)});})();
+</script>
 </body>
 </html>
