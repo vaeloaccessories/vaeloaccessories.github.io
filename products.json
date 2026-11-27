@@ -6134,8 +6134,13 @@
       "sezon": "kis",
       "bedenler": [
         {
-          "beden": "XL",
+          "beden": "L",
           "stok": 1,
+          "barkod": "2362505873977"
+        },
+        {
+          "beden": "XL",
+          "stok": 2,
           "barkod": "2362505873984"
         }
       ],
@@ -6159,12 +6164,12 @@
       "bedenler": [
         {
           "beden": "L",
-          "stok": 4,
+          "stok": 3,
           "barkod": "2362505874011"
         },
         {
           "beden": "XL",
-          "stok": 3,
+          "stok": 2,
           "barkod": "2362505874028"
         }
       ],
@@ -6187,8 +6192,18 @@
       "sezon": "kis",
       "bedenler": [
         {
-          "beden": "L",
+          "beden": "S",
           "stok": 1,
+          "barkod": "2362505874035"
+        },
+        {
+          "beden": "M",
+          "stok": 1,
+          "barkod": "2362505874042"
+        },
+        {
+          "beden": "L",
+          "stok": 2,
           "barkod": "2362505874059"
         }
       ],
@@ -6326,9 +6341,24 @@
       "sezon": "kis",
       "bedenler": [
         {
+          "beden": "S",
+          "stok": 5,
+          "barkod": "2362506919025"
+        },
+        {
+          "beden": "M",
+          "stok": 5,
+          "barkod": "2362506919018"
+        },
+        {
           "beden": "L",
           "stok": 1,
           "barkod": "2362506919001"
+        },
+        {
+          "beden": "XL",
+          "stok": 5,
+          "barkod": "2362506919032"
         }
       ],
       "tedarik": "maxi"
@@ -8443,30 +8473,6 @@
       "tedarik": "maxi"
     },
     {
-      "id": "mm16517",
-      "name": "Polo Yaka Çizgili Triko Kazak – Yeşil",
-      "price": 499,
-      "images": [
-        "https://api.sakans.com/storage/maximodena/p-147/b79c92a8b8b9c3839f0d8543d2cdb11e98ea6c8e.jpg",
-        "https://api.sakans.com/storage/maximodena/p-147/c507772e87ae762c96231183e4653c0ac888db0a.jpg",
-        "https://api.sakans.com/storage/maximodena/p-147/b1f94b29a01154bf101f0d75ec72e25e24d35f64.jpg",
-        "https://api.sakans.com/storage/maximodena/p-147/62f2ceaaabc27b3a3b5ecefc9cde8aebfe62a9ff.jpg"
-      ],
-      "description": "Polo yaka detayı ve çizgili triko dokusuyla dikkat çeken bu kazak, günlük stilin güçlü tamamlayıcılarından biri. Yeşil renk seçeneğiyle hem sade hem de iddialı bir görünüm sunar, dolabınızda zamansız bir yer edinir.\nMateryal ve Kalite\nYumuşak ve tok triko yapısı sayesinde gün boyu konfor sağlar. Dokusu sayesinde kazak hem şeklini korur hem de rahat bir kullanım sunar.\nKullanım Alanı\nGünlük kullanıma uygun olduğu kadar şehir stilinde de rahatlıkla tercih edilebilir. Hem spor hem de casual kombinlerde öne çıkan bir parça olmayı başarır.\nKimlere Uygun\nZamansız ve sade ama iddialı bir görünüm arayan, şehir stilini günlük rahatlıkla birleştirmek isteyenler için uygun bir seçimdir.\nKombin Önerisi\nJean, kumaş pantolon veya eteklerle kolayca kombinlenebilir. Tek başına giyildiğinde bile zahmetsiz bir şıklık sunar, ayrıca aksesuara ihtiyaç duymadan şık bir görünüm sağlar.\nÖne Çıkan Özellikler\nPolo yaka detayı\nÇizgili triko doku\nRahat kesim, vücuda yapışmayan duruş\nGünlük ve şehir stiline uygun kullanım\nSık Sorulan Sorular\nBu kazak hangi kombinlerle giyilebilir?\nJean, kumaş pantolon veya eteklerle rahatlıkla kombinlenebilir; tek parça olarak da şık bir görünüm sunar.\nKazağın kesimi nasıl, vücuda oturuyor mu?\nRahat kesimi sayesinde vücuda yapışmadan şık bir duruş kazandırır.\nBu kazak günlük kullanıma uygun mu?\nEvet, hem günlük kullanımda hem de şehir stilinde öne çıkmak isteyenler için uygun bir triko alternatifidir.\nÜrün Bilgileri\nKlasik polo yaka detayını modern triko dokuyla buluşturan bu kazak, günlük stilin en güçlü tamamlayıcılarından biri. Yumuşak ve tok triko yapısı sayesinde gün boyu konfor sunarken, çizgili tasarımıyla sade ama iddialı bir görünüm sağlar.\nRahat kesimi vücuda yapışmadan şık bir duruş kazandırır. Polo yaka formu, spor ve casual kombinlere sofistike bir hava katar. Jean, kumaş pantolon veya eteklerle kolayca kombinlenebilir; tek parça ile zahmetsiz şıklık sunar.\nHem günlük kullanımda hem de şehir stilinde öne çıkmak isteyenler için zamansız ve güçlü bir triko alternatifi.",
-      "url": "",
-      "category": "Kadın",
-      "grup": "kazak",
-      "sezon": "kis",
-      "bedenler": [
-        {
-          "beden": "Standart",
-          "stok": 1,
-          "barkod": "2362501578487"
-        }
-      ],
-      "tedarik": "maxi"
-    },
-    {
       "id": "mm16459",
       "name": "Baklava Desenli Triko Kazak – Kırmızı",
       "price": 649,
@@ -8794,7 +8800,7 @@
       "bedenler": [
         {
           "beden": "Standart",
-          "stok": 42,
+          "stok": 41,
           "barkod": "2362501586161"
         }
       ],
