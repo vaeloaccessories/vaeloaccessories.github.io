@@ -843,7 +843,42 @@ async function yonetim(request, env, yol) {
   }
   if (yol === 'deneme') return json({ ok: true, giden: await bildirimGonder(env, { baslik: 'VAELO Yönetim', metin: 'Bildirimler çalışıyor ✓', url: '/yonetim/' }) });
   if (yol === 'kargo') return kargoMaili(env, d);
+  if (yol === 'widget') {
+    // Kilit ekranı widget'ının gizli anahtarı (yeni=true ile değişir, eski anahtar çalışmaz olur).
+    let k = await env.SIPARISLER.get('widget-anahtar');
+    if (!k || d.yeni) { k = b64url(crypto.getRandomValues(new Uint8Array(24))); await env.SIPARISLER.put('widget-anahtar', k); }
+    return json({ ok: true, anahtar: k });
+  }
   return json({ ok: false }, 404);
+}
+
+// ---- Kilit ekranı widget'ı (28 Kasım 2026) ----
+// Telefondaki Scriptable widget'ı GET /widget?k=<gizli anahtar> ile bu haftanın (Pazartesi 00:00'dan beri, İstanbul saati)
+// ödenen satış toplamını alır. Site + Trendyol, durum: ödendi / kargoda / teslim. Anahtar yönetim uygulamasından alınır.
+async function widgetVerisi(url, env) {
+  const k = String(url.searchParams.get('k') || '');
+  const dogru = env.SIPARISLER && await env.SIPARISLER.get('widget-anahtar');
+  if (!dogru || k.length !== dogru.length || k !== dogru) return json({ ok: false, error: 'Yetki yok' }, 403);
+  const onbes = await env.SIPARISLER.get('widget-onbellek');
+  if (onbes) { const o = JSON.parse(onbes); if (Date.now() - o.zaman < 5 * 60000) return json(o); }
+  const TR = 3 * 3600000, simdi = new Date(Date.now() + TR);
+  const gun = new Date(Date.UTC(simdi.getUTCFullYear(), simdi.getUTCMonth(), simdi.getUTCDate()) - TR);
+  const pazartesi = new Date(gun.getTime() - ((simdi.getUTCDay() + 6) % 7) * 86400000);
+  const r = await fetch(`${FS}:runQuery`, { method: 'POST', headers: { 'Authorization': 'Bearer ' + await googleToken(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ structuredQuery: { from: [{ collectionId: 'siparisler' }], select: { fields: [{ fieldPath: 't' }, { fieldPath: 'durum' }, { fieldPath: 'toplam' }] },
+      where: { fieldFilter: { field: { fieldPath: 't' }, op: 'GREATER_THAN_OR_EQUAL', value: { timestampValue: pazartesi.toISOString() } } } } }) });
+  if (!r.ok) return json({ ok: false, error: 'Firestore ' + r.status }, 502);
+  let hafta = 0, adet = 0, bugun = 0;
+  for (const s of await r.json()) {
+    const f = (s.document || {}).fields; if (!f) continue;
+    if (!['odendi', 'kargoda', 'teslim'].includes((f.durum || {}).stringValue)) continue;
+    const tutar = Number((f.toplam || {}).doubleValue ?? (f.toplam || {}).integerValue ?? 0) || 0;
+    hafta += tutar; adet++;
+    if (new Date((f.t || {}).timestampValue || 0) >= gun) bugun += tutar;
+  }
+  const o = { ok: true, hafta: Math.round(hafta), adet, bugun: Math.round(bugun), zaman: Date.now() };
+  await env.SIPARISLER.put('widget-onbellek', JSON.stringify(o), { expirationTtl: 600 });
+  return json(o);
 }
 
 // ---- Kargoya verildi maili (27 Kasım 2026) ----
@@ -922,8 +957,9 @@ export default {
     if (request.method === 'POST' && url.pathname === '/bayi') return bayiBasvuru(request, env);
     if (request.method === 'POST' && url.pathname === '/cark') return carkCevir(request, env);
     if (request.method === 'POST' && url.pathname.startsWith('/yonetim/')) return yonetim(request, env, url.pathname.slice(9));
+    if (request.method === 'GET' && url.pathname === '/widget') return widgetVerisi(url, env);
     if (request.method === 'GET' && url.pathname === '/abonelik-iptal') return abonelikIptal(url, env);
-    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 10, kargoMail: true, yonetim: true, trendyol: !!env.TRENDYOL_API_KEY, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
+    if (request.method === 'GET' && url.pathname === '/surum') return json({ surum: 11, widget: true, kargoMail: true, yonetim: true, trendyol: !!env.TRENDYOL_API_KEY, hediye: HEDIYE_PAKETI, kuponlar: true, paket: true, cark: true });
     if (request.method === 'GET' && url.pathname === '/kupon') {
       // Kod listesi dışarı verilmez; yalnızca girilen tek kodun geçerli olup olmadığı söylenir.
       if (await cokIstek(env, request, 'kupon', 20, 600)) return json({ ok: false }, 429);

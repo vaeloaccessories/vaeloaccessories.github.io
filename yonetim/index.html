@@ -84,6 +84,7 @@
   <header>
     <div class="logo">VAĖLO<small>YÖNETİM</small></div>
     <div class="ikonlar">
+      <button class="ib" id="widgetAc" title="Kilit ekranı widget'ı">📱</button>
       <button class="ib" id="zil" title="Bildirimler">🔔</button>
       <button class="ib" id="cikis" title="Çıkış">⎋</button>
     </div>
@@ -91,6 +92,7 @@
   <main>
     <div id="kurUyari" class="uyari gizli">Bildirim almak için önce uygulamayı ana ekrana ekle: Safari'de <b>Paylaş</b> düğmesi → <b>Ana Ekrana Ekle</b>. Sonra ana ekrandaki VAELO simgesinden aç.</div>
     <div id="bildirimUyari" class="uyari gizli">Sipariş gelince telefonuna bildirim gelsin mi?<br><br><button class="btn sm" id="bildirimAc">Bildirimleri aç</button></div>
+    <div id="widgetKutu" class="uyari gizli"><b>Kilit ekranı widget'ı</b><br>1) Aşağıdaki <b>Kodu kopyala</b>'ya bas.<br>2) Scriptable'ı aç → sağ üstte <b>+</b> → kodu yapıştır → üstte adını <b>VAELO</b> yap → Bitti.<br>3) Kilit ekranına basılı tut → <b>Özelleştir</b> → Kilit Ekranı → saatin altındaki kutuya bas → <b>Scriptable</b> → geniş kutuyu ekle → kutuya bas → Script: <b>VAELO</b>.<br><br><button class="btn sm" id="widgetKopya">Kodu kopyala</button> <button class="btn ghost sm" id="widgetKapat">Kapat</button></div>
     <div class="kpis">
       <div class="kpi"><span>Bugün</span><b id="kBugun">–</b></div>
       <div class="kpi"><span>Bu ay</span><b id="kAy">–</b></div>
@@ -263,6 +265,42 @@ $('#zil').onclick = async () => {
     catch (err) { alert('Deneme bildirimi gitmedi: ' + err.message); }
   } else bildirimAc();
 };
+// ---- Kilit ekranı widget'ı (Scriptable) ----
+let widgetKod = '';
+function widgetYaz(anahtar) {
+  return [
+    '// VAELO · Kilit ekranı haftalık satış',
+    'const ADRES = "' + KASA + '/widget?k=' + anahtar + '";',
+    'let d = {};',
+    'try { d = await new Request(ADRES).loadJSON(); } catch (e) {}',
+    'const tl = (n) => "₺" + String(Math.round(n || 0)).replace(/\\B(?=(\\d{3})+(?!\\d))/g, ".");',
+    'const w = new ListWidget();',
+    'const tur = config.widgetFamily;',
+    'if (tur === "accessoryInline") {',
+    '  w.addText("VAELO " + (d.ok ? tl(d.hafta) : "–"));',
+    '} else if (tur === "accessoryCircular") {',
+    '  const a = w.addText("HAFTA"); a.font = Font.boldSystemFont(8); a.centerAlignText();',
+    '  const b = w.addText(d.ok ? (d.hafta >= 1000 ? Math.round(d.hafta / 1000) + "B" : String(d.hafta)) : "–"); b.font = Font.boldSystemFont(16); b.minimumScaleFactor = 0.5; b.centerAlignText();',
+    '} else {',
+    '  const a = w.addText("VAELO · BU HAFTA"); a.font = Font.semiboldSystemFont(11);',
+    '  const b = w.addText(d.ok ? tl(d.hafta) : "Bağlantı yok"); b.font = Font.boldSystemFont(22); b.minimumScaleFactor = 0.5;',
+    '  const c = w.addText(d.ok ? d.adet + " sipariş · bugün " + tl(d.bugun) : "–"); c.font = Font.systemFont(11);',
+    '}',
+    'w.refreshAfterDate = new Date(Date.now() + 15 * 60000);',
+    'w.url = "https://www.vaelo.com.tr/yonetim/";',
+    'if (config.runsInWidget) Script.setWidget(w); else await w.presentAccessoryRectangular();',
+    'Script.complete();',
+  ].join('\n');
+}
+$('#widgetAc').onclick = async () => {
+  try { const d = await kasa('widget', { idToken: await auth.currentUser.getIdToken() }); widgetKod = widgetYaz(d.anahtar); $('#widgetKutu').classList.remove('gizli'); window.scrollTo(0, 0); }
+  catch (err) { alert('Widget hazırlanamadı: ' + err.message); }
+};
+$('#widgetKopya').onclick = async () => {
+  try { await navigator.clipboard.writeText(widgetKod); $('#widgetKopya').textContent = 'Kopyalandı ✓'; }
+  catch (err) { prompt('Kodu buradan kopyala:', widgetKod); }
+};
+$('#widgetKapat').onclick = () => $('#widgetKutu').classList.add('gizli');
 </script>
 </body>
 </html>
