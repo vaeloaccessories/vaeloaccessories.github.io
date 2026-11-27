@@ -61,6 +61,8 @@
   .kpi em{display:block;font-style:normal;font-size:.75rem;color:var(--muted);margin-top:2px}
   .kpi.live b{color:var(--ok)}
   .card{background:var(--card);border:1px solid var(--line);padding:16px;margin-bottom:10px}
+  .card.ty{background:#3a1f08;border-color:#F27A1A}
+  .ty-etiket{display:inline-block;font-size:10px;letter-spacing:1px;padding:2px 6px;background:#F27A1A;color:#fff;margin-left:6px;vertical-align:2px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media (max-width:820px){.grid2{grid-template-columns:1fr}}
   .bar-row{display:grid;grid-template-columns:1fr 56px;gap:10px;align-items:center;font-size:.86rem;padding:7px 0;border-bottom:1px solid var(--line)}
@@ -517,7 +519,8 @@ const SEKMELER = {
       <div class="row"><div class="seg" id="sf">${[['hepsi', 'Tümü'], ['tamam', 'Ödenenler'], ['yarim', 'Yarım kalanlar']].map(([v, t]) => `<button type="button" data-v="${v}" class="${v === filtre ? 'on' : ''}">${t}</button>`).join('')}</div><a class="btn ghost sm" href="https://www.paytr.com/magaza/islemler" target="_blank" rel="noopener">PayTR işlemleri</a></div>
       ${l.length ? l.map((o) => {
         const tel = String(o.tel || '').replace(/\D/g, '').replace(/^0/, '90');
-        return `<div class="card"><div class="head-line"><div><b>${esc(o.ad)}</b><br><span class="muted">${esc(o.no)} · ${tarihSaat(o.t)}</span></div><div style="text-align:right"><span class="total">${tl(o.toplam)}</span><br><span class="muted st-${esc(o.durum)}">${esc(DUR[o.durum] || o.durum)}</span></div></div>
+        const ty = o.kaynak === 'trendyol';
+        return `<div class="card${ty ? ' ty' : ''}"><div class="head-line"><div><b>${esc(o.ad)}</b>${ty ? '<span class="ty-etiket">TRENDYOL</span>' : ''}<br><span class="muted">${esc(o.no)} · ${tarihSaat(o.t)}</span></div><div style="text-align:right"><span class="total">${tl(o.toplam)}</span><br><span class="muted st-${esc(o.durum)}">${esc(DUR[o.durum] || o.durum)}</span></div></div>
         <div class="items">${(o.urunler || []).map((x) => `<div class="item"><span></span><div>${esc(x.ad)}<br><small>Beden ${esc(x.beden)} · ${sayi(x.adet)} adet</small></div><div>${tl(x.fiyat * x.adet)}</div></div>`).join('')}</div>
         <p class="muted" style="margin-top:10px">${esc(o.adres)}, ${esc(o.ilce)} / ${esc(o.il)}<br>${esc(o.tel)} · ${esc(o.email)}${o.hediye ? ' · <b style="color:var(--gold)">Hediye paketi</b>' : ''}${o.uid ? ' · Üye' : ''}</p>
         <div class="actions"><select data-no="${esc(o.no)}" aria-label="Sipariş durumu">${Object.entries(DUR).map(([k, v]) => `<option value="${k}"${k === o.durum ? ' selected' : ''}>${v}</option>`).join('')}</select>
