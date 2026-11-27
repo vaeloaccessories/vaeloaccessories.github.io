@@ -32,6 +32,13 @@ const yuvarla = (v) => { const b = Math.floor(v / 100) * 100; return v <= b + 49
 // zam: kâr fiyatının üstüne genel zam (ör. 0.15 = %15), yine 49/99'a yukarı yuvarlanır.
 // KARGO_EK: anlaşmalı kargo olmadığı için tüm Kadın ürünlerine eklenen sabit kargo payı (TL).
 const KARGO_EK = 300;
+// Feed'de videosu olmayan ama MaxiModena "Videolu Ürünler" sayfasında videosu olan ürünler (ProductId → video)
+const EK_VIDEO = {
+  "103850": "https://api.sakans.com/storage/media/34/video/yIdi7PAHkVtEy9hhh1NW.mov",
+  "103849": "https://api.sakans.com/storage/media/34/video/yvKBUhF8MdqvDxSu26Q3.mov",
+  "93111": "https://api.sakans.com/storage/media/34/video/7EpvJYqvr7XZhibJePIo.mov",
+};
+const videoBul = (x) => [x.Video, EK_VIDEO[String(x.ProductId)]].find((u) => /^https:\/\/.+\.(mp4|mov)$/i.test(u || ''));
 const fiyat = (alis, kar = cfg.kar) => { const p = yuvarla(alis * (1 + kar)); return (cfg.zam ? yuvarla(p * (1 + cfg.zam)) : p) + KARGO_EK; };
 const RENK = { kahverengi: 'Kahverengi', kahve: 'Kahverengi', 'altın': 'Altın Rengi', altin: 'Altın Rengi' };
 const renkAdi = (c) => { const s = String(c || '').trim(); return RENK[s.toLocaleLowerCase('tr-TR')] || s; };
@@ -71,7 +78,7 @@ for (const u of cfg.urunler) {
       grup: u.grup,
       sezon: u.sezon || 'kis',
       bedenler,
-      ...(/^https:\/\/.+\.(mp4|mov)$/i.test(x.Video || '') ? { video: x.Video } : {}),
+      ...(videoBul(x) ? { video: videoBul(x) } : {}),
       tedarik: 'maxi',
     });
   }
