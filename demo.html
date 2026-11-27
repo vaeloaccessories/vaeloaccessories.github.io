@@ -24,20 +24,37 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdro
 .menu a:hover,.menu a.on{border-color:var(--ink)}
 .menu .n{color:var(--mute);margin-right:6px;font-size:11px}
 .icons{display:flex;gap:18px;font-size:13px;letter-spacing:.1em}
-.hero{background:var(--ink);color:#fff}
-.hero-in{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;min-height:640px;padding:0 28px}
-.hero h1{font-size:clamp(46px,6vw,88px);line-height:1;margin:14px 0 22px}
 .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#a9a59c}
-.hero p{max-width:440px;color:#cfcbc2;line-height:1.7;font-size:16px}
 .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
 .btn{display:inline-block;padding:16px 30px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:1px solid #fff}
 .btn.w{background:#fff;color:var(--ink)}
 .btn.d{background:var(--ink);color:#fff;border-color:var(--ink)}
-.hero-img{position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:40px 0}
-.hero-img .disk{width:min(520px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#2a2a2a 0,#121212 62%,#0a0a0a 72%);display:flex;align-items:center;justify-content:center}
-.hero-img img{width:78%;mix-blend-mode:normal;border-radius:50%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
-.hero-tag{position:absolute;right:6%;bottom:12%;background:#fff;color:var(--ink);padding:14px 18px;font-size:13px;line-height:1.5}
-.hero-tag b{font-weight:500;display:block}
+.hero2{background:#fff;color:var(--ink);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero2 .big{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-size:clamp(120px,24vw,380px);letter-spacing:.06em;color:#f1efea;white-space:nowrap;line-height:1;pointer-events:none;user-select:none}
+.h2in{position:relative;max-width:1360px;margin:0 auto;padding:56px 28px 0;display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:end;gap:20px;min-height:600px}
+.h2in .txt .eyebrow{color:var(--mute)}
+.h2in h1{font-size:clamp(40px,4.6vw,68px);line-height:1.02;margin:14px 0 18px}
+.h2in .txt p{color:#5b5852;line-height:1.7;font-size:15px;max-width:330px}
+.h2in .btn{border-color:var(--ink)}
+.h2in .btn.w{background:var(--ink);color:#fff}
+.stage{position:relative;display:flex;justify-content:center;align-items:flex-end;height:100%}
+.stage img{mix-blend-mode:multiply;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.stage .main{width:min(460px,100%);transform:translateY(10px)}
+.stage:hover .main{transform:translateY(-6px) rotate(-2deg)}
+.side{display:flex;flex-direction:column;gap:18px;align-self:center}
+.mini{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);background:rgba(255,255,255,.7);transition:border-color .3s}
+.mini:hover{border-color:var(--ink)}
+.mini img{mix-blend-mode:multiply}
+.mini b{display:block;font-weight:400;font-size:15px}
+.mini small{color:var(--mute);font-size:13px}
+.spec{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;gap:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.spec b{color:var(--ink);font-weight:500}
+.ticker{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:16px 0;font-size:13px;letter-spacing:.3em;text-transform:uppercase}
+.ticker div{display:inline-block;animation:kay 38s linear infinite}
+.ticker span{margin:0 26px;opacity:.85}
+.ticker i{font-style:normal;color:#8a8780}
+@keyframes kay{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.card .ph img{mix-blend-mode:multiply}
 .trust{border-bottom:1px solid var(--line)}
 .trust-in{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 28px;gap:12px;font-size:13px;letter-spacing:.06em;text-align:center;color:#3c3a36}
 section{padding:90px 28px}
@@ -83,8 +100,11 @@ section{padding:90px 28px}
 footer{border-top:1px solid var(--line);padding:46px 28px;font-size:13px;color:#55524c}
 .f-in{max-width:1360px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 @media(max-width:900px){
-.hero-in,.erkek-in,.kgrid{grid-template-columns:1fr}
-.hero-in{padding:40px 22px 0;min-height:0}
+.h2in,.erkek-in,.kgrid{grid-template-columns:1fr}
+.h2in{padding:36px 20px 0;min-height:0}
+.side{flex-direction:row;overflow-x:auto}
+.mini{min-width:240px}
+.spec{flex-wrap:wrap;gap:14px;white-space:normal}
 .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .series,.egrid{grid-template-columns:1fr}
 .trust-in{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -109,26 +129,33 @@ section{padding:64px 20px}
   </div>
 </header>
 
-<section class="hero" style="padding:0">
-  <div class="hero-in">
-    <div>
-      <p class="eyebrow">VAELO Saat Koleksiyonu</p>
-      <h1 class="serif">Zamanı taşıyan<br>imza.</h1>
-      <p>Paslanmaz çelik kasa, 5 ATM su geçirmezlik ve kadranda VAELO imzası. Günlük, Signature ve Kadın serileriyle her bileğe bir saat.</p>
+<section class="hero2" style="padding:0">
+  <div class="big serif" aria-hidden="true">VAĖLO</div>
+  <div class="h2in">
+    <div class="txt" style="align-self:center">
+      <p class="eyebrow">Saat Koleksiyonu · 2026</p>
+      <h1 class="serif">Zamanı taşıyan imza.</h1>
+      <p>Kadranda VAELO imzası, paslanmaz çelik kasa, 5 ATM su geçirmezlik.</p>
       <div class="btns">
         <a class="btn w" href="/#saat">Saatleri Keşfet</a>
-        <a class="btn" href="#kadin">Kadın Koleksiyonu</a>
+        <a class="btn" href="#kadin">Kadın</a>
       </div>
     </div>
-    <div class="hero-img">
-      <div class="disk"><img src="https://www.vaelo.com.tr/assets/saat/1960.webp" alt="VAELO Royal Gold Saat" referrerpolicy="no-referrer"></div>
-      <div class="hero-tag"><b>Royal Gold</b>₺5.349 · Signature</div>
+    <a class="stage" href="/urun/royal-gold-saat-71960.html" aria-label="VAELO Royal Gold Saat">
+      <img class="main" src="https://www.vaelo.com.tr/assets/saat/1960.webp" alt="VAELO Royal Gold Saat">
+    </a>
+    <div class="side">
+      <a class="mini" href="/urun/royal-gold-saat-71960.html"><img src="https://www.vaelo.com.tr/assets/saat/1960.webp" alt=""><span><b>Royal Gold</b><small>Signature · ₺5.349</small></span></a>
+      <a class="mini" href="/urun/velocity-chrono-saat-71975.html"><img src="https://www.vaelo.com.tr/assets/saat/1975.webp" alt=""><span><b>Velocity Chrono</b><small>Kronograf · ₺5.349</small></span></a>
+      <a class="mini" href="/urun/marina-saat-71926.html"><img src="https://www.vaelo.com.tr/assets/saat/1926.webp" alt=""><span><b>Marina</b><small>Günlük · ₺4.449</small></span></a>
     </div>
   </div>
+  <div class="spec" style="position:relative;left:auto;bottom:auto;transform:none;justify-content:center;padding:26px 0 30px"><span><b>5 ATM</b> su geçirmez</span><span><b>2 yıl</b> garanti</span><span><b>14 gün</b> iade</span><span><b>Ücretsiz</b> kargo</span></div>
 </section>
 
-<div class="trust"><div class="trust-in">
-  <div>Ücretsiz kargo</div><div>2 yıl garanti</div><div>14 gün iade</div><div>PayTR güvenli ödeme</div>
+<div class="ticker" aria-hidden="true"><div>
+  <span>Marina</span><i>✦</i><span>Royal Gold</span><i>✦</i><span>Imperial</span><i>✦</i><span>Velocity Chrono</span><i>✦</i><span>GMT Emerald</span><i>✦</i><span>Obsidian</span><i>✦</i><span>Rose Gem</span><i>✦</i><span>Champagne</span><i>✦</i>
+  <span>Marina</span><i>✦</i><span>Royal Gold</span><i>✦</i><span>Imperial</span><i>✦</i><span>Velocity Chrono</span><i>✦</i><span>GMT Emerald</span><i>✦</i><span>Obsidian</span><i>✦</i><span>Rose Gem</span><i>✦</i><span>Champagne</span><i>✦</i>
 </div></div>
 
 <section id="saat">
