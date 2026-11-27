@@ -135,6 +135,19 @@ footer{border-top:1px solid var(--line);padding:46px 28px;font-size:13px;color:#
 .menu{gap:18px;font-size:12px;order:3;width:100%;justify-content:center}
 section{padding:64px 20px}
 }
+.duo{background:#fff}
+.duo-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.col .head{margin-bottom:26px}
+.t{position:relative;display:block;overflow:hidden;background:#eee}
+.t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .6s}
+.t:hover img{transform:scale(1.04)}
+.t .c{position:absolute;left:0;right:0;bottom:0;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;font-size:14px}
+.t.big{aspect-ratio:4/5}.t.sm{aspect-ratio:1/1}
+.t h3{font-size:clamp(28px,2.6vw,38px);font-weight:400;line-height:1.05}
+.t .c span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #fff;padding-bottom:3px;display:inline-block;margin-top:10px}
+.t b{display:block;font-weight:400;font-size:15px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+@media(max-width:900px){.duo-in{grid-template-columns:1fr;gap:64px}}
 </style>
 </head>
 <body>
@@ -207,40 +220,25 @@ section{padding:64px 20px}
   </div>
 </section>
 
-<section id="kadin" class="kadin">
-  <div class="wrap">
-    <div class="head">
-      <div><p class="eyebrow" style="color:var(--mute)">Kış sezonu</p><h2 class="serif">Kadın</h2></div>
-      <a class="more" href="/#kadin">Tümünü gör (176)</a>
-    </div>
-    <div class="kgrid">
-      <a class="kcard big" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kürk Yakalı Kemerli Kaban</b>₺4.049</div></a>
-      <div class="kstack">
-        <a class="kcard" href="/#kadin"><img src="https://api.sakans.com/storage/maximodena/xml2-6661/823bdfa4f982beda.jpg" alt="Kuşgözlü Kaşe Kaban – Camel" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kuşgözlü Kaşe Kaban</b>₺3.099</div></a>
+<section class="duo">
+  <div class="wrap duo-in">
+    <div id="kadin" class="col">
+      <div class="head"><div><p class="eyebrow" style="color:var(--mute)">Kış sezonu</p><h2 class="serif">Kadın</h2></div><a class="more" href="/#kadin">Tümünü gör (176)</a></div>
+      <a class="t big" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/L0Ba9wz38AxHnzvPN0g5.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Siyah" referrerpolicy="no-referrer" loading="lazy"><div class="c"><h3 class="serif">Kaban &amp; Mont</h3><span>Koleksiyonu gör</span></div></a>
+      <div class="pair">
+        <a class="t sm" href="/#kadin"><img src="https://api.sakans.com/storage/maximodena/xml2-6661/823bdfa4f982beda.jpg" alt="Kuşgözlü Kaşe Kaban – Camel" referrerpolicy="no-referrer" loading="lazy"><div class="c"><b>Kuşgözlü Kaşe Kaban</b>₺3.099</div></a>
+        <a class="t sm" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej" referrerpolicy="no-referrer" loading="lazy"><div class="c"><b>Kemerli Kaşe Kaban</b>₺4.049</div></a>
       </div>
-      <div class="kstack">
-        <a class="kcard" href="/#kadin"><img src="https://api.sakans.com/storage/media/34/products/5DgJ1r1ij8tcWbsyVxnv.jpg" alt="Kürk Yakalı Kemerli Uzun Kaşe Kaban – Bej" referrerpolicy="no-referrer" loading="lazy"><div class="cap"><b>Kemerli Kaşe Kaban – Bej</b>₺4.049</div></a>
+      <div class="tabs" style="margin:22px 0 0"><a class="on" href="/#kadin">Kış</a><a href="/#kadin">Yaz</a><a href="/#kadin">Outlet</a></div>
+    </div>
+    <div id="erkek" class="col">
+      <div class="head"><div><p class="eyebrow" style="color:var(--mute)">Signature &amp; Street</p><h2 class="serif">Erkek</h2></div><a class="more" href="/#signature">Tümünü gör</a></div>
+      <a class="t big" href="/#signature"><img src="https://www.vaelo.com.tr/assets/hero-1.webp" alt="VAELO Signature Premium" loading="lazy"><div class="c"><h3 class="serif">Signature Premium</h3><span>Koleksiyonu gör</span></div></a>
+      <div class="pair">
+        <a class="t sm" href="/#street"><img src="https://www.vaelo.com.tr/assets/hero-3.webp" alt="VAELO Street Division" loading="lazy"><div class="c"><b>Street Division</b>Seriyi gör</div></a>
+        <a class="t sm" href="/#signature"><img src="https://www.vaelo.com.tr/assets/hero-2.webp" alt="VAELO Signature Sweatshirt" loading="lazy"><div class="c"><b>Signature Sweatshirt</b>₺1.499</div></a>
       </div>
-    </div>
-    <div class="tabs" style="margin:30px 0 0"><a class="on" href="/#kadin">Kış</a><a href="/#kadin">Yaz</a><a href="/#kadin">Üst giyim</a><a href="/#kadin">Alt giyim</a><a href="/#kadin">Outlet</a></div>
-  </div>
-</section>
-
-<section id="erkek" class="erk">
-  <div class="wrap">
-    <div class="head">
-      <div><p class="eyebrow">Erkek giyim</p><h2 class="serif">Erkek</h2></div>
-      <a class="more" href="/#signature">Tümünü gör</a>
-    </div>
-    <div class="etiles">
-      <a class="etile" href="/#signature" style="background-image:url(https://www.vaelo.com.tr/assets/hero-1.webp)"><div><h3 class="serif">Signature Premium</h3><p>Sade kesim, göğüste küçük V imzası, seçkin kumaş.</p><span>Koleksiyonu gör</span></div></a>
-      <a class="etile" href="/#street" style="background-image:url(https://www.vaelo.com.tr/assets/hero-3.webp)"><div><h3 class="serif">Street Division</h3><p>Desenli baskılar, sokak ruhu, cesur grafikler.</p><span>Koleksiyonu gör</span></div></a>
-    </div>
-    <div class="grid">
-      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979076_0.jpg" alt="Signature Hoodie – Siyah" loading="lazy"></div><h3>Signature Hoodie – Siyah</h3><p class="pr">₺1.499</p></a>
-      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50995013_0.jpg" alt="Signature Sweatshirt – Lacivert" loading="lazy"></div><h3>Signature Sweatshirt – Lacivert</h3><p class="pr">₺1.499</p></a>
-      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50994943_0.jpg" alt="Signature Sweatshirt – Siyah" loading="lazy"></div><h3>Signature Sweatshirt – Siyah</h3><p class="pr">₺1.499</p></a>
-      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979137_0.jpg" alt="Signature Hoodie – Lacivert" loading="lazy"></div><h3>Signature Hoodie – Lacivert</h3><p class="pr">₺1.499</p></a>
+      <div class="tabs" style="margin:22px 0 0"><a class="on" href="/#signature">Signature Premium</a><a href="/#street">Street Division</a></div>
     </div>
   </div>
 </section>
