@@ -65,7 +65,22 @@ section{padding:90px 28px}
 .tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
 .tabs a{border:1px solid var(--line);padding:11px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
 .tabs a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 22px}
+.grid{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 66px)/4);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:thin}
+.grid>a{scroll-snap-align:start}
+.erk{background:var(--ink);color:#fff}
+.erk .eyebrow{color:#8a8780}
+.etiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.etile{position:relative;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:flex-end;padding:34px;background:#1a1a1a center/cover no-repeat}
+.etile::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.75));transition:opacity .4s}
+.etile:hover::before{opacity:.75}
+.etile>div{position:relative}
+.etile h3{font-size:clamp(30px,3vw,44px);font-weight:400;line-height:1.05}
+.etile p{font-size:13px;color:#cfcbc2;margin:8px 0 16px;max-width:300px;line-height:1.6}
+.etile span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #fff;padding-bottom:4px}
+.erk .grid{margin-top:46px}
+.erk .card .ph{background:#f4f3f0}
+.erk .card .ph img{object-fit:cover;padding:0}
+.erk .head .more{border-color:#fff}
 .card .ph{background:var(--soft);aspect-ratio:1;overflow:hidden;position:relative}
 .card .ph img{height:100%;object-fit:contain;padding:8%;transition:transform .5s}
 .card:hover .ph img{transform:scale(1.05)}
@@ -105,8 +120,8 @@ footer{border-top:1px solid var(--line);padding:46px 28px;font-size:13px;color:#
 .side{flex-direction:row;overflow-x:auto}
 .mini{min-width:240px}
 .spec{flex-wrap:wrap;gap:14px;white-space:normal}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.series,.egrid{grid-template-columns:1fr}
+.series,.egrid,.etiles{grid-template-columns:1fr}
+.grid{grid-auto-columns:72%}
 .trust-in{grid-template-columns:repeat(2,minmax(0,1fr))}
 .menu{gap:18px;font-size:12px;order:3;width:100%;justify-content:center}
 section{padding:64px 20px}
@@ -202,19 +217,21 @@ section{padding:64px 20px}
   </div>
 </section>
 
-<section id="erkek">
-  <div class="wrap erkek-in">
-    <div class="model"><img src="https://www.vaelo.com.tr/assets/hero-1.webp" alt="VAELO erkek koleksiyonu" loading="lazy"></div>
-    <div>
-      <p class="eyebrow" style="color:var(--mute)">03 · Erkek giyim</p>
-      <h2 class="serif" style="font-size:clamp(36px,4vw,56px);margin:10px 0 16px">Az logo, çok duruş.</h2>
-      <p style="color:#55524c;line-height:1.7;max-width:480px">Signature Premium ve Street Division serileri. Göğüste küçük V imzası, seçkin kumaş.</p>
-      <div class="lines" style="margin-top:24px"><a href="/#signature">Signature Premium</a><a href="/#street">Street Division</a></div>
-      <div class="egrid">
-        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979076_0.jpg" alt="Signature Hoodie – Siyah" loading="lazy"></div><h3>Signature Hoodie</h3><p class="pr">₺1.499</p></a>
-        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50995013_0.jpg" alt="Signature Sweatshirt – Lacivert" loading="lazy"></div><h3>Signature Sweatshirt</h3><p class="pr">₺1.499</p></a>
-        <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979137_0.jpg" alt="Signature Hoodie – Lacivert" loading="lazy"></div><h3>Signature Hoodie</h3><p class="pr">₺1.499</p></a>
-      </div>
+<section id="erkek" class="erk">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">03 · Erkek giyim</p><h2 class="serif">Erkek</h2></div>
+      <a class="more" href="/#signature">Tümünü gör</a>
+    </div>
+    <div class="etiles">
+      <a class="etile" href="/#signature" style="background-image:url(https://www.vaelo.com.tr/assets/signature-bg.webp)"><div><h3 class="serif">Signature Premium</h3><p>Sade kesim, göğüste küçük V imzası, seçkin kumaş.</p><span>Koleksiyonu gör</span></div></a>
+      <a class="etile" href="/#street" style="background-image:url(https://www.vaelo.com.tr/assets/street-bg.webp)"><div><h3 class="serif">Street Division</h3><p>Desenli baskılar, sokak ruhu, cesur grafikler.</p><span>Koleksiyonu gör</span></div></a>
+    </div>
+    <div class="grid">
+      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979076_0.jpg" alt="Signature Hoodie – Siyah" loading="lazy"></div><h3>Signature Hoodie – Siyah</h3><p class="pr">₺1.499</p></a>
+      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50995013_0.jpg" alt="Signature Sweatshirt – Lacivert" loading="lazy"></div><h3>Signature Sweatshirt – Lacivert</h3><p class="pr">₺1.499</p></a>
+      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50994943_0.jpg" alt="Signature Sweatshirt – Siyah" loading="lazy"></div><h3>Signature Sweatshirt – Siyah</h3><p class="pr">₺1.499</p></a>
+      <a class="card" href="/#signature"><div class="ph"><img src="https://www.vaelo.com.tr/assets/urun/50979137_0.jpg" alt="Signature Hoodie – Lacivert" loading="lazy"></div><h3>Signature Hoodie – Lacivert</h3><p class="pr">₺1.499</p></a>
     </div>
   </div>
 </section>
