@@ -71,7 +71,7 @@ for (const u of cfg.urunler) {
       grup: u.grup,
       sezon: u.sezon || 'kis',
       bedenler,
-      ...(/^https:\/\/.+\.mp4$/i.test(x.Video || '') ? { video: x.Video } : {}),
+      ...(/^https:\/\/.+\.(mp4|mov)$/i.test(x.Video || '') ? { video: x.Video } : {}),
       tedarik: 'maxi',
     });
   }
