@@ -30,7 +30,9 @@ const goruldu = new Set();
 // 1562.69 × 1.53 = 2390.9 → 2399
 const yuvarla = (v) => { const b = Math.floor(v / 100) * 100; return v <= b + 49 ? b + 49 : b + 99; };
 // zam: kâr fiyatının üstüne genel zam (ör. 0.15 = %15), yine 49/99'a yukarı yuvarlanır.
-const fiyat = (alis, kar = cfg.kar) => { const p = yuvarla(alis * (1 + kar)); return cfg.zam ? yuvarla(p * (1 + cfg.zam)) : p; };
+// KARGO_EK: anlaşmalı kargo olmadığı için tüm Kadın ürünlerine eklenen sabit kargo payı (TL).
+const KARGO_EK = 300;
+const fiyat = (alis, kar = cfg.kar) => { const p = yuvarla(alis * (1 + kar)); return (cfg.zam ? yuvarla(p * (1 + cfg.zam)) : p) + KARGO_EK; };
 const RENK = { kahverengi: 'Kahverengi', kahve: 'Kahverengi', 'altın': 'Altın Rengi', altin: 'Altın Rengi' };
 const renkAdi = (c) => { const s = String(c || '').trim(); return RENK[s.toLocaleLowerCase('tr-TR')] || s; };
 const BEDEN_SIRA = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46', '48', '50', 'Standart'];
